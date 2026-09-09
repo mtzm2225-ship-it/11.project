@@ -211,7 +211,9 @@ body {
 .green-dot {
     width: 8px;
     height: 8px;
-    background-color: #2bff00;
+    background-color: #8f0f7a;
+
+    
     border-radius: 50%;
 }
 
