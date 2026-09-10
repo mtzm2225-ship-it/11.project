@@ -549,191 +549,27 @@ body {
 /* ==================== Mobile Responsive Adjustments ==================== */
 /* هذا الجزء بيخلي الموقع يبان بشكل مرتب وسلس على الشاشات الصغيرة */
 @media (max-width: 768px) {
-    /* شريط التنقل: يتحول إلى عمود منظم ويظل ثابتًا أثناء النزول */
+    /* إرجاع شكل الموبايل بشكل أقرب إلى الكمبيوتر */
     .header {
         position: sticky;
         top: 0;
         z-index: 1000;
         padding: 12px 16px;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 12px;
     }
 
-    .logo-container {
-        justify-content: center;
-    }
-
-    /* الروابط تتجمع في صفين وتبقى واضحة */
     .nav-links {
-        display: flex;
+        gap: 10px;
         flex-wrap: wrap;
-        justify-content: center;
-        width: 100%;
-        gap: 8px;
-    }
-
-    .nav-links a {
-        flex: 1 1 calc(50% - 8px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 10px 8px;
-        border-radius: 10px;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        text-align: center;
-    }
-
-    .nav-links a::after {
-        display: none;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-        background: rgba(56, 189, 248, 0.12);
-        border-color: rgba(56, 189, 248, 0.25);
-    }
-
-    /* مربع البحث: ياخد عرض كامل ويظهر واضح */
-    .search-box {
-        width: 100%;
-        order: 3;
-        padding: 6px 10px;
-    }
-
-    .search-input {
-        width: 100%;
-        min-width: 0;
-    }
-
-    .search-btn {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-    }
-
-    /* زر Sign In: يملأ العرض بالكامل */
-    .signin-btn {
-        width: 100%;
-    }
-
-    /* قسم Hero: يخرج من صف إلى عمود */
-    .hero-section {
-        flex-direction: column;
-        padding: 42px 18px;
-        text-align: center;
-    }
-
-    .hero-text-content {
-        width: 100%;
-    }
-
-    .welcome-pill {
-        justify-content: center;
-    }
-
-    .cta-buttons {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .btn {
-        display: block;
-        width: 100%;
-        text-align: center;
-    }
-
-    .hero-visual-card {
-        width: 100%;
-    }
-
-    /* الكروت: تتجمع في عمود واحد */
-    .about-section,
-    .footer-section {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
-    .about-grid {
-        grid-template-columns: 1fr;
-    }
-
-    /* الشهادات: تبقى منظمة وتظهر الصور بشكل واضح على الهاتف */
-    .certificate-item {
-        display: grid;
-        grid-template-columns: 42px 82px 1fr;
-        align-items: center;
-        gap: 12px;
-        padding: 10px;
-    }
-
-    .certificate-thumb {
-        display: block;
-        width: 82px;
-        height: 82px;
-    }
-
-    /* الفوتر: يصبح عمودي ومرتب */
-    .footer-container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .footer-contact,
-    .footer-socials {
-        width: 100%;
-    }
-
-    .footer-contact {
-        flex-direction: column;
     }
 }
 
 @media (max-width: 480px) {
-    /* تعديلات خاصة للشاشات الصغيرة جدًا */
-    .logo-container .logo-text {
-        font-size: 1rem;
-    }
-
-    .main-title {
-        font-size: 2rem;
-    }
-
-    .section-title {
-        font-size: 1.6rem;
-    }
-
     .header {
         padding: 10px 14px;
     }
 
     .nav-links {
-        flex-direction: column;
-    }
-
-    .nav-links a {
-        flex-basis: 100%;
-        font-size: 0.85rem;
-        padding: 8px 10px;
-    }
-
-    .search-box {
-        padding: 4px 8px;
-    }
-
-    .search-input {
-        font-size: 0.8rem;
-    }
-
-    .certificate-item {
-        grid-template-columns: 42px 68px 1fr;
-        padding: 8px;
-    }
-
-    .certificate-thumb {
-        width: 68px;
-        height: 68px;
+        justify-content: center;
     }
 }
 
