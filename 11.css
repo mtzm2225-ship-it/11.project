@@ -659,16 +659,19 @@ body {
         grid-template-columns: 1fr;
     }
 
-    /* الشهادات: نختصر الشكل لتظهر بشكل أنيق */
+    /* الشهادات: تبقى منظمة وتظهر الصور بشكل واضح على الهاتف */
     .certificate-item {
-        display: flex;
+        display: grid;
+        grid-template-columns: 42px 82px 1fr;
         align-items: center;
         gap: 12px;
         padding: 10px;
     }
 
     .certificate-thumb {
-        display: none;
+        display: block;
+        width: 82px;
+        height: 82px;
     }
 
     /* الفوتر: يصبح عمودي ومرتب */
@@ -724,7 +727,13 @@ body {
     }
 
     .certificate-item {
-        padding: 10px;
+        grid-template-columns: 42px 68px 1fr;
+        padding: 8px;
+    }
+
+    .certificate-thumb {
+        width: 68px;
+        height: 68px;
     }
 }
 
