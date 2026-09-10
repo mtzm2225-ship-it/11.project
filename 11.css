@@ -114,12 +114,20 @@ body {
     padding: 6px 10px;
     font-weight: 500;
     font-size: 0.95rem;
-    transition: color 0.3s ease;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
     color: #38bdf8;
+}
+
+.nav-links a.active {
+    background: rgba(56, 189, 248, 0.10);
+    border-color: rgba(56, 189, 248, 0.30);
+    box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.08), 0 0 18px rgba(56, 189, 248, 0.12);
 }
 
 .nav-links a::after {
@@ -302,6 +310,12 @@ body.light-mode .nav-links a.active {
 body.light-mode .nav-links a:hover,
 body.light-mode .nav-links a.active {
     color: #0284c7;
+}
+
+body.light-mode .nav-links a.active {
+    background: rgba(56, 189, 248, 0.12);
+    border-color: rgba(56, 189, 248, 0.40);
+    box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.10), 0 0 18px rgba(56, 189, 248, 0.14);
 }
 
 body.light-mode .settings-action-btn {

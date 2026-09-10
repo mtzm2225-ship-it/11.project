@@ -338,6 +338,7 @@
   };
 
   const langButtons = document.querySelectorAll('.lang-btn');
+  const navLinks = document.querySelectorAll('.nav-links a');
   const i18nElements = document.querySelectorAll('[data-i18n]');
   const i18nPlaceholders = document.querySelectorAll('[data-i18n-placeholder]');
 
@@ -368,6 +369,15 @@
   langButtons.forEach(function (button) {
     button.addEventListener('click', function () {
       applyLanguage(button.dataset.lang);
+    });
+  });
+
+  navLinks.forEach(function (link) {
+    link.addEventListener('click', function () {
+      navLinks.forEach(function (item) {
+        item.classList.remove('active');
+      });
+      link.classList.add('active');
     });
   });
 
