@@ -561,12 +561,25 @@ body {
         gap: 10px;
     }
 
+    .nav-links a {
+        flex: 1 1 calc(50% - 10px);
+    }
+
     .search-box {
+        flex: 1 1 100%;
         width: 100%;
+        padding: 6px 10px;
     }
 
     .search-input {
         width: 100%;
+        min-width: 0;
+    }
+
+    .search-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
     }
 
     .hero-section {
@@ -635,8 +648,17 @@ body {
     }
 
     .nav-links a {
+        flex-basis: 100%;
         font-size: 0.85rem;
         padding: 4px 8px;
+    }
+
+    .search-box {
+        padding: 4px 8px;
+    }
+
+    .search-input {
+        font-size: 0.8rem;
     }
 
     .signin-btn {
@@ -644,6 +666,7 @@ body {
     }
 
     .certificate-item {
+        grid-template-columns: 36px 1fr;
         padding: 10px;
     }
 }
