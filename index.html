@@ -26,6 +26,30 @@
 
     
          <!-- شريط التنقل اللي فوق الصفحة: فيه اللوجو، الروابط، مربع البحث، وزر Sign In -->
+    <div class="top-bar">
+        <div class="top-bar-inner">
+            <div class="settings-menu">
+                <button class="settings-pill" type="button" aria-expanded="false" aria-controls="settings-dropdown"
+                        onclick="const panel=this.nextElementSibling; const isHidden=panel.classList.contains('hidden'); panel.classList.toggle('hidden', !isHidden); this.setAttribute('aria-expanded', String(isHidden));">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </button>
+
+                <div id="settings-dropdown" class="settings-dropdown hidden" aria-label="Language switcher">
+                    <div class="lang-switcher">
+                        <button class="lang-btn" type="button" data-lang="ar">AR</button>
+                        <button class="lang-btn active" type="button" data-lang="en">EN</button>
+                    </div>
+
+                    <button class="settings-action-btn night-mode-btn" type="button" aria-pressed="false">
+                        <i class="fa-solid fa-moon"></i>
+                        <span>Primary Mode</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="header"> 
         <div class="logo-container">
             <img src="WhatsApp Image 2026-09-08 at 5.55.54 PM.jpeg" alt="Logo">
@@ -33,19 +57,19 @@
         </div>
 
         <div class="nav-links">
-            <a href="#home" class="active">Home</a>
-            <a href="#about">About Me</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#contact">Contact</a>
+            <a href="#home" class="active" data-i18n="home">Home</a>
+            <a href="#about" data-i18n="about">About Me</a>
+            <a href="#portfolio" data-i18n="portfolio">Portfolio</a>
+            <a href="#contact" data-i18n="contact">Contact</a>
 
             <div class="search-box">
-                <input type="text" placeholder="Search..." class="search-input">
+                <input type="text" placeholder="Search..." class="search-input" data-i18n-placeholder="search">
                 <button class="search-btn">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
 
-            <button class="signin-btn">Sign In</button> 
+            <button class="signin-btn" data-i18n="signin">Sign In</button> 
         </div>
     </div>
 
@@ -55,23 +79,23 @@
 
             <div class="welcome-pill">
                 <span class="green-dot"></span>
-                <span>Welcome! I'm Moataz Mohamed</span>
+                <span data-i18n="welcome">Welcome! I'm Moataz Mohamed</span>
             </div>
 
-            <h1 class="main-title">
+            <h1 class="main-title" data-i18n="heroTitle">
                 My personal portfolio, CV, and software projects all in one place
             </h1>
 
-            <p class="description">
+            <p class="description" data-i18n="heroDescription">
                 I'm an IT student passionate about programming, technology, and building things that make an impact. I'm constantly learning, improving my skills, and turning ideas into real projects.
             </p>
 
             <div class="cta-buttons">
-                <a href="#portfolio" class="btn btn-primary">
+                <a href="#portfolio" class="btn btn-primary" data-i18n="viewWork">
                     View Work <i class="fa-solid fa-arrow-right"></i>
                 </a>
 
-                <a href="#contact" class="btn btn-secondary">
+                <a href="#contact" class="btn btn-secondary" data-i18n="letsTalk">
                     Let's Talk
                 </a>
             </div>
@@ -148,32 +172,32 @@
     <div class="about-grid">
         <div class="about-card">
             <i class="fa-solid fa-user-graduate icon"></i>
-            <h3>Education</h3>
-            <p>IT Student building a strong foundation in Computer Science, Systems, and Software Architecture.</p>
+            <h3 data-i18n="education">Education</h3>
+            <p data-i18n="educationText">IT Student building a strong foundation in Computer Science, Systems, and Software Architecture.</p>
         </div>
 
 
         
         <div class="about-card">
             <i class="fa-solid fa-code-merge icon"></i>
-            <h3>Development</h3>
-            <p>Creating clean, responsive, and robust applications using modern programming web tech.</p>
+            <h3 data-i18n="development">Development</h3>
+            <p data-i18n="developmentText">Creating clean, responsive, and robust applications using modern programming web tech.</p>
         </div>
 
 
 
         <div class="about-card">
             <i class="fa-solid fa-bullseye icon"></i>
-            <h3>Goals</h3>
-            <p>Continuously learning to solve complex problems and deliver high-quality digital solutions.</p>
+            <h3 data-i18n="goals">Goals</h3>
+            <p data-i18n="goalsText">Continuously learning to solve complex problems and deliver high-quality digital solutions.</p>
         </div>
 
 
 
         <div class="about-card certificates-card">
             <i class="fa-solid fa-award icon"></i>
-            <h3>Certificates</h3>
-            <p>My professional certificates and course completions.</p>
+            <h3 data-i18n="certificates">Certificates</h3>
+            <p data-i18n="certificatesText">My professional certificates and course completions.</p>
 
 
 
@@ -236,7 +260,7 @@
         
         <div class="footer-info">
             <h3>ENG.Moataz Mohamed</h3>
-            <p class="footer-quote">Designed & Developed with passion | صُمِّم وطُوِّر بكل شغف</p>
+            <p class="footer-quote" data-i18n="footerQuote">Designed & Developed with passion | صُمِّم وطُوِّر بكل شغف</p>
         </div>
 
         <div class="footer-contact">
@@ -265,6 +289,101 @@
     </div>
 </footer>
 
+<script>
+  const translations = {
+    ar: {
+      home: 'الرئيسية',
+      about: 'عني',
+      portfolio: 'المشاريع',
+      contact: 'تواصل',
+      signin: 'تسجيل الدخول',
+      search: 'بحث...',
+      welcome: 'مرحبًا! أنا معتز محمد',
+      heroTitle: 'ملفي الشخصي، سيرتي الذاتية، ومشاريجي البرمجية كلهم في مكان واحد',
+      heroDescription: 'أنا طالب IT شغوف بالبرمجة والتقنية وبناء الأشياء التي تحدث تأثيرًا. أتعلم باستمرار وأحسن مهاراتي وأحوّل الأفكار إلى مشاريع حقيقية.',
+      viewWork: 'عرض الأعمال',
+      letsTalk: 'تحدث معي',
+      education: 'التعليم',
+      educationText: 'طالب IT يبني قاعدة قوية في علوم الحاسوب والأنظمة وهندسة البرمجيات.',
+      development: 'التطوير',
+      developmentText: 'أقوم بإنشاء تطبيقات نظيفة ومتجاوبة وقوية باستخدام تقنيات الويب الحديثة.',
+      goals: 'الأهداف',
+      goalsText: 'أتعلم باستمرار لحل المشكلات المعقدة وتقديم حلول رقمية عالية الجودة.',
+      certificates: 'الشهادات',
+      certificatesText: 'شهاداتي المهنية وانتهاء الدورات التي أكملتها.',
+      footerQuote: 'صُمِّم وطُوِّر بكل شغف | Designed & Developed with passion'
+    },
+    en: {
+      home: 'Home',
+      about: 'About Me',
+      portfolio: 'Portfolio',
+      contact: 'Contact',
+      signin: 'Sign In',
+      search: 'Search...',
+      welcome: "Welcome! I'm Moataz Mohamed",
+      heroTitle: 'My personal portfolio, CV, and software projects all in one place',
+      heroDescription: "I'm an IT student passionate about programming, technology, and building things that make an impact. I'm constantly learning, improving my skills, and turning ideas into real projects.",
+      viewWork: 'View Work',
+      letsTalk: "Let's Talk",
+      education: 'Education',
+      educationText: 'IT Student building a strong foundation in Computer Science, Systems, and Software Architecture.',
+      development: 'Development',
+      developmentText: 'Creating clean, responsive, and robust applications using modern programming web tech.',
+      goals: 'Goals',
+      goalsText: 'Continuously learning to solve complex problems and deliver high-quality digital solutions.',
+      certificates: 'Certificates',
+      certificatesText: 'My professional certificates and course completions.',
+      footerQuote: 'Designed & Developed with passion | صُمِّم وطُوِّر بكل شغف'
+    }
+  };
+
+  const langButtons = document.querySelectorAll('.lang-btn');
+  const i18nElements = document.querySelectorAll('[data-i18n]');
+  const i18nPlaceholders = document.querySelectorAll('[data-i18n-placeholder]');
+
+  function applyLanguage(language) {
+    const dictionary = translations[language] || translations.en;
+
+    i18nElements.forEach(function (element) {
+      const key = element.dataset.i18n;
+      if (dictionary[key]) {
+        element.textContent = dictionary[key];
+      }
+    });
+
+    i18nPlaceholders.forEach(function (element) {
+      const key = element.dataset.i18nPlaceholder;
+      if (dictionary[key]) {
+        element.placeholder = dictionary[key];
+      }
+    });
+
+    langButtons.forEach(function (button) {
+      button.classList.toggle('active', button.dataset.lang === language);
+    });
+
+    document.documentElement.lang = language;
+  }
+
+  langButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      applyLanguage(button.dataset.lang);
+    });
+  });
+
+  const nightModeButton = document.querySelector('.night-mode-btn');
+
+  nightModeButton.addEventListener('click', function () {
+    const isWhiteMode = document.body.classList.toggle('light-mode');
+    nightModeButton.classList.toggle('is-active', isWhiteMode);
+    nightModeButton.setAttribute('aria-pressed', String(isWhiteMode));
+
+    const label = nightModeButton.querySelector('span');
+    label.textContent = isWhiteMode ? 'White Mode' : 'Primary Mode';
+  });
+
+  applyLanguage('en');
+</script>
 
 </body>
 </html>
