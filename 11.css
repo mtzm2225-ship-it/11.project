@@ -155,33 +155,6 @@ body {
     justify-content: center;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ==================== 5. قسم الـ Hero الرئيسي ==================== */
 /* قسم الهيرو: ده الجزء الرئيسي اللي بيظهر أول حاجة في الصفحة ويحتوي على العنوان والوصف والأزرار */
 .hero-section {
@@ -335,32 +308,6 @@ body {
     margin-top: 15px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ==================== 6. قسم التعريف (About Me Section) ==================== */
 /* قسم About Me: فيه كروت المعلومات عنّي مثل التعليم والتطوير والأهداف */
 .about-section {
@@ -397,17 +344,27 @@ body {
 
 /* كل كارت داخل About Me: بيحمل عنوانًا ووصفًا ومناسبة خاصة له */
 .about-card {
-    background: #111827;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.96), rgba(15, 23, 42, 0.85));
+    border: 1px solid rgba(148, 163, 184, 0.18);
     padding: 28px;
     border-radius: 16px;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.16), transparent 35%);
+    pointer-events: none;
 }
 
 .about-card:hover {
-    border-color: #38bdf8;
+    border-color: rgba(56, 189, 248, 0.7);
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
 }
 
 .about-card .icon {
@@ -428,38 +385,6 @@ body {
     line-height: 1.6;
     margin: 0;
 }
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* جزء الفوتر في النهاية: فيه بيانات التواصل وروابط السوشيال ميديا */
 .footer-section {
@@ -560,33 +485,85 @@ body {
 /* ده الجزء الخاص بالشهادات: كل عنصر فيه بيعرض أيقونة، صورة الشهادة، واسمها بشكل مرتب */
 .about-card.certificates-card {
     grid-column: span 1;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(145deg, rgba(17, 24, 39, 0.96), rgba(15, 23, 42, 0.85));
+}
+
+.about-card.certificates-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.18), transparent 35%);
+    pointer-events: none;
 }
 
 /* قائمة الشهادات: كل عنصر فيها بيحمل أيقونة، صورة، ونص صغير يشرح الشهادة */
 .certificates-list {
-    margin-top: 18px;
+    margin-top: 22px;
     display: flex;
-    flex-direction: column;
-    gap: 14px;
+    gap: 18px;
+    overflow-x: auto;
+    padding: 6px 2px 10px;
+    scroll-snap-type: x proximity;
+    position: relative;
+    z-index: 1;
+}
+
+.certificates-list::-webkit-scrollbar {
+    height: 8px;
+}
+
+.certificates-list::-webkit-scrollbar-thumb {
+    background: rgba(56, 189, 248, 0.5);
+    border-radius: 999px;
 }
 
 /* كل عنصر شهادة: بيضم أيقونة الشهادة، صورة الشهادة، واسمها */
 .certificate-item {
-    display: grid;
-    grid-template-columns: 42px 84px 1fr;
-    align-items: center;
+    flex: 0 0 240px;
+    display: flex;
+    flex-direction: column;
     gap: 12px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 14px;
-    padding: 10px;
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.18), rgba(59, 130, 246, 0.12));
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 18px;
+    padding: 12px;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    scroll-snap-align: start;
+}
+
+.certificate-item:nth-child(1) {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.22), rgba(59, 130, 246, 0.18));
+}
+
+.certificate-item:nth-child(2) {
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.22), rgba(168, 85, 247, 0.18));
+}
+
+.certificate-item:nth-child(3) {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(244, 63, 94, 0.18));
+}
+
+.certificate-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(56, 189, 248, 0.08), transparent 40%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .certificate-item:hover {
-    border-color: #38bdf8;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    border-color: rgba(56, 189, 248, 0.7);
+    transform: translateY(-4px);
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.28);
+}
+
+.certificate-item:hover::after {
+    opacity: 1;
 }
 
 .certificate-icon {
@@ -600,16 +577,39 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.certificate-number {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    min-width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.68);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.25);
+    z-index: 2;
 }
 
 /* صورة الشهادة: بيتم عرضها داخل مربع صغير لتبقى مرتبة وواضحة */
 .certificate-thumb {
-    width: 84px;
-    height: 84px;
-    border-radius: 12px;
+    width: 100%;
+    height: 150px;
+    border-radius: 14px;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.08);
     background: rgba(255, 255, 255, 0.02);
+    position: relative;
 }
 
 .certificate-thumb img {
@@ -617,13 +617,21 @@ body {
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.35s ease;
+}
+
+.certificate-item:hover .certificate-thumb img {
+    transform: scale(1.04);
 }
 
 /* نص الشهادة: بيحوي اسم الشهادة وتاريخ إكمالها */
 .certificate-text {
     display: flex;
-    flex-direction: column;
-    gap: 4px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    position: relative;
+    z-index: 1;
 }
 
 .certificate-text h4 {
@@ -634,7 +642,11 @@ body {
 
 .certificate-text span {
     color: #94a3b8;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    padding: 4px 8px;
 }
 
 /* ==================== Mobile Responsive Adjustments ==================== */
