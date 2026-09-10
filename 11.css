@@ -480,10 +480,6 @@ body.light-mode .certificate-thumb {
     background: rgba(255, 255, 255, 0.72);
 }
 
-body.light-mode .certificate-item.certificate-placeholder .certificate-thumb {
-    border-color: rgba(148, 163, 184, 0.4);
-}
-
 body.light-mode .certificate-text span {
     background: rgba(255, 255, 255, 0.8);
     border-color: rgba(148, 163, 184, 0.18);
@@ -1055,20 +1051,6 @@ body.light-mode .contact-item:hover {
     object-fit: cover;
     display: block;
     transition: transform 0.35s ease;
-}
-
-.certificate-item.certificate-placeholder .certificate-thumb {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px dashed rgba(148, 163, 184, 0.3);
-    min-height: 150px;
-}
-
-.certificate-item.certificate-placeholder .certificate-thumb img {
-    display: none;
-}
-
-.certificate-item.certificate-placeholder .certificate-text span {
-    display: none;
 }
 
 .certificate-item:hover .certificate-thumb img {
