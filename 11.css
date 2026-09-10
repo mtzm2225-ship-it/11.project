@@ -231,19 +231,21 @@ body.light-mode {
 }
 
 body.light-mode .top-bar {
-    background-color: rgba(255, 255, 255, 0.96);
-    border-bottom-color: rgba(148, 163, 184, 0.28);
+    background-color: rgba(255, 255, 255, 0.97);
+    border-bottom: none;
+    box-shadow: 0 2px 0 rgba(15, 23, 42, 0.06), 0 10px 18px rgba(15, 23, 42, 0.03);
 }
 
 body.light-mode .header {
-    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(237,244,255,0.96));
-    border-bottom-color: rgba(148, 163, 184, 0.28);
-    box-shadow: inset 0 -1px 0 rgba(148, 163, 184, 0.18);
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(240,247,255,0.96));
+    border-bottom: 2px solid rgba(56, 189, 248, 0.9);
+    box-shadow: 0 1px 0 rgba(56, 189, 248, 0.18);
 }
 
 body.light-mode .settings-dropdown {
-    background: rgba(255, 255, 255, 0.98);
-    border-color: rgba(148, 163, 184, 0.35);
+    background: rgba(255, 255, 255, 0.99);
+    border-color: rgba(100, 116, 139, 0.45);
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.6);
 }
 
 body.light-mode .settings-pill,
@@ -279,13 +281,15 @@ body.light-mode .search-input::placeholder {
 
 body.light-mode .settings-pill {
     background: rgba(56, 189, 248, 0.12);
-    border-color: rgba(56, 189, 248, 0.4);
+    border-color: rgba(2, 132, 199, 0.6);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);
     color: #0369a1;
 }
 
 body.light-mode .lang-switcher {
-    background: rgba(15, 23, 42, 0.04);
-    border-color: rgba(148, 163, 184, 0.3);
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(100, 116, 139, 0.45);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);
 }
 
 body.light-mode .lang-btn {
@@ -332,23 +336,23 @@ body.light-mode .settings-action-btn.is-active {
 }
 
 body.light-mode .nav-links {
-    background: rgba(255, 255, 255, 0.52);
-    border: 1px solid rgba(148, 163, 184, 0.2);
+    background: rgba(255, 255, 255, 0.42);
+    border: 1px solid transparent;
     border-radius: 18px;
     padding: 6px 10px;
-    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
+    box-shadow: none;
 }
 
 body.light-mode .search-box {
-    background: rgba(255, 255, 255, 0.95);
-    border-color: rgba(148, 163, 184, 0.4);
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35);
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(148, 163, 184, 0.24);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.3);
 }
 
 body.light-mode .search-box:focus-within {
     background: rgba(255, 255, 255, 1);
-    border-color: rgba(2, 132, 199, 0.55);
-    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.14);
+    border-color: rgba(2, 132, 199, 0.7);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.18);
 }
 
 body.light-mode .search-input {
@@ -381,7 +385,7 @@ body.light-mode .btn-secondary:hover {
 
 body.light-mode .hero-visual-card {
     background: linear-gradient(145deg, #edf6ff, #f8fbff);
-    border-color: rgba(148, 163, 184, 0.18);
+    border-color: transparent;
     box-shadow: 0 18px 32px rgba(15, 23, 42, 0.06);
 }
 
@@ -403,7 +407,7 @@ body.light-mode .certificate-icon {
 
 body.light-mode .about-card {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(241, 245, 249, 0.98));
-    border-color: rgba(148, 163, 184, 0.22);
+    border-color: rgba(148, 163, 184, 0.18);
     box-shadow: 0 10px 20px rgba(15, 23, 42, 0.05);
 }
 
