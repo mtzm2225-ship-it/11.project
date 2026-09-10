@@ -544,3 +544,66 @@ body {
     color: #64748b;
     font-size: 0.8rem;
 }
+
+
+
+
+
+.about-card.certificates-card {
+    grid-column: span 1;
+}
+
+.certificates-list {
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.certificate-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.certificate-item:hover {
+    border-color: #38bdf8;
+    transform: translateY(-2px);
+}
+
+.certificate-item img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.certificate-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.certificate-text h4 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 0.9rem;
+}
+
+.certificate-text span {
+    color: #94a3b8;
+    font-size: 0.75rem;
+}
+
+
+
+
+
+
+
