@@ -127,7 +127,7 @@ body {
     background: transparent;
     border: none;
     outline: none;
-    color: #f8fafc;
+    color: #2bfa0b;
     font-size: 0.85rem;
     width: 110px;
     transition: width 0.3s ease;
@@ -211,7 +211,7 @@ body {
 .green-dot {
     width: 8px;
     height: 8px;
-    background-color: #fcf5f5;
+    background-color: #07f41b;
     border-radius: 50%;
 }
 
