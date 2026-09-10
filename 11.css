@@ -668,6 +668,39 @@ body {
 
 
 
+/* تنسيقات خاصة بشاشات الموبايل (الأجهزة الأقل من 768px) */
+@media (max-width: 768px) {
 
+  /* منع التمرير الأفقي غير المرغوب فيه */
+  body {
+    overflow-x: hidden;
+    padding: 0 15px;
+  }
+
+  /* جعل الصور تتماشى مع حجم الشاشة دون خروج عن الإطار */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* تحويل الحاويات المرنة (Flex Containers) إلى أفقية/عمودية تناسب الموبايل */
+  .container, 
+  .navbar, 
+  .hero-section, 
+  .cards-grid {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 15px;
+  }
+
+  /* تعديل أحجام الخطوط لتناسب الشاشات الصغيرة */
+  h1 {
+    font-size: 1.8rem !important;
+  }
+
+  p {
+    font-size: 0.95rem !important;
+  }
+}
 
 
