@@ -484,7 +484,7 @@ body {
 /* ==================== 7. قسم الشهادات (Certificates) ==================== */
 /* ده الجزء الخاص بالشهادات: كل عنصر فيه بيعرض أيقونة، صورة الشهادة، واسمها بشكل مرتب */
 .about-card.certificates-card {
-    grid-column: span 1;
+    grid-column: 1 / -1;
     position: relative;
     overflow: hidden;
     background: linear-gradient(145deg, rgba(17, 24, 39, 0.96), rgba(15, 23, 42, 0.85));
@@ -522,6 +522,7 @@ body {
 /* كل عنصر شهادة: بيضم أيقونة الشهادة، صورة الشهادة، واسمها */
 .certificate-item {
     flex: 0 0 240px;
+    width: 240px;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -618,6 +619,20 @@ body {
     object-fit: cover;
     display: block;
     transition: transform 0.35s ease;
+}
+
+.certificate-item.certificate-placeholder .certificate-thumb {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px dashed rgba(148, 163, 184, 0.3);
+    min-height: 150px;
+}
+
+.certificate-item.certificate-placeholder .certificate-thumb img {
+    display: none;
+}
+
+.certificate-item.certificate-placeholder .certificate-text span {
+    display: none;
 }
 
 .certificate-item:hover .certificate-thumb img {
