@@ -358,6 +358,10 @@ body.light-mode .signin-close {
 }
 
 .developer-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
     padding: 10px 12px;
     border-radius: 10px;
     background: rgba(59, 130, 246, 0.08);
@@ -369,6 +373,26 @@ body.light-mode .signin-close {
 
 .developer-item:last-child {
     margin-bottom: 0;
+}
+
+.developer-item span {
+    flex: 1;
+    word-break: break-word;
+}
+
+.developer-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 92px;
+    padding: 7px 10px;
+    border-radius: 8px;
+    background: rgba(34, 197, 94, 0.16);
+    border: 1px solid rgba(34, 197, 94, 0.5);
+    color: #dcfce7;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 700;
 }
 
 .developer-empty {
@@ -410,6 +434,12 @@ body.light-mode .developer-list {
 body.light-mode .developer-item {
     background: rgba(59, 130, 246, 0.08);
     border-color: rgba(59, 130, 246, 0.18);
+}
+
+body.light-mode .developer-action {
+    background: rgba(34, 197, 94, 0.12);
+    border-color: rgba(22, 163, 74, 0.32);
+    color: #166534;
 }
 
 body.light-mode .developer-close {
@@ -796,6 +826,26 @@ body.light-mode .certificate-item:nth-child(3) {
 body.light-mode .certificate-item:hover {
     border-color: rgba(2, 132, 199, 0.35);
     box-shadow: 0 14px 22px rgba(56, 189, 248, 0.12);
+}
+
+body.light-mode .certificate-btn.view {
+    background: rgba(56, 189, 248, 0.12);
+    border-color: rgba(2, 132, 199, 0.32);
+    color: #0f4c81;
+}
+
+body.light-mode .certificate-btn.download {
+    background: rgba(34, 197, 94, 0.12);
+    border-color: rgba(22, 163, 74, 0.32);
+    color: #166534;
+}
+
+body.light-mode .certificate-btn.view:hover {
+    background: rgba(56, 189, 248, 0.18);
+}
+
+body.light-mode .certificate-btn.download:hover {
+    background: rgba(34, 197, 94, 0.18);
 }
 
 body.light-mode .certificate-number {
