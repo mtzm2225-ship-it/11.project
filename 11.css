@@ -2,7 +2,7 @@
 * {
     box-sizing: border-box;
 }
-
+ 
 body {
     margin: 0;
     font-family: 'Inter', Arial, sans-serif;
@@ -20,7 +20,7 @@ body {
     color: #f8fafc;
     overflow-x: hidden;
 }
-
+ 
 body::before {
     content: "";
     position: fixed;
@@ -38,7 +38,7 @@ body::before {
     pointer-events: none;
     z-index: 0;
 }
-
+ 
 body::after {
     content: "";
     position: fixed;
@@ -51,39 +51,23 @@ body::after {
     pointer-events: none;
     z-index: 0;
 }
-
+ 
 body > * {
     position: relative;
     z-index: 1;
 }
-
+ 
 .hidden {
     display: none !important;
 }
-
+ 
 /* ==================== 2. الشريط العلوي (Header & Navigation) ==================== */
-/* شريط التنقل اللي فوق الصفحة: بيحتوي على اللوجو، الروابط، ومربع البحث */
-.top-bar {
-    background-color: rgba(15, 23, 42, 0.96);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 8px 30px;
-}
-
-.top-bar-inner {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 12px;
-}
-
 .settings-menu {
     position: relative;
     display: inline-flex;
     align-items: center;
 }
-
+ 
 .settings-pill {
     display: inline-flex;
     align-items: center;
@@ -97,7 +81,7 @@ body > * {
     font-weight: 600;
     cursor: pointer;
 }
-
+ 
 .settings-dropdown {
     position: absolute;
     top: calc(100% + 8px);
@@ -111,11 +95,11 @@ body > * {
     z-index: 1001;
     display: block;
 }
-
+ 
 .settings-dropdown.hidden {
     display: none;
 }
-
+ 
 .header {
     background: rgba(13, 17, 29, 0.9);
     backdrop-filter: blur(14px);
@@ -134,20 +118,20 @@ body > * {
     box-shadow: 0 10px 28px rgba(2, 6, 23, 0.18);
     transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
-
+ 
 .header.scrolled {
     background: rgba(13, 17, 29, 0.68);
     border-color: rgba(148, 163, 184, 0.12);
     box-shadow: 0 8px 24px rgba(2, 6, 23, 0.12);
 }
-
+ 
 /* لوغو الموقع واسم الشركة: بيظهر في الشمال أو الوسط حسب التصميم */
 .logo-container {
     display: flex;
     align-items: center;
     gap: 12px;
 }
-
+ 
 .logo-container img {
     height: 42px;
     width: 42px;
@@ -158,7 +142,7 @@ body > * {
     display: block;
     flex-shrink: 0;
 }
-
+ 
 .logo-container .logo-text {
     color: #ffffff;
     font-size: 1.25rem;
@@ -166,13 +150,13 @@ body > * {
     text-decoration: none;
     letter-spacing: 0.5px;
 }
-
+ 
 .nav-links {
     display: flex;
     align-items: center;
     gap: 20px;
 }
-
+ 
 .nav-links a {
     color: #94a3b8;
     text-decoration: none;
@@ -184,18 +168,18 @@ body > * {
     border-radius: 10px;
     transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
-
+ 
 .nav-links a:hover,
 .nav-links a.active {
     color: #38bdf8;
 }
-
+ 
 .nav-links a.active {
     background: rgba(56, 189, 248, 0.10);
     border-color: rgba(56, 189, 248, 0.30);
     box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.08), 0 0 18px rgba(56, 189, 248, 0.12);
 }
-
+ 
 .nav-links a::after {
     content: '';
     position: absolute;
@@ -206,14 +190,14 @@ body > * {
     background-color: #38bdf8;
     transition: width 0.3s ease;
 }
-
+ 
 .nav-links a:hover::after,
 .nav-links a.active::after { 
     width: 100%;
 }
-
+ 
 /* ==================== 3. زر تسجيل الدخول (Sign In Button) ==================== */
-
+ 
 /* زر Sign In: بيظهر في نهاية الهيدر وبيمنح شكل زر واضح ومميز */
 .signin-btn {
     padding: 8px 20px;
@@ -226,14 +210,14 @@ body > * {
     font-weight: 600;
     transition: all 0.3s ease;
 }
-
+ 
 .signin-btn:hover {
     color: #0b0f19;
     background-color: #38bdf8;
     box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
     transform: translateY(-2px);
 }
-
+ 
 .signin-modal,
 .contact-modal {
     position: fixed;
@@ -246,12 +230,12 @@ body > * {
     backdrop-filter: blur(6px);
     z-index: 2000;
 }
-
+ 
 .signin-modal.hidden,
 .contact-modal.hidden {
     display: none;
 }
-
+ 
 .signin-modal-content,
 .contact-modal-content,
 .contact-modal-content {
@@ -263,7 +247,7 @@ body > * {
     padding: 28px 24px 20px;
     box-shadow: 0 28px 70px rgba(2, 6, 23, 0.6);
 }
-
+ 
 .signin-close,
 .contact-modal-close {
     position: absolute;
@@ -278,21 +262,21 @@ body > * {
     font-size: 1.2rem;
     cursor: pointer;
 }
-
+ 
 .signin-modal-content h3,
 .contact-modal-content h3 {
     margin: 0 0 8px;
     font-size: 1.4rem;
     color: #f8fafc;
 }
-
+ 
 .signin-subtitle {
     margin: 0 0 18px;
     color: #cbd5e1;
     font-size: 0.92rem;
     line-height: 1.5;
 }
-
+ 
 .signin-field {
     display: flex;
     flex-direction: column;
@@ -301,7 +285,7 @@ body > * {
     font-size: 0.9rem;
     margin-bottom: 18px;
 }
-
+ 
 .signin-field input {
     width: 100%;
     box-sizing: border-box;
@@ -313,12 +297,12 @@ body > * {
     font-size: 0.96rem;
     outline: none;
 }
-
+ 
 .signin-field input:focus {
     border-color: #38bdf8;
     box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
 }
-
+ 
 .signin-submit {
     width: 100%;
     padding: 12px 16px;
@@ -330,26 +314,26 @@ body > * {
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
+ 
 .signin-submit:hover {
     transform: translateY(-1px);
     box-shadow: 0 12px 24px rgba(14, 165, 233, 0.25);
 }
-
+ 
 .signin-message {
     min-height: 20px;
     margin: 14px 0 0;
     font-size: 0.9rem;
     color: #86efac;
 }
-
+ 
 .contact-modal-list {
     display: flex;
     flex-direction: column;
     gap: 12px;
     margin-top: 18px;
 }
-
+ 
 .contact-modal-item {
     display: flex;
     align-items: center;
@@ -362,46 +346,46 @@ body > * {
     background: rgba(255, 255, 255, 0.02);
     transition: all 0.2s ease;
 }
-
+ 
 .contact-modal-item i {
     width: 18px;
     text-align: center;
     color: #38bdf8;
 }
-
+ 
 .contact-modal-item.whatsapp i {
     color: #25d366;
 }
-
+ 
 .contact-modal-item:hover {
     background: rgba(56, 189, 248, 0.08);
     border-color: rgba(56, 189, 248, 0.26);
     transform: translateY(-1px);
 }
-
+ 
 body.light-mode .signin-modal-content,
 body.light-mode .contact-modal-content {
     background: rgba(255, 255, 255, 0.96);
     border-color: rgba(148, 163, 184, 0.22);
     box-shadow: 0 24px 48px rgba(59, 130, 246, 0.14);
 }
-
+ 
 body.light-mode .signin-field input {
     background: rgba(248, 250, 252, 0.9);
     color: #0f172a;
 }
-
+ 
 body.light-mode .signin-subtitle,
 body.light-mode .signin-field {
     color: #475569;
 }
-
+ 
 body.light-mode .signin-close,
 body.light-mode .contact-modal-close {
     color: #0f172a;
     background: rgba(148, 163, 184, 0.08);
 }
-
+ 
 .developer-panel {
     position: fixed;
     inset: 0;
@@ -413,7 +397,7 @@ body.light-mode .contact-modal-close {
     z-index: 2001;
     padding: 20px;
 }
-
+ 
 .developer-panel-content {
     width: min(100%, 500px);
     background: rgba(15, 23, 42, 0.98);
@@ -422,7 +406,7 @@ body.light-mode .contact-modal-close {
     box-shadow: 0 24px 60px rgba(2, 6, 23, 0.55);
     padding: 22px;
 }
-
+ 
 .developer-panel-header {
     display: flex;
     align-items: center;
@@ -430,13 +414,13 @@ body.light-mode .contact-modal-close {
     gap: 16px;
     margin-bottom: 12px;
 }
-
+ 
 .developer-panel-header h3 {
     margin: 0;
     color: #f8fafc;
     font-size: 1.15rem;
 }
-
+ 
 .developer-close {
     width: 34px;
     height: 34px;
@@ -447,7 +431,7 @@ body.light-mode .contact-modal-close {
     font-size: 1.2rem;
     cursor: pointer;
 }
-
+ 
 .developer-list {
     list-style: none;
     margin: 0;
@@ -459,7 +443,7 @@ body.light-mode .contact-modal-close {
     border-radius: 12px;
     padding: 10px;
 }
-
+ 
 .developer-item {
     display: flex;
     align-items: center;
@@ -473,16 +457,16 @@ body.light-mode .contact-modal-close {
     margin-bottom: 8px;
     font-size: 0.92rem;
 }
-
+ 
 .developer-item:last-child {
     margin-bottom: 0;
 }
-
+ 
 .developer-item span {
     flex: 1;
     word-break: break-word;
 }
-
+ 
 .developer-action {
     display: inline-flex;
     align-items: center;
@@ -497,14 +481,14 @@ body.light-mode .contact-modal-close {
     font-size: 0.8rem;
     font-weight: 700;
 }
-
+ 
 .developer-empty {
     padding: 14px 12px;
     color: #cbd5e1;
     font-size: 0.9rem;
     text-align: center;
 }
-
+ 
 .developer-clear {
     width: 100%;
     margin-top: 16px;
@@ -516,40 +500,40 @@ body.light-mode .contact-modal-close {
     font-weight: 700;
     cursor: pointer;
 }
-
+ 
 body.light-mode .developer-panel-content {
     background: rgba(255, 255, 255, 0.98);
     border-color: rgba(148, 163, 184, 0.2);
     box-shadow: 0 20px 45px rgba(59, 130, 246, 0.12);
 }
-
+ 
 body.light-mode .developer-panel-header h3,
 body.light-mode .developer-item,
 body.light-mode .developer-empty {
     color: #0f172a;
 }
-
+ 
 body.light-mode .developer-list {
     background: rgba(248, 250, 252, 0.9);
     border-color: rgba(148, 163, 184, 0.2);
 }
-
+ 
 body.light-mode .developer-item {
     background: rgba(59, 130, 246, 0.08);
     border-color: rgba(59, 130, 246, 0.18);
 }
-
+ 
 body.light-mode .developer-action {
     background: rgba(34, 197, 94, 0.12);
     border-color: rgba(22, 163, 74, 0.32);
     color: #166534;
 }
-
+ 
 body.light-mode .developer-close {
     color: #0f172a;
     background: rgba(148, 163, 184, 0.08);
 }
-
+ 
 /* ==================== 3.1. أزرار اللغة ==================== */
 .lang-switcher {
     display: flex;
@@ -560,7 +544,7 @@ body.light-mode .developer-close {
     padding: 4px;
     gap: 4px;
 }
-
+ 
 .lang-btn {
     border: none;
     background: transparent;
@@ -572,17 +556,17 @@ body.light-mode .developer-close {
     cursor: pointer;
     transition: all 0.3s ease;
 }
-
+ 
 .lang-btn.active {
     background: #38bdf8;
     color: #0b0f19;
     box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
 }
-
+ 
 .lang-btn:hover {
     color: #ffffff;
 }
-
+ 
 .settings-action-btn {
     width: 100%;
     margin-top: 8px;
@@ -600,13 +584,13 @@ body.light-mode .developer-close {
     cursor: pointer;
     transition: all 0.3s ease;
 }
-
+ 
 .settings-action-btn.is-active {
     background: rgba(255, 255, 255, 0.96);
     border-color: rgba(148, 163, 184, 0.35);
     color: #0f172a;
 }
-
+ 
 body.light-mode {
     background:
         radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 28%),
@@ -619,13 +603,7 @@ body.light-mode {
     background-attachment: fixed;
     color: #0f172a;
 }
-
-body.light-mode .top-bar {
-    background-color: rgba(255, 255, 255, 0.98);
-    border-bottom: 1px solid rgba(56, 189, 248, 0.18);
-    box-shadow: 0 2px 12px rgba(15, 23, 42, 0.04);
-}
-
+ 
 body.light-mode .header {
     background: rgba(255, 255, 255, 0.94);
     backdrop-filter: blur(14px);
@@ -633,19 +611,19 @@ body.light-mode .header {
     border: 1px solid rgba(56, 189, 248, 0.28);
     box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.4);
 }
-
+ 
 body.light-mode .header.scrolled {
     background: rgba(255, 255, 255, 0.76);
     border-color: rgba(56, 189, 248, 0.2);
     box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
 }
-
+ 
 body.light-mode .settings-dropdown {
     background: rgba(255, 255, 255, 0.99);
     border-color: rgba(100, 116, 139, 0.45);
     box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.6);
 }
-
+ 
 body.light-mode .settings-pill,
 body.light-mode .signin-btn,
 body.light-mode .lang-btn,
@@ -672,34 +650,34 @@ body.light-mode .certificate-text h4,
 body.light-mode .welcome-pill {
     color: #0f172a;
 }
-
+ 
 body.light-mode .search-input::placeholder {
     color: #64748b;
 }
-
+ 
 body.light-mode .settings-pill {
     background: rgba(59, 130, 246, 0.10);
     border-color: rgba(59, 130, 246, 0.35);
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);
     color: #0f4c81;
 }
-
+ 
 body.light-mode .lang-switcher {
     background: rgba(255, 255, 255, 0.92);
     border-color: rgba(100, 116, 139, 0.45);
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);
 }
-
+ 
 body.light-mode .lang-btn {
     color: #334155;
 }
-
+ 
 body.light-mode .lang-btn.active {
     background: #38bdf8;
     color: #f8fafc;
     box-shadow: 0 0 10px rgba(56, 189, 248, 0.24);
 }
-
+ 
 body.light-mode .lang-btn:hover,
 body.light-mode .settings-pill:hover,
 body.light-mode .search-btn:hover,
@@ -709,30 +687,30 @@ body.light-mode .nav-links a.active {
     box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.24), 0 0 18px rgba(56, 189, 248, 0.14);
     transform: translateY(-1px);
 }
-
+ 
 body.light-mode .nav-links a:hover,
 body.light-mode .nav-links a.active {
     color: #0284c7;
 }
-
+ 
 body.light-mode .nav-links a.active {
     background: rgba(56, 189, 248, 0.12);
     border-color: rgba(56, 189, 248, 0.40);
     box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.10), 0 0 18px rgba(56, 189, 248, 0.14);
 }
-
+ 
 body.light-mode .settings-action-btn {
     background: rgba(148, 163, 184, 0.08);
     border-color: rgba(148, 163, 184, 0.28);
     color: #0f172a;
 }
-
+ 
 body.light-mode .settings-action-btn.is-active {
     background: rgba(56, 189, 248, 0.12);
     border-color: rgba(56, 189, 248, 0.35);
     color: #0369a1;
 }
-
+ 
 body.light-mode .nav-links {
     background: rgba(255, 255, 255, 0.7);
     border: 1px solid rgba(148, 163, 184, 0.22);
@@ -740,74 +718,74 @@ body.light-mode .nav-links {
     padding: 6px 10px;
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);
 }
-
+ 
 body.light-mode .search-box {
     background: rgba(255, 255, 255, 0.88);
     border-color: rgba(148, 163, 184, 0.26);
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.38), 0 0 0 1px rgba(148, 163, 184, 0.06);
 }
-
+ 
 body.light-mode .search-box:focus-within {
     background: rgba(255, 255, 255, 1);
     border-color: rgba(2, 132, 199, 0.7);
     box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.18);
 }
-
+ 
 body.light-mode .search-input {
     color: #0f172a;
 }
-
+ 
 body.light-mode .search-btn {
     color: #0284c7;
     background: rgba(255, 255, 255, 0.7);
     border-radius: 12px;
 }
-
+ 
 body.light-mode .welcome-pill {
     background: rgba(56, 189, 248, 0.09);
     border-color: rgba(56, 189, 248, 0.28);
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.26);
 }
-
+ 
 body.light-mode .btn-primary {
     background: linear-gradient(135deg, #38bdf8, #0284c7);
     color: #f8fafc;
     box-shadow: 0 12px 22px rgba(2, 132, 199, 0.22);
 }
-
+ 
 body.light-mode .btn-secondary {
     background: rgba(255, 255, 255, 0.94);
     border-color: rgba(15, 23, 42, 0.14);
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);
     color: #0f172a;
 }
-
+ 
 body.light-mode .btn-secondary:hover {
     background: rgba(255, 255, 255, 1);
 }
-
+ 
 body.light-mode .hero-visual-card {
     background: linear-gradient(145deg, #edf6ff, #f8fbff);
     border-color: rgba(148, 163, 184, 0.2);
     box-shadow: 0 18px 32px rgba(15, 23, 42, 0.06), inset 0 0 0 1px rgba(255,255,255,0.4);
 }
-
+ 
 body.light-mode .badge-status {
     background: rgba(15, 23, 42, 0.04);
 }
-
+ 
 body.light-mode .skill-box {
     background: rgba(255, 255, 255, 0.72);
     border: 1px solid rgba(148, 163, 184, 0.15);
 }
-
+ 
 body.light-mode .skill-box i,
 body.light-mode .laptop-icon,
 body.light-mode .about-card .icon,
 body.light-mode .certificate-icon {
     color: #0284c7;
 }
-
+ 
 body.light-mode .about-card {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.45), rgba(241, 245, 249, 0.28));
     border-color: rgba(148, 163, 184, 0.2);
@@ -815,39 +793,39 @@ body.light-mode .about-card {
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 10px 20px rgba(15, 23, 42, 0.05), inset 0 0 0 1px rgba(255,255,255,0.35);
 }
-
+ 
 body.light-mode .about-card::before,
 body.light-mode .about-card.certificates-card::before {
     background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.16), transparent 35%);
 }
-
+ 
 body.light-mode .about-card:hover {
     border-color: rgba(2, 132, 199, 0.38);
     box-shadow: 0 16px 26px rgba(2, 132, 199, 0.10);
 }
-
+ 
 body.light-mode .footer-section {
     background: linear-gradient(180deg, #edf4ff, #eaf2ff);
     border-top-color: rgba(148, 163, 184, 0.2);
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
 }
-
+ 
 body.light-mode .footer-socials a {
     background: rgba(255, 255, 255, 0.9);
     border-color: rgba(148, 163, 184, 0.18);
     color: #0f172a;
 }
-
+ 
 body.light-mode .footer-socials a:hover {
     background: #38bdf8;
     color: #0f172a;
     box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
 }
-
+ 
 body.light-mode .about-card.certificates-card {
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(239, 246, 255, 0.96));
 }
-
+ 
 body.light-mode .project-card {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.38), rgba(239, 246, 255, 0.24));
     border-color: rgba(96, 165, 250, 0.24);
@@ -855,151 +833,151 @@ body.light-mode .project-card {
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 18px 35px rgba(59, 130, 246, 0.06), inset 0 0 0 1px rgba(255, 255, 255, 0.4);
 }
-
+ 
 body.light-mode .project-info h3 {
     color: #0f172a;
 }
-
+ 
 body.light-mode .project-info p {
     color: #475569;
 }
-
+ 
 body.light-mode .project-tag {
     background: rgba(59, 130, 246, 0.10);
     border-color: rgba(59, 130, 246, 0.35);
     color: #0f4c81;
 }
-
+ 
 body.light-mode .project-nav-btn {
     background: rgba(255, 255, 255, 0.96);
     border-color: rgba(59, 130, 246, 0.42);
     color: #0f172a;
     box-shadow: 0 10px 20px rgba(59, 130, 246, 0.10);
 }
-
+ 
 body.light-mode .project-nav-btn:hover {
     background: rgba(96, 165, 250, 0.16);
     box-shadow: 0 14px 22px rgba(59, 130, 246, 0.16);
 }
-
+ 
 body.light-mode .project-btn.primary {
     background: linear-gradient(135deg, #3b82f6, #2563eb);
     color: #ffffff;
     box-shadow: 0 10px 18px rgba(59, 130, 246, 0.22);
 }
-
+ 
 body.light-mode .project-btn.secondary {
     background: rgba(255, 255, 255, 0.94);
     border-color: rgba(15, 23, 42, 0.14);
     color: #0f172a;
 }
-
+ 
 body.light-mode .project-btn.change {
     background: rgba(59, 130, 246, 0.10);
     border-color: rgba(59, 130, 246, 0.35);
     color: #0f4c81;
 }
-
+ 
 body.light-mode .preview-window {
     background: rgba(255, 255, 255, 0.92);
     border-color: rgba(148, 163, 184, 0.22);
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5), 0 10px 18px rgba(59, 130, 246, 0.08);
 }
-
+ 
 body.light-mode .preview-sidebar {
     background: linear-gradient(180deg, rgba(96, 165, 250, 0.14), rgba(59, 130, 246, 0.18));
     border-color: rgba(96, 165, 250, 0.24);
 }
-
+ 
 body.light-mode .preview-cards span {
     background: linear-gradient(135deg, rgba(96, 165, 250, 0.12), rgba(59, 130, 246, 0.18));
     border-color: rgba(148, 163, 184, 0.22);
 }
-
+ 
 body.light-mode .scroll-btn {
     background: rgba(255, 255, 255, 0.95);
     border-color: rgba(59, 130, 246, 0.38);
     color: #0f172a;
     box-shadow: 0 10px 20px rgba(59, 130, 246, 0.08);
 }
-
+ 
 body.light-mode .scroll-btn:hover {
     background: rgba(96, 165, 250, 0.16);
     box-shadow: 0 14px 22px rgba(59, 130, 246, 0.16);
 }
-
+ 
 body.light-mode .certificate-item {
     background: linear-gradient(135deg, rgba(219, 234, 254, 0.82), rgba(220, 252, 231, 0.8));
     border-color: rgba(148, 163, 184, 0.18);
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
 }
-
+ 
 body.light-mode .certificate-item:nth-child(1) {
     background: linear-gradient(135deg, rgba(191, 219, 254, 0.9), rgba(187, 247, 208, 0.9));
 }
-
+ 
 body.light-mode .certificate-item:nth-child(2) {
     background: linear-gradient(135deg, rgba(221, 214, 254, 0.9), rgba(191, 219, 254, 0.9));
 }
-
+ 
 body.light-mode .certificate-item:nth-child(3) {
     background: linear-gradient(135deg, rgba(254, 240, 138, 0.8), rgba(254, 205, 211, 0.8));
 }
-
+ 
 body.light-mode .certificate-item:hover {
     border-color: rgba(2, 132, 199, 0.35);
     box-shadow: 0 14px 22px rgba(56, 189, 248, 0.12);
 }
-
+ 
 body.light-mode .certificate-btn.view {
     background: rgba(56, 189, 248, 0.12);
     border-color: rgba(2, 132, 199, 0.32);
     color: #0f4c81;
 }
-
+ 
 body.light-mode .certificate-btn.download {
     background: rgba(34, 197, 94, 0.12);
     border-color: rgba(22, 163, 74, 0.32);
     color: #166534;
 }
-
+ 
 body.light-mode .certificate-btn.view:hover {
     background: rgba(56, 189, 248, 0.18);
 }
-
+ 
 body.light-mode .certificate-btn.download:hover {
     background: rgba(34, 197, 94, 0.18);
 }
-
+ 
 body.light-mode .certificate-number {
     background: rgba(255, 255, 255, 0.9);
     border-color: rgba(148, 163, 184, 0.18);
     color: #0f172a;
 }
-
+ 
 body.light-mode .certificate-thumb {
     border-color: rgba(148, 163, 184, 0.22);
     background: rgba(255, 255, 255, 0.72);
 }
-
+ 
 body.light-mode .certificate-item.certificate-placeholder .certificate-thumb {
     border-color: rgba(148, 163, 184, 0.4);
     background: rgba(255, 255, 255, 0.3);
 }
-
+ 
 body.light-mode .certificate-text span {
     background: rgba(255, 255, 255, 0.8);
     border-color: rgba(148, 163, 184, 0.18);
     color: #475569;
 }
-
+ 
 body.light-mode .contact-item:hover {
     color: #0369a1;
     background: linear-gradient(135deg, rgba(56, 189, 248, 0.14), rgba(191, 219, 254, 0.32));
     border-color: rgba(2, 132, 199, 0.35);
     box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.08), 0 10px 22px rgba(2, 132, 199, 0.16);
 }
-
+ 
 body.light-mode .settings-dropdown,
 body.light-mode .lang-switcher,
 body.light-mode .settings-action-btn,
@@ -1012,9 +990,9 @@ body.light-mode .certificate-item,
 body.light-mode .footer-socials a {
     transition: all 0.3s ease;
 }
-
+ 
 /* ==================== 4. مربع البحث (Search Box) ==================== */
-
+ 
 /* مربع البحث: بيخلي المستخدم يقدر يبحث داخل الموقع بسهولة */
 .search-box {
     display: flex;
@@ -1025,25 +1003,25 @@ body.light-mode .footer-socials a {
     padding: 4px 10px;
     transition: all 0.3s ease;
 }
-
+ 
 .search-box:focus-within {
     border-color: #38bdf8;
     box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
     background: rgba(255, 255, 255, 0.1);
 }
-
+ 
 .search-match {
     background: rgba(250, 204, 21, 0.28);
     border-radius: 6px;
     box-shadow: inset 0 0 0 1px rgba(250, 204, 21, 0.7);
     transition: all 0.2s ease;
 }
-
+ 
 body.light-mode .search-match {
     background: rgba(59, 130, 246, 0.16);
     box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.45);
 }
-
+ 
 .search-input {
     background: transparent;
     border: none;
@@ -1053,15 +1031,15 @@ body.light-mode .search-match {
     width: 110px;
     transition: width 0.3s ease;
 }
-
+ 
 .search-input:focus {
     width: 150px;
 }
-
+ 
 .search-input::placeholder {
     color: #94a3b8;
 }
-
+ 
 .search-btn {
     background: transparent;
     border: none;
@@ -1072,7 +1050,7 @@ body.light-mode .search-match {
     align-items: center;
     justify-content: center;
 }
-
+ 
 /* ==================== 5. قسم الـ Hero الرئيسي ==================== */
 /* قسم الهيرو: ده الجزء الرئيسي اللي بيظهر أول حاجة في الصفحة ويحتوي على العنوان والوصف والأزرار */
 /* بلوك الهيرو: هنا بنحدد ترتيب العنوان والوصف والأزرار والبطاقة الجانبية */
@@ -1085,13 +1063,13 @@ body.light-mode .search-match {
     max-width: 1400px;
     margin: 0 auto;
 }
-
+ 
 /* بلوك نص الهيرو: هنا بنحدد محتوى الـ hero من عنوان ووصف وزرار */
 /* نص الهيرو: بيحتوي على نص الترحيب وشرح مختصر عن صاحب الموقع */
 .hero-text-content {
     flex: 1;
 }
-
+ 
 .welcome-pill {
     display: inline-flex;
     align-items: center;
@@ -1104,34 +1082,34 @@ body.light-mode .search-match {
     font-size: 0.85rem;
     margin-bottom: 20px;
 }
-
+ 
 .green-dot {
     width: 8px;
     height: 8px;
     background-color: #07f41b;
     border-radius: 50%;
 }
-
+ 
 .main-title {
     font-size: 2.5rem;
     line-height: 1.2;
     margin-bottom: 18px;
     color: #ffffff;
 }
-
+ 
 .description {
     color: #94a3b8;
     line-height: 1.6;
     margin-bottom: 30px;
     font-size: 1rem;
 }
-
+ 
 /* أزرار الهيرو: زر رئيسي وزر ثانوي للتواصل أو مشاهدة الأعمال */
 .cta-buttons {
     display: flex;
     gap: 16px;
 }
-
+ 
 .btn {
     padding: 12px 24px;
     border-radius: 8px;
@@ -1139,28 +1117,28 @@ body.light-mode .search-match {
     font-weight: 600;
     transition: all 0.3s ease;
 }
-
+ 
 .btn-primary {
     background: linear-gradient(135deg, #38bdf8, #0ea5e9);
     color: #0b0f19;
     box-shadow: 0 8px 20px rgba(14, 165, 233, 0.22);
 }
-
+ 
 .btn-primary:hover {
     box-shadow: 0 0 15px rgba(56, 189, 248, 0.55);
     transform: translateY(-2px);
 }
-
+ 
 .btn-secondary {
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #ffffff;
     background: rgba(255, 255, 255, 0.02);
 }
-
+ 
 .btn-secondary:hover {
     background: rgba(255, 255, 255, 0.08);
 }
-
+ 
 /* بلوك البطاقة البصرية: هنا الشكل اللي على اليمين في الهيرو */
 /* بطاقة الجانب البصري Hero Card */
 .hero-visual-card {
@@ -1172,19 +1150,19 @@ body.light-mode .search-match {
     padding: 24px;
     box-shadow: 0 18px 40px rgba(15, 23, 42, 0.22);
 }
-
+ 
 .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
-
+ 
 .laptop-icon {
     font-size: 1.5rem;
     color: #38bdf8;
 }
-
+ 
 .badge-status {
     background: rgba(255, 255, 255, 0.05);
     padding: 4px 12px;
@@ -1192,14 +1170,14 @@ body.light-mode .search-match {
     font-size: 0.8rem;
     color: #94a3b8;
 }
-
+ 
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
     margin: 20px 0;
 }
-
+ 
 .skill-box {
     display: flex;
     align-items: center;
@@ -1208,21 +1186,21 @@ body.light-mode .search-match {
     padding: 12px;
     border-radius: 8px;
 }
-
+ 
 .skill-box i {
     color: #38bdf8;
 }
-
+ 
 .skill-box h4 {
     margin: 0;
     font-size: 0.85rem;
 }
-
+ 
 .skill-box span {
     font-size: 0.75rem;
     color: #64748b;
 }
-
+ 
 .card-footer-motto {
     color: #64748b;
     font-size: 0.85rem;
@@ -1231,7 +1209,7 @@ body.light-mode .search-match {
     gap: 8px;
     margin-top: 15px;
 }
-
+ 
 /* ==================== 6. قسم التعريف (About Me Section) ==================== */
 /* قسم About Me: فيه كروت المعلومات عنّي مثل التعليم والتطوير والأهداف */
 /* بلوك About Me: هنا بنحدد مساحة القسم وكرواته الرئيسية */
@@ -1240,13 +1218,13 @@ body.light-mode .search-match {
     max-width: 1400px;
     margin: 0 auto;
 }
-
+ 
 .contact-strip-section {
     padding: 20px 8% 0;
     max-width: 1400px;
     margin: 0 auto 40px;
 }
-
+ 
 .contact-strip {
     display: flex;
     align-items: center;
@@ -1258,7 +1236,7 @@ body.light-mode .search-match {
     padding: 24px 28px;
     box-shadow: 0 16px 30px rgba(15, 23, 42, 0.22);
 }
-
+ 
 .contact-strip-kicker {
     margin: 0 0 6px;
     color: #38bdf8;
@@ -1267,13 +1245,13 @@ body.light-mode .search-match {
     letter-spacing: 0.12em;
     text-transform: uppercase;
 }
-
+ 
 .contact-strip h3 {
     margin: 0;
     color: #ffffff;
     font-size: clamp(1.1rem, 2vw, 1.5rem);
 }
-
+ 
 .contact-strip-btn {
     display: inline-flex;
     align-items: center;
@@ -1286,16 +1264,16 @@ body.light-mode .search-match {
     font-weight: 700;
     transition: all 0.3s ease;
 }
-
+ 
 .contact-strip-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 12px 18px rgba(56, 189, 248, 0.18);
 }
-
+ 
 .portfolio-header {
     margin-bottom: 24px;
 }
-
+ 
 .section-kicker {
     margin: 0 0 10px;
     color: #38bdf8;
@@ -1304,7 +1282,7 @@ body.light-mode .search-match {
     letter-spacing: 0.12em;
     text-transform: uppercase;
 }
-
+ 
 .project-card {
     --project-primary: #38bdf8;
     --project-secondary: #7dd3fc;
@@ -1323,7 +1301,7 @@ body.light-mode .search-match {
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 18px 35px rgba(15, 23, 42, 0.28);
 }
-
+ 
 .project-nav-btn {
     position: absolute;
     top: 50%;
@@ -1343,33 +1321,33 @@ body.light-mode .search-match {
     box-shadow: 0 10px 20px rgba(15, 23, 42, 0.25);
     z-index: 2;
 }
-
+ 
 .project-nav-btn.prev {
     left: 16px;
 }
-
+ 
 .project-nav-btn.next {
     right: 16px;
 }
-
+ 
 .project-nav-btn:hover {
     transform: translateY(-50%) scale(1.04);
     background: rgba(56, 189, 248, 0.24);
     box-shadow: 0 14px 20px rgba(56, 189, 248, 0.18);
 }
-
+ 
 .project-arrow {
     transition: transform 0.35s ease;
 }
-
+ 
 .project-nav-btn:hover .project-arrow {
     transform: rotate(360deg);
 }
-
+ 
 .project-info {
     flex: 1;
 }
-
+ 
 .project-tag {
     display: inline-flex;
     align-items: center;
@@ -1383,27 +1361,27 @@ body.light-mode .search-match {
     letter-spacing: 0.04em;
     text-transform: uppercase;
 }
-
+ 
 .project-info h3 {
     margin: 16px 0 12px;
     color: #ffffff;
     font-size: clamp(1.5rem, 2vw, 2.2rem);
 }
-
+ 
 .project-info p {
     margin: 0;
     color: #94a3b8;
     line-height: 1.7;
     font-size: 1rem;
 }
-
+ 
 .project-actions {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
     margin-top: 22px;
 }
-
+ 
 .project-btn {
     display: inline-flex;
     align-items: center;
@@ -1416,36 +1394,36 @@ body.light-mode .search-match {
     transition: all 0.3s ease;
     border: 1px solid transparent;
 }
-
+ 
 .project-btn.primary {
     background: var(--project-primary);
     color: #0b0f19;
 }
-
+ 
 .project-btn.secondary {
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #ffffff;
     background: rgba(255, 255, 255, 0.02);
 }
-
+ 
 .project-btn.change {
     border: 1px solid rgba(56, 189, 248, 0.45);
     background: rgba(56, 189, 248, 0.12);
     color: #e0f2fe;
     cursor: pointer;
 }
-
+ 
 .project-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 12px 18px rgba(56, 189, 248, 0.18);
 }
-
+ 
 .project-preview {
     flex: 1;
     display: flex;
     justify-content: center;
 }
-
+ 
 .preview-window {
     position: relative;
     width: min(100%, 520px);
@@ -1456,7 +1434,7 @@ body.light-mode .search-match {
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
     overflow: hidden;
 }
-
+ 
 .project-preview-image {
     position: absolute;
     inset: 42px 14px 14px;
@@ -1468,66 +1446,66 @@ body.light-mode .search-match {
     box-shadow: 0 12px 24px rgba(15, 23, 42, 0.2);
     display: none;
 }
-
+ 
 .project-card.is-first-project .project-preview-image {
     display: block;
 }
-
+ 
 .preview-topbar {
     display: flex;
     align-items: center;
     gap: 8px;
     padding-bottom: 12px;
 }
-
+ 
 .preview-dot {
     width: 10px;
     height: 10px;
     border-radius: 50%;
     display: block;
 }
-
+ 
 .preview-dot.red { background: var(--project-primary); }
 .preview-dot.yellow { background: var(--project-secondary); }
 .preview-dot.green { background: var(--project-tertiary); }
-
+ 
 .preview-body {
     display: flex;
     gap: 14px;
     min-height: 220px;
 }
-
+ 
 .preview-sidebar {
     width: 24%;
     border-radius: 12px;
     background: linear-gradient(180deg, var(--project-primary-soft), var(--project-primary-soft-2));
     border: 1px solid rgba(56, 189, 248, 0.2);
 }
-
+ 
 .preview-content {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
-
+ 
 .preview-line {
     height: 14px;
     border-radius: 999px;
     background: linear-gradient(90deg, var(--project-primary), rgba(148, 163, 184, 0.15));
 }
-
+ 
 .preview-line.short { width: 45%; }
 .preview-line.medium { width: 65%; }
 .preview-line.long { width: 80%; }
-
+ 
 .preview-cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     margin-top: 10px;
 }
-
+ 
 .preview-cards span {
     display: block;
     height: 78px;
@@ -1535,13 +1513,13 @@ body.light-mode .search-match {
     background: linear-gradient(135deg, var(--project-primary-soft), var(--project-primary-soft-2));
     border: 1px solid rgba(148, 163, 184, 0.18);
 }
-
+ 
 .about-section {
     padding: 60px 8%;
     max-width: 1400px;
     margin: 0 auto;
 }
-
+ 
 .section-title {
     font-size: 2rem;
     color: #ffffff;
@@ -1550,7 +1528,7 @@ body.light-mode .search-match {
     display: inline-block;
     letter-spacing: -0.03em;
 }
-
+ 
 .section-title::after {
     content: '';
     position: absolute;
@@ -1561,7 +1539,7 @@ body.light-mode .search-match {
     background: #38bdf8;
     border-radius: 2px;
 }
-
+ 
 /* بلوك شبكة About Me: هنا ترتيب الكروت داخل القسم */
 /* شبكة الكروت: بتخلي الكروت تتوزع بشكل مرتب ومتناغم في الصفحات */
 .about-grid {
@@ -1569,7 +1547,7 @@ body.light-mode .search-match {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 24px;
 }
-
+ 
 /* بلوك الكروت الفردية: هنا الشكل العام لكل بطاقة About Me */
 /* ==================== 5. كروت About Me ==================== */
 /* كل كارت داخل About Me: بيحمل عنوانًا ووصفًا ومناسبة خاصة له */
@@ -1585,7 +1563,7 @@ body.light-mode .search-match {
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 10px 25px rgba(15, 23, 42, 0.10);
 }
-
+ 
 .about-card::before {
     content: '';
     position: absolute;
@@ -1593,32 +1571,32 @@ body.light-mode .search-match {
     background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.16), transparent 35%);
     pointer-events: none;
 }
-
+ 
 .about-card:hover {
     border-color: rgba(56, 189, 248, 0.7);
     transform: translateY(-5px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
 }
-
+ 
 .about-card .icon {
     font-size: 2rem;
     color: #38bdf8;
     margin-bottom: 16px;
 }
-
+ 
 .about-card h3 {
     color: #ffffff;
     font-size: 1.2rem;
     margin-bottom: 10px;
 }
-
+ 
 .about-card p {
     color: #94a3b8;
     font-size: 0.95rem;
     line-height: 1.6;
     margin: 0;
 }
-
+ 
 /* بلوك الفوتر: هنا تنسيق آخر جزء في الصفحة وبيانات التواصل */
 /* ==================== 6. Footer / التواصل النهائي ==================== */
 /* جزء الفوتر في النهاية: فيه بيانات التواصل وروابط السوشيال ميديا */
@@ -1628,7 +1606,7 @@ body.light-mode .search-match {
     padding: 40px 8% 20px;
     margin-top: 60px;
 }
-
+ 
 /* حاوية الفوتر: بتوزع المعلومات داخل الفوتر بشكل متوازن */
 .footer-container {
     display: flex;
@@ -1639,25 +1617,25 @@ body.light-mode .search-match {
     max-width: 1400px;
     margin: 0 auto 30px;
 }
-
+ 
 .footer-info h3 {
     color: #ffffff;
     margin: 0 0 6px 0;
     font-size: 1.3rem;
 }
-
+ 
 .footer-quote {
     color: #94a3b8;
     font-size: 0.88rem;
     margin: 0;
 }
-
+ 
 .footer-contact {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
 }
-
+ 
 .contact-item {
     color: #94a3b8;
     text-decoration: none;
@@ -1670,11 +1648,11 @@ body.light-mode .search-match {
     padding: 6px 10px;
     border: 1px solid transparent;
 }
-
+ 
 .contact-item i {
     color: #09b2e5;
 }
-
+ 
 .contact-item:hover {
     color: #0f172a;
     background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(147, 197, 253, 0.12));
@@ -1682,28 +1660,28 @@ body.light-mode .search-match {
     box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.12), 0 8px 18px rgba(56, 189, 248, 0.18);
     transform: translateY(-2px);
 }
-
+ 
 body.light-mode .contact-item {
     color: #334155;
 }
-
+ 
 body.light-mode .contact-item:hover {
     color: #0369a1;
     background: linear-gradient(135deg, rgba(56, 189, 248, 0.14), rgba(191, 219, 254, 0.3));
     border-color: rgba(2, 132, 199, 0.35);
     box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.08), 0 10px 22px rgba(2, 132, 199, 0.16);
 }
-
+ 
 .contact-item.whatsapp i {
     color: #25d366;
 }
-
+ 
 /* أيقونات السوشيال ميديا: بتسهل التواصل مع صاحب الموقع */
 .footer-socials {
     display: flex;
     gap: 12px;
 }
-
+ 
 .footer-socials a {
     width: 38px;
     height: 38px;
@@ -1717,14 +1695,14 @@ body.light-mode .contact-item:hover {
     text-decoration: none;
     transition: all 0.3s ease;
 }
-
+ 
 .footer-socials a:hover {
     background: #38bdf8;
     color: #0b0f19;
     transform: translateY(-3px);
     box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
 }
-
+ 
 .footer-bottom {
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -1732,7 +1710,7 @@ body.light-mode .contact-item:hover {
     color: #64748b;
     font-size: 0.8rem;
 }
-
+ 
 /* بلوك الشهادات: هنا تنسيق الكارت الكبير الخاص بالشهادات */
 /* ==================== 7. قسم الشهادات (Certificates) ==================== */
 /* ده الجزء الخاص بالشهادات: كل عنصر فيه بيعرض أيقونة، صورة الشهادة، واسمها بشكل مرتب */
@@ -1742,7 +1720,7 @@ body.light-mode .contact-item:hover {
     overflow: hidden;
     background: linear-gradient(145deg, rgba(17, 24, 39, 0.96), rgba(15, 23, 42, 0.85));
 }
-
+ 
 .about-card.certificates-card::before {
     content: '';
     position: absolute;
@@ -1750,7 +1728,7 @@ body.light-mode .contact-item:hover {
     background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.18), transparent 35%);
     pointer-events: none;
 }
-
+ 
 /* بلوك قائمة الشهادات: هنا ترتيب البطاقات داخل الكارت الكبير */
 /* ==================== 7.1. قائمة الشهادات ==================== */
 /* قائمة الشهادات: كل عنصر فيها بيحمل أيقونة، صورة، ونص صغير يشرح الشهادة */
@@ -1766,7 +1744,7 @@ body.light-mode .contact-item:hover {
     z-index: 3;
     pointer-events: none;
 }
-
+ 
 .scroll-btn {
     width: 42px;
     height: 42px;
@@ -1783,21 +1761,21 @@ body.light-mode .contact-item:hover {
     box-shadow: 0 10px 20px rgba(15, 23, 42, 0.25);
     pointer-events: auto;
 }
-
+ 
 .scroll-btn i {
     transition: transform 0.35s ease;
 }
-
+ 
 .scroll-btn:hover {
     transform: translateY(-2px) scale(1.04);
     background: rgba(56, 189, 248, 0.24);
     box-shadow: 0 14px 20px rgba(56, 189, 248, 0.18);
 }
-
+ 
 .scroll-btn:hover i {
     transform: rotate(360deg);
 }
-
+ 
 .certificates-list {
     margin-top: 4px;
     display: flex;
@@ -1809,16 +1787,16 @@ body.light-mode .contact-item:hover {
     position: relative;
     z-index: 1;
 }
-
+ 
 .certificates-list::-webkit-scrollbar {
     height: 8px;
 }
-
+ 
 .certificates-list::-webkit-scrollbar-thumb {
     background: rgba(56, 189, 248, 0.5);
     border-radius: 999px;
 }
-
+ 
 /* بلوك البطاقة الواحدة: هنا الشكل العام لكل شهادة */
 /* ==================== 7.2. كل بطاقة شهادة ==================== */
 /* كل عنصر شهادة: بيضم أيقونة الشهادة، صورة الشهادة، واسمها */
@@ -1837,19 +1815,19 @@ body.light-mode .contact-item:hover {
     overflow: hidden;
     scroll-snap-align: start;
 }
-
+ 
 .certificate-item:nth-child(1) {
     background: linear-gradient(135deg, rgba(34, 197, 94, 0.22), rgba(59, 130, 246, 0.18));
 }
-
+ 
 .certificate-item:nth-child(2) {
     background: linear-gradient(135deg, rgba(96, 165, 250, 0.22), rgba(168, 85, 247, 0.18));
 }
-
+ 
 .certificate-item:nth-child(3) {
     background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(244, 63, 94, 0.18));
 }
-
+ 
 .certificate-item::after {
     content: '';
     position: absolute;
@@ -1858,7 +1836,7 @@ body.light-mode .contact-item:hover {
     opacity: 0;
     transition: opacity 0.3s ease;
 }
-
+ 
 .certificate-top {
     display: flex;
     align-items: center;
@@ -1867,13 +1845,13 @@ body.light-mode .contact-item:hover {
     position: relative;
     z-index: 1;
 }
-
+ 
 .certificate-move-controls {
     display: flex;
     align-items: center;
     gap: 6px;
 }
-
+ 
 .move-btn {
     width: 28px;
     height: 28px;
@@ -1887,23 +1865,23 @@ body.light-mode .contact-item:hover {
     cursor: pointer;
     transition: all 0.3s ease;
 }
-
+ 
 .move-btn:hover {
     background: rgba(56, 189, 248, 0.18);
     border-color: rgba(56, 189, 248, 0.5);
     transform: translateY(-1px);
 }
-
+ 
 .certificate-item:hover {
     border-color: rgba(56, 189, 248, 0.7);
     transform: translateY(-4px);
     box-shadow: 0 18px 30px rgba(0, 0, 0, 0.28);
 }
-
+ 
 .certificate-item:hover::after {
     opacity: 1;
 }
-
+ 
 .certificate-icon {
     width: 36px;
     height: 36px;
@@ -1918,7 +1896,7 @@ body.light-mode .contact-item:hover {
     position: relative;
     z-index: 1;
 }
-
+ 
 .certificate-number {
     position: absolute;
     top: 10px;
@@ -1938,7 +1916,7 @@ body.light-mode .contact-item:hover {
     box-shadow: 0 10px 20px rgba(15, 23, 42, 0.25);
     z-index: 2;
 }
-
+ 
 /* بلوك الصورة والنص: هنا شكل الصورة واسم الشهادة */
 /* ==================== 7.3. صورة الشهادة والنص ==================== */
 /* صورة الشهادة: بيتم عرضها داخل مربع صغير لتبقى مرتبة وواضحة */
@@ -1951,7 +1929,7 @@ body.light-mode .contact-item:hover {
     background: rgba(255, 255, 255, 0.02);
     position: relative;
 }
-
+ 
 .certificate-thumb img {
     width: 100%;
     height: 100%;
@@ -1959,7 +1937,7 @@ body.light-mode .contact-item:hover {
     display: block;
     transition: transform 0.35s ease;
 }
-
+ 
 .certificate-thumb-placeholder {
     display: flex;
     align-items: center;
@@ -1967,7 +1945,7 @@ body.light-mode .contact-item:hover {
     background: linear-gradient(135deg, rgba(250, 204, 21, 0.18), rgba(248, 113, 113, 0.14));
     border: 1px solid rgba(255, 255, 255, 0.14);
 }
-
+ 
 .certificate-placeholder-text {
     color: #f8fafc;
     font-size: 1.2rem;
@@ -1975,11 +1953,11 @@ body.light-mode .contact-item:hover {
     letter-spacing: 0.08em;
     text-transform: uppercase;
 }
-
+ 
 .certificate-item:hover .certificate-thumb img {
     transform: scale(1.04);
 }
-
+ 
 /* نص الشهادة: بيحوي اسم الشهادة وتاريخ إكمالها */
 .certificate-text {
     display: flex;
@@ -1989,7 +1967,7 @@ body.light-mode .contact-item:hover {
     position: relative;
     z-index: 1;
 }
-
+ 
 .certificate-note {
     margin: 0;
     color: #cbd5e1;
@@ -1998,7 +1976,7 @@ body.light-mode .contact-item:hover {
     position: relative;
     z-index: 1;
 }
-
+ 
 .certificate-meta {
     display: block;
     position: relative;
@@ -2008,15 +1986,15 @@ body.light-mode .contact-item:hover {
     font-size: 0.68rem;
     line-height: 1.5;
 }
-
+ 
 .certificate-meta p {
     margin: 0;
 }
-
+ 
 .certificate-item.certificate-placeholder .certificate-meta {
     display: block;
 }
-
+ 
 .certificate-actions {
     display: flex;
     align-items: center;
@@ -2024,7 +2002,7 @@ body.light-mode .contact-item:hover {
     position: relative;
     z-index: 1;
 }
-
+ 
 .certificate-btn {
     flex: 1;
     text-align: center;
@@ -2036,38 +2014,38 @@ body.light-mode .contact-item:hover {
     transition: all 0.3s ease;
     border: 1px solid transparent;
 }
-
+ 
 .certificate-btn.view {
     background: rgba(56, 189, 248, 0.14);
     border-color: rgba(56, 189, 248, 0.45);
     color: #e0f2fe;
 }
-
+ 
 .certificate-btn.download {
     background: rgba(34, 197, 94, 0.14);
     border-color: rgba(34, 197, 94, 0.45);
     color: #dcfce7;
 }
-
+ 
 .certificate-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 18px rgba(15, 23, 42, 0.18);
 }
-
+ 
 .certificate-btn.view:hover {
     background: rgba(56, 189, 248, 0.22);
 }
-
+ 
 .certificate-btn.download:hover {
     background: rgba(34, 197, 94, 0.22);
 }
-
+ 
 .certificate-text h4 {
     margin: 0;
     color: #ffffff;
     font-size: 0.8rem;
 }
-
+ 
 .certificate-text span {
     color: #94a3b8;
     font-size: 0.68rem;
@@ -2076,7 +2054,7 @@ body.light-mode .contact-item:hover {
     border-radius: 999px;
     padding: 3px 6px;
 }
-
+ 
 @media (max-width: 900px) {
     .project-card {
         flex-direction: column;
@@ -2084,26 +2062,26 @@ body.light-mode .contact-item:hover {
         padding: 22px 18px;
         gap: 20px;
     }
-
+ 
     .project-preview {
         width: 100%;
     }
-
+ 
     .preview-window {
         width: 100%;
     }
 }
-
+ 
 @media (max-width: 600px) {
     .project-actions {
         flex-direction: column;
     }
-
+ 
     .project-btn {
         width: 100%;
     }
 }
-
+ 
 /* بلوك الـ Responsive: هنا ضبط الشكل على الشاشات الصغيرة */
 /* ==================== 8. Responsive / شاشة الموبايل ==================== */
 /* ==================== Mobile Responsive Adjustments ==================== */
@@ -2112,76 +2090,75 @@ body.light-mode .contact-item:hover {
     .header {
         padding: 12px 16px;
     }
-
+ 
     .nav-links {
         gap: 10px;
         flex-wrap: wrap;
         justify-content: center;
     }
-
+ 
     .hero-section {
         gap: 24px;
         padding: 60px 6%;
     }
-
+ 
     .about-grid {
         grid-template-columns: repeat(2, minmax(240px, 1fr));
     }
 }
-
+ 
 @media (max-width: 600px) {
     .header {
         padding: 10px 14px;
         flex-wrap: wrap;
         justify-content: center;
     }
-
+ 
     .logo-container {
         width: 100%;
         justify-content: center;
     }
-
+ 
     .nav-links {
         width: 100%;
         justify-content: center;
         flex-wrap: wrap;
     }
-
+ 
     .search-box {
         width: 100%;
         max-width: 100%;
     }
-
+ 
     .search-input {
         width: 100%;
     }
-
+ 
     .hero-section {
         flex-direction: column;
         text-align: center;
         padding: 50px 20px;
     }
-
+ 
     .cta-buttons {
         justify-content: center;
         flex-direction: column;
     }
-
+ 
     .about-grid {
         grid-template-columns: 1fr;
     }
-
+ 
     .project-card {
         padding: 20px 16px;
     }
-
+ 
     .project-actions {
         flex-direction: column;
     }
-
+ 
     .project-btn {
         width: 100%;
     }
 }
-
-
+ 
