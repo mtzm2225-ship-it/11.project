@@ -1261,10 +1261,18 @@ body.light-mode .contact-item:hover {
     pointer-events: auto;
 }
 
+.scroll-btn i {
+    transition: transform 0.35s ease;
+}
+
 .scroll-btn:hover {
     transform: translateY(-2px) scale(1.04);
     background: rgba(56, 189, 248, 0.24);
     box-shadow: 0 14px 20px rgba(56, 189, 248, 0.18);
+}
+
+.scroll-btn:hover i {
+    transform: rotate(360deg);
 }
 
 .certificates-list {
