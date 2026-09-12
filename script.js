@@ -208,6 +208,7 @@ const developerPanel = document.querySelector('#developer-panel');
 const developerList = document.querySelector('#developer-list');
 const developerClose = document.querySelector('.developer-close');
 const developerClear = document.querySelector('.developer-clear');
+const header = document.querySelector('.header');
 const navLinks = document.querySelectorAll('.nav-links a');
 const i18nElements = document.querySelectorAll('[data-i18n]');
 const i18nPlaceholders = document.querySelectorAll('[data-i18n-placeholder]');
@@ -226,6 +227,15 @@ const scrollRightButton = document.querySelector('.scroll-right');
 const savedLanguage = localStorage.getItem('portfolioLanguage') || 'en';
 const savedTheme = localStorage.getItem('portfolioTheme') || 'dark';
 let currentProjectIndex = 0;
+
+if (header) {
+  function updateHeaderScrollState() {
+    header.classList.toggle('scrolled', window.scrollY > 10);
+  }
+
+  updateHeaderScrollState();
+  window.addEventListener('scroll', updateHeaderScrollState, { passive: true });
+}
 
 function normalizeSearchText(text) {
   return (text || '').toLowerCase().normalize('NFKC').replace(/\s+/g, ' ').trim();
