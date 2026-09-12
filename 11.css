@@ -847,6 +847,7 @@ body.light-mode .footer-socials a {
     font-weight: 700;
     font-size: 0.9rem;
     transition: all 0.3s ease;
+    border: 1px solid transparent;
 }
 
 .project-btn.primary {
@@ -858,6 +859,13 @@ body.light-mode .footer-socials a {
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #ffffff;
     background: rgba(255, 255, 255, 0.02);
+}
+
+.project-btn.change {
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    background: rgba(56, 189, 248, 0.12);
+    color: #e0f2fe;
+    cursor: pointer;
 }
 
 .project-btn:hover {
@@ -1157,12 +1165,49 @@ body.light-mode .contact-item:hover {
 /* بلوك قائمة الشهادات: هنا ترتيب البطاقات داخل الكارت الكبير */
 /* ==================== 7.1. قائمة الشهادات ==================== */
 /* قائمة الشهادات: كل عنصر فيها بيحمل أيقونة، صورة، ونص صغير يشرح الشهادة */
-.certificates-list {
-    margin-top: 14px;
+.certificate-controls {
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    right: 8px;
+    transform: translateY(-50%);
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.scroll-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid rgba(56, 189, 248, 0.55);
+    background: rgba(15, 23, 42, 0.42);
+    backdrop-filter: blur(8px);
+    color: #e0f2fe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.25);
+    pointer-events: auto;
+}
+
+.scroll-btn:hover {
+    transform: translateY(-2px) scale(1.04);
+    background: rgba(56, 189, 248, 0.24);
+    box-shadow: 0 14px 20px rgba(56, 189, 248, 0.18);
+}
+
+.certificates-list {
+    margin-top: 4px;
+    display: flex;
+    justify-content: center;
     gap: 12px;
     overflow-x: auto;
-    padding: 4px 2px 8px;
+    padding: 4px 24px 8px;
     scroll-snap-type: x proximity;
     position: relative;
     z-index: 1;
@@ -1215,6 +1260,41 @@ body.light-mode .contact-item:hover {
     background: linear-gradient(180deg, rgba(56, 189, 248, 0.08), transparent 40%);
     opacity: 0;
     transition: opacity 0.3s ease;
+}
+
+.certificate-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    position: relative;
+    z-index: 1;
+}
+
+.certificate-move-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.move-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(15, 23, 42, 0.3);
+    color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.move-btn:hover {
+    background: rgba(56, 189, 248, 0.18);
+    border-color: rgba(56, 189, 248, 0.5);
+    transform: translateY(-1px);
 }
 
 .certificate-item:hover {
@@ -1281,6 +1361,22 @@ body.light-mode .contact-item:hover {
     object-fit: cover;
     display: block;
     transition: transform 0.35s ease;
+}
+
+.certificate-thumb-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(250, 204, 21, 0.18), rgba(248, 113, 113, 0.14));
+    border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.certificate-placeholder-text {
+    color: #f8fafc;
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
 .certificate-item:hover .certificate-thumb img {

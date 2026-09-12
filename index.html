@@ -205,11 +205,22 @@
 
 
             <!-- قائمة الشهادات: كل شهادة فيها أيقونة، صورة الشهادة، وعنوانها -->
+            <div class="certificate-controls">
+                <button class="scroll-btn scroll-left" type="button" aria-label="Scroll certificates left">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <button class="scroll-btn scroll-right" type="button" aria-label="Scroll certificates right">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
             <div class="certificates-list">
                 <div class="certificate-item">
                     <div class="certificate-number">01</div>
-                    <div class="certificate-icon">
-                        <i class="fa-brands fa-html5"></i>
+                    <div class="certificate-top">
+                        <div class="certificate-icon">
+                            <i class="fa-brands fa-html5"></i>
+                        </div>
                     </div>
                     <div class="certificate-thumb">
                         <img src="img/مقدمة في HTML (1)_page-0001.jpg" alt="Certificate 1">
@@ -227,8 +238,10 @@
 
                 <div class="certificate-item">
                     <div class="certificate-number">02</div>
-                    <div class="certificate-icon">
-                        <i class="fa-brands fa-css3-alt"></i>
+                    <div class="certificate-top">
+                        <div class="certificate-icon">
+                            <i class="fa-brands fa-css3-alt"></i>
+                        </div>
                     </div>
                     <div class="certificate-thumb">
                         <img src="img/مقدمة في CSS (1)_page-0001 (1).jpg" alt="Certificate 2">
@@ -246,8 +259,10 @@
 
                 <div class="certificate-item">
                     <div class="certificate-number">03</div>
-                    <div class="certificate-icon">
-                        <i class="fa-solid fa-award"></i>
+                    <div class="certificate-top">
+                        <div class="certificate-icon">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
                     </div>
                     <div class="certificate-thumb">
                         <img src="img/Arabian-Academy-event-certificate (2)_page-0001.jpg" alt="Before Brand Event Certificate">
@@ -257,8 +272,8 @@
                         <span data-i18n="beforeBrandDate">August 27, 2026</span>
                     </div>
                     <div class="certificate-actions">
-                        <a class="certificate-btn view" href="#" target="_blank" rel="noopener noreferrer" data-i18n="viewLabel">View</a>
-                        <a class="certificate-btn download" href="#" download data-i18n="downloadLabel">Download</a>
+                        <a class="certificate-btn view" href="img/Arabian-Academy-event-certificate (2)_page-0001.jpg" target="_blank" rel="noopener noreferrer" data-i18n="viewLabel">View</a>
+                        <a class="certificate-btn download" href="img/Arabian-Academy-event-certificate (2)_page-0001.jpg" download data-i18n="downloadLabel">Download</a>
                     </div>
                     <div class="certificate-meta">
                         <p><strong data-i18n="issuerLabel">Issuer:</strong> <span data-i18n="beforeBrandIssuer">Arabian Academy & Before Brand Team</span></p>
@@ -266,6 +281,26 @@
                     </div>
                 </div>
 
+                <div class="certificate-item certificate-placeholder">
+                    <div class="certificate-number">04</div>
+                    <div class="certificate-top">
+                        <div class="certificate-icon">
+                            <i class="fa-brands fa-java"></i>
+                        </div>
+                    </div>
+                    <div class="certificate-thumb certificate-thumb-placeholder">
+                        <span class="certificate-placeholder-text" data-i18n="comingSoon">Coming soon</span>
+                    </div>
+                    <div class="certificate-text">
+                        <h4 data-i18n="java">Java</h4>
+                        <span data-i18n="comingSoon">Coming soon</span>
+                    </div>
+                    <div class="certificate-actions">
+                        <a class="certificate-btn view" href="#" target="_blank" rel="noopener noreferrer" data-i18n="viewLabel">View</a>
+                        <a class="certificate-btn download" href="#" download data-i18n="downloadLabel">Download</a>
+                    </div>
+                    <p class="certificate-note" data-i18n="javaNote">Java certificate card added and ready for the final certificate image once it is available.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -289,6 +324,7 @@
                 <div class="project-actions">
                     <a href="index.html" target="_blank" rel="noopener noreferrer" class="project-btn primary" data-i18n="viewProject">View Project</a>
                     <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="project-btn secondary" data-i18n="githubProject">GitHub</a>
+                    <button type="button" class="project-btn change" data-i18n="changeProject">Change Project</button>
                 </div>
             </div>
 
@@ -432,6 +468,8 @@
       comingSoon: 'قريبًا',
       viewLabel: 'عرض',
       downloadLabel: 'تحميل',
+      changeProject: 'تغيير المشروع',
+      javaNote: 'شهادة Java قادمة قريبًا، وسيتم تحديث هذه البطاقة بصورة الشهادة الرسمية عند توفرها.',
       allRightsReserved: '© 2026 معتز محمد. جميع الحقوق محفوظة.'
     },
     en: {
@@ -497,16 +535,67 @@
       comingSoon: 'Coming soon',
       viewLabel: 'View',
       downloadLabel: 'Download',
+      changeProject: 'Change Project',
+      javaNote: 'The Java certificate is coming soon, and this card will be updated with the official certificate image once it becomes available.',
       allRightsReserved: '© 2026 Moataz Mohamed. All rights reserved.'
     }
   };
+
+  const projectData = [
+    {
+      tag: { ar: 'أول مشروع', en: 'First Project' },
+      name: { ar: 'موقع الملف الشخصي', en: 'Portfolio Website' },
+      description: {
+        ar: 'موقع شخصي حديث بتصميم متجاوب، إمكانية تبديل اللغة، وقسم عرض الشهادات.',
+        en: 'A modern personal portfolio with a responsive interface, language switcher, and certificate display section.'
+      },
+      primaryText: { ar: 'عرض المشروع', en: 'View Project' },
+      primaryLink: 'index.html',
+      secondaryText: { ar: 'جيت هاب', en: 'GitHub' },
+      secondaryLink: 'https://github.com/'
+    },
+    {
+      tag: { ar: 'مشروع ثاني', en: 'Second Project' },
+      name: { ar: 'لوحة التحكم الإدارية', en: 'Admin Dashboard' },
+      description: {
+        ar: 'لوحة تحكم جذابة لإدارة البيانات، التقارير، والمهام مع واجهة سلسة وسريعة الاستجابة.',
+        en: 'A polished admin dashboard for managing data, reports, and tasks with a fast and user-friendly interface.'
+      },
+      primaryText: { ar: 'عرض المشروع', en: 'View Project' },
+      primaryLink: '#portfolio',
+      secondaryText: { ar: 'المصدر', en: 'Source' },
+      secondaryLink: 'https://github.com/'
+    },
+    {
+      tag: { ar: 'مشروع ثالث', en: 'Third Project' },
+      name: { ar: 'متجر إلكتروني', en: 'E-Commerce Store' },
+      description: {
+        ar: 'متجر إلكتروني بسيط يركز على تجربة مستخدم ممتازة وعرض المنتجات بطريقة جذابة ومريحة.',
+        en: 'A simple e-commerce store focused on a smooth shopping experience and a visually engaging product display.'
+      },
+      primaryText: { ar: 'عرض المشروع', en: 'View Project' },
+      primaryLink: '#portfolio',
+      secondaryText: { ar: 'المصدر', en: 'Source' },
+      secondaryLink: 'https://github.com/'
+    }
+  ];
 
   const langButtons = document.querySelectorAll('.lang-btn');
   const navLinks = document.querySelectorAll('.nav-links a');
   const i18nElements = document.querySelectorAll('[data-i18n]');
   const i18nPlaceholders = document.querySelectorAll('[data-i18n-placeholder]');
+  const projectTag = document.querySelector('.project-tag');
+  const projectName = document.querySelector('.project-info h3');
+  const projectDescription = document.querySelector('.project-info p');
+  const projectPrimaryBtn = document.querySelector('.project-btn.primary');
+  const projectSecondaryBtn = document.querySelector('.project-btn.secondary');
+  const projectChangeButton = document.querySelector('.project-btn.change');
+  const certificatesList = document.querySelector('.certificates-list');
+  const scrollLeftButton = document.querySelector('.scroll-left');
+  const scrollRightButton = document.querySelector('.scroll-right');
   const savedLanguage = localStorage.getItem('portfolioLanguage') || 'en';
   const savedTheme = localStorage.getItem('portfolioTheme') || 'dark';
+  let currentProjectIndex = 0;
 
   function updateThemeButtonLabel() {
     const nightModeButton = document.querySelector('.night-mode-btn');
@@ -518,6 +607,23 @@
       const isWhiteMode = document.body.classList.contains('light-mode');
       label.textContent = isWhiteMode ? dictionary.whiteMode : dictionary.primaryMode;
     }
+  }
+
+  function updateProjectCard() {
+    const language = localStorage.getItem('portfolioLanguage') || 'en';
+    const project = projectData[currentProjectIndex];
+
+    if (!project) {
+      return;
+    }
+
+    projectTag.textContent = project.tag[language] || project.tag.en;
+    projectName.textContent = project.name[language] || project.name.en;
+    projectDescription.textContent = project.description[language] || project.description.en;
+    projectPrimaryBtn.textContent = project.primaryText[language] || project.primaryText.en;
+    projectPrimaryBtn.setAttribute('href', project.primaryLink);
+    projectSecondaryBtn.textContent = project.secondaryText[language] || project.secondaryText.en;
+    projectSecondaryBtn.setAttribute('href', project.secondaryLink);
   }
 
   function applyLanguage(language) {
@@ -541,6 +647,7 @@
       button.classList.toggle('active', button.dataset.lang === language);
     });
 
+    updateProjectCard();
     document.documentElement.lang = language;
     localStorage.setItem('portfolioLanguage', language);
     updateThemeButtonLabel();
@@ -559,6 +666,21 @@
       });
       link.classList.add('active');
     });
+  });
+
+  if (scrollLeftButton && scrollRightButton) {
+    scrollLeftButton.addEventListener('click', function () {
+      certificatesList.scrollBy({ left: -260, behavior: 'smooth' });
+    });
+
+    scrollRightButton.addEventListener('click', function () {
+      certificatesList.scrollBy({ left: 260, behavior: 'smooth' });
+    });
+  }
+
+  projectChangeButton.addEventListener('click', function () {
+    currentProjectIndex = (currentProjectIndex + 1) % projectData.length;
+    updateProjectCard();
   });
 
   const nightModeButton = document.querySelector('.night-mode-btn');
