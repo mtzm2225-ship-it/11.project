@@ -718,6 +718,180 @@ body.light-mode .footer-socials a {
 /* ==================== 6. قسم التعريف (About Me Section) ==================== */
 /* قسم About Me: فيه كروت المعلومات عنّي مثل التعليم والتطوير والأهداف */
 /* بلوك About Me: هنا بنحدد مساحة القسم وكرواته الرئيسية */
+.portfolio-section {
+    padding: 60px 8% 10px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.portfolio-header {
+    margin-bottom: 24px;
+}
+
+.section-kicker {
+    margin: 0 0 10px;
+    color: #38bdf8;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.project-card {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.96), rgba(15, 23, 42, 0.85));
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: 0 18px 35px rgba(15, 23, 42, 0.28);
+}
+
+.project-info {
+    flex: 1;
+}
+
+.project-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    color: #7dd3fc;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.project-info h3 {
+    margin: 16px 0 12px;
+    color: #ffffff;
+    font-size: clamp(1.5rem, 2vw, 2.2rem);
+}
+
+.project-info p {
+    margin: 0;
+    color: #94a3b8;
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+.project-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.project-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.project-btn.primary {
+    background: #38bdf8;
+    color: #0b0f19;
+}
+
+.project-btn.secondary {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.project-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 18px rgba(56, 189, 248, 0.18);
+}
+
+.project-preview {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.preview-window {
+    width: min(100%, 520px);
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 14px;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+}
+
+.preview-topbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 12px;
+}
+
+.preview-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: block;
+}
+
+.preview-dot.red { background: #f87171; }
+.preview-dot.yellow { background: #fbbf24; }
+.preview-dot.green { background: #4ade80; }
+
+.preview-body {
+    display: flex;
+    gap: 14px;
+    min-height: 220px;
+}
+
+.preview-sidebar {
+    width: 24%;
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(56, 189, 248, 0.12), rgba(59, 130, 246, 0.2));
+    border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.preview-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.preview-line {
+    height: 14px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(56, 189, 248, 0.4), rgba(148, 163, 184, 0.15));
+}
+
+.preview-line.short { width: 45%; }
+.preview-line.medium { width: 65%; }
+.preview-line.long { width: 80%; }
+
+.preview-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.preview-cards span {
+    display: block;
+    height: 78px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(59, 130, 246, 0.1));
+    border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
 .about-section {
     padding: 60px 8%;
     max-width: 1400px;

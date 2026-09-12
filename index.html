@@ -26,13 +26,14 @@
 
     
          <!-- شريط التنقل اللي فوق الصفحة: فيه اللوجو، الروابط، مربع البحث، وزر Sign In -->
+    <!-- شريط التنقل العلوي: يحتوي على إعدادات اللغة ووضع الصفحة -->
     <div class="top-bar">
         <div class="top-bar-inner">
             <div class="settings-menu">
                 <button class="settings-pill" type="button" aria-expanded="false" aria-controls="settings-dropdown"
                         onclick="const panel=this.nextElementSibling; const isHidden=panel.classList.contains('hidden'); panel.classList.toggle('hidden', !isHidden); this.setAttribute('aria-expanded', String(isHidden));">
                     <i class="fa-solid fa-gear"></i>
-                    <span>Settings</span>
+                    <span data-i18n="settings">Settings</span>
                 </button>
 
                 <div id="settings-dropdown" class="settings-dropdown hidden" aria-label="Language switcher">
@@ -43,13 +44,14 @@
 
                     <button class="settings-action-btn night-mode-btn" type="button" aria-pressed="false">
                         <i class="fa-solid fa-moon"></i>
-                        <span>Primary Mode</span>
+                        <span data-i18n="primaryMode">Primary Mode</span>
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- رأس الموقع: يحتوي على اللوجو، الروابط، مربع البحث، وزر الدخول -->
     <div class="header"> 
         <div class="logo-container">
             <img src="WhatsApp Image 2026-09-08 at 5.55.54 PM.jpeg" alt="Logo">
@@ -112,13 +114,14 @@
                     </div>
 
                     <div class="badge-status">
-                        <i class="fa-solid fa-code-commit"></i> IT Student
+                        <i class="fa-solid fa-code-commit"></i>
+                        <span data-i18n="itStudent">IT Student</span>
                     </div>
                 </div>
 
                 <div class="card-body">
-                    <h2>Turning Ideas Into Real Projects</h2>
-                    <p class="card-text">
+                    <h2 data-i18n="turnIdeas">Turning Ideas Into Real Projects</h2>
+                    <p class="card-text" data-i18n="cardText">
                         Learning today, leading tomorrow. Focused on software development, web applications, and database engineering.
                     </p>
 
@@ -126,39 +129,39 @@
                         <div class="skill-box">
                             <i class="fa-solid fa-code"></i>
                             <div>
-                                <h4>Programming</h4>
-                                <span>Clean & Scalable</span>
+                                <h4 data-i18n="programming">Programming</h4>
+                                <span data-i18n="cleanScalable">Clean & Scalable</span>
                             </div>
                         </div>
 
                         <div class="skill-box">
                             <i class="fa-solid fa-globe"></i>
                             <div>
-                                <h4>Web Dev</h4>
-                                <span>Responsive Apps</span>
+                                <h4 data-i18n="webDev">Web Dev</h4>
+                                <span data-i18n="responsiveApps">Responsive Apps</span>
                             </div>
                         </div>
 
                         <div class="skill-box">
                             <i class="fa-solid fa-database"></i>
                             <div>
-                                <h4>Databases</h4>
-                                <span>SQL & Systems</span>
+                                <h4 data-i18n="databases">Databases</h4>
+                                <span data-i18n="sqlSystems">SQL & Systems</span>
                             </div>
                         </div>
 
                         <div class="skill-box">
                             <i class="fa-solid fa-network-wired"></i>
                             <div>
-                                <h4>IT Department</h4>
-                                <span>Networks & Logic</span>
+                                <h4 data-i18n="itDepartment">IT Department</h4>
+                                <span data-i18n="networksLogic">Networks & Logic</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="card-footer-motto">
                         <i class="fa-solid fa-quote-left"></i>
-                        <span>Keep Learning, Keep Growing</span>
+                        <span data-i18n="keepLearning">Keep Learning, Keep Growing</span>
                     </div>
                 </div>
             </div>
@@ -167,7 +170,7 @@
 
         <!-- قسم About Me: فيه كروت المعلومات الأساسية عنّي مثل التعليم، التطوير، والأهداف -->
 <section class="about-section" id="about">
-    <h2 class="section-title">About Me</h2>
+    <h2 class="section-title" data-i18n="aboutTitle">About Me</h2>
 
     <div class="about-grid">
         <div class="about-card">
@@ -212,12 +215,12 @@
                         <img src="img/مقدمة في HTML (1)_page-0001.jpg" alt="Certificate 1">
                     </div>
                     <div class="certificate-text">
-                        <h4>HTML</h4>
-                        <span>Completed in 2026</span>
+                        <h4 data-i18n="html">HTML</h4>
+                        <span data-i18n="completed2026">Completed in 2026</span>
                     </div>
                     <div class="certificate-actions">
-                        <a class="certificate-btn view" href="img/مقدمة في HTML (1)_page-0001.jpg" target="_blank" rel="noopener noreferrer">عرض</a>
-                        <a class="certificate-btn download" href="img/مقدمة في HTML (1)_page-0001.jpg" download>تحميل</a>
+                        <a class="certificate-btn view" href="img/مقدمة في HTML (1)_page-0001.jpg" target="_blank" rel="noopener noreferrer" data-i18n="viewLabel">View</a>
+                        <a class="certificate-btn download" href="img/مقدمة في HTML (1)_page-0001.jpg" download data-i18n="downloadLabel">Download</a>
                     </div>
                 </div>
 
@@ -230,12 +233,12 @@
                         <img src="img/مقدمة في CSS (1)_page-0001 (1).jpg" alt="Certificate 2">
                     </div>
                     <div class="certificate-text">
-                        <h4>CSS</h4>
-                        <span>Completed in 2025</span>
+                        <h4 data-i18n="css">CSS</h4>
+                        <span data-i18n="completed2025">Completed in 2025</span>
                     </div>
                     <div class="certificate-actions">
-                        <a class="certificate-btn view" href="img/مقدمة في CSS (1)_page-0001 (1).jpg" target="_blank" rel="noopener noreferrer">عرض</a>
-                        <a class="certificate-btn download" href="img/مقدمة في CSS (1)_page-0001 (1).jpg" download>تحميل</a>
+                        <a class="certificate-btn view" href="img/مقدمة في CSS (1)_page-0001 (1).jpg" target="_blank" rel="noopener noreferrer" data-i18n="viewLabel">View</a>
+                        <a class="certificate-btn download" href="img/مقدمة في CSS (1)_page-0001 (1).jpg" download data-i18n="downloadLabel">Download</a>
                     </div>
                 </div>
 
@@ -246,8 +249,8 @@
                     </div>
                     <div class="certificate-thumb"></div>
                     <div class="certificate-text">
-                        <h4>Java</h4>
-                        <span>Coming soon</span>
+                        <h4 data-i18n="java">Java</h4>
+                        <span data-i18n="comingSoon">Coming soon</span>
                     </div>
                 </div>
 
@@ -255,6 +258,53 @@
         </div>
     </div>
 </section>
+
+    <!-- قسم المشاريع: يعرض المشروع الأول مع أزرار العرض والـ GitHub -->
+    <section class="portfolio-section" id="portfolio">
+        <div class="portfolio-header">
+            <p class="section-kicker" data-i18n="portfolioKicker">Featured Project</p>
+            <h2 class="section-title" data-i18n="portfolioTitle">Projects</h2>
+        </div>
+
+        <div class="project-card">
+            <div class="project-info">
+                <span class="project-tag" data-i18n="projectTag">First Project</span>
+                <h3 data-i18n="projectName">Portfolio Website</h3>
+                <p data-i18n="projectDescription">
+                    A modern personal portfolio with a responsive interface, language switcher, and certificate display section.
+                </p>
+
+                <div class="project-actions">
+                    <a href="index.html" target="_blank" rel="noopener noreferrer" class="project-btn primary" data-i18n="viewProject">View Project</a>
+                    <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="project-btn secondary" data-i18n="githubProject">GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-preview" aria-label="Project preview">
+                <div class="preview-window">
+                    <div class="preview-topbar">
+                        <span class="preview-dot red"></span>
+                        <span class="preview-dot yellow"></span>
+                        <span class="preview-dot green"></span>
+                    </div>
+
+                    <div class="preview-body">
+                        <div class="preview-sidebar"></div>
+                        <div class="preview-content">
+                            <div class="preview-line short"></div>
+                            <div class="preview-line medium"></div>
+                            <div class="preview-line long"></div>
+                            <div class="preview-cards">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
                                      
@@ -290,7 +340,7 @@
     </div>
 
     <div class="footer-bottom">
-        <p>© 2026 Moataz Mohamed. All rights reserved.</p>
+        <p data-i18n="allRightsReserved">© 2026 Moataz Mohamed. All rights reserved.</p>
     </div>
 </footer>
 
@@ -316,7 +366,39 @@
       goalsText: 'أتعلم باستمرار لحل المشكلات المعقدة وتقديم حلول رقمية عالية الجودة.',
       certificates: 'الشهادات',
       certificatesText: 'شهاداتي المهنية وانتهاء الدورات التي أكملتها.',
-      footerQuote: 'صُمِّم وطُوِّر بكل شغف | Designed & Developed with passion'
+      footerQuote: 'صُمِّم وطُوِّر بكل شغف | Designed & Developed with passion',
+      portfolioKicker: 'مشروع مميز',
+      portfolioTitle: 'المشاريع',
+      projectTag: 'أول مشروع',
+      projectName: 'موقع الملف الشخصي',
+      projectDescription: 'موقع شخصي حديث بتصميم متجاوب، إمكانية تبديل اللغة، وقسم عرض الشهادات.',
+      viewProject: 'عرض المشروع',
+      githubProject: 'جيت هاب',
+      settings: 'الإعدادات',
+      primaryMode: 'الوضع الأساسي',
+      whiteMode: 'الوضع الأبيض',
+      itStudent: 'طالب IT',
+      turnIdeas: 'تحويل الأفكار إلى مشاريع حقيقية',
+      cardText: 'نتعلم اليوم، ونقود الغد. نركز على تطوير البرمجيات، تطبيقات الويب، وهندسة قواعد البيانات.',
+      programming: 'البرمجة',
+      cleanScalable: 'نظيف وقابل للتطوير',
+      webDev: 'تطوير الويب',
+      responsiveApps: 'تطبيقات متجاوبة',
+      databases: 'قواعد البيانات',
+      sqlSystems: 'SQL والأنظمة',
+      itDepartment: 'قسم IT',
+      networksLogic: 'الشبكات والمنطق',
+      keepLearning: 'استمر في التعلم، واستمر في النمو',
+      aboutTitle: 'من أنا',
+      html: 'HTML',
+      css: 'CSS',
+      java: 'Java',
+      completed2026: 'مكتمل في 2026',
+      completed2025: 'مكتمل في 2025',
+      comingSoon: 'قريبًا',
+      viewLabel: 'عرض',
+      downloadLabel: 'تحميل',
+      allRightsReserved: '© 2026 معتز محمد. جميع الحقوق محفوظة.'
     },
     en: {
       home: 'Home',
@@ -338,7 +420,39 @@
       goalsText: 'Continuously learning to solve complex problems and deliver high-quality digital solutions.',
       certificates: 'Certificates',
       certificatesText: 'My professional certificates and course completions.',
-      footerQuote: 'Designed & Developed with passion | صُمِّم وطُوِّر بكل شغف'
+      footerQuote: 'Designed & Developed with passion | صُمِّم وطُوِّر بكل شغف',
+      portfolioKicker: 'Featured Project',
+      portfolioTitle: 'Projects',
+      projectTag: 'First Project',
+      projectName: 'Portfolio Website',
+      projectDescription: 'A modern personal portfolio with a responsive interface, language switcher, and certificate display section.',
+      viewProject: 'View Project',
+      githubProject: 'GitHub',
+      settings: 'Settings',
+      primaryMode: 'Primary Mode',
+      whiteMode: 'White Mode',
+      itStudent: 'IT Student',
+      turnIdeas: 'Turning Ideas Into Real Projects',
+      cardText: 'Learning today, leading tomorrow. Focused on software development, web applications, and database engineering.',
+      programming: 'Programming',
+      cleanScalable: 'Clean & Scalable',
+      webDev: 'Web Dev',
+      responsiveApps: 'Responsive Apps',
+      databases: 'Databases',
+      sqlSystems: 'SQL & Systems',
+      itDepartment: 'IT Department',
+      networksLogic: 'Networks & Logic',
+      keepLearning: 'Keep Learning, Keep Growing',
+      aboutTitle: 'About Me',
+      html: 'HTML',
+      css: 'CSS',
+      java: 'Java',
+      completed2026: 'Completed in 2026',
+      completed2025: 'Completed in 2025',
+      comingSoon: 'Coming soon',
+      viewLabel: 'View',
+      downloadLabel: 'Download',
+      allRightsReserved: '© 2026 Moataz Mohamed. All rights reserved.'
     }
   };
 
@@ -348,6 +462,18 @@
   const i18nPlaceholders = document.querySelectorAll('[data-i18n-placeholder]');
   const savedLanguage = localStorage.getItem('portfolioLanguage') || 'en';
   const savedTheme = localStorage.getItem('portfolioTheme') || 'dark';
+
+  function updateThemeButtonLabel() {
+    const nightModeButton = document.querySelector('.night-mode-btn');
+    const currentLanguage = localStorage.getItem('portfolioLanguage') || 'en';
+    const dictionary = translations[currentLanguage] || translations.en;
+    const label = nightModeButton ? nightModeButton.querySelector('span') : null;
+
+    if (label) {
+      const isWhiteMode = document.body.classList.contains('light-mode');
+      label.textContent = isWhiteMode ? dictionary.whiteMode : dictionary.primaryMode;
+    }
+  }
 
   function applyLanguage(language) {
     const dictionary = translations[language] || translations.en;
@@ -372,6 +498,7 @@
 
     document.documentElement.lang = language;
     localStorage.setItem('portfolioLanguage', language);
+    updateThemeButtonLabel();
   }
 
   langButtons.forEach(function (button) {
@@ -396,9 +523,8 @@
     nightModeButton.classList.toggle('is-active', isWhiteMode);
     nightModeButton.setAttribute('aria-pressed', String(isWhiteMode));
 
-    const label = nightModeButton.querySelector('span');
-    label.textContent = isWhiteMode ? 'White Mode' : 'Primary Mode';
     localStorage.setItem('portfolioTheme', isWhiteMode ? 'light' : 'dark');
+    updateThemeButtonLabel();
   }
 
   nightModeButton.addEventListener('click', function () {
