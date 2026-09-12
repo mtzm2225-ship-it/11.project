@@ -8,6 +8,7 @@ body {
     font-family: 'Inter', Arial, sans-serif;
     background-color: #0b0f19;
     color: #f8fafc;
+    overflow-x: hidden;
 }
 
 /* ==================== 2. الشريط العلوي (Header & Navigation) ==================== */
@@ -1672,67 +1673,80 @@ body.light-mode .contact-item:hover {
 /* ==================== 8. Responsive / شاشة الموبايل ==================== */
 /* ==================== Mobile Responsive Adjustments ==================== */
 /* ده الجزء الخاص بالشاشات الصغيرة: هنا بنضبط ترتيب العناصر بحيث الصفحة تبقى مرتبة ومريحة على الموبايل */
-@media (max-width: 768px) {
-    /* إرجاع شكل الموبايل بشكل أقرب إلى الكمبيوتر */
+@media (max-width: 900px) {
     .header {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
         padding: 12px 16px;
     }
 
     .nav-links {
         gap: 10px;
         flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero-section {
+        gap: 24px;
+        padding: 60px 6%;
+    }
+
+    .about-grid {
+        grid-template-columns: repeat(2, minmax(240px, 1fr));
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     .header {
         padding: 10px 14px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .logo-container {
+        width: 100%;
+        justify-content: center;
     }
 
     .nav-links {
+        width: 100%;
         justify-content: center;
+        flex-wrap: wrap;
     }
-}
 
+    .search-box {
+        width: 100%;
+        max-width: 100%;
+    }
 
+    .search-input {
+        width: 100%;
+    }
 
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 50px 20px;
+    }
 
+    .cta-buttons {
+        justify-content: center;
+        flex-direction: column;
+    }
 
-/* تنسيقات خاصة بشاشات الموبايل (الأجهزة الأقل من 768px) */
-@media (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
 
-  /* منع التمرير الأفقي غير المرغوب فيه */
-  body {
-    overflow-x: hidden;
-  }
+    .project-card {
+        padding: 20px 16px;
+    }
 
-  /* جعل الصور تتماشى مع حجم الشاشة دون خروج عن الإطار */
-  img {
-    max-width: 100%;
-    height: auto;
-  }
+    .project-actions {
+        flex-direction: column;
+    }
 
-  /* تحويل الحاويات المرنة (Flex Containers) إلى أفقية/عمودية تناسب الموبايل */
-  .container, 
-  .navbar, 
-  .hero-section, 
-  .cards-grid {
-    flex-direction: column !important;
-    width: 100% !important;
-    gap: 15px;
-  }
-
-  /* تعديل أحجام الخطوط لتناسب الشاشات الصغيرة */
-  h1 {
-    font-size: 1.8rem !important;
-  }
-
-  p {
-    font-size: 0.95rem !important;
-  }
+    .project-btn {
+        width: 100%;
+    }
 }
 
 
