@@ -314,6 +314,13 @@
         </div>
 
         <div class="project-card">
+            <button type="button" class="project-nav-btn prev" aria-label="Previous project">
+                <i class="fa-solid fa-arrow-left project-arrow"></i>
+            </button>
+            <button type="button" class="project-nav-btn next" aria-label="Next project">
+                <i class="fa-solid fa-arrow-right project-arrow"></i>
+            </button>
+
             <div class="project-info">
                 <span class="project-tag" data-i18n="projectTag">First Project</span>
                 <h3 data-i18n="projectName">Portfolio Website</h3>
@@ -349,6 +356,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <img class="project-preview-image" src="img/Screenshot 2026-09-12 114919.png" alt="First project preview">
                 </div>
             </div>
         </div>
@@ -543,7 +552,7 @@
 
   const projectData = [
     {
-      tag: { ar: 'أول مشروع', en: 'First Project' },
+      tag: { ar: 'الأول', en: 'First' },
       name: { ar: 'موقع الملف الشخصي', en: 'Portfolio Website' },
       description: {
         ar: 'موقع شخصي حديث بتصميم متجاوب، إمكانية تبديل اللغة، وقسم عرض الشهادات.',
@@ -555,28 +564,28 @@
       secondaryLink: 'https://github.com/'
     },
     {
-      tag: { ar: 'مشروع ثاني', en: 'Second Project' },
-      name: { ar: 'لوحة التحكم الإدارية', en: 'Admin Dashboard' },
+      tag: { ar: 'قريبًا', en: 'Coming Soon' },
+      name: { ar: 'قريبًا', en: 'Coming Soon' },
       description: {
-        ar: 'لوحة تحكم جذابة لإدارة البيانات، التقارير، والمهام مع واجهة سلسة وسريعة الاستجابة.',
-        en: 'A polished admin dashboard for managing data, reports, and tasks with a fast and user-friendly interface.'
+        ar: 'سيتم إضافة هذا المشروع قريبًا.',
+        en: 'This project will be added soon.'
       },
-      primaryText: { ar: 'عرض المشروع', en: 'View Project' },
+      primaryText: { ar: 'قريبًا', en: 'Coming Soon' },
       primaryLink: '#portfolio',
-      secondaryText: { ar: 'المصدر', en: 'Source' },
-      secondaryLink: 'https://github.com/'
+      secondaryText: { ar: 'قريبًا', en: 'Coming Soon' },
+      secondaryLink: '#portfolio'
     },
     {
-      tag: { ar: 'مشروع ثالث', en: 'Third Project' },
-      name: { ar: 'متجر إلكتروني', en: 'E-Commerce Store' },
+      tag: { ar: 'قريبًا', en: 'Coming Soon' },
+      name: { ar: 'قريبًا', en: 'Coming Soon' },
       description: {
-        ar: 'متجر إلكتروني بسيط يركز على تجربة مستخدم ممتازة وعرض المنتجات بطريقة جذابة ومريحة.',
-        en: 'A simple e-commerce store focused on a smooth shopping experience and a visually engaging product display.'
+        ar: 'سيتم إضافة هذا المشروع قريبًا.',
+        en: 'This project will be added soon.'
       },
-      primaryText: { ar: 'عرض المشروع', en: 'View Project' },
+      primaryText: { ar: 'قريبًا', en: 'Coming Soon' },
       primaryLink: '#portfolio',
-      secondaryText: { ar: 'المصدر', en: 'Source' },
-      secondaryLink: 'https://github.com/'
+      secondaryText: { ar: 'قريبًا', en: 'Coming Soon' },
+      secondaryLink: '#portfolio'
     }
   ];
 
@@ -587,9 +596,12 @@
   const projectTag = document.querySelector('.project-tag');
   const projectName = document.querySelector('.project-info h3');
   const projectDescription = document.querySelector('.project-info p');
+  const projectCard = document.querySelector('.project-card');
   const projectPrimaryBtn = document.querySelector('.project-btn.primary');
   const projectSecondaryBtn = document.querySelector('.project-btn.secondary');
   const projectChangeButton = document.querySelector('.project-btn.change');
+  const projectPrevButton = document.querySelector('.project-nav-btn.prev');
+  const projectNextButton = document.querySelector('.project-nav-btn.next');
   const certificatesList = document.querySelector('.certificates-list');
   const scrollLeftButton = document.querySelector('.scroll-left');
   const scrollRightButton = document.querySelector('.scroll-right');
@@ -616,6 +628,9 @@
     if (!project) {
       return;
     }
+
+    const isFirstProject = currentProjectIndex === 0;
+    projectCard.classList.toggle('is-first-project', isFirstProject);
 
     projectTag.textContent = project.tag[language] || project.tag.en;
     projectName.textContent = project.name[language] || project.name.en;
@@ -682,6 +697,18 @@
     currentProjectIndex = (currentProjectIndex + 1) % projectData.length;
     updateProjectCard();
   });
+
+  if (projectPrevButton && projectNextButton) {
+    projectPrevButton.addEventListener('click', function () {
+      currentProjectIndex = (currentProjectIndex - 1 + projectData.length) % projectData.length;
+      updateProjectCard();
+    });
+
+    projectNextButton.addEventListener('click', function () {
+      currentProjectIndex = (currentProjectIndex + 1) % projectData.length;
+      updateProjectCard();
+    });
+  }
 
   const nightModeButton = document.querySelector('.night-mode-btn');
 
