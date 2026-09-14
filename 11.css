@@ -137,7 +137,7 @@ body > * {
     width: 42px;
     object-fit: cover;
     border-radius: 50%;
-    border: 2px solid #ddeaf0;
+    border: 2px solid #0594d7;
     box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
     display: block;
     flex-shrink: 0;
@@ -2400,7 +2400,7 @@ body.light-mode .contact-item:hover {
 
 .btn-secondary:hover {
     background-color: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.4);
+    border-color: rgba(21, 143, 183, 0.4);
 }
 
 /* 3. زر تنزيل الـ CV (Download CV) - إصلاح اللون والتنسيق */
@@ -2469,3 +2469,139 @@ header {
     object-fit: cover;
     border-radius: 18px;
 }
+
+
+
+
+
+
+
+
+
+/* ==========================================
+   Contact Section Styling
+   ========================================== */
+.contact-section {
+    width: 100%;
+    padding: 60px 0;
+    margin-top: 40px;
+}
+
+.contact-container {
+    max-width: 800px; /* عرض مناسب ونظامي للنموذج */
+    margin: 0 auto;
+    background: rgba(13, 19, 26, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.contact-header h2 {
+    color: #ffffff;
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+
+.contact-header p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+}
+
+/* تنسيق صف الحقول المزدوجة (الاسم والرقم) */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    color: #e2e8f0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+/* تنسيق خانات الإدخال والرسائل */
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #00f2fe;
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 12px rgba(0, 242, 254, 0.25);
+}
+
+.form-group textarea {
+    resize: vertical; /* السماح بتغيير حجم خانة الرسالة رأسياً فقط */
+}
+
+/* زر الإرسال */
+.btn-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    color: #0d131a;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    opacity: 0.9;
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+    transform: translateY(-2px);
+}
+
+/* التجاوب مع شاشات الموبايل */
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    .contact-container {
+        padding: 24px;
+    }
+}
+
+
+
+
+
+
+
+
+
