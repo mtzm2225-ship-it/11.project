@@ -1,0 +1,15 @@
+{
+  "name": "Moataz Portfolio",
+  "short_name": "Moataz",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "img/WhatsApp Image 2026-09-14 at 11.48.19 AM.jpeg",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
