@@ -2162,5 +2162,310 @@ body.light-mode .contact-item:hover {
     }
 }
  
- 
+ /* ==========================================
+   Hero Section Styling
+   ========================================== */
 
+/* الحاوية الرئيسية للهيرو وترتيبها رأسياً */
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+    padding: 20px 0;
+}
+
+/* الصف العلوي (يجمع النص والصورة أفقياً) */
+.hero-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    width: 100%;
+}
+
+.hero-text-content {
+    flex: 1;
+}
+
+/* تنسيق مجموعة الأزرار */
+.cta-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+/* تصميم الصورة المعزولة وتأثير الإضاءة (Cyber Glow) */
+.hero-image-wrapper {
+    position: relative;
+    width: 360px;
+    height: 360px;
+    flex-shrink: 0;
+    border-radius: 24px;
+}
+
+.cyber-glow {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    background: linear-gradient(135deg, #00f2fe 0%, #6d28d9 100%);
+    border-radius: 28px;
+    filter: blur(20px);
+    opacity: 0.45;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+.hero-image-wrapper:hover .cyber-glow {
+    opacity: 0.75;
+}
+
+.hero-standalone-img {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 24px;
+    border: 1px solid rgba(0, 242, 254, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* الكارت السفلي بعرض كامل تحت الصف العلوي */
+.hero-visual-card {
+    width: 100%;
+    position: relative;
+}
+
+/* ==========================================
+   Responsive Styles (التجاوب للموبايل)
+   ========================================== */
+@media (max-width: 992px) {
+    .hero-top-row {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .cta-buttons {
+        justify-content: center;
+    }
+
+    .hero-image-wrapper {
+        width: 280px;
+        height: 280px;
+    }
+}
+
+
+
+
+
+
+/* ==========================================
+   Hero Top Section (النص والصورة بالعرض)
+   ========================================== */
+.hero-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.hero-text-content {
+    flex: 1;
+}
+
+/* حاوية الصورة بالعرض (Landscape Container) */
+.hero-image-wrapper {
+    position: relative;
+    width: 460px;          /* عرض أطول للصورة */
+    height: 280px;         /* ارتفاع أقل لتكون بالعرض */
+    flex-shrink: 0;
+    border-radius: 20px;
+}
+
+/* تأثير التوهج خلف الصورة */
+.cyber-glow {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    background: linear-gradient(135deg, #00f2fe 0%, #6d28d9 100%);
+    border-radius: 24px;
+    filter: blur(18px);
+    opacity: 0.5;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+.hero-image-wrapper:hover .cyber-glow {
+    opacity: 0.8;
+}
+
+/* ضبط إعدادات عرض الصورة */
+.hero-standalone-img {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;     /* تغطية المساحة بدون تشويه */
+    object-position: center; /* تجميع التركيز في منتصف الصورة */
+    border-radius: 20px;
+    border: 1px solid rgba(0, 242, 254, 0.35);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+}
+
+/* ==========================================
+   Hero Visual Card (الكارت السفلي المضبوط)
+   ========================================== */
+.hero-visual-card {
+    width: 100%;
+    background: rgba(13, 19, 26, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 28px 32px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+/* شبكة المهارات داخل الكارت لتتوزع بشكل متناسق */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* خيار شبكي متناسق في السطرين */
+    gap: 16px;
+    margin-top: 20px;
+}
+
+/* ضبط التجاوب للشاشات المتوسطة والصغيرة */
+@media (max-width: 992px) {
+    .hero-top-row {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-image-wrapper {
+        width: 100%;
+        max-width: 480px;
+        height: 270px; /* نسبة 16:9 على الشاشات الأصغر */
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* تنسيق عام وموحد لجميع الأزرار الثلاثة */
+.cta-buttons .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none; /* إزالة الخط السفلي الافتراضي */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+/* 1. الزر الرئيسي (View Work) */
+.btn-primary {
+    background-color: #00f2fe;
+    color: #0d131a;
+    border: 1px solid #00f2fe;
+}
+
+.btn-primary:hover {
+    background-color: #38ef7d;
+    border-color: #38ef7d;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+}
+
+/* 2. الزر الثانوي (Let's Talk) */
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* 3. زر تنزيل الـ CV (Download CV) - إصلاح اللون والتنسيق */
+.btn-tertiary {
+    background-color: transparent;
+    color: #00f2fe; /* أزرق فاتح متناسق مع النيون */
+    border: 1px solid rgba(0, 242, 254, 0.4);
+}
+
+.btn-tertiary:hover {
+    background-color: rgba(0, 242, 254, 0.1);
+    border-color: #00f2fe;
+    color: #ffffff;
+    box-shadow: 0 0 12px rgba(0, 242, 254, 0.3);
+}
+
+
+
+/* 1. ضبط إعدادات الصفحة الأساسية لتفادي الالتصاق بالحواف */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+/* 2. حاوية رئيسية موحدة (Container) تجمع الهيدر ومحتوى الموقع */
+.container, 
+header, 
+.hero-section {
+    max-width: 1200px; /* عرض محدد وأنيق للمحتوى */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;  /* مسافة إبعاد عن الحافة اليسرى */
+    padding-right: 24px; /* مسافة إبعاد عن الحافة اليمنى */
+}
+
+/* 3. ضبط الهيدر العلوي ليكون متباعداً عن أعلى الشاشة والحواف */
+header {
+    margin-top: 16px;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+/* 4. ضبط قسم الهيرو ليعرض الصورة والنص بالحجم المناسب */
+.hero-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    width: 100%;
+}
+
+/* تصغير أبعاد الصورة قليلاً لمنع تضخمها وتجاوزها الشاشة */
+.hero-image-wrapper {
+    position: relative;
+    width: 380px;  /* عرض متناسق لا يزاحم النص */
+    height: 250px; /* ارتفاع متناسق بالعرض */
+    flex-shrink: 0;
+    border-radius: 18px;
+}
+
+.hero-standalone-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 18px;
+}
