@@ -1,6 +1,5 @@
 const translations = {
   ar: {
-    
     home: 'الرئيسية',
     about: 'عني',
     portfolio: 'المشاريع',
@@ -640,3 +639,14 @@ nightModeButton.addEventListener('click', function () {
 applyLanguage(savedLanguage);
 applyTheme(savedTheme === 'light');
  
+
+
+
+
+// إخفاء شاشة التحميل بمجرد اكتمال تحميل الصفحة
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        preloader.classList.add('preloader-hidden');
+    }
+});

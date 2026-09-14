@@ -1,44 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="img/WhatsApp Image 2026-09-14 at 11.48.19 AM.jpeg" href="img/WhatsApp Image 2026-09-14 at 11.48.19 AM.jpeg">
-                                  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TBV7CBHJNB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date())
-
-  gtag('config', 'G-TBV7CBHJNB');
-</script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="11.css"/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>M & M</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="img/WhatsApp Image 2026-09-14 at 11.48.19 AM.jpeg">
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="11.css"/>
+
+    <!-- Google Analytics (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBV7CBHJNB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TBV7CBHJNB');
+    </script>
 </head>
-<body>  
+<body> 
 
-
-    
-         <!-- شريط التنقل اللي فوق الصفحة: فيه اللوجو، الروابط، مربع البحث، وزر Sign In -->
-    <!-- شريط التنقل العلوي: يحتوي على إعدادات اللغة ووضع الصفحة -->
-    <div class="top-bar">
-        <div class="top-bar-inner">
+    <!-- شاشة التحميل الفضائية (Space Preloader) -->
+    <div id="preloader" class="space-theme">
+        <div class="loader-content">
+            <div class="stars-overlay"></div>
+            
+            <div class="circular-wrapper">
+                <div class="logo-container">
+                    <img src="img/WhatsApp Image 2026-09-14 at 11.48.19 AM.jpeg" alt="M&M Logo" class="space-logo">
+                </div>
+                
+                <div class="orbit-ring ring-1"></div>
+                <div class="orbit-ring ring-2"></div>
+                <div class="orbit-ring ring-3"></div>
+                
+                <div class="space-glow"></div>
+            </div>
+            
+            <div class="loader-status">
+                <span>Loading System...</span>
+                <div class="status-bar"></div>
+            </div>
         </div>
     </div>
 
-    <!-- رأس الموقع: يحتوي على اللوجو، الروابط، مربع البحث، وزر الدخول -->
-    <div class="header"> 
+    <!-- شريط التنقل العلوي -->
+    <div class="top-bar">
+        <div class="top-bar-inner"></div>
+    </div>
+
+    <!-- رأس الموقع (Header) -->
+    <header class="header"> 
         <div class="logo-container">
             <img src="img/WhatsApp Image 2026-09-14 at 11.48.19 AM.jpeg" alt="Logo">
             <span class="logo-text">M & M</span>
         </div>
 
-        <div class="nav-links">
+        <nav class="nav-links">
             <a href="#home" class="active" data-i18n="home">Home</a>
             <a href="#about" data-i18n="about">About Me</a>
             <a href="#portfolio" data-i18n="portfolio">Portfolio</a>
@@ -46,7 +70,7 @@
 
             <div class="search-box">
                 <input type="text" placeholder="Search..." class="search-input" data-i18n-placeholder="search">
-                <button class="search-btn">
+                <button class="search-btn" aria-label="Search">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
@@ -54,9 +78,7 @@
             <div class="header-actions">
                 <div class="settings-menu">
                     <button class="settings-pill" type="button" aria-expanded="false" aria-controls="settings-dropdown"
-                            onclick="const panel=this.nextElementSibling; const isHidden=panel.classList.
-                            contains('hidden'); panel.classList.toggle('hidden',
-                             !isHidden); this.setAttribute('aria-expanded', String(isHidden));">
+                            onclick="const panel=this.nextElementSibling; const isHidden=panel.classList.contains('hidden'); panel.classList.toggle('hidden', !isHidden); this.setAttribute('aria-expanded', String(isHidden));">
                         <i class="fa-solid fa-gear"></i>
                     </button>
 
@@ -64,15 +86,8 @@
                         <div class="lang-switcher">
                             <button class="lang-btn" type="button" data-lang="ar">AR</button>
                             <button class="lang-btn active" type="button" data-lang="en">EN</button>
-
-                            
                         </div>
 
-
-
-
-
-                        
                         <button class="settings-action-btn night-mode-btn" type="button" aria-pressed="false">
                             <i class="fa-solid fa-moon"></i>
                             <span data-i18n="primaryMode">Primary Mode</span>
@@ -82,9 +97,10 @@
 
                 <button class="signin-btn" type="button" data-i18n="signin">Sign In</button>
             </div>
-        </div>
-    </div>
+        </nav>
+    </header>
 
+    <!-- مودال تسجيل الدخول -->
     <div class="signin-modal hidden" id="signin-modal" aria-hidden="true">
         <div class="signin-modal-content" role="dialog" aria-modal="true" aria-labelledby="signin-modal-title">
             <button class="signin-close" type="button" aria-label="Close">×</button>
@@ -104,6 +120,7 @@
         </div>
     </div>
 
+    <!-- لوحة المطورين -->
     <div class="developer-panel hidden" id="developer-panel" aria-hidden="true">
         <div class="developer-panel-content">
             <div class="developer-panel-header">
@@ -117,276 +134,238 @@
         </div>
     </div>
 
- <!-- قسم الهيرو: فيه مقدمة الموقع, وصف مختصر, وأزرار الدعوة للتواصل, وصورة شخصية، والكارت التقني -->
-<!-- قسم الهيرو: فيه مقدمة الموقع، أزرار التواصل، الصورة الشخصية، والكارت التقني -->
-<!-- قسم الهيرو: فيه النص الرئيسي، أزرار التواصل، الصورة الشخصية مكان الكارت، والكارت أسفلهم -->
-  <main class="hero-section" id="home">
-    
-    <!-- 1. الصف العلوي: النص على اليسار والصورة المعزولة على اليمين -->
-    <div class="hero-top-row">
-        
-        <!-- الجزء الأيسر: محتوى النص والترحيب والأزرار -->
-        <div class="hero-text-content">
-            <div class="welcome-pill">
-                <span class="green-dot"></span>
-                <span data-i18n="welcome">Welcome! I'm Moataz Mohamed</span>
-            </div>
-
-            <h1 class="main-title" data-i18n="heroTitle">
-                My personal portfolio, CV, and software projects all in one place
-            </h1>
-
-            <p class="description" data-i18n="heroDescription">
-                I'm an IT student passionate about programming, technology, and building things that make an impact. I'm constantly learning, improving my skills, and turning ideas into real projects.
-            </p>
-
-            <div class="cta-buttons">
-                <a href="#portfolio" class="btn btn-primary" data-i18n="viewWork">
-                    View Work <i class="fa-solid fa-arrow-right"></i>
-                </a>
-
-                <a href="#contact" class="btn btn-secondary" data-i18n="letsTalk">
-                    Let's Talk
-                </a>
-
-                <a href="img/Moataz_Mohamed_CV_Clean.pdf" class="btn btn-tertiary" data-i18n="downloadCv" download>
-                    Download CV <i class="fa-solid fa-download"></i>
-                </a>
-            </div>
-        </div>
-
-        <!-- الجزء الأيمن: الصورة لوحدها مع إطار وتأثير Glow -->
-        <div class="hero-image-wrapper">
-            <div class="cyber-glow"></div>
-            <img src="img/WhatsApp Image 2026-09-14 at 11.48.20 AM.jpeg" alt="Moataz Mohamed" class="hero-standalone-img">
-        </div>
-
-    </div>
-
-    <!-- 2. الصف السفلي: الكارت التقني ينزل أسفلهما تماماً -->
-    <div class="hero-visual-card">
-        <div class="card-glow"></div>
-
-        <div class="card-inner">
-            <div class="card-header">
-                <div class="laptop-icon">
-                    <i class="fa-solid fa-laptop-code"></i>
+    <!-- قسم الهيرو (Hero Section) -->
+    <main class="hero-section" id="home">
+        <div class="hero-top-row">
+            <div class="hero-text-content">
+                <div class="welcome-pill">
+                    <span class="green-dot"></span>
+                    <span data-i18n="welcome">Welcome! I'm Moataz Mohamed</span>
                 </div>
 
-                <div class="badge-status">
-                    <i class="fa-solid fa-code-commit"></i>
-                    <span data-i18n="itStudent">IT Student</span>
-                </div>
-            </div>
+                <h1 class="main-title" data-i18n="heroTitle">
+                    My personal portfolio, CV, and software projects all in one place
+                </h1>
 
-            <div class="card-body">
-                <h2 data-i18n="turnIdeas">Turning Ideas Into Real Projects</h2>
-                <p class="card-text" data-i18n="cardText">
-                    Learning today, leading tomorrow. Focused on software development, web applications, and database engineering.
+                <p class="description" data-i18n="heroDescription">
+                    I'm an IT student passionate about programming, technology, and building things that make an impact. I'm constantly learning, improving my skills, and turning ideas into real projects.
                 </p>
 
-                <div class="skills-grid">
-                    <div class="skill-box">
-                        <i class="fa-solid fa-code"></i>
-                        <div>
-                            <h4 data-i18n="programming">Programming</h4>
-                            <span data-i18n="cleanScalable">Clean & Scalable</span>
-                        </div>
+                <div class="cta-buttons">
+                    <a href="#portfolio" class="btn btn-primary" data-i18n="viewWork">
+                        View Work <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                    <a href="#contact" class="btn btn-secondary" data-i18n="letsTalk">
+                        Let's Talk
+                    </a>
+
+                    <a href="img/Moataz_Mohamed_CV_Clean.pdf" class="btn btn-tertiary" data-i18n="downloadCv" download>
+                        Download CV <i class="fa-solid fa-download"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-image-wrapper">
+                <div class="cyber-glow"></div>
+                <img src="img/WhatsApp Image 2026-09-14 at 11.48.20 AM.jpeg" alt="Moataz Mohamed" class="hero-standalone-img">
+            </div>
+        </div>
+
+        <div class="hero-visual-card">
+            <div class="card-glow"></div>
+
+            <div class="card-inner">
+                <div class="card-header">
+                    <div class="laptop-icon">
+                        <i class="fa-solid fa-laptop-code"></i>
                     </div>
 
-                    <div class="skill-box">
-                        <i class="fa-solid fa-globe"></i>
-                        <div>
-                            <h4 data-i18n="webDev">Web Dev</h4>
-                            <span data-i18n="responsiveApps">Responsive Apps</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-box">
-                        <i class="fa-solid fa-database"></i>
-                        <div>
-                            <h4 data-i18n="databases">Databases</h4>
-                            <span data-i18n="sqlSystems">SQL & Systems</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-box">
-                        <i class="fa-solid fa-network-wired"></i>
-                        <div>
-                            <h4 data-i18n="itDepartment">IT Department</h4>
-                            <span data-i18n="networksLogic">Networks & Logic</span>
-                        </div>
+                    <div class="badge-status">
+                        <i class="fa-solid fa-code-commit"></i>
+                        <span data-i18n="itStudent">IT Student</span>
                     </div>
                 </div>
 
-                <div class="card-footer-motto">
-                    <i class="fa-solid fa-quote-left"></i>
-                    <span data-i18n="keepLearning">Keep Learning, Keep Growing</span>
+                <div class="card-body">
+                    <h2 data-i18n="turnIdeas">Turning Ideas Into Real Projects</h2>
+                    <p class="card-text" data-i18n="cardText">
+                        Learning today, leading tomorrow. Focused on software development, web applications, and database engineering.
+                    </p>
+
+                    <div class="skills-grid">
+                        <div class="skill-box">
+                            <i class="fa-solid fa-code"></i>
+                            <div>
+                                <h4 data-i18n="programming">Programming</h4>
+                                <span data-i18n="cleanScalable">Clean & Scalable</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-box">
+                            <i class="fa-solid fa-globe"></i>
+                            <div>
+                                <h4 data-i18n="webDev">Web Dev</h4>
+                                <span data-i18n="responsiveApps">Responsive Apps</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-box">
+                            <i class="fa-solid fa-database"></i>
+                            <div>
+                                <h4 data-i18n="databases">Databases</h4>
+                                <span data-i18n="sqlSystems">SQL & Systems</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-box">
+                            <i class="fa-solid fa-network-wired"></i>
+                            <div>
+                                <h4 data-i18n="itDepartment">IT Department</h4>
+                                <span data-i18n="networksLogic">Networks & Logic</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer-motto">
+                        <i class="fa-solid fa-quote-left"></i>
+                        <span data-i18n="keepLearning">Keep Learning, Keep Growing</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
-</main>
-        <!-- قسم About Me: فيه كروت المعلومات الأساسية عنّي مثل التعليم، التطوير، والأهداف -->
-<section class="about-section" id="about">
-    <h2 class="section-title" data-i18n="aboutTitle">About Me</h2>
+    <!-- قسم عني (About Me) -->
+    <section class="about-section" id="about">
+        <h2 class="section-title" data-i18n="aboutTitle">About Me</h2>
 
-    <div class="about-grid">
-        <div class="about-card">
-            <i class="fa-solid fa-user-graduate icon"></i>
-            <h3 data-i18n="education">Education</h3>
-            <p data-i18n="educationText">IT Student building a strong foundation in Computer Science, Systems, and Software Architecture.</p>
-        </div>
-
-
-        
-        <div class="about-card">
-            <i class="fa-solid fa-code-merge icon"></i>
-            <h3 data-i18n="development">Development</h3>
-            <p data-i18n="developmentText">Creating clean, responsive, and robust applications using modern programming web tech.</p>
-        </div>
-
-
-
-        <div class="about-card">
-            <i class="fa-solid fa-bullseye icon"></i>
-            <h3 data-i18n="goals">Goals</h3>
-            <p data-i18n="goalsText">Continuously learning to solve complex problems and deliver high-quality digital solutions.</p>
-        </div>
-
-
-
-        <div class="about-card certificates-card">
-            <i class="fa-solid fa-award icon"></i>
-            <h3 data-i18n="certificates">Certificates</h3>
-            <p data-i18n="certificatesText">My professional certificates and course completions.</p>
-
-
-
-            <!-- قائمة الشهادات: كل شهادة فيها أيقونة، صورة الشهادة، وعنوانها -->
-            <div class="certificate-controls">
-                <button class="scroll-btn scroll-left" type="button" aria-label="Scroll certificates left">
-                    <i class="fa-solid fa-arrow-left"></i>
-                </button>
-                <button class="scroll-btn scroll-right" type="button" aria-label="Scroll certificates right">
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
+        <div class="about-grid">
+            <div class="about-card">
+                <i class="fa-solid fa-user-graduate icon"></i>
+                <h3 data-i18n="education">Education</h3>
+                <p data-i18n="educationText">IT Student building a strong foundation in Computer Science, Systems, and Software Architecture.</p>
             </div>
 
-            <div class="certificates-list">
-                <div class="certificate-item">
-                    <div class="certificate-number">01</div>
-                    <div class="certificate-top">
-                        <div class="certificate-icon">
-                            <i class="fa-brands fa-html5"></i>
+            <div class="about-card">
+                <i class="fa-solid fa-code-merge icon"></i>
+                <h3 data-i18n="development">Development</h3>
+                <p data-i18n="developmentText">Creating clean, responsive, and robust applications using modern programming web tech.</p>
+            </div>
+
+            <div class="about-card">
+                <i class="fa-solid fa-bullseye icon"></i>
+                <h3 data-i18n="goals">Goals</h3>
+                <p data-i18n="goalsText">Continuously learning to solve complex problems and deliver high-quality digital solutions.</p>
+            </div>
+
+            <div class="about-card certificates-card">
+                <i class="fa-solid fa-award icon"></i>
+                <h3 data-i18n="certificates">Certificates</h3>
+                <p data-i18n="certificatesText">My professional certificates and course completions.</p>
+
+                <div class="certificate-controls">
+                    <button class="scroll-btn scroll-left" type="button" aria-label="Scroll certificates left">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <button class="scroll-btn scroll-right" type="button" aria-label="Scroll certificates right">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <div class="certificates-list">
+                    <div class="certificate-item">
+                        <div class="certificate-number">01</div>
+                        <div class="certificate-top">
+                            <div class="certificate-icon">
+                                <i class="fa-brands fa-html5"></i>
+                            </div>
+                        </div>
+                        <div class="certificate-thumb">
+                            <img src="img/مقدمة في HTML (1)_page-0001.jpg" alt="Certificate 1">
+                        </div>
+                        <div class="certificate-text">
+                            <h4 data-i18n="html">HTML</h4>
+                            <span data-i18n="completed2026">Completed in 2026</span>
+                        </div>
+                        <div class="certificate-actions">
+                            <a class="certificate-btn view" href="img/مقدمة في HTML (1)_page-0001.jpg" target="_blank" rel="noopener noreferrer" data-i18n="viewLabel">View</a>
+                            <a class="certificate-btn download" href="img/مقدمة في HTML (1)_page-0001.jpg" download data-i18n="downloadLabel">Download</a>
+                        </div>
+                        <p class="certificate-note" data-i18n="htmlNote">This certificate reflects the importance of learning the foundations of web development and building a strong base in HTML.</p>
+                    </div>
+
+                    <div class="certificate-item">
+                        <div class="certificate-number">02</div>
+                        <div class="certificate-top">
+                            <div class="certificate-icon">
+                                <i class="fa-brands fa-css3-alt"></i>
+                            </div>
+                        </div>
+                        <div class="certificate-thumb">
+                            <img src="img/مقدمة في CSS (1)_page-0001 (1).jpg" alt="Certificate 2">
+                        </div>
+                        <div class="certificate-text">
+                            <h4 data-i18n="css">CSS</h4>
+                            <span data-i18n="completed2025">Completed in 2025</span>
+                        </div>
+                        <div class="certificate-actions">
+                            <a class="certificate-btn view" href="img/مقدمة في CSS (1)_page-0001 (1).jpg" target="_blank" rel="noopener noreferrer" data-i18n="viewLabel">View</a>
+                            <a class="certificate-btn download" href="img/مقدمة في CSS (1)_page-0001 (1).jpg" download data-i18n="downloadLabel">Download</a>
+                        </div>
+                        <p class="certificate-note" data-i18n="cssNote">This certificate reflects the importance of mastering design, layout, responsiveness, and visual styling in modern web development.</p>
+                    </div>
+
+                    <div class="certificate-item">
+                        <div class="certificate-number">03</div>
+                        <div class="certificate-top">
+                            <div class="certificate-icon">
+                                <i class="fa-solid fa-award"></i>
+                            </div>
+                        </div>
+                        <div class="certificate-thumb">
+                            <img src="img/Arabian-Academy-event-certificate (2)_page-0001.jpg" alt="Before Brand Event Certificate">
+                        </div>
+                        <div class="certificate-text">
+                            <h4 data-i18n="beforeBrandTitle">Before Brand Event</h4>
+                            <span data-i18n="beforeBrandDate">August 27, 2026</span>
+                        </div>
+                        <div class="certificate-actions">
+                            <a class="certificate-btn view" href="img/Arabian-Academy-event-certificate (2)_page-0001.jpg" target="_blank" rel="noopener noreferrer" data-i18n="viewLabel">View</a>
+                            <a class="certificate-btn download" href="img/Arabian-Academy-event-certificate (2)_page-0001.jpg" download data-i18n="downloadLabel">Download</a>
+                        </div>
+                        <div class="certificate-meta">
+                            <p><strong data-i18n="issuerLabel">Issuer:</strong> <span data-i18n="beforeBrandIssuer">Arabian Academy & Before Brand Team</span></p>
+                            <p><strong data-i18n="locationLabel">Location:</strong> <span data-i18n="beforeBrandLocation">Alexandria, Egypt</span></p>
                         </div>
                     </div>
-                    <div class="certificate-thumb">
-                        <img src="img/مقدمة في HTML (1)_page-0001.jpg" alt="Certificate 1">
-                    </div>
-                    <div class="certificate-text">
-                        <h4 data-i18n="html">HTML</h4>
-                        <span data-i18n="completed2026">Completed in 2026</span>
-                    </div>
-                    <div class="certificate-actions">
-                        <a class="certificate-btn view" href="img/مقدمة في HTML (1)_page-0001.jpg" target="_blank" rel="noopener noreferrer" data-i18n="viewLabel">View</a>
-                        <a class="certificate-btn download" href="img/مقدمة في HTML (1)_page-0001.jpg" download data-i18n="downloadLabel">Download</a>
-                    </div>
-                    <p class="certificate-note" data-i18n="htmlNote">This certificate reflects the importance of learning the foundations of web development and building a strong base in HTML.</p>
-                </div>
 
-                <div class="certificate-item">
-                    <div class="certificate-number">02</div>
-                    <div class="certificate-top">
-                        <div class="certificate-icon">
-                            <i class="fa-brands fa-css3-alt"></i>
+                    <div class="certificate-item certificate-placeholder">
+                        <div class="certificate-number">04</div>
+                        <div class="certificate-top">
+                            <div class="certificate-icon">
+                                <i class="fa-brands fa-js"></i>
+                            </div>
                         </div>
-
-
-
-                    </div>
-                    <div class="certificate-thumb">
-                        <img src="img/مقدمة في CSS (1)_page-0001 (1).jpg" alt="Certificate 2">
-                    </div>
-                    <div class="certificate-text">
-                        <h4 data-i18n="css">CSS</h4>
-                        <span data-i18n="completed2025">Completed in 2025</span>
-                    </div>
-                    <div class="certificate-actions">
-                        <a class="certificate-btn view" href="img/مقدمة في CSS (1)_page-0001 (1).jpg" target="_blank" rel="noopener noreferrer" data-i18n="viewLabel">View</a>
-                        <a class="certificate-btn download" href="img/مقدمة في CSS (1)_page-0001 (1).jpg" download data-i18n="downloadLabel">Download</a>
-                    </div>
-                    <p class="certificate-note" data-i18n="cssNote">This certificate reflects the importance of mastering design, layout, responsiveness, and visual styling in modern web development.</p>
-                </div>
-
-
-
-                <div class="certificate-item">
-                    <div class="certificate-number">03</div>
-                    <div class="certificate-top">
-                        <div class="certificate-icon">
-                            <i class="fa-solid fa-award"></i>
+                        <div class="certificate-thumb">
+                            <img src="img/certificate (4).png" alt="Certificate 4">
                         </div>
-                    </div>
-                    <div class="certificate-thumb">
-                        <img src="img/Arabian-Academy-event-certificate (2)_page-0001.jpg" alt="Before Brand Event Certificate">
-                    </div>
-                    <div class="certificate-text">
-                        <h4 data-i18n="beforeBrandTitle">Before Brand Event</h4>
-                        <span data-i18n="beforeBrandDate">August 27, 2026</span>
-                    </div>
-                    <div class="certificate-actions">
-                        <a class="certificate-btn view" href="img/Arabian-Academy-event-certificate (2)_page-0001.jpg" target="_blank" rel="noopener noreferrer" data-i18n="viewLabel">View</a>
-                        <a class="certificate-btn download" href="img/Arabian-Academy-event-certificate (2)_page-0001.jpg" download data-i18n="downloadLabel">Download</a>
-                    </div>
-                    <div class="certificate-meta">
-                        <p><strong data-i18n="issuerLabel">Issuer:</strong> <span data-i18n="beforeBrandIssuer">Arabian Academy & Before Brand Team</span></p>
-                        <p><strong data-i18n="locationLabel">Location:</strong> <span data-i18n="beforeBrandLocation">Alexandria, Egypt</span></p>
-                    </div>
-                </div>
-
-                <div class="certificate-item certificate-placeholder">
-                    <div class="certificate-number">04</div>
-                    <div class="certificate-top">
-                        <div class="certificate-icon">
-                            <i class="fa-brands fa-js"></i>
+                        <div class="certificate-text">
+                            <h4 data-i18n="javascript">JavaScript</h4>
+                            <span data-i18n="completed2025">Completed in 2025</span>
                         </div>
-
-
-
-
-
-
-                     </div>
-                    <div class="certificate-thumb">
-                        <img src="img/certificate (4).png" alt="Certificate 2">
+                        <div class="certificate-actions">
+                            <a class="certificate-btn view" href="img/certificate (4).png" target="_blank" rel="noopener noreferrer" data-i18n="viewLabel">View</a>
+                            <a class="certificate-btn download" href="img/certificate (4).png" download data-i18n="downloadLabel">Download</a>
+                        </div>
+                        <p class="certificate-note" data-i18n="javascriptnote">Completed an introductory JavaScript course covering dynamic scripting, DOM manipulation, event handling, and core programming logic.</p>
                     </div>
-                    <div class="certificate-text">
-                        <h4 data-i18n="javascript">javascript</h4>
-                        <span data-i18n="completed2025">Completed in 2025</span>
-                    </div>
-                    <div class="certificate-actions">
-                        <a class="certificate-btn view" href="img/certificate (4).png" target="_blank" rel="noopener noreferrer" data-i18n="viewLabel">View</a>
-                        <a class="certificate-btn download" href="img/certificate (4).png" download data-i18n="downloadLabel">Download</a>
-                              </div>
-                    <p class="certificate-note" data-i18n="javascriptnote">Completed an introductory JavaScript course covering dynamic scripting, DOM manipulation, event handling, and core programming logic.</p>
                 </div>
-
-                    </div>
-                
-                  
-                </div>
-
-
-
-
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-    <!-- قسم المشاريع: يعرض المشروع الأول مع أزرار العرض والـ GitHub -->
+    <!-- قسم المشاريع (Portfolio Section) -->
     <section class="portfolio-section" id="portfolio">
         <div class="portfolio-header">
             <p class="section-kicker" data-i18n="portfolioKicker">Featured Project</p>
@@ -443,7 +422,7 @@
         </div>
     </section>
 
-    <!-- قسم التواصل: رابط سريع للتواصل بعد المشاريع -->
+    <!-- شريط التواصل السريع -->
     <section class="contact-strip-section" id="contact">
         <div class="contact-strip">
             <div class="contact-strip-text">
@@ -452,121 +431,79 @@
             </div>
             <a href="https://wa.me/201280090726" target="_blank" rel="noopener noreferrer" class="contact-strip-btn" data-i18n="contactButton">Contact Me</a>
         </div>
-
-<!-- قسم التواصل (Contact Section) -->
-<section class="contact-section" id="contact">
-    <div class="contact-container">
-        
-        <!-- عنوان القسم -->
-        <div class="contact-header">
-            <h2>Let's Build Something Together</h2>
-            <p>Have a project in mind or want to chat? Fill out the form below and I'll get back to you.</p>
-        </div>
-
-        <!-- نموذج إدخال البيانات المربوط بـ Formspree -->
-        <form class="contact-form" action="https://formspree.io/f/xppzgnbo" method="POST">
-            
-            <div class="form-row">
-                <!-- خانة الاسم -->
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
-                </div>
-
-                <!-- خانة الرقم -->
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
-                </div>
-            </div>
-
-            <!-- خانة الجيميل -->
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="_replyto" placeholder="Enter your email address" required>
-            </div>
-
-            <!-- خانة الرسالة -->
-            <div class="form-group">
-                <label for="message">Your Message</label>
-                <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
-            </div>
-
-            <!-- زر الإرسال -->
-            <button type="submit" class="btn-submit">
-                Send Message <i class="fa-solid fa-paper-plane"></i>
-            </button>
-
-        </form>
-    </div>
-</section>
-
     </section>
 
+    <!-- نموذج التواصل المفصل -->
+    <section class="contact-section" id="contact-form-section">
+        <div class="contact-container">
+            <div class="contact-header">
+                <h2>Let's Build Something Together</h2>
+                <p>Have a project in mind or want to chat? Fill out the form below and I'll get back to you.</p>
+            </div>
 
+            <form class="contact-form" action="https://formspree.io/f/xppzgnbo" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                    </div>
 
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                    </div>
+                </div>
 
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="_replyto" placeholder="Enter your email address" required>
+                </div>
 
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+                </div>
 
+                <button type="submit" class="btn-submit">
+                    Send Message <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </section>
 
+    <!-- الفوتر (Footer) -->
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-info">
+                <h3>ENG.Moataz Mohamed</h3>
+                <p class="footer-quote" data-i18n="footerQuote">Designed & Developed with passion | صُمِّم وطُوِّر بكل شغف</p>
+            </div>
 
+            <div class="footer-contact">
+                <a href="mailto:mtzm2225@gmail.com" class="contact-item">
+                    <i class="fa-solid fa-envelope"></i> mtzm2225@gmail.com
+                </a>
+                <a href="tel:+201035712862" class="contact-item">
+                    <i class="fa-solid fa-phone"></i> +20 1035712862
+                </a>
 
+                <a href="https://wa.me/201280090726" target="_blank" rel="noopener noreferrer" class="contact-item whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                     
-
-        <!-- جزء الفوتر النهائي: فيه بيانات التواصل، روابط السوشيال ميديا، وحقوق الموقع -->
- <footer class="footer-section">
-    <div class="footer-container">
-        
-        <div class="footer-info">
-            <h3>ENG.Moataz Mohamed</h3>
-            <p class="footer-quote" data-i18n="footerQuote">Designed & Developed with passion | صُمِّم وطُوِّر بكل شغف</p>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/moataz-mohamed-342b32399?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://www.facebook.com/share/1Dj97JqdS8/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/moataz_____mohamed?stkn=OHd1ZWlhbnJqNzMz&utm_source=qr" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
         </div>
 
-        <div class="footer-contact">
-            <a href="mailto:your-mtzm2225@gmail.com" class="contact-item">
-                <i class="fa-solid fa-envelope"></i> mtzm2225@gmail.com
-            </a>
-            <a href="tel:+20 1035712862" class="contact-item">
-                <i class="fa-solid fa-phone"></i> +20 1035712862
-            </a>
-
-            <a href="https://wa.me/201280090726" target="_blank" class="contact-item whatsapp">
-                <i class="fa-brands fa-whatsapp"></i> WhatsApp
-            </a>
+        <div class="footer-bottom">
+            <p data-i18n="allRightsReserved">© 2026 Moataz Mohamed. All rights reserved.</p>
         </div>
+    </footer>
 
-        <div class="footer-socials">
-            <a href="https://www.linkedin.com/in/moataz-mohamed-342b32399?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="https://www.facebook.com/share/1Dj97JqdS8/?mibextid=wwXIfr" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/moataz_____mohamed?stkn=OHd1ZWlhbnJqNzMz&utm_source=qr" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        </div>
-
-    </div>
-
-    <div class="footer-bottom">
-        <p data-i18n="allRightsReserved">© 2026 Moataz Mohamed. All rights reserved.</p>
-    </div>
-</footer>
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>
