@@ -2380,15 +2380,15 @@ body.light-mode .contact-item:hover {
 
 /* 1. الزر الرئيسي (View Work) */
 .btn-primary {
-    background-color: #00f2fe;
+    background-color: #0090fe;
     color: #0d131a;
-    border: 1px solid #00f2fe;
+    border: 1px solid #0098fe;
 }
 
 .btn-primary:hover {
-    background-color: #38ef7d;
-    border-color: #38ef7d;
-    box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+    background-color: #38d7ef;
+    border-color: #38c4ef;
+    box-shadow: 0 0 15px rgba(0, 161, 254, 0.428);
 }
 
 /* 2. الزر الثانوي (Let's Talk) */
