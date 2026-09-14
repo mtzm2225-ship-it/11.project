@@ -650,3 +650,10 @@ window.addEventListener('load', () => {
         preloader.classList.add('preloader-hidden');
     }
 });
+// إخفاء شاشة التحميل بمجرد اكتمال تحميل الصفحة
+window.addEventListener('load', function() {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        preloader.classList.add('fade-out');
+    }
+});
