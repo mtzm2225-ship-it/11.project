@@ -170,18 +170,36 @@ const projectData = [
     secondaryText: { ar: 'جيت هاب', en: 'GitHub' },
     secondaryLink: 'https://github.com/'
   },
-  {
-    tag: { ar: 'قريبًا', en: 'Coming Soon' },
-    name: { ar: 'قريبًا', en: 'Coming Soon' },
+
+
+
+
+
+
+
+
+   {
+    tag: { ar: 'الثاني', en: 'Second' },
+    name: { ar: 'تافرا - متجر أزياء', en: 'TAFRA - Fashion Store' },
     description: {
-      ar: 'سيتم إضافة هذا المشروع قريبًا.',
-      en: 'This project will be added soon.'
+      ar: 'متجر أزياء إلكتروني بهوية بصرية فاخرة، يعرض تشكيلة تافرا مع تصميم عصري ومتجاوب.',
+      en: 'An e-commerce fashion store with a luxury visual identity, showcasing the TAFRA collection with a modern, responsive design.'
     },
-    primaryText: { ar: 'قريبًا', en: 'Coming Soon' },
-    primaryLink: '#portfolio',
-    secondaryText: { ar: 'قريبًا', en: 'Coming Soon' },
-    secondaryLink: '#portfolio'
+    primaryText: { ar: 'عرض المشروع', en: 'View Project' },
+    primaryLink: 'https://mtzm2225-ship-it.github.io/12.tafra/',
+    secondaryText: { ar: 'جيت هاب', en: 'GitHub' },
+    secondaryLink: 'https://github.com/mtzm2225-ship-it/12.tafra',
+    previewImage: 'img/tafra-preview.png'
   },
+
+
+
+
+
+
+
+
+
   {
     tag: { ar: 'قريبًا', en: 'Coming Soon' },
     name: { ar: 'قريبًا', en: 'Coming Soon' },
@@ -195,6 +213,13 @@ const projectData = [
     secondaryLink: '#portfolio'
   }
   
+
+
+
+
+
+
+
 ];
  
 const langButtons = document.querySelectorAll('.lang-btn');
