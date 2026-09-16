@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>M & M</title>
 
-    <!-- Favicon -->
+    <!-- أيقونة الموقع الصغيرة في التاب (Favicon) -->
     <link rel="icon" type="image/jpeg" href="img/WhatsApp Image 2026-09-14 at 11.48.19 AM.jpeg">
 
-    <!-- Fonts & Icons -->
+    <!-- الخطوط والأيقونات (Google Fonts + Font Awesome) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Stylesheet -->
+    <!-- ملف التنسيقات الرئيسي -->
     <link rel="stylesheet" href="11.css"/>
 
     <!-- Google Analytics (gtag.js) -->
@@ -23,11 +23,14 @@
       gtag('js', new Date());
       gtag('config', 'G-TBV7CBHJNB');
     </script>
-    <link rel="manifest" href="img/WhatsApp Image 2026-09-14 at 11.48.19 AM.jpeg">
 </head>
-<body> 
 
-    <!-- شاشة التحميل الفضائية (Space Preloader) -->
+<body>
+
+    <!-- ====================================================================
+         شاشة التحميل (Preloader)
+         بتغطي الشاشة كاملة، والجافاسكربت بيضيف كلاس fade-out لإخفائها
+         ==================================================================== -->
     <div id="preloader" class="space-theme">
         <div class="loader-content">
             <div class="stars-overlay"></div>
@@ -51,13 +54,10 @@
         </div>
     </div>
 
-    <!-- شريط التنقل العلوي -->
-    <div class="top-bar">
-        <div class="top-bar-inner"></div>
-    </div>
-
-    <!-- رأس الموقع (Header) -->
-    <header class="header"> 
+    <!-- ====================================================================
+         رأس الموقع (Header) — اللوجو، روابط التنقل، البحث، والإعدادات
+         ==================================================================== -->
+    <header class="header">
         <div class="logo-container">
             <img src="img/WhatsApp Image 2026-09-14 at 11.48.19 AM.jpeg" alt="Logo">
             <span class="logo-text">M & M</span>
@@ -101,7 +101,10 @@
         </nav>
     </header>
 
-    <!-- مودال تسجيل الدخول -->
+    <!-- ====================================================================
+         نافذة تسجيل الدخول (Sign In Modal)
+         بتفتح بالضغط على زر Sign In، وبتحفظ المدخلات محليًا
+         ==================================================================== -->
     <div class="signin-modal hidden" id="signin-modal" aria-hidden="true">
         <div class="signin-modal-content" role="dialog" aria-modal="true" aria-labelledby="signin-modal-title">
             <button class="signin-close" type="button" aria-label="Close">×</button>
@@ -121,7 +124,10 @@
         </div>
     </div>
 
-    <!-- لوحة المطورين -->
+    <!-- ====================================================================
+         لوحة المطور (Developer Panel)
+         بتفتح بكود سري أو اختصار Ctrl + Shift + R
+         ==================================================================== -->
     <div class="developer-panel hidden" id="developer-panel" aria-hidden="true">
         <div class="developer-panel-content">
             <div class="developer-panel-header">
@@ -135,7 +141,9 @@
         </div>
     </div>
 
-    <!-- قسم الهيرو (Hero Section) -->
+    <!-- ====================================================================
+         قسم الهيرو (Hero) — أول حاجة يشوفها الزائر: الترحيب والعنوان
+         ==================================================================== -->
     <main class="hero-section" id="home">
         <div class="hero-top-row">
             <div class="hero-text-content">
@@ -237,7 +245,9 @@
         </div>
     </main>
 
-    <!-- قسم عني (About Me) -->
+    <!-- ====================================================================
+         قسم من أنا (About Me) — بطاقات التعليم والتطوير والأهداف والشهادات
+         ==================================================================== -->
     <section class="about-section" id="about">
         <h2 class="section-title" data-i18n="aboutTitle">About Me</h2>
 
@@ -352,7 +362,7 @@
                             <img src="img/certificate (4).png" alt="Certificate 4">
                         </div>
                         <div class="certificate-text">
-                            <h4 data-i18n="javascript">JavaScript</h4>
+                            <h4 data-i18n="java">JavaScript</h4>
                             <span data-i18n="completed2025">Completed in 2025</span>
                         </div>
                         <div class="certificate-actions">
@@ -399,12 +409,8 @@
             </div>
 
             <div class="project-preview" aria-label="Project preview">
-                <div class="preview-window">
-                    <div class="preview-topbar">
-                        <span class="preview-dot red"></span>
-                        <span class="preview-dot yellow"></span>
-                        <span class="preview-dot green"></span>
-                    </div>
+                <div class="preview-window has-image">
+                    <img class="project-preview-image" src="img/Screenshot 2026-09-14 135411.png" alt="First project preview">
 
                     <div class="preview-body">
                         <div class="preview-sidebar"></div>
@@ -419,32 +425,15 @@
                             </div>
                         </div>
                     </div>
-
-                    <img class="project-preview-image" src="img/Screenshot 2026-09-14 135411.png" alt="First project preview">
                 </div>
             </div>
-        </div>
-    </section>
+            </div>
+        </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-    <!-- شريط التواصل السريع -->
-    <section class="contact-strip-section" id="contact">
+        <!-- ====================================================================
+             شريط التواصل السريع (Contact Strip)
+             ==================================================================== -->
+        <section class="contact-strip-section" id="contact">
         <div class="contact-strip">
             <div class="contact-strip-text">
                 <p class="contact-strip-kicker" data-i18n="contactKicker">Let's Connect</p>
@@ -454,7 +443,10 @@
         </div>
     </section>
 
-    <!-- نموذج التواصل المفصل -->
+    <!-- ====================================================================
+         نموذج التواصل المفصل (Contact Form)
+         بيتم إرساله عبر خدمة Formspree
+         ==================================================================== -->
     <section class="contact-section" id="contact-form-section">
         <div class="contact-container">
             <div class="contact-header">
@@ -492,7 +484,9 @@
         </div>
     </section>
 
-    <!-- الفوتر (Footer) -->
+    <!-- ====================================================================
+         الفوتر (Footer) — بيانات التواصل وروابط السوشيال ميديا
+         ==================================================================== -->
     <footer class="footer-section">
         <div class="footer-container">
             <div class="footer-info">
@@ -525,6 +519,7 @@
         </div>
     </footer>
 
+    <!-- ملف الجافاسكربت الرئيسي (في الآخر عشان الصفحة تحمّل أسرع) -->
     <script src="script.js"></script>
 </body>
 </html>

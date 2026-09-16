@@ -1,10 +1,33 @@
+/* ============================================================================
+   PORTFOLIO — M & M  |  Moataz Mohamed
+   الملف الرئيسي للجافاسكربت (script.js) — مسؤول عن:
+     1) الترجمة بين العربية والإنجليزية (Language / i18n)
+     2) تبديل الوضع اللي/الأبيض (Theme)
+     3) شريط البحث وتمييز النتائج (Search)
+     4) تسجيل الدخول المحلي (Sign In)
+     5) لوحة بيانات المطور (Developer Panel)
+     6) كارت المشاريع (Portfolio)
+     7) شاشة التحميل (Preloader)
+   ============================================================================ */
+
+'use strict';
+
+/* ============================================================================
+   1) الترجمة (Translations)
+   كل مفتاح هنا بيتطابق مع data-i18n أو data-i18n-placeholder في index.html
+   ============================================================================ */
 const translations = {
+  /* ---------------------------------- العربية ---------------------------------- */
   ar: {
+    /* الهيدر والتنقل */
     home: 'الرئيسية',
     about: 'عني',
     portfolio: 'المشاريع',
     contact: 'تواصل',
     signin: 'تسجيل الدخول',
+    search: 'بحث...',
+
+    /* نافذة تسجيل الدخول */
     signinTitle: 'تسجيل الدخول',
     signinSubtitle: 'استخدم بريدك الإلكتروني أو رقم الهاتف للمتابعة.',
     signinFieldLabel: 'البريد الإلكتروني أو رقم الهاتف',
@@ -12,37 +35,21 @@ const translations = {
     signinSubmit: 'متابعة',
     signinError: 'يرجى إدخال بريد إلكتروني أو رقم هاتف صحيح.',
     signinSuccess: 'تم تسجيل الدخول بنجاح.',
+
+    /* لوحة المطور */
     developerView: 'بيانات المطور',
     developerTitle: 'تسجيلات المطور',
     developerClear: 'مسح',
-    search: 'بحث...',
+
+    /* قسم الهيرو */
     welcome: 'مرحبًا! أنا معتز محمد',
     heroTitle: 'ملفي الشخصي، سيرتي الذاتية، ومشاريعي البرمجية كلهم في مكان واحد',
     heroDescription: 'أنا طالب IT شغوف بالبرمجة والتقنية وبناء الأشياء التي تحدث تأثيرًا. أتعلم باستمرار وأحسن مهاراتي وأحوّل الأفكار إلى مشاريع حقيقية.',
     viewWork: 'عرض الأعمال',
     letsTalk: 'تحدث معي',
-    education: 'التعليم',
-    educationText: 'طالب IT يبني قاعدة قوية في علوم الحاسوب والأنظمة وهندسة البرمجيات.',
-    development: 'التطوير',
-    developmentText: 'أقوم بإنشاء تطبيقات نظيفة ومتجاوبة وقوية باستخدام تقنيات الويب الحديثة.',
-    goals: 'الأهداف',
-    goalsText: 'أتعلم باستمرار لحل المشكلات المعقدة وتقديم حلول رقمية عالية الجودة.',
-    certificates: 'الشهادات',
-    certificatesText: 'شهاداتي المهنية وانتهاء الدورات التي أكملتها.',
-    footerQuote: 'صُمِّم وطُوِّر بكل شغف | Designed & Developed with passion',
-    portfolioKicker: 'مشروع مميز',
-    portfolioTitle: 'المشاريع',
-    projectTag: 'أول مشروع',
-    projectName: 'موقع الملف الشخصي',
-    projectDescription: 'موقع شخصي حديث بتصميم متجاوب، إمكانية تبديل اللغة، وقسم عرض الشهادات.',
-    viewProject: 'عرض المشروع',
-    githubProject: 'جيت هاب',
-    contactKicker: 'دعنا نتواصل',
-    contactTitle: 'هل تحتاج إلى مشروع أو تعاون أو مجرد دردشة سريعة؟',
-    contactButton: 'تواصل معي',
-    settings: 'الإعدادات',
-    primaryMode: 'الوضع الأساسي',
-    whiteMode: 'الوضع الأبيض',
+    downloadCv: 'تحميل السيرة الذاتية',
+
+    /* كارت المهارات داخل الهيرو */
     itStudent: 'طالب IT',
     turnIdeas: 'تحويل الأفكار إلى مشاريع حقيقية',
     cardText: 'نتعلم اليوم، ونقود الغد. نركز على تطوير البرمجيات، تطبيقات الويب، وهندسة قواعد البيانات.',
@@ -55,7 +62,19 @@ const translations = {
     itDepartment: 'قسم IT',
     networksLogic: 'الشبكات والمنطق',
     keepLearning: 'استمر في التعلم، واستمر في النمو',
+
+    /* قسم من أنا */
     aboutTitle: 'من أنا',
+    education: 'التعليم',
+    educationText: 'طالب IT يبني قاعدة قوية في علوم الحاسوب والأنظمة وهندسة البرمجيات.',
+    development: 'التطوير',
+    developmentText: 'أقوم بإنشاء تطبيقات نظيفة ومتجاوبة وقوية باستخدام تقنيات الويب الحديثة.',
+    goals: 'الأهداف',
+    goalsText: 'أتعلم باستمرار لحل المشكلات المعقدة وتقديم حلول رقمية عالية الجودة.',
+
+    /* قسم الشهادات */
+    certificates: 'الشهادات',
+    certificatesText: 'شهاداتي المهنية وانتهاء الدورات التي أكملتها.',
     html: 'HTML',
     css: 'CSS',
     java: 'JavaScript',
@@ -72,17 +91,43 @@ const translations = {
     comingSoon: 'قريبًا',
     viewLabel: 'عرض',
     downloadLabel: 'تحميل',
-    changeProject: 'تغيير المشروع',
     javaNote: 'شهادة JavaScript قادمة قريبًا، وسيتم تحديث هذه البطاقة بصورة الشهادة الرسمية عند توفرها.',
-    allRightsReserved: '© 2026 معتز محمد. جميع الحقوق محفوظة.'
-    
+    javascriptnote: 'هذه الشهادة تعكس إتمام دورة تمهيدية في JavaScript تشمل التعامل مع DOM والأحداث ومنطق البرمجة الأساسي.',
+
+    /* قسم المشاريع */
+    portfolioKicker: 'مشروع مميز',
+    portfolioTitle: 'المشاريع',
+    projectTag: 'أول مشروع',
+    projectName: 'موقع الملف الشخصي',
+    projectDescription: 'موقع شخصي حديث بتصميم متجاوب، إمكانية تبديل اللغة، وقسم عرض الشهادات.',
+    viewProject: 'عرض المشروع',
+    githubProject: 'جيت هاب',
+    changeProject: 'تغيير المشروع',
+
+    /* التواصل والفوتر */
+    contactKicker: 'دعنا نتواصل',
+    contactTitle: 'هل تحتاج إلى مشروع أو تعاون أو مجرد دردشة سريعة؟',
+    contactButton: 'تواصل معي',
+    footerQuote: 'صُمِّم وطُوِّر بكل شغف | Designed & Developed with passion',
+    allRightsReserved: '© 2026 معتز محمد. جميع الحقوق محفوظة.',
+
+    /* الإعدادات */
+    settings: 'الإعدادات',
+    primaryMode: 'الوضع الأساسي',
+    whiteMode: 'الوضع الأبيض'
   },
+
+  /* ---------------------------------- English ---------------------------------- */
   en: {
+    /* Header & Navigation */
     home: 'Home',
     about: 'About Me',
     portfolio: 'Portfolio',
     contact: 'Contact',
     signin: 'Sign In',
+    search: 'Search...',
+
+    /* Sign In modal */
     signinTitle: 'Sign In',
     signinSubtitle: 'Use your email or phone number to continue.',
     signinFieldLabel: 'Email or phone number',
@@ -90,37 +135,21 @@ const translations = {
     signinSubmit: 'Continue',
     signinError: 'Please enter a valid email or phone number.',
     signinSuccess: 'You have signed in successfully.',
+
+    /* Developer panel */
     developerView: 'Developer Data',
     developerTitle: 'Developer Registrations',
     developerClear: 'Clear',
-    search: 'Search...',
+
+    /* Hero section */
     welcome: "Welcome! I'm Moataz Mohamed",
     heroTitle: 'My personal portfolio, CV, and software projects all in one place',
     heroDescription: "I'm an IT student passionate about programming, technology, and building things that make an impact. I'm constantly learning, improving my skills, and turning ideas into real projects.",
     viewWork: 'View Work',
     letsTalk: "Let's Talk",
-    education: 'Education',
-    educationText: 'IT Student building a strong foundation in Computer Science, Systems, and Software Architecture.',
-    development: 'Development',
-    developmentText: 'Creating clean, responsive, and robust applications using modern programming web tech.',
-    goals: 'Goals',
-    goalsText: 'Continuously learning to solve complex problems and deliver high-quality digital solutions.',
-    certificates: 'Certificates',
-    certificatesText: 'My professional certificates and course completions.',
-    footerQuote: 'Designed & Developed with passion | صُمِّم وطُوِّر بكل شغف',
-    portfolioKicker: 'Featured Project',
-    portfolioTitle: 'Projects',
-    projectTag: 'First Project',
-    projectName: 'Portfolio Website',
-    projectDescription: 'A modern personal portfolio with a responsive interface, language switcher, and certificate display section.',
-    viewProject: 'View Project',
-    githubProject: 'GitHub',
-    contactKicker: 'Let\'s Connect',
-    contactTitle: 'Need a project, collaboration, or just a quick chat?',
-    contactButton: 'Contact Me',
-    settings: 'Settings',
-    primaryMode: 'Primary Mode',
-    whiteMode: 'White Mode',
+    downloadCv: 'Download CV',
+
+    /* Skills card inside hero */
     itStudent: 'IT Student',
     turnIdeas: 'Turning Ideas Into Real Projects',
     cardText: 'Learning today, leading tomorrow. Focused on software development, web applications, and database engineering.',
@@ -133,7 +162,19 @@ const translations = {
     itDepartment: 'IT Department',
     networksLogic: 'Networks & Logic',
     keepLearning: 'Keep Learning, Keep Growing',
+
+    /* About section */
     aboutTitle: 'About Me',
+    education: 'Education',
+    educationText: 'IT Student building a strong foundation in Computer Science, Systems, and Software Architecture.',
+    development: 'Development',
+    developmentText: 'Creating clean, responsive, and robust applications using modern programming web tech.',
+    goals: 'Goals',
+    goalsText: 'Continuously learning to solve complex problems and deliver high-quality digital solutions.',
+
+    /* Certificates */
+    certificates: 'Certificates',
+    certificatesText: 'My professional certificates and course completions.',
     html: 'HTML',
     css: 'CSS',
     java: 'JavaScript',
@@ -150,14 +191,39 @@ const translations = {
     comingSoon: 'Coming soon',
     viewLabel: 'View',
     downloadLabel: 'Download',
-    changeProject: 'Change Project',
     javaNote: 'The JavaScript certificate is coming soon, and this card will be updated with the official certificate image once it becomes available.',
-    allRightsReserved: '© 2026 Moataz Mohamed. All rights reserved.'
-    
+    javascriptnote: 'Completed an introductory JavaScript course covering dynamic scripting, DOM manipulation, event handling, and core programming logic.',
+
+    /* Portfolio section */
+    portfolioKicker: 'Featured Project',
+    portfolioTitle: 'Projects',
+    projectTag: 'First Project',
+    projectName: 'Portfolio Website',
+    projectDescription: 'A modern personal portfolio with a responsive interface, language switcher, and certificate display section.',
+    viewProject: 'View Project',
+    githubProject: 'GitHub',
+    changeProject: 'Change Project',
+
+    /* Contact & Footer */
+    contactKicker: "Let's Connect",
+    contactTitle: 'Need a project, collaboration, or just a quick chat?',
+    contactButton: 'Contact Me',
+    footerQuote: 'Designed & Developed with passion | صُمِّم وطُوِّر بكل شغف',
+    allRightsReserved: '© 2026 Moataz Mohamed. All rights reserved.',
+
+    /* Settings */
+    settings: 'Settings',
+    primaryMode: 'Primary Mode',
+    whiteMode: 'White Mode'
   }
 };
- 
+
+/* ============================================================================
+   2) بيانات المشاريع (Project Data)
+   كل مشروع له نص عربي/إنجليزي + روابط زر "عرض المشروع" و"جيت هاب"
+   ============================================================================ */
 const projectData = [
+  /* --- المشروع الأول: موقع الملف الشخصي --- */
   {
     tag: { ar: 'الأول', en: 'First' },
     name: { ar: 'موقع الملف الشخصي', en: 'Portfolio Website' },
@@ -168,17 +234,12 @@ const projectData = [
     primaryText: { ar: 'عرض المشروع', en: 'View Project' },
     primaryLink: 'index.html',
     secondaryText: { ar: 'جيت هاب', en: 'GitHub' },
-    secondaryLink: 'https://github.com/'
+    secondaryLink: 'https://github.com/',
+    previewImage: 'img/Screenshot 2026-09-14 135411.png'
   },
 
-
-
-
-
-
-
-
-   {
+  /* --- المشروع الثاني: تافرا (متجر أزياء) --- */
+  {
     tag: { ar: 'الثاني', en: 'Second' },
     name: { ar: 'تافرا - متجر أزياء', en: 'TAFRA - Fashion Store' },
     description: {
@@ -189,17 +250,10 @@ const projectData = [
     primaryLink: 'https://mtzm2225-ship-it.github.io/12.tafra/',
     secondaryText: { ar: 'جيت هاب', en: 'GitHub' },
     secondaryLink: 'https://github.com/mtzm2225-ship-it/12.tafra',
-    previewImage: 'img/tafra-preview.png'
+    previewImage: 'img/Screenshot 2026-09-16 164001.png'
   },
 
-
-
-
-
-
-
-
-
+  /* --- مشروع سيتم إضافته لاحقًا --- */
   {
     tag: { ar: 'قريبًا', en: 'Coming Soon' },
     name: { ar: 'قريبًا', en: 'Coming Soon' },
@@ -212,34 +266,43 @@ const projectData = [
     secondaryText: { ar: 'قريبًا', en: 'Coming Soon' },
     secondaryLink: '#portfolio'
   }
-  
-
-
-
-
-
-
-
 ];
- 
+
+/* ============================================================================
+   3) مراجع عناصر الصفحة (DOM References)
+   بنمسك كل العناصر مرة واحدة في الأول بدل ما ندوّر عليها كل مرة
+   ============================================================================ */
+
+/* --- الهيدر والتنقل --- */
+const header = document.querySelector('.header');
+const navLinks = document.querySelectorAll('.nav-links a');
 const langButtons = document.querySelectorAll('.lang-btn');
+const nightModeButton = document.querySelector('.night-mode-btn');
+
+/* --- البحث --- */
 const searchInput = document.querySelector('.search-input');
 const searchButton = document.querySelector('.search-btn');
+
+/* --- تسجيل الدخول --- */
 const signInButton = document.querySelector('.signin-btn');
 const signInModal = document.querySelector('#signin-modal');
 const signInForm = document.querySelector('#signin-form');
 const signInInput = document.querySelector('#signin-identifier');
 const signInMessage = document.querySelector('#signin-message');
 const signInClose = document.querySelector('.signin-close');
+
+/* --- لوحة المطور --- */
 const developerToggle = document.querySelector('#developer-toggle');
 const developerPanel = document.querySelector('#developer-panel');
 const developerList = document.querySelector('#developer-list');
 const developerClose = document.querySelector('.developer-close');
 const developerClear = document.querySelector('.developer-clear');
-const header = document.querySelector('.header');
-const navLinks = document.querySelectorAll('.nav-links a');
+
+/* --- عناصر الترجمة --- */
 const i18nElements = document.querySelectorAll('[data-i18n]');
 const i18nPlaceholders = document.querySelectorAll('[data-i18n-placeholder]');
+
+/* --- كارت المشاريع --- */
 const projectTag = document.querySelector('.project-tag');
 const projectName = document.querySelector('.project-info h3');
 const projectDescription = document.querySelector('.project-info p');
@@ -249,163 +312,413 @@ const projectSecondaryBtn = document.querySelector('.project-btn.secondary');
 const projectChangeButton = document.querySelector('.project-btn.change');
 const projectPrevButton = document.querySelector('.project-nav-btn.prev');
 const projectNextButton = document.querySelector('.project-nav-btn.next');
+const projectPreviewImage = document.querySelector('.project-preview-image');
+const previewWindow = document.querySelector('.preview-window');
+
+/* --- سلايدر الشهادات --- */
 const certificatesList = document.querySelector('.certificates-list');
 const scrollLeftButton = document.querySelector('.scroll-left');
 const scrollRightButton = document.querySelector('.scroll-right');
+
+/* --- الإعدادات المحفوظة في المتصفح --- */
 const savedLanguage = localStorage.getItem('portfolioLanguage') || 'en';
 const savedTheme = localStorage.getItem('portfolioTheme') || 'dark';
+
+/* رقم المشروع الحالي المعروض في الكارت */
 let currentProjectIndex = 0;
- 
-if (header) {
-  function updateHeaderScrollState() {
-    header.classList.toggle('scrolled', window.scrollY > 10);
+
+/* ============================================================================
+   4) أدوات مساعدة عامة (Helpers)
+   ============================================================================ */
+
+/**
+ * قراءة اللغة الحالية المحفوظة في المتصفح
+ * @returns {string} كود اللغة: 'ar' أو 'en'
+ */
+function getCurrentLanguage() {
+  return localStorage.getItem('portfolioLanguage') || 'en';
+}
+
+/**
+ * قراءة قاموس الترجمة الخاص باللغة المطلوبة
+ * @param {string} language - كود اللغة
+ * @returns {Object} قاموس الترجمة
+ */
+function getDictionary(language) {
+  return translations[language] || translations.en;
+}
+
+/**
+ * التحقق من صحة البريد الإلكتروني
+ * @param {string} value - القيمة المدخلة
+ * @returns {boolean} صحيح أم لا
+ */
+function isValidEmail(value) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+/**
+ * التحقق من صحة رقم الهاتف
+ * (من 10 إلى 15 رقم، ولا يكون كل الأرقام متشابهة)
+ * @param {string} value - القيمة المدخلة
+ * @returns {boolean} صحيح أم لا
+ */
+function isValidPhoneNumber(value) {
+  const normalized = value.replace(/[\s\-+()]/g, '');
+
+  /* لازم يكون أرقام فقط */
+  if (!/^\d+$/.test(normalized)) {
+    return false;
   }
- 
+
+  /* الطول المسموح به */
+  if (normalized.length < 10 || normalized.length > 15) {
+    return false;
+  }
+
+  /* رفض الأرقام المتكررة زي 1111 */
+  if (/^(\d)\1+$/.test(normalized)) {
+    return false;
+  }
+
+  return true;
+}
+
+/* ============================================================================
+   5) الهيدر (Header Scroll State)
+   بيضيف كلاس .scrolled على الهيدر عند النزول بالصفحة
+   ============================================================================ */
+if (header) {
+  const updateHeaderScrollState = function () {
+    header.classList.toggle('scrolled', window.scrollY > 10);
+  };
+
   updateHeaderScrollState();
   window.addEventListener('scroll', updateHeaderScrollState, { passive: true });
 }
- 
+
+/* ============================================================================
+   6) البحث (Search)
+   بيدوّر على كلمة داخل الصفحة وبيحدد أول نتيجة ويوصل المستخدم ليها
+   ============================================================================ */
+
+/**
+ * تنظيف النص قبل المقارنة (حروف صغيرة + توحيد المسافات)
+ * @param {string} text - النص الخام
+ * @returns {string} النص المنظّف
+ */
 function normalizeSearchText(text) {
   return (text || '').toLowerCase().normalize('NFKC').replace(/\s+/g, ' ').trim();
 }
- 
+
+/** إزالة كل تمييز نتائج البحث القديم من الصفحة */
 function clearSearchHighlights() {
   document.querySelectorAll('.search-match').forEach(function (element) {
     element.classList.remove('search-match');
   });
 }
- 
+
+/** تنفيذ البحث: تمييز النتائج والانتقال لأول نتيجة */
 function performSearch() {
   const query = normalizeSearchText(searchInput ? searchInput.value : '');
   clearSearchHighlights();
- 
+
+  /* لو خانة البحث فاضية مفيش حاجة نعملها */
   if (!query || !searchInput) {
     return;
   }
- 
+
   let firstMatch = null;
+
+  /* كل العناصر اللي ممكن ندوّر جواها */
   const searchTargets = document.querySelectorAll(
-    '[data-i18n], .section-title, .project-tag, .project-info h3, .project-info p, .certificate-item h4, .certificate-note, .certificate-item p, .contact-strip h3, .contact-strip p, .main-title, .description, .welcome-pill span, .card-body h2, .card-text, .card-footer-motto span, .footer-quote'
+    '[data-i18n], .section-title, .project-tag, .project-info h3, .project-info p, ' +
+    '.certificate-item h4, .certificate-note, .certificate-item p, .contact-strip h3, ' +
+    '.contact-strip p, .main-title, .description, .welcome-pill span, .card-body h2, ' +
+    '.card-text, .card-footer-motto span, .footer-quote'
   );
- 
+
   searchTargets.forEach(function (element) {
     const text = normalizeSearchText(element.textContent);
- 
+
     if (text.includes(query)) {
       element.classList.add('search-match');
- 
+
       if (!firstMatch) {
         firstMatch = element;
       }
     }
   });
- 
+
+  /* ننقل المستخدم لأول نتيجة نلاقيها */
   if (firstMatch) {
     firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 }
- 
+
+/* ربط البحث بالكتابة، الضغط على Enter، وزر البحث */
+if (searchInput) {
+  searchInput.addEventListener('input', performSearch);
+
+  searchInput.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      performSearch();
+    }
+  });
+
+  if (searchButton) {
+    searchButton.addEventListener('click', function (event) {
+      event.preventDefault();
+      performSearch();
+    });
+  }
+}
+
+/* ============================================================================
+   7) الثيم (Theme: الوضع الأساسي / الأبيض)
+   ============================================================================ */
+
+/** تحديث نص زر الوضع حسب الحالة الحالية واللغة */
 function updateThemeButtonLabel() {
-  const nightModeButton = document.querySelector('.night-mode-btn');
-  const currentLanguage = localStorage.getItem('portfolioLanguage') || 'en';
-  const dictionary = translations[currentLanguage] || translations.en;
+  const dictionary = getDictionary(getCurrentLanguage());
   const label = nightModeButton ? nightModeButton.querySelector('span') : null;
- 
+
   if (label) {
     const isWhiteMode = document.body.classList.contains('light-mode');
     label.textContent = isWhiteMode ? dictionary.whiteMode : dictionary.primaryMode;
   }
 }
- 
-function updateProjectCard() {
-  const language = localStorage.getItem('portfolioLanguage') || 'en';
+
+/**
+ * تطبيق الوضع (أبيض أو أساسي) وحفظه في المتصفح
+ * @param {boolean} isWhiteMode - true للوضع الأبيض، false للوضع الأساسي
+ */
+function applyTheme(isWhiteMode) {
+  document.body.classList.toggle('light-mode', isWhiteMode);
+
+  if (nightModeButton) {
+    nightModeButton.classList.toggle('is-active', isWhiteMode);
+    nightModeButton.setAttribute('aria-pressed', String(isWhiteMode));
+  }
+
+  localStorage.setItem('portfolioTheme', isWhiteMode ? 'light' : 'dark');
+  updateThemeButtonLabel();
+}
+
+/* زر تبديل الوضع */
+if (nightModeButton) {
+  nightModeButton.addEventListener('click', function () {
+    applyTheme(!document.body.classList.contains('light-mode'));
+  });
+}
+
+/* ============================================================================
+   8) كارت المشاريع (Portfolio Card)
+   ============================================================================ */
+
+/**
+ * تحديث محتوى كارت المشروع حسب المشروع الحالي واللغة
+ * @param {string} [language] - كود اللغة (اختياري، وبيقرا من المتصفح لو مش موجود)
+ */
+function updateProjectCard(language) {
+  const currentLanguage = language || getCurrentLanguage();
   const project = projectData[currentProjectIndex];
- 
-  if (!project) {
+
+  /* حماية لو العناصر أو المشروع غير متاحين */
+  if (!project || !projectCard || !projectTag || !projectName || !projectDescription) {
     return;
   }
- 
-  const isFirstProject = currentProjectIndex === 0;
-  projectCard.classList.toggle('is-first-project', isFirstProject);
- 
-  projectTag.textContent = project.tag[language] || project.tag.en;
-  projectName.textContent = project.name[language] || project.name.en;
-  projectDescription.textContent = project.description[language] || project.description.en;
-  projectPrimaryBtn.textContent = project.primaryText[language] || project.primaryText.en;
-  projectPrimaryBtn.setAttribute('href', project.primaryLink);
-  projectSecondaryBtn.textContent = project.secondaryText[language] || project.secondaryText.en;
-  projectSecondaryBtn.setAttribute('href', project.secondaryLink);
+
+  projectTag.textContent = project.tag[currentLanguage] || project.tag.en;
+  projectName.textContent = project.name[currentLanguage] || project.name.en;
+  projectDescription.textContent = project.description[currentLanguage] || project.description.en;
+
+  /* تحديث صورة المعاينة حسب المشروع الحالي (لو المشروع له صورة) */
+  if (projectPreviewImage) {
+    if (project.previewImage) {
+      projectPreviewImage.src = project.previewImage;
+      projectPreviewImage.alt = project.name.en + ' preview';
+      projectPreviewImage.style.display = 'block';
+
+      if (previewWindow) {
+        previewWindow.classList.add('has-image');
+      }
+    } else {
+      /* المشروع من غير صورة (زي "قريبًا") — نخفي الصورة ونظهر الشكل الوهمي */
+      projectPreviewImage.removeAttribute('src');
+      projectPreviewImage.style.display = 'none';
+
+      if (previewWindow) {
+        previewWindow.classList.remove('has-image');
+      }
+    }
+  }
+
+  if (projectPrimaryBtn) {
+    projectPrimaryBtn.textContent = project.primaryText[currentLanguage] || project.primaryText.en;
+    projectPrimaryBtn.setAttribute('href', project.primaryLink);
+  }
+
+  if (projectSecondaryBtn) {
+    projectSecondaryBtn.textContent = project.secondaryText[currentLanguage] || project.secondaryText.en;
+    projectSecondaryBtn.setAttribute('href', project.secondaryLink);
+  }
 }
- 
+
+/* زر "تغيير المشروع" — بينقل للمشروع اللي بعده */
+if (projectChangeButton) {
+  projectChangeButton.addEventListener('click', function () {
+    currentProjectIndex = (currentProjectIndex + 1) % projectData.length;
+    updateProjectCard();
+  });
+}
+
+/* أسهم التنقل بين المشاريع (السابق / التالي) */
+if (projectPrevButton && projectNextButton) {
+  projectPrevButton.addEventListener('click', function () {
+    currentProjectIndex = (currentProjectIndex - 1 + projectData.length) % projectData.length;
+    updateProjectCard();
+  });
+
+  projectNextButton.addEventListener('click', function () {
+    currentProjectIndex = (currentProjectIndex + 1) % projectData.length;
+    updateProjectCard();
+  });
+}
+
+/* ============================================================================
+   9) الترجمة (Language / i18n)
+   ============================================================================ */
+
+/**
+ * تطبيق اللغة على كل الصفحة (النصوص + الـ placeholders + الاتجاه)
+ * @param {string} language - كود اللغة: 'ar' أو 'en'
+ */
 function applyLanguage(language) {
-  const dictionary = translations[language] || translations.en;
- 
+  const dictionary = getDictionary(language);
+
+  /* ترجمة كل العناصر اللي عندها data-i18n */
   i18nElements.forEach(function (element) {
     const key = element.dataset.i18n;
     if (dictionary[key]) {
       element.textContent = dictionary[key];
     }
   });
- 
+
+  /* ترجمة كل الـ placeholders اللي عندها data-i18n-placeholder */
   i18nPlaceholders.forEach(function (element) {
     const key = element.dataset.i18nPlaceholder;
     if (dictionary[key]) {
       element.placeholder = dictionary[key];
     }
   });
- 
+
+  /* تحديد زر اللغة النشط */
   langButtons.forEach(function (button) {
     button.classList.toggle('active', button.dataset.lang === language);
   });
- 
-  updateProjectCard();
-  document.documentElement.lang = language;
+
+  /* نحفظ اللغة الأول عشان updateProjectCard تقراها صح */
   localStorage.setItem('portfolioLanguage', language);
+
+  /* تحديث كارت المشروع + لغة الصفحة + نص زر الوضع */
+  updateProjectCard(language);
+  document.documentElement.lang = language;
   updateThemeButtonLabel();
 }
- 
+
+/* أزرار تبديل اللغة AR / EN */
 langButtons.forEach(function (button) {
   button.addEventListener('click', function () {
     applyLanguage(button.dataset.lang);
   });
 });
- 
+
+/* ============================================================================
+   10) تسجيل الدخول (Sign In Modal)
+   ============================================================================ */
+
+/** فتح نافذة تسجيل الدخول */
 function openSignInModal() {
   if (!signInModal) {
     return;
   }
- 
+
   signInModal.classList.remove('hidden');
   signInModal.setAttribute('aria-hidden', 'false');
- 
+
+  /* نركّز على خانة الإدخال بعد ظهور النافذة */
   if (signInInput) {
     setTimeout(function () {
       signInInput.focus();
     }, 50);
   }
 }
- 
+
+/** إغلاق نافذة تسجيل الدخول */
+function closeSignInModal() {
+  if (!signInModal) {
+    return;
+  }
+
+  signInModal.classList.add('hidden');
+  signInModal.setAttribute('aria-hidden', 'true');
+}
+
+if (signInButton) {
+  signInButton.addEventListener('click', openSignInModal);
+}
+
+if (signInClose) {
+  signInClose.addEventListener('click', closeSignInModal);
+}
+
+/* الإغلاق بالضغط على الخلفية المعتمة */
+if (signInModal) {
+  signInModal.addEventListener('click', function (event) {
+    if (event.target === signInModal) {
+      closeSignInModal();
+    }
+  });
+}
+
+/* ============================================================================
+   11) تسجيلات المطور (Developer Registrations)
+   ============================================================================ */
+
+/**
+ * قراءة التسجيلات المحفوظة من المتصفح
+ * @returns {Array} مصفوفة التسجيلات
+ */
 function getRegistrations() {
   try {
     const saved = localStorage.getItem('portfolioRegistrations');
     return saved ? JSON.parse(saved) : [];
   } catch (error) {
+    /* لو البيانات محفوظة بشكل غلط نرجّع مصفوفة فاضية بدل ما الكود يقع */
     return [];
   }
 }
- 
+
+/**
+ * حفظ التسجيلات في المتصفح
+ * @param {Array} registrations - مصفوفة التسجيلات
+ */
 function saveRegistrations(registrations) {
   localStorage.setItem('portfolioRegistrations', JSON.stringify(registrations));
 }
- 
+
+/** عرض كل التسجيلات داخل لوحة المطور */
 function renderDeveloperRegistrations() {
   if (!developerList) {
     return;
   }
- 
+
   const registrations = getRegistrations();
   developerList.innerHTML = '';
- 
+
+  /* لو مفيش تسجيلات نعرض رسالة */
   if (!registrations.length) {
     const emptyItem = document.createElement('li');
     emptyItem.textContent = 'No registrations yet.';
@@ -413,18 +726,19 @@ function renderDeveloperRegistrations() {
     developerList.appendChild(emptyItem);
     return;
   }
- 
+
   registrations.forEach(function (entry, index) {
     const item = document.createElement('li');
     item.className = 'developer-item';
- 
+
     const label = document.createElement('span');
     label.textContent = '#' + (index + 1) + ' - ' + entry.identifier;
- 
+
+    /* بنحدد نوع رابط التواصل حسب المدخل (إيميل ولا رقم واتساب) */
     let actionLink = null;
     const trimmedIdentifier = (entry.identifier || '').trim();
- 
-    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedIdentifier)) {
+
+    if (isValidEmail(trimmedIdentifier)) {
       actionLink = document.createElement('a');
       actionLink.href = 'mailto:' + trimmedIdentifier;
       actionLink.textContent = 'Email';
@@ -433,6 +747,7 @@ function renderDeveloperRegistrations() {
       actionLink.className = 'developer-action';
     } else {
       const normalizedPhone = trimmedIdentifier.replace(/[^\d]/g, '');
+
       if (normalizedPhone.length >= 10 && normalizedPhone.length <= 15 && !/^(\d)\1+$/.test(normalizedPhone)) {
         actionLink = document.createElement('a');
         actionLink.href = 'https://wa.me/' + normalizedPhone;
@@ -442,80 +757,59 @@ function renderDeveloperRegistrations() {
         actionLink.className = 'developer-action';
       }
     }
- 
+
     item.appendChild(label);
- 
+
     if (actionLink) {
       item.appendChild(actionLink);
     }
- 
+
     developerList.appendChild(item);
   });
 }
- 
+
+/** فتح لوحة المطور وعرض التسجيلات */
 function openDeveloperPanel() {
   if (developerToggle) {
     developerToggle.classList.remove('hidden');
   }
- 
+
   if (!developerPanel) {
     return;
   }
- 
+
   developerPanel.classList.remove('hidden');
   developerPanel.setAttribute('aria-hidden', 'false');
   renderDeveloperRegistrations();
 }
- 
+
+/** إغلاق لوحة المطور */
 function closeDeveloperPanel() {
   if (!developerPanel) {
     return;
   }
- 
+
   developerPanel.classList.add('hidden');
   developerPanel.setAttribute('aria-hidden', 'true');
 }
- 
-function closeSignInModal() {
-  if (!signInModal) {
-    return;
-  }
- 
-  signInModal.classList.add('hidden');
-  signInModal.setAttribute('aria-hidden', 'true');
-}
- 
-if (signInButton) {
-  signInButton.addEventListener('click', openSignInModal);
-}
- 
-if (signInClose) {
-  signInClose.addEventListener('click', closeSignInModal);
-}
- 
+
 if (developerToggle) {
   developerToggle.addEventListener('click', openDeveloperPanel);
 }
- 
+
 if (developerClose) {
   developerClose.addEventListener('click', closeDeveloperPanel);
 }
- 
+
+/* زر مسح كل التسجيلات */
 if (developerClear) {
   developerClear.addEventListener('click', function () {
     saveRegistrations([]);
     renderDeveloperRegistrations();
   });
 }
- 
-if (signInModal) {
-  signInModal.addEventListener('click', function (event) {
-    if (event.target === signInModal) {
-      closeSignInModal();
-    }
-  });
-}
- 
+
+/* الإغلاق بالضغط على الخلفية المعتمة */
 if (developerPanel) {
   developerPanel.addEventListener('click', function (event) {
     if (event.target === developerPanel) {
@@ -523,162 +817,117 @@ if (developerPanel) {
     }
   });
 }
- 
+
+/* اختصار لوحة المطور: Ctrl + Shift + R */
+document.addEventListener('keydown', function (event) {
+  const isDeveloperShortcut = (event.ctrlKey || event.metaKey) &&
+    event.shiftKey &&
+    event.key.toLowerCase() === 'r';
+
+  if (isDeveloperShortcut) {
+    event.preventDefault();
+    openDeveloperPanel();
+  }
+});
+
+/* ============================================================================
+   12) إرسال نموذج تسجيل الدخول (Sign In Submit)
+   بيدعم: الإيميل، رقم الهاتف، وكود المطور السري
+   ============================================================================ */
 if (signInForm && signInInput && signInMessage) {
   signInForm.addEventListener('submit', function (event) {
     event.preventDefault();
- 
+
     const identifier = signInInput.value.trim();
- 
+    const dictionary = getDictionary(getCurrentLanguage());
+
+    /* كود المطور السري: بيفتح لوحة التسجيلات بدل تسجيل الدخول العادي */
     if (identifier === '23121975') {
       signInInput.value = '';
       closeSignInModal();
       openDeveloperPanel();
       return;
     }
- 
-    const currentLanguage = localStorage.getItem('portfolioLanguage') || 'en';
-    const dictionary = translations[currentLanguage] || translations.en;
- 
-    function isValidEmail(value) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-    }
- 
-    function isValidPhoneNumber(value) {
-      const normalized = value.replace(/[\s\-+()]/g, '');
-      if (!/^\d+$/.test(normalized)) {
-        return false;
-      }
- 
-      if (normalized.length < 10 || normalized.length > 15) {
-        return false;
-      }
- 
-      if (/^(\d)\1+$/.test(normalized)) {
-        return false;
-      }
- 
-      return true;
-    }
- 
+
     const isValidIdentifier = isValidEmail(identifier) || isValidPhoneNumber(identifier);
- 
+
+    /* لو المدخل غير صالح نعرض رسالة خطأ */
     if (!identifier || !isValidIdentifier) {
       signInMessage.textContent = dictionary.signinError;
       signInMessage.style.color = '#fca5a5';
       return;
     }
- 
+
+    /* نحفظ التسجيل الجديد (بحد أقصى 50 تسجيل) */
     const registrations = getRegistrations();
     registrations.unshift({ identifier: identifier, createdAt: new Date().toISOString() });
     saveRegistrations(registrations.slice(0, 50));
- 
+
     localStorage.setItem('portfolioUser', identifier);
     signInMessage.textContent = dictionary.signinSuccess;
     signInMessage.style.color = '#86efac';
     signInInput.value = '';
- 
+
+    /* نقفل النافذة بعد ثانية وربع */
     setTimeout(function () {
       closeSignInModal();
       signInMessage.textContent = '';
     }, 1200);
   });
 }
- 
-document.addEventListener('keydown', function (event) {
-  const isDeveloperShortcut = (event.ctrlKey || event.metaKey) && event.shiftKey && event.key.toLowerCase() === 'r';
-  if (isDeveloperShortcut) {
-    event.preventDefault();
-    openDeveloperPanel();
-  }
-});
- 
-if (searchInput) {
-  searchInput.addEventListener('input', performSearch);
-  searchInput.addEventListener('keydown', function (event) {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      performSearch();
-    }
-  });
- 
-  if (searchButton) {
-    searchButton.addEventListener('click', function (event) {
-      event.preventDefault();
-      performSearch();
-    });
-  }
-}
- 
+
+/* ============================================================================
+   13) شريط التنقل وسلايدر الشهادات (Navigation & Certificates Slider)
+   ============================================================================ */
+
+/* تحديد الرابط النشط عند الضغط عليه */
 navLinks.forEach(function (link) {
   link.addEventListener('click', function () {
     navLinks.forEach(function (item) {
       item.classList.remove('active');
     });
+
     link.classList.add('active');
   });
 });
- 
-if (scrollLeftButton && scrollRightButton) {
+
+/* أسهم تمرير قائمة الشهادات يمين وشمال */
+if (scrollLeftButton && scrollRightButton && certificatesList) {
   scrollLeftButton.addEventListener('click', function () {
     certificatesList.scrollBy({ left: -260, behavior: 'smooth' });
   });
- 
+
   scrollRightButton.addEventListener('click', function () {
     certificatesList.scrollBy({ left: 260, behavior: 'smooth' });
   });
 }
- 
-projectChangeButton.addEventListener('click', function () {
-  currentProjectIndex = (currentProjectIndex + 1) % projectData.length;
-  updateProjectCard();
-});
- 
-if (projectPrevButton && projectNextButton) {
-  projectPrevButton.addEventListener('click', function () {
-    currentProjectIndex = (currentProjectIndex - 1 + projectData.length) % projectData.length;
-    updateProjectCard();
-  });
- 
-  projectNextButton.addEventListener('click', function () {
-    currentProjectIndex = (currentProjectIndex + 1) % projectData.length;
-    updateProjectCard();
-  });
+
+/* ============================================================================
+   14) شاشة التحميل (Preloader)
+   بتختفي تلقائيًا بعد اكتمال تحميل الصفحة كلها (مع حماية بالوقت والـ DOM جاهز)
+   ============================================================================ */
+function hidePreloader() {
+  const preloader = document.getElementById('preloader');
+
+  if (preloader) {
+    preloader.classList.add('fade-out');
+  }
 }
- 
-const nightModeButton = document.querySelector('.night-mode-btn');
- 
-function applyTheme(isWhiteMode) {
-  document.body.classList.toggle('light-mode', isWhiteMode);
-  nightModeButton.classList.toggle('is-active', isWhiteMode);
-  nightModeButton.setAttribute('aria-pressed', String(isWhiteMode));
- 
-  localStorage.setItem('portfolioTheme', isWhiteMode ? 'light' : 'dark');
-  updateThemeButtonLabel();
-}
- 
-nightModeButton.addEventListener('click', function () {
-  applyTheme(!document.body.classList.contains('light-mode'));
+
+/* الحالة العادية: تختفي بعد تحميل كل حاجة */
+window.addEventListener('load', hidePreloader);
+
+/* حماية: تختفي حتى لو الـ load اتأخر (صور كتير/نت بطيء) */
+window.addEventListener('DOMContentLoaded', function () {
+  setTimeout(hidePreloader, 2500);
 });
- 
+
+/* حماية أخيرة: لو حصل أي خطأ في التحميل، تختفي على طول */
+window.addEventListener('error', hidePreloader);
+
+/* ============================================================================
+   15) التشغيل الأولي (Init)
+   بنطبّق اللغة والثيم المحفوظين من آخر زيارة للمستخدم
+   ============================================================================ */
 applyLanguage(savedLanguage);
 applyTheme(savedTheme === 'light');
- 
-
-
-
-
-// إخفاء شاشة التحميل بمجرد اكتمال تحميل الصفحة
-window.addEventListener('load', () => {
-    const preloader = document.getElementById('preloader');
-    if (preloader) {
-        preloader.classList.add('preloader-hidden');
-    }
-});
-// إخفاء شاشة التحميل بمجرد اكتمال تحميل الصفحة
-window.addEventListener('load', function() {
-    const preloader = document.getElementById('preloader');
-    if (preloader) {
-        preloader.classList.add('fade-out');
-    }
-});
