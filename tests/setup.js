@@ -1,4 +1,4 @@
-import { beforeEach, vi } from 'vitest';
+import { beforeEach, vi } from "vitest";
 
 /* ---------------------------------------------------------------------------
  * jsdom ships a working localStorage, but it is shared between tests unless we
@@ -38,7 +38,7 @@ export function useFakeClock() {
   vi.useFakeTimers();
   return {
     advance: (ms) => vi.advanceTimersByTime(ms),
-    restore: () => vi.useRealTimers()
+    restore: () => vi.useRealTimers(),
   };
 }
 

@@ -2769,30 +2769,66 @@ body.light-mode .contact-item:hover {
    الزر ثابت أسفل الشاشة على الجنب، والضغط عليه بيفتح لوحة الشات
    ============================================================================ */
 
-/* --- الزر العائم --- */
-.ai-fab {
+/* --- الأزرار العائمة: واتساب + المساعد، فوق بعض على جنب الشاشة --- */
+.ai-fab,
+.whatsapp-fab {
     position: fixed;
-    bottom: 24px;
     right: 24px;
     width: 58px;
     height: 58px;
     border-radius: 50%;
-    border: 1px solid rgba(0, 242, 254, 0.5);
-    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
-    color: #0d131a;
     font-size: 1.35rem;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     z-index: 1500;
-    box-shadow: 0 12px 28px rgba(0, 242, 254, 0.35), 0 4px 12px rgba(0, 0, 0, 0.35);
+    text-decoration: none;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* الواتساب فوق، والمساعد تحت (الأساس) */
+.ai-fab {
+    bottom: 24px;
+    border: 1px solid rgba(0, 242, 254, 0.5);
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    color: #0d131a;
+    box-shadow: 0 12px 28px rgba(0, 242, 254, 0.35), 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.whatsapp-fab {
+    bottom: 94px;
+    border: 1px solid rgba(37, 211, 102, 0.55);
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    color: #ffffff;
+    box-shadow: 0 12px 28px rgba(37, 211, 102, 0.38), 0 4px 12px rgba(0, 0, 0, 0.35);
 }
 
 .ai-fab:hover {
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 18px 34px rgba(0, 242, 254, 0.45), 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.whatsapp-fab:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 18px 34px rgba(37, 211, 102, 0.5), 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* حلقة نبض خفيفة حوالي أيقونة الواتساب عشان تشد الانتباه */
+.whatsapp-fab::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(37, 211, 102, 0.6);
+    animation: whatsapp-ring 2.6s ease-out infinite;
+    pointer-events: none;
+}
+
+@keyframes whatsapp-ring {
+    0%   { transform: scale(1); opacity: 0.7; }
+    70%  { transform: scale(1.45); opacity: 0; }
+    100% { transform: scale(1.45); opacity: 0; }
 }
 
 /* عند فتح اللوحة: الأيقونة تتحول من روبوت إلى علامة إغلاق */
@@ -3020,6 +3056,11 @@ body.light-mode .ai-fab {
     box-shadow: 0 12px 28px rgba(2, 132, 199, 0.28), 0 4px 12px rgba(15, 23, 42, 0.14);
 }
 
+body.light-mode .whatsapp-fab {
+    border-color: rgba(18, 140, 126, 0.4);
+    box-shadow: 0 12px 28px rgba(18, 140, 126, 0.26), 0 4px 12px rgba(15, 23, 42, 0.14);
+}
+
 body.light-mode .ai-fab-dot {
     border-color: #ffffff;
 }
@@ -3062,25 +3103,34 @@ body.light-mode .response-box.is-error {
 
 /* الموبايل: اللوحة تاخد عرض الشاشة تقريبًا والزر يفضل مريح للإصبع */
 @media (max-width: 768px) {
-    .ai-fab {
-        bottom: 18px;
+    .ai-fab,
+    .whatsapp-fab {
         right: 18px;
         width: 54px;
         height: 54px;
     }
 
+    .ai-fab {
+        bottom: 18px;
+    }
+
+    .whatsapp-fab {
+        bottom: 82px;
+    }
+
     .ai-panel {
-        bottom: 84px;
+        bottom: 150px;
         right: 12px;
         left: 12px;
         width: auto;
-        max-height: calc(100vh - 110px);
+        max-height: calc(100vh - 180px);
         padding: 18px;
     }
 }
 
-/* الاتجاه من اليمين للشمال (العربي): الزر واللوحة ينقلبوا للجنب التاني */
-html[dir="rtl"] .ai-fab {
+/* الاتجاه من اليمين للشمال (العربي): الأزرار واللوحة ينقلبوا للجنب التاني */
+html[dir="rtl"] .ai-fab,
+html[dir="rtl"] .whatsapp-fab {
     right: auto;
     left: 24px;
 }
@@ -3096,7 +3146,8 @@ html[dir="rtl"] .ai-close {
 }
 
 @media (max-width: 768px) {
-    html[dir="rtl"] .ai-fab {
+    html[dir="rtl"] .ai-fab,
+    html[dir="rtl"] .whatsapp-fab {
         left: 18px;
         right: auto;
     }
@@ -3620,7 +3671,14 @@ html[dir="rtl"] .ai-close {
          الإدخال بيتبعت للـ Cloudflare Worker (worker.js) وهو اللي بيكلم الـ AI
          ==================================================================== -->
 
-    <!-- الزر العائم: بيفتح ويقفل لوحة الشات -->
+    <!-- الزر العائم للواتساب: بيفتح محادثة واتساب مباشرة -->
+    <a href="https://wa.me/201280090726" id="whatsappToggle" class="whatsapp-fab"
+       target="_blank" rel="noopener noreferrer"
+       aria-label="Chat on WhatsApp" title="WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- الزر العائم للمساعد: بيفتح ويقفل لوحة الشات -->
     <button type="button" id="aiToggle" class="ai-fab"
             aria-label="Open AI assistant" aria-expanded="false" aria-controls="aiPanel">
         <i class="fa-solid fa-robot ai-fab-open"></i>
