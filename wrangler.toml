@@ -1,0 +1,13 @@
+# إعدادات نشر الـ Worker على Cloudflare
+# ملحوظة: المفتاح (GEMINI_API_KEY) مبيتحطش هنا — بيتحط كـ Secret من لوحة Cloudflare
+# أو بالأمر: npx wrangler secret put GEMINI_API_KEY
+
+name = "restless-frog-eb20"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+# الدومين المسموح له يكلم الـ Worker
+# حاليًا * (أي دومين). لو حبيت تأمّنه حط دومين موقعك بس، مثال:
+# ALLOWED_ORIGIN = "https://mtzm2225-ship-it.github.io"
+[vars]
+ALLOWED_ORIGIN = "*"

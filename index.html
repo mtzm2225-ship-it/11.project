@@ -482,6 +482,44 @@
                 </button>
             </form>
         </div>
+
+
+<!-- ====================================================================
+     مساعد الذكاء الاصطناعي (AI Assistant)
+     الإدخال بيتبعت للـ Cloudflare Worker (worker.js) وهو اللي بيكلم الـ AI
+     ==================================================================== -->
+<div class="ai-assistant" id="ai-assistant">
+ <div class="ai-header">
+    <div class="ai-avatar">
+      <i class="fa-solid fa-robot"></i>
+    </div>
+
+    <div class="ai-header-text">
+      <h3 data-i18n="aiTitle">M &amp; M AI Assistant</h3>
+      <p data-i18n="aiSubtitle">Ask me about Moataz, his projects, his skills, or anything on this site.</p>
+    </div>
+ </div>
+
+ <div class="ai-box">
+    <input type="text" id="userInput" class="ai-input" autocomplete="off"
+           placeholder="Ask the AI assistant..." data-i18n-placeholder="aiPlaceholder" />
+
+    <button type="button" id="aiSendButton" class="ai-send-btn" aria-label="Send question">
+      <i class="fa-solid fa-paper-plane"></i>
+      <span data-i18n="aiSend">Send</span>
+    </button>
+ </div>
+
+  <!-- مكان عرض الإجابة -->
+ <div id="aiResponse" class="response-box" role="status" aria-live="polite">
+    <span data-i18n="aiWaiting">The answer will appear here...</span>
+ </div>
+</div>
+
+
+
+
+
     </section>
 
     <!-- ====================================================================

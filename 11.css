@@ -2748,3 +2748,204 @@ body.light-mode .contact-item:hover {
         width: 100%;
     }
 }
+/* ============================================================================
+   مساعد الذكاء الاصطناعي (AI Assistant)
+   المربع اللي الزائر بيسأل فيه الذكاء الاصطناعي ويشوف الإجابة
+   ============================================================================ */
+
+.ai-assistant {
+    max-width: 800px;
+    margin: 40px auto 0;
+    padding: 28px;
+    background: rgba(13, 19, 26, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-sizing: border-box;
+}
+
+/* --- رأس المساعد: الأيقونة والعنوان --- */
+.ai-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.ai-avatar {
+    flex: 0 0 auto;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    color: #0d131a;
+    font-size: 1.25rem;
+    box-shadow: 0 0 18px rgba(0, 242, 254, 0.35);
+}
+
+.ai-header-text h3 {
+    margin: 0 0 4px;
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.ai-header-text p {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* --- صف الإدخال والزر --- */
+.ai-box {
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+}
+
+.ai-input {
+    flex: 1;
+    min-width: 0;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-family: inherit;
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.ai-input::placeholder {
+    color: #64748b;
+}
+
+.ai-input:focus {
+    border-color: #00f2fe;
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 12px rgba(0, 242, 254, 0.25);
+}
+
+/* الزر: بيستخدم نفس تدرّج زر إرسال نموذج التواصل */
+.ai-send-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex: 0 0 auto;
+    padding: 14px 22px;
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    color: #0d131a;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: inherit;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ai-send-btn:hover:not(:disabled) {
+    opacity: 0.9;
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+    transform: translateY(-2px);
+}
+
+.ai-send-btn:disabled {
+    cursor: wait;
+    opacity: 0.7;
+}
+
+/* الأيقونة بتلف بدل النص أثناء ما الإجابة بتيجي */
+.ai-send-btn.is-loading i {
+    animation: ai-spin 1s linear infinite;
+}
+
+@keyframes ai-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* --- صندوق الإجابة --- */
+.response-box {
+    margin-top: 16px;
+    padding: 16px;
+    min-height: 60px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 3px solid #00f2fe;
+    border-radius: 12px;
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    /* الحفاظ على أسطر الإجابة كما هي */
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+}
+
+/* حالة الخطأ */
+.response-box.is-error {
+    border-left-color: #f87171;
+    color: #fca5a5;
+}
+
+/* الوضع الأبيض */
+body.light-mode .ai-assistant {
+    background: rgba(255, 255, 255, 0.94);
+    border-color: rgba(56, 189, 248, 0.28);
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+}
+
+body.light-mode .ai-header-text h3 {
+    color: #0f172a;
+}
+
+body.light-mode .ai-header-text p {
+    color: #475569;
+}
+
+body.light-mode .ai-input {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(15, 23, 42, 0.14);
+    color: #0f172a;
+}
+
+body.light-mode .ai-input::placeholder {
+    color: #94a3b8;
+}
+
+body.light-mode .response-box {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(15, 23, 42, 0.1);
+    border-left-color: #0ea5e9;
+    color: #334155;
+}
+
+body.light-mode .response-box.is-error {
+    border-left-color: #dc2626;
+    color: #b91c1c;
+}
+
+/* الموبايل: الزر ياخد سطر لوحده والكلام يفضل مقروء */
+@media (max-width: 768px) {
+    .ai-assistant {
+        padding: 20px;
+        margin-top: 28px;
+    }
+
+    .ai-box {
+        flex-direction: column;
+    }
+
+    .ai-send-btn {
+        width: 100%;
+    }
+}
