@@ -608,23 +608,19 @@
             <div class="ai-avatar">
                 <i class="fa-solid fa-robot"></i>
             </div>
+<div class="ai-header-text">
+</div>
 
-            <div class="ai-header-text">
-                <h3 id="ai-panel-title" data-i18n="aiTitle">M &amp; M AI Assistant</h3>
-                <p data-i18n="aiSubtitle">Ask me about Moataz, his projects, his skills, or anything on this site.</p>
-            </div>
-
-            <button type="button" class="ai-close" aria-label="Close AI assistant">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <label for="user-email">البريد الإلكتروني:</label>
-<input type="email" id="user-email" name="email" placeholder="بريدك الإلكتروني">
-        </div>
-
-        <div class="ai-box">
-            <input type="text" id="userInput" class="ai-input" autocomplete="off"
-                   placeholder="Ask the AI assistant..." data-i18n-placeholder="aiPlaceholder" />
-
+<button type="button" class="ai-close" aria-label="Close AI assistant">
+    <i class="fa-solid fa-xmark"></i>
+</button>
+<div class="ai-box">
+    <label for="userInput" class="sr-only" data-i18n="aiLabel">Ask AI</label>
+    <input type="text" id="userInput" class="ai-input" autocomplete="off" placeholder="Ask the AI assistant..." data-i18n-placeholder="aiPlaceholder" />
+    <button type="button" id="aiSendButton" class="ai-send-btn" aria-label="Send question">
+        <i class="fa-solid fa-paper-plane"></i>
+    </button>
+</div>
             <button type="button" id="aiSendButton" class="ai-send-btn" aria-label="Send question">
                 <i class="fa-solid fa-paper-plane"></i>
             </button>
