@@ -944,6 +944,23 @@ if (scrollLeftButton && scrollRightButton && certificatesList) {
   });
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  const slider = document.getElementById('techSlider');
+  const prevBtn = document.getElementById('techPrevBtn');
+  const nextBtn = document.getElementById('techNextBtn');
+
+  if (slider && prevBtn && nextBtn) {
+    // التمرير جهة اليمين أو اليسار بمقدار 200 بكسل
+    nextBtn.addEventListener('click', () => {
+      slider.scrollBy({ left: 200, behavior: 'smooth' });
+    });
+
+    prevBtn.addEventListener('click', () => {
+      slider.scrollBy({ left: -200, behavior: 'smooth' });
+    });
+  }
+});
+
 /* ============================================================================
    14) شاشة التحميل (Preloader)
    بتختفي تلقائيًا بعد اكتمال تحميل الصفحة كلها (مع حماية بالوقت والـ DOM جاهز)
