@@ -1,33 +1,32 @@
-const http = require("http");
-const fs = require("fs");
-const path = require("path");
+const ROOT_DIR = path.resolve(__dirname);
 
-const types = {
-  ".html": "text/html; charset=utf-8",
-  ".css": "text/css; charset=utf-8",
-  ".js": "text/javascript; charset=utf-8",
-  ".json": "application/json; charset=utf-8",
-  ".png": "image/png",
-  ".jpg": "image/jpeg",
-  ".jpeg": "image/jpeg",
-};
+http.createServer((req, res) => {
+    // 1. تنظيف واقتطاع المسار
+    let rawPath = decodeURIComponent(req.url.split("?")[0]);
+    if (rawPath === "/" || rawPath === "\\") {
+        rawPath = "/index.html";
+    }
 
-http
-  .createServer((req, res) => {
-    let p = decodeURIComponent(req.url.split("?")[0]);
-    if (p === "/") p = "/index.html";
-    const file = path.join(__dirname, p);
-    fs.readFile(file, (err, data) => {
-      if (err) {
-        res.writeHead(404, { "Content-Type": "text/plain" });
-        res.end("404");
+    // 2. إنشاء المسار المطلق بشكل آمن
+    const filePath = path.resolve(ROOT_DIR, "." + path.normalize("/" + rawPath));
+
+    // 3. التحقق الأمني من عدم الخروج عن المجلد الرئيسي
+    if (!filePath.startsWith(ROOT_DIR)) {
+        res.writeHead(403, { "Content-Type": "text/plain" });
+        res.end("403 Forbidden");
         return;
-      }
-      res.writeHead(200, {
-        "Content-Type":
-          types[path.extname(file).toLowerCase()] || "application/octet-stream",
-      });
-      res.end(data);
+    }
+
+    // 4. قراءة الملف بعد تأمين المسار
+    fs.readFile(filePath, (err, data) => {
+        if (err) {
+            res.writeHead(404, { "Content-Type": "text/plain" });
+            res.end("404");
+            return;
+        }
+        res.writeHead(200, {
+            "Content-Type": types[path.extname(filePath).toLowerCase()] || "application/octet-stream",
+        });
+        res.end(data);
     });
-  })
-  .listen(8899, () => console.log("listening on 8899"));
+});
