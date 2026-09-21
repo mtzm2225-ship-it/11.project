@@ -388,10 +388,14 @@ function getDictionary(language) {
  * @returns {boolean} صحيح أم لا
  */
 function isValidEmail(value) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!value || typeof value !== 'string') return false;
+    
+    // تعبير نمطي بسيط ومباشر بدون التراجع العكسي (Non-backtracking Regex)
+    const emailRegex = /^[\w.-]+@[\w.-]+\.\w+$/;
+    return emailRegex.test(value.trim());
 }
 
-/**
+/**س
  * التحقق من صحة رقم الهاتف
  * (من 10 إلى 15 رقم، ولا يكون كل الأرقام متشابهة)
  * @param {string} value - القيمة المدخلة
