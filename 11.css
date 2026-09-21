@@ -1,4 +1,4 @@
-﻿﻿/* ============================================================================
+/* ============================================================================
    PORTFOLIO — M & M  |  Moataz Mohamed
    ملف التنسيقات الرئيسي (11.css)
 
@@ -20,6 +20,15 @@
    ============================================================================ */
 
 /* ==================== 1. التنسيقات العامة للموقع ==================== */
+
+/* إعادة ضبط عالمية: الحشو والبوردر يتحسبوا جوه العرض
+   (من غيرها أي عنصر بـ width: 100% + padding بيطلع برة الشاشة) */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family: 'Inter', Arial, sans-serif;
@@ -1810,16 +1819,32 @@ body.light-mode .contact-item:hover {
     transform: rotate(360deg);
 }
 
+/* ملاحظة: ماينفعش نحط justify-content: center على حاوية scroll أفقي،
+   لأنها بتعمل overflow غير قابل للوصول من الشمال (أول كارت بيتقص)
+   فبنستخدم margin: auto على العناصر بدالها عشان تتوسّط لما تكون فاضية المساحة */
 .certificates-list {
     margin-top: 4px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 12px;
     overflow-x: auto;
+    overflow-y: hidden;
     padding: 4px 24px 8px;
     scroll-snap-type: x proximity;
     position: relative;
     z-index: 1;
+    -webkit-overflow-scrolling: touch; /* تمرير ناعم على iOS */
+    overscroll-behavior-x: contain;     /* مايسحبش الصفحة معاه */
+}
+
+/* توسيط الشهادات لما تكون كلها داخلة في الشاشة بدون تمرير،
+   ومع أول كارت يفضل قابل للوصول أول ما يبقى فيه تمرير */
+.certificates-list .certificate-item:first-child {
+    margin-inline-start: auto;
+}
+
+.certificates-list .certificate-item:last-child {
+    margin-inline-end: auto;
 }
 
 .certificates-list::-webkit-scrollbar {
@@ -2009,6 +2034,7 @@ body.light-mode .contact-item:hover {
     line-height: 1.5;
     position: relative;
     z-index: 1;
+    flex: 1 1 auto; /* بيملا الفراغ المتبقي عشان ميبقاش فيه فراغ كبير تحت */
 }
 
 .certificate-meta {
@@ -2019,6 +2045,7 @@ body.light-mode .contact-item:hover {
     color: #cbd5e1;
     font-size: 0.68rem;
     line-height: 1.5;
+    flex: 1 1 auto; /* نفس الفكرة: بيملا الفراغ المتبقي */
 }
 
 .certificate-meta p {
@@ -2035,6 +2062,7 @@ body.light-mode .contact-item:hover {
     gap: 8px;
     position: relative;
     z-index: 1;
+    margin-top: auto; /* يثبّت الأزرار تحت، فالفراغ يبان فوقها مش تحتها */
 }
 
 .certificate-btn {
@@ -2211,28 +2239,45 @@ body.light-mode .contact-item:hover {
      padding: 60px 24px;
  }
 
- /* الصف العلوي (يجمع النص والصورة أفقياً) */
+ /* الصف العلوي: النص والصورة جنب بعض على الشاشات الكبيرة */
  .hero-top-row {
      display: flex;
+     flex-direction: row;
      align-items: center;
-     justify-content: space-between;
-     gap: 40px;
+     justify-content: center;
+     gap: 48px;
      width: 100%;
-     margin-bottom: 30px;
+     max-width: 1180px;
+     margin: 0 auto 30px;
  }
 
+ /* النص: مبيتمدّدش أكتر من اللازم عشان الصورة تلاقي مكان جنبه */
  .hero-text-content {
-     flex: 1;
+     flex: 1 1 auto;
+     min-width: 0;
+     max-width: 620px;
+     text-align: left;
+ }
+
+ /* الصورة: عرض ثابت على الشاشات الكبيرة (زي ما كانت) */
+ .hero-image-wrapper {
+     flex: 0 0 auto;
+     width: 400px;
+     height: 280px;
+ }
+
+ .hero-text-content .cta-buttons {
+     justify-content: flex-start;
  }
 
  /* تنسيق مجموعة الأزرار */
  .cta-buttons {
-     display: flex;
-     align-items: center;
-     gap: 12px;
-     margin-top: 24px;
-     flex-wrap: wrap;
- }
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+  }
 
  /* تصميم الصورة المعزولة وتأثير الإضاءة (Cyber Glow) */
  .hero-image-wrapper {
@@ -2388,14 +2433,29 @@ body.light-mode .contact-item:hover {
  }
 
  /* === التجاوب في الهيرو (تابلت / موبايل) === */
+ /* على التابلت والموبايل: الصورة تحت النص، والكل في النص */
  @media (max-width: 992px) {
      .hero-top-row {
          flex-direction: column;
          text-align: center;
+         gap: 32px;
+         max-width: 100%;
      }
 
-     .cta-buttons {
+     .hero-text-content {
+         flex: 0 1 auto;
+         width: 100%;
+         max-width: 700px;
+         text-align: center;
+     }
+
+     .hero-text-content .cta-buttons {
          justify-content: center;
+     }
+
+     .hero-text-content .welcome-pill {
+         margin-left: auto;
+         margin-right: auto;
      }
 
      .hero-image-wrapper {
@@ -2526,7 +2586,7 @@ body.light-mode .contact-item:hover {
         grid-template-columns: 1fr;
         gap: 0;
     }
-    
+
     .contact-container {
         padding: 24px;
     }
@@ -2581,8 +2641,8 @@ body.light-mode .contact-item:hover {
 }
 
 /* تنسيق النص ليصبح بصف واحد بجانب الشعار */
-.loader-status, 
-.loader-status span, 
+.loader-status,
+.loader-status span,
 .brand-text {
     margin: 0 !important;
     padding: 0 !important;
@@ -2753,30 +2813,66 @@ body.light-mode .contact-item:hover {
    الزر ثابت أسفل الشاشة على الجنب، والضغط عليه بيفتح لوحة الشات
    ============================================================================ */
 
-/* --- الزر العائم --- */
-.ai-fab {
+/* --- الأزرار العائمة: واتساب + المساعد، فوق بعض على جنب الشاشة --- */
+.ai-fab,
+.whatsapp-fab {
     position: fixed;
-    bottom: 24px;
     right: 24px;
     width: 58px;
     height: 58px;
     border-radius: 50%;
-    border: 1px solid rgba(0, 242, 254, 0.5);
-    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
-    color: #0d131a;
     font-size: 1.35rem;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     z-index: 1500;
-    box-shadow: 0 12px 28px rgba(0, 242, 254, 0.35), 0 4px 12px rgba(0, 0, 0, 0.35);
+    text-decoration: none;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* الواتساب فوق، والمساعد تحت (الأساس) */
+.ai-fab {
+    bottom: 24px;
+    border: 1px solid rgba(0, 242, 254, 0.5);
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    color: #0d131a;
+    box-shadow: 0 12px 28px rgba(0, 242, 254, 0.35), 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.whatsapp-fab {
+    bottom: 94px;
+    border: 1px solid rgba(37, 211, 102, 0.55);
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    color: #ffffff;
+    box-shadow: 0 12px 28px rgba(37, 211, 102, 0.38), 0 4px 12px rgba(0, 0, 0, 0.35);
 }
 
 .ai-fab:hover {
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 18px 34px rgba(0, 242, 254, 0.45), 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.whatsapp-fab:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 18px 34px rgba(37, 211, 102, 0.5), 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* حلقة نبض خفيفة حوالي أيقونة الواتساب عشان تشد الانتباه */
+.whatsapp-fab::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(37, 211, 102, 0.6);
+    animation: whatsapp-ring 2.6s ease-out infinite;
+    pointer-events: none;
+}
+
+@keyframes whatsapp-ring {
+    0%   { transform: scale(1); opacity: 0.7; }
+    70%  { transform: scale(1.45); opacity: 0; }
+    100% { transform: scale(1.45); opacity: 0; }
 }
 
 /* عند فتح اللوحة: الأيقونة تتحول من روبوت إلى علامة إغلاق */
@@ -3004,6 +3100,11 @@ body.light-mode .ai-fab {
     box-shadow: 0 12px 28px rgba(2, 132, 199, 0.28), 0 4px 12px rgba(15, 23, 42, 0.14);
 }
 
+body.light-mode .whatsapp-fab {
+    border-color: rgba(18, 140, 126, 0.4);
+    box-shadow: 0 12px 28px rgba(18, 140, 126, 0.26), 0 4px 12px rgba(15, 23, 42, 0.14);
+}
+
 body.light-mode .ai-fab-dot {
     border-color: #ffffff;
 }
@@ -3046,25 +3147,34 @@ body.light-mode .response-box.is-error {
 
 /* الموبايل: اللوحة تاخد عرض الشاشة تقريبًا والزر يفضل مريح للإصبع */
 @media (max-width: 768px) {
-    .ai-fab {
-        bottom: 18px;
+    .ai-fab,
+    .whatsapp-fab {
         right: 18px;
         width: 54px;
         height: 54px;
     }
 
+    .ai-fab {
+        bottom: 18px;
+    }
+
+    .whatsapp-fab {
+        bottom: 82px;
+    }
+
     .ai-panel {
-        bottom: 84px;
+        bottom: 150px;
         right: 12px;
         left: 12px;
         width: auto;
-        max-height: calc(100vh - 110px);
+        max-height: calc(100vh - 180px);
         padding: 18px;
     }
 }
 
-/* الاتجاه من اليمين للشمال (العربي): الزر واللوحة ينقلبوا للجنب التاني */
-html[dir="rtl"] .ai-fab {
+/* الاتجاه من اليمين للشمال (العربي): الأزرار واللوحة ينقلبوا للجنب التاني */
+html[dir="rtl"] .ai-fab,
+html[dir="rtl"] .whatsapp-fab {
     right: auto;
     left: 24px;
 }
@@ -3080,7 +3190,8 @@ html[dir="rtl"] .ai-close {
 }
 
 @media (max-width: 768px) {
-    html[dir="rtl"] .ai-fab {
+    html[dir="rtl"] .ai-fab,
+    html[dir="rtl"] .whatsapp-fab {
         left: 18px;
         right: auto;
     }
@@ -3088,5 +3199,492 @@ html[dir="rtl"] .ai-close {
     html[dir="rtl"] .ai-panel {
         left: 12px;
         right: 12px;
+    }
+}
+
+/* ============================================================================
+   تجاوب الموبايلات الصغيرة (Small phones — 480px وأقل، وحتى 360px)
+   الهدف: منع أي تمرير أفقي (horizontal scroll) وتكبير العناصر للمس
+   ============================================================================ */
+
+/* --- منع التمرير الأفقي من أصله على أي شاشة --- */
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* العناصر اللي كانت بتخرج برة الشاشة على الموبايل */
+@media (max-width: 600px) {
+    /* التوهج الزخرفي جوه كارت الهيرو: بيتحدد بعرض ثابت وكان بيوسّع الصفحة */
+    .card-glow {
+        width: 200px;
+        height: 200px;
+        right: -20%;
+    }
+
+    /* توهج الخلفية الثابت: يتصغّر عشان مايعملش تمرير أفقي */
+    body::after {
+        width: 260px;
+        height: 260px;
+        right: -14%;
+    }
+
+    /* طبقة النجوم في شاشة التحميل */
+    .stars-overlay {
+        max-width: 100%;
+        overflow: hidden;
+    }
+}
+
+/* ==================== موبايلات صغيرة (480px وأقل) ==================== */
+@media (max-width: 480px) {
+    /* --- الهيدر والتنقل --- */
+    .header {
+        padding: 10px 12px;
+        border-radius: 20px;
+        top: 6px !important;
+        gap: 8px;
+    }
+
+    .logo-container img {
+        height: 34px;
+        width: 34px;
+    }
+
+    .logo-container .logo-text {
+        font-size: 1.05rem;
+    }
+
+    .nav-links {
+        gap: 6px;
+        width: 100%;
+    }
+
+    .nav-links a {
+        padding: 6px 8px;
+        font-size: 0.85rem;
+    }
+
+    /* مربع البحث بعرض كامل ومريح للإصبع */
+    .search-box {
+        width: 100%;
+        padding: 8px 12px;
+        border-radius: 14px;
+    }
+
+    .search-input {
+        width: 100%;
+        font-size: 0.9rem;
+    }
+
+    /* خانة البحث ما لازمش تكبر عند التركيز على الموبايل */
+    .search-input:focus {
+        width: 100%;
+    }
+
+    .signin-btn {
+        padding: 8px 14px;
+        font-size: 0.82rem;
+    }
+
+    /* قائمة الإعدادات: تفضل جوه الشاشة */
+    .settings-dropdown {
+        right: 0;
+        left: auto;
+        min-width: 110px;
+    }
+
+    html[dir="rtl"] .settings-dropdown {
+        right: auto;
+        left: 0;
+    }
+
+    /* --- قسم الهيرو --- */
+    /* نفس حشو باقي الأقسام (29px) عشان الهيرو ما يبانش مايل لليمين */
+    .hero-section {
+        padding: 36px 29px;
+        gap: 22px;
+    }
+
+    .hero-top-row {
+        gap: 24px;
+        margin-bottom: 20px;
+        max-width: 100%;
+    }
+
+    /* نص الهيرو ياخد عرض الصف كامل بدون ما يطلع برة */
+    .hero-text-content {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .welcome-pill {
+        font-size: 0.78rem;
+        padding: 6px 12px;
+    }
+
+    .main-title {
+        font-size: 1.65rem;
+        line-height: 1.3;
+        margin-bottom: 14px;
+    }
+
+    .description {
+        font-size: 0.92rem;
+        margin-bottom: 22px;
+    }
+
+    /* الأزرار تبقى بعرض كامل وتحت بعض عشان الضغط يسهل */
+    .cta-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .cta-buttons .btn {
+        width: 100%;
+        padding: 13px 18px;
+    }
+
+    /* صورة الهيرو: كانت 380px بعرض ثابت — تخليها مرنة */
+    .hero-image-wrapper {
+        width: 100%;
+        max-width: 100%;
+        height: 200px;
+    }
+
+    .cyber-glow {
+        top: -4px;
+        left: -4px;
+        right: -4px;
+        bottom: -4px;
+        border-radius: 18px;
+        filter: blur(14px);
+    }
+
+    /* كارت الهيرو البصري: نقلّل الحشو */
+    .hero-visual-card {
+        padding: 20px 16px;
+        border-radius: 16px;
+    }
+
+    /* الأيقونة والـ badge جنب بعض في النص بدل ما يتفرقوا على الجوانب */
+    .card-header {
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 14px;
+    }
+
+    .card-body h2 {
+        font-size: 1.15rem;
+    }
+
+    .card-text {
+        font-size: 0.9rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 14px;
+    }
+
+    .skill-box {
+        padding: 10px 12px;
+    }
+
+    /* الأزرار العائمة تصغر شوية عشان ما تغطيش نص الكارت */
+    .ai-fab,
+    .whatsapp-fab {
+        width: 46px;
+        height: 46px;
+        font-size: 1.05rem;
+        right: 12px;
+    }
+
+    .ai-fab {
+        bottom: 14px;
+    }
+
+    .whatsapp-fab {
+        bottom: 68px;
+    }
+
+    /* --- قسم المشاريع --- */
+    .project-card {
+        padding: 18px 16px 64px;
+        border-radius: 18px;
+        gap: 18px;
+    }
+
+    .project-info h3 {
+        font-size: 1.1rem;
+    }
+
+    .project-info p {
+        font-size: 0.9rem;
+    }
+
+    .project-nav-btn {
+        width: 38px;
+        height: 38px;
+        bottom: 10px;
+    }
+
+    .project-nav-btn.prev {
+        left: 12px;
+    }
+
+    .project-nav-btn.next {
+        right: 12px;
+    }
+
+    /* --- قسم About Me --- */
+    .about-grid {
+        gap: 16px;
+    }
+
+    .about-card {
+        padding: 20px 18px;
+    }
+
+    .about-card .icon {
+        font-size: 1.7rem;
+        margin-bottom: 12px;
+    }
+
+    .about-card h3 {
+        font-size: 1.08rem;
+    }
+
+    .about-card p {
+        font-size: 0.9rem;
+    }
+
+    /* --- قسم الشهادات --- */
+    /* عرض ثابت معقول بدل نسبة كبيرة، عشان يبان كارت وجزء من اللي بعده */
+    .certificate-item {
+        flex: 0 0 200px;
+        width: 200px;
+        min-width: 0;
+    }
+
+    /* مساحة مخصصة للأسهم على الجانبين عشان ما تغطّيش الكروت */
+    .certificates-list {
+        padding: 4px 56px 8px;
+        scroll-snap-type: x mandatory;
+    }
+
+    /* --- قسم التواصل --- */
+    .contact-section {
+        padding: 40px 0;
+    }
+
+    .contact-container {
+        padding: 18px 16px;
+        border-radius: 18px;
+        margin: 0 12px;
+    }
+
+    .contact-header h2 {
+        font-size: 1.4rem;
+    }
+
+    .contact-header p {
+        font-size: 0.88rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 12px 14px;
+        font-size: 16px; /* 16px يمنع تكبير الصفحة تلقائيًا في iOS */
+    }
+
+    /* --- الفوتر --- */
+    .footer-section {
+        padding: 30px 16px 16px;
+        margin-top: 40px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+    }
+
+    .footer-info h3 {
+        font-size: 1.1rem;
+    }
+
+    .footer-quote,
+    .footer-bottom {
+        font-size: 0.85rem;
+    }
+
+    /* --- الأزرار العائمة --- */
+    .ai-fab,
+    .whatsapp-fab {
+        width: 52px;
+        height: 52px;
+        font-size: 1.2rem;
+    }
+
+    /* --- النوافذ المنبثقة --- */
+    .signin-modal-content,
+    .contact-modal-content,
+    .developer-panel-content {
+        padding: 22px 16px 16px;
+        border-radius: 14px;
+    }
+
+    .signin-modal-content h3,
+    .contact-modal-content h3 {
+        font-size: 1.2rem;
+    }
+
+    /* --- أزرار التمرير --- */
+    .scroll-btn {
+        width: 38px;
+        height: 38px;
+    }
+}
+
+/* ============================================================================
+   مساحة مخصصة لأسهم تمرير الشهادات
+   الأسهم بتقع في فراغ على الجانبين، فمش بتغطي صور الشهادات
+   (متاخدة هنا في الآخر عشان تغلب أي قاعدة padding تانية فوقها)
+   ============================================================================ */
+.certificates-list {
+    padding-left: 66px;
+    padding-right: 66px;
+    scroll-padding-left: 66px;
+    scroll-padding-right: 66px;
+}
+
+@media (max-width: 600px) {
+    .certificates-list {
+        padding-left: 54px;
+        padding-right: 54px;
+        scroll-padding-left: 54px;
+        scroll-padding-right: 54px;
+    }
+}
+
+/* ============================================================================
+   الشاشات الضيقة جدًا (أقل من 500px)
+   عرض الكارت قريب من عرض الشاشة، فمفيش مكان للأسهم على الجانبين
+   فبننقل الأسهم تحت القائمة بدل ما تبقى فوقها — كده ما بتغطي أي حاجة
+   ============================================================================ */
+@media (max-width: 499px) {
+    .certificate-controls {
+        position: static;
+        transform: none;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 12px;
+        pointer-events: auto;
+    }
+
+    .certificates-list {
+        padding-left: 16px;
+        padding-right: 16px;
+        scroll-padding-left: 16px;
+        scroll-padding-right: 16px;
+    }
+}
+
+/* ==================== موبايلات ضيقة جدًا (360px وأقل) ==================== */
+@media (max-width: 360px) {
+    .main-title {
+        font-size: 1.45rem;
+    }
+
+    .nav-links a {
+        font-size: 0.78rem;
+        padding: 5px 6px;
+    }
+
+    .hero-image-wrapper {
+        height: 170px;
+    }
+
+    .certificate-item {
+        flex: 0 0 180px;
+        width: 180px;
+    }
+
+    .scroll-btn {
+        width: 34px;
+        height: 34px;
+    }
+
+    .contact-container {
+        margin: 0 8px;
+        padding: 16px 12px;
+    }
+
+    .ai-fab,
+    .whatsapp-fab {
+        width: 48px;
+        height: 48px;
+        right: 14px;
+    }
+
+    .ai-fab {
+        bottom: 16px;
+    }
+
+    .whatsapp-fab {
+        bottom: 72px;
+    }
+
+    html[dir="rtl"] .ai-fab,
+    html[dir="rtl"] .whatsapp-fab {
+        left: 14px;
+        right: auto;
+    }
+}
+
+/* ============================================================================
+   الأزرار العائمة على الموبايل — منع تغطية النص
+   الأزرار position: fixed يعني بتفضل واقفة مكانها وانت بتعمل scroll،
+   فالمحتوى بيعدي تحتها. الحل: هامش سفلي للأقسام عشان مفيش نص يعدي تحتها.
+   ============================================================================ */
+@media (max-width: 600px) {
+    /* مساحة فاضية في آخر الصفحة بارتفاع الأزرار العائمة */
+    body {
+        padding-bottom: 0;
+    }
+
+    .footer-section {
+        padding-bottom: 130px;
+    }
+
+    /* على الشاشات الضيقة نلزّق الأزرار في الجنب الأيمن ونقلل حجمها */
+    .ai-fab,
+    .whatsapp-fab {
+        width: 46px;
+        height: 46px;
+        font-size: 1.05rem;
+        right: 12px;
+    }
+
+    .ai-fab {
+        bottom: 14px;
+    }
+
+    .whatsapp-fab {
+        bottom: 68px;
+    }
+}
+
+/* على الموبايلات الصغيرة، لوحة الشات ما تطلعش برة الشاشة */
+@media (max-width: 480px) {
+    .ai-panel {
+        left: 12px;
+        right: 12px;
+        width: auto;
+        max-width: none;
     }
 }
