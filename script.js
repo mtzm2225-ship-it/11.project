@@ -104,12 +104,18 @@ const translations = {
     githubProject: 'جيت هاب',
     changeProject: 'تغيير المشروع',
 
-    /* التواصل والفوتر */
+    /* التواصل */
     contactKicker: 'دعنا نتواصل',
     contactTitle: 'هل تحتاج إلى مشروع أو تعاون أو مجرد دردشة سريعة؟',
     contactButton: 'تواصل معي',
+
+    /* الفوتر: الجملة الكرييتف + مواقع التواصل + الحقوق */
     footerQuote: 'صُمِّم وطُوِّر بكل شغف | Designed & Developed with passion',
+    footerSocialTitle: 'خلّينا على تواصل دايمًا',
+    footerSocialSubtitle: 'تابعني على مواقع التواصل — دايمًا مبسوط أتعرف على ناس جديدة.',
+    footerCredo: 'بنحوّل القهوة لكود، والأفكار لواقع.',
     allRightsReserved: '© 2026 معتز محمد. جميع الحقوق محفوظة.',
+    footerSignature: 'مكتوب سطر بسطر بكل شغف — من الإسكندرية، مصر 🇪🇬',
 
     /* مساعد الذكاء الاصطناعي */
     aiTitle: 'مساعد M & M الذكي',
@@ -215,12 +221,18 @@ const translations = {
     githubProject: 'GitHub',
     changeProject: 'Change Project',
 
-    /* Contact & Footer */
+    /* Contact */
     contactKicker: "Let's Connect",
     contactTitle: 'Need a project, collaboration, or just a quick chat?',
     contactButton: 'Contact Me',
+
+    /* Footer: credo + social links + copyright */
     footerQuote: 'Designed & Developed with passion | صُمِّم وطُوِّر بكل شغف',
+    footerSocialTitle: "Let's stay connected",
+    footerSocialSubtitle: "Follow me on social media — I'm always happy to connect with new people.",
+    footerCredo: 'Turning coffee into code, and ideas into reality.',
     allRightsReserved: '© 2026 Moataz Mohamed. All rights reserved.',
+    footerSignature: 'Handcrafted line by line with passion — from Alexandria, Egypt 🇪🇬',
 
     /* AI Assistant */
     aiTitle: 'M & M AI Assistant',

@@ -838,16 +838,44 @@ body.light-mode .footer-section {
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
 }
 
-body.light-mode .footer-socials a {
-    background: rgba(255, 255, 255, 0.9);
-    border-color: rgba(148, 163, 184, 0.18);
+/* الوضع الأبيض: صندوق مواقع التواصل يبقى فاتح */
+body.light-mode .footer-social-section {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.10), rgba(191, 219, 254, 0.28));
+    border-color: rgba(2, 132, 199, 0.22);
+}
+
+body.light-mode .footer-social-title {
     color: #0f172a;
 }
 
-body.light-mode .footer-socials a:hover {
-    background: #38bdf8;
+body.light-mode .footer-social-subtitle {
+    color: #475569;
+}
+
+body.light-mode .footer-socials .social-link {
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(148, 163, 184, 0.28);
     color: #0f172a;
-    box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+}
+
+body.light-mode .footer-socials .social-link.github i {
+    color: #0f172a;
+}
+
+body.light-mode .footer-socials .social-link:hover {
+    background: rgba(56, 189, 248, 0.18);
+    border-color: rgba(2, 132, 199, 0.45);
+    color: #0f172a;
+    box-shadow: 0 10px 22px rgba(56, 189, 248, 0.18);
+}
+
+body.light-mode .footer-credo {
+    color: #0284c7;
+}
+
+body.light-mode .footer-rights,
+body.light-mode .footer-signature {
+    color: #475569;
 }
 
 body.light-mode .about-card.certificates-card {
@@ -1015,7 +1043,7 @@ body.light-mode .hero-visual-card,
 body.light-mode .about-card,
 body.light-mode .about-card.certificates-card,
 body.light-mode .certificate-item,
-body.light-mode .footer-socials a {
+body.light-mode .footer-socials .social-link {
     transition: all 0.3s ease;
 }
 
@@ -1719,39 +1747,123 @@ body.light-mode .contact-item:hover {
     color: #25d366;
 }
 
-/* أيقونات السوشيال ميديا: بتسهل التواصل مع صاحب الموقع */
+/* ==================== 10.1. قسم مواقع التواصل الاجتماعي ==================== */
+/*
+   ده الجزء اللي بيبرز حساباتي. حاطط له صندوق خاص بيه في نص الفوتر
+   عشان يتشاف بسرعة، والأيقونات بقت أكبر ومعاها اسم الموقع مكتوب
+*/
+.footer-social-section {
+    max-width: 1400px;
+    margin: 0 auto 32px;
+    padding: 24px 20px;
+    text-align: center;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.07), rgba(59, 130, 246, 0.05));
+    border: 1px solid rgba(56, 189, 248, 0.16);
+}
+
+.footer-social-title {
+    margin: 0 0 6px;
+    color: #f8fafc;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.footer-social-subtitle {
+    margin: 0 auto 20px;
+    max-width: 520px;
+    color: #94a3b8;
+    font-size: 0.88rem;
+    line-height: 1.6;
+}
+
+/* صف اللينكات: بيلف على سطر تاني لو الشاشة ضاقت */
 .footer-socials {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 12px;
 }
 
-.footer-socials a {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    display: flex;
+/* كل لينك بقى شكل كبسولة: أيقونة + اسم الموقع */
+.footer-socials .social-link {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
+    gap: 9px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #e2e8f0;
     text-decoration: none;
-    transition: all 0.3s ease;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
 }
 
-.footer-socials a:hover {
-    background: #38bdf8;
-    color: #0b0f19;
+.footer-socials .social-link i {
+    font-size: 1.05rem;
+}
+
+/* كل موقع بلونه الأصلي عشان يميّز نفسه */
+.footer-socials .social-link.linkedin i {
+    color: #0a9bdc;
+}
+
+.footer-socials .social-link.facebook i {
+    color: #1877f2;
+}
+
+.footer-socials .social-link.instagram i {
+    color: #e1306c;
+}
+
+.footer-socials .social-link.github i {
+    color: #e2e8f0;
+}
+
+/* عند المرور: اللينك يترفع شوية ولوحته تنوّر */
+.footer-socials .social-link:hover {
     transform: translateY(-3px);
-    box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+    background: rgba(56, 189, 248, 0.14);
+    border-color: rgba(56, 189, 248, 0.45);
+    color: #ffffff;
+    box-shadow: 0 10px 22px rgba(56, 189, 248, 0.2);
 }
 
+/* ==================== 10.2. آخر سطر في الفوتر ==================== */
 .footer-bottom {
+    max-width: 1400px;
+    margin: 0 auto;
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding-top: 20px;
+    padding-top: 22px;
     color: #64748b;
     font-size: 0.8rem;
+}
+
+/* الجملة الكرييتف: بلون مميز عشان تبان */
+.footer-credo {
+    margin: 0 0 10px;
+    color: #7dd3fc;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-style: italic;
+    letter-spacing: 0.2px;
+}
+
+/* سطر الحقوق */
+.footer-rights {
+    margin: 0 0 6px;
+    color: #94a3b8;
+}
+
+/* سطر التوقيع في الآخر */
+.footer-signature {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.76rem;
 }
 
 /* بلوك الشهادات: هنا تنسيق الكارت الكبير الخاص بالشهادات */

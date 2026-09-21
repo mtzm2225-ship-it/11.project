@@ -488,13 +488,17 @@
 </section>
 
     <!-- ====================================================================
-         الفوتر (Footer) — بيانات التواصل وروابط السوشيال ميديا
+         الفوتر (Footer)
+         فيه أربع حاجات: بياناتي، طرق التواصل، مواقع التواصل الاجتماعي،
+         وسطر الحقوق تحت خالص
          ==================================================================== -->
     <footer class="footer-section">
+
+        <!-- الصف الأول: اسمي + جملة كرييتف على الشمال، وطرق التواصل على اليمين -->
         <div class="footer-container">
             <div class="footer-info">
                 <h3>ENG.Moataz Mohamed</h3>
-                <p class="footer-quote" data-i18n="footerQuote">Designed & Developed with passion | صُمِّم وطُوِّر بكل شغف</p>
+                <p class="footer-quote" data-i18n="footerQuote">Designed &amp; Developed with passion | صُمِّم وطُوِّر بكل شغف</p>
             </div>
 
             <div class="footer-contact">
@@ -509,16 +513,59 @@
                     <i class="fa-brands fa-whatsapp"></i> WhatsApp
                 </a>
             </div>
+        </div>
+
+        <!-- ================================================================
+             قسم مواقع التواصل الاجتماعي
+             ده الجزء اللي بيبرز حساباتي بشكل واضح في نص الفوتر،
+             وكل لينك فيه اسم الموقع مكتوب جنب الأيقونة عشان يبان أوضح
+             ================================================================ -->
+        <div class="footer-social-section">
+            <p class="footer-social-title" data-i18n="footerSocialTitle">Let's stay connected</p>
+            <p class="footer-social-subtitle" data-i18n="footerSocialSubtitle">
+                Follow me on social media — I'm always happy to connect with new people.
+            </p>
 
             <div class="footer-socials">
-                <a href="https://www.linkedin.com/in/moataz-mohamed-342b32399?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="https://www.facebook.com/share/1Dj97JqdS8/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/moataz_____mohamed?stkn=OHd1ZWlhbnJqNzMz&utm_source=qr" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/moataz-mohamed-342b32399?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_ios"
+                   target="_blank" rel="noopener noreferrer" class="social-link linkedin" title="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                    <span>LinkedIn</span>
+                </a>
+
+                <a href="https://www.facebook.com/share/1Dj97JqdS8/?mibextid=wwXIfr"
+                   target="_blank" rel="noopener noreferrer" class="social-link facebook" title="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <span>Facebook</span>
+                </a>
+
+                <a href="https://www.instagram.com/moataz_____mohamed?stkn=OHd1ZWlhbnJqNzMz&amp;utm_source=qr"
+                   target="_blank" rel="noopener noreferrer" class="social-link instagram" title="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                    <span>Instagram</span>
+                </a>
+
+                <a href="https://github.com/mtzm2225-ship-it"
+                   target="_blank" rel="noopener noreferrer" class="social-link github" title="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                    <span>GitHub</span>
+                </a>
             </div>
         </div>
 
+        <!-- ================================================================
+             آخر سطر: جملة كرييتف + الحقوق + التوقيع
+             ================================================================ -->
         <div class="footer-bottom">
-            <p data-i18n="allRightsReserved">© 2026 Moataz Mohamed. All rights reserved.</p>
+            <p class="footer-credo" data-i18n="footerCredo">
+                Turning coffee into code, and ideas into reality.
+            </p>
+
+            <p class="footer-rights" data-i18n="allRightsReserved">© 2026 Moataz Mohamed. All rights reserved.</p>
+
+            <p class="footer-signature" data-i18n="footerSignature">
+                Handcrafted line by line with passion — from Alexandria, Egypt 🇪🇬
+            </p>
         </div>
     </footer>
 
