@@ -1,4 +1,4 @@
-/* ============================================================================
+﻿/* ============================================================================
    PORTFOLIO — M & M  |  Moataz Mohamed
    الملف الرئيسي للجافاسكربت (script.js) — مسؤول عن:
      1) الترجمة بين العربية والإنجليزية (Language / i18n)
@@ -1211,3 +1211,43 @@ if (aiInput) {
     }
   });
 }
+
+
+const http = require('http');
+const fs = require('fs');
+const path = require('path');
+
+const PORT = process.env.PORT || 3000;
+const PUBLIC_DIR = path.join(__dirname);
+
+const server = http.createServer((req, res) => {
+    // 1. تنظيف المسار المكتوب لمنع التلاعب (مثل ../)
+    const safePath = path.normalize(req.url).replace(/^(\.\.[\/\\])+/, '');
+    let filePath = path.join(PUBLIC_DIR, safePath);
+
+    // 2. التحقق من أن المسار المطلوبة لا يخرج عن مجلد المشروع
+    if (!filePath.startsWith(PUBLIC_DIR)) {
+        res.statusCode = 403;
+        return res.end('Access Denied');
+    }
+
+    // إذا كان المسار هو الصفحة الرئيسية
+    if (filePath === PUBLIC_DIR || filePath === PUBLIC_DIR + path.sep) {
+        filePath = path.join(PUBLIC_DIR, 'index.html');
+    }
+
+    // 3. قراءة الملف بأمان
+    fs.readFile(filePath, (err, data) => {
+        if (err) {
+            res.statusCode = 404;
+            res.end('File Not Found');
+        } else {
+            res.statusCode = 200;
+            res.end(data);
+        }
+    });
+});
+
+server.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
