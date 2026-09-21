@@ -1416,8 +1416,8 @@ body.light-mode .search-match {
 
 .project-nav-btn:hover {
     transform: translateY(-50%) scale(1.08);
-    background: rgba(56, 189, 248, 0.9);
-    color: #0b0f19;
+    background: rgba(56, 191, 248, 0.18);
+    color: #fcfdff;
     box-shadow: 0 14px 24px rgba(56, 189, 248, 0.35);
 }
 
@@ -2358,6 +2358,22 @@ body.light-mode .contact-item:hover {
   left: 100%;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* === زراير التحكم والتنقل === */
 .slider-btn {
   background: rgba(255, 255, 255, 0.08);
@@ -2367,7 +2383,7 @@ body.light-mode .contact-item:hover {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  cursor: pointer;
+  cursor: pointer;                               
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2378,11 +2394,11 @@ body.light-mode .contact-item:hover {
 }
 
 .slider-btn:hover {
-  background: #00d2ff;
-  color: #000;
+  background: rgba(0, 210, 255, 0.25); /* خلفية أزرق نيون شفافة */
+  color: #00d2ff; /* لون السهم أزرق نيون */
   border-color: #00d2ff;
   box-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
-  transform: scale(1.1);
+    transform: scale(1.1);
 }
 
 .prev-btn { margin-right: 0.8rem; }
