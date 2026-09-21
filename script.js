@@ -388,7 +388,7 @@ function getDictionary(language) {
  * @returns {boolean} صحيح أم لا
  */
 function isValidEmail(value) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 }
 
 /**
