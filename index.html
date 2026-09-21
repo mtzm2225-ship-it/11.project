@@ -602,29 +602,27 @@
     </button>
 
     <!-- لوحة الشات -->
-    <div id="aiPanel" class="ai-panel hidden" role="dialog" aria-modal="false"
-         aria-labelledby="ai-panel-title">
-        <div class="ai-header">
-            <div class="ai-avatar">
-                <i class="fa-solid fa-robot"></i>
-            </div>
-<div class="ai-header-text">
-</div>
-
-<button type="button" class="ai-close" aria-label="Close AI assistant">
-    <i class="fa-solid fa-xmark"></i>
-</button>
-<div class="ai-box">
-    <label for="userInput" class="sr-only" data-i18n="aiLabel">Ask AI</label>
-    <input type="text" id="userInput" class="ai-input" autocomplete="off" placeholder="Ask the AI assistant..." data-i18n-placeholder="aiPlaceholder" />
-    <button type="button" id="aiSendButton" class="ai-send-btn" aria-label="Send question">
-        <i class="fa-solid fa-paper-plane"></i>
-    </button>
-</div>
-            <button type="button" id="aiSendButton" class="ai-send-btn" aria-label="Send question">
-                <i class="fa-solid fa-paper-plane"></i>
-            </button>
+   <div id="aiPanel" class="ai-panel hidden" role="dialog" aria-modal="false" aria-labelledby="ai-panel-title">
+    <div class="ai-header">
+        <div class="ai-avatar">
+            <i class="fa-solid fa-robot"></i>
         </div>
+        <div class="ai-header-text">
+            <h3 id="ai-panel-title" data-i18n="aiTitle">AI Assistant</h3>
+        </div>
+        <button type="button" class="ai-close" aria-label="Close AI assistant">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <div class="ai-box">
+        <label for="userInput" class="sr-only" data-i18n="aiLabel">Ask AI</label>
+        <input type="text" id="userInput" class="ai-input" autocomplete="off" placeholder="Ask the AI assistant..." data-i18n-placeholder="aiPlaceholder" />
+        <button type="button" id="aiSendButton" class="ai-send-btn" aria-label="Send question">
+            <i class="fa-solid fa-paper-plane"></i>
+        </button>
+    </div>
+</div>
 
         <!-- مكان عرض الإجابة -->
         <div id="aiResponse" class="response-box" role="status" aria-live="polite">
