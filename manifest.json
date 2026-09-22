@@ -1,5 +1,5 @@
 {
-  "name": "Moataz Portfolio",
+  "name": "Moataz Mohamed Portfolio",
   "short_name": "Moataz",
   "start_url": "./",
   "display": "standalone",
@@ -7,9 +7,9 @@
   "theme_color": "#000000",
   "icons": [
     {
-      "src": "img/img/my-photo.jpg",
+      "src": "img/logo.png",
       "sizes": "512x512",
-      "type": "img/img/my-photo.jpg"
+      "type": "image/png"
     }
   ]
 }
