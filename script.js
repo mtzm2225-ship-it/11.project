@@ -1,4 +1,4 @@
-﻿﻿/* ============================================================================
+﻿/* ============================================================================
    PORTFOLIO — M & M  |  Moataz Mohamed
    الملف الرئيسي للجافاسكربت (script.js) — مسؤول عن:
      1) الترجمة بين العربية والإنجليزية (Language / i18n)
@@ -962,14 +962,168 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ============================================================================
-   14) شاشة التحميل (Preloader)
-   بتختفي تلقائيًا بعد اكتمال تحميل الصفحة كلها (مع حماية بالوقت والـ DOM جاهز)
+   14) شاشة التحميل (Preloader) + شاشة الاسم اللامع (Name Intro)
+   ----------------------------------------------------------------------------
+   الترتيب:
+     شاشة التحميل  →  تختفي تمامًا  →  شاشة الاسم اللامع  →  الموقع عادي
+
+   شاشة الاسم:
+     • بتظهر بعد اختفاء شاشة التحميل بالكامل (مفيش تراكب بين الاتنين).
+     • شعاع اللمعة بيعدّي على الاسم تلقائيًا في لوب.
+     • حرّك الماوس على الاسم → اللمعة تستجيب (hover).
+     • كليك على الاسم أو ضغط Enter → أفيكت ضوئي والاسم يتشال من الصفحة.
+     • لو الزائر لا عمل حاجة، الشاشة تختفي لوحدها بعد مدة.
    ============================================================================ */
+
+/* مدد العرض (بالميلي ثانية) — عدّل الأرقام دي لو حابب تطول/تقصّر */
+const PRELOADER_FADE_TIME = 550;      /* مدة اختفاء شاشة التحميل (لازم تطابق الـ CSS) */
+const NAME_INTRO_AUTO_HIDE = 6000;    /* اختفاء تلقائي لو الزائر ما داسش */
+const NAME_INTRO_FADE_TIME = 700;     /* مدة اختفاء شاشة الاسم (لازم تطابق الـ CSS) */
+
+/* عنصر شاشة الاسم */
+const nameIntro = document.getElementById('name-intro');
+
+/* عناصر التفاعل جوه شاشة الاسم */
+const nameIntroText = nameIntro ? nameIntro.querySelector('.name-intro-text') : null;
+
+/* حالة المقدمة */
+let nameIntroReady = false;   /* بقت معروض وقابلة للتفاعل */
+let nameIntroLeaving = false; /* بقت بتخرج (بنمنع أي تفاعل تاني) */
+let nameIntroAutoTimer = null;
+
+/* ----------------------------------------------------------------------------
+   إخفاء/خروج شاشة الاسم
+   ---------------------------------------------------------------------------- */
+
+/**
+ * إخفاء شاشة الاسم (لو خلصت لوحدها أو الزائر اختار يدخل)
+ * @param {boolean} withEffect - true لو عايزين أفيكت الضوء قبل الخروج
+ */
+function hideNameIntro(withEffect) {
+  if (!nameIntro || nameIntroLeaving) {
+    return;
+  }
+  nameIntroLeaving = true;
+
+  /* نلغي أي مؤقت تلقائي معلّق */
+  if (nameIntroAutoTimer) {
+    window.clearTimeout(nameIntroAutoTimer);
+    nameIntroAutoTimer = null;
+  }
+
+  /* نسحب التركيز من شاشة الاسم */
+  nameIntroReady = false;
+
+  const fadeDuration = withEffect ? NAME_INTRO_FADE_TIME : NAME_INTRO_FADE_TIME;
+
+  if (withEffect) {
+    /* أفيكت الكليك/Enter: نبضة ضوئية + فلاش + الاسم يطير */
+    nameIntro.classList.add('is-bursting', 'is-leaving');
+  }
+
+  /* نأخر الإخفاء التام عشان الأفيكت يبان */
+  window.setTimeout(function () {
+    nameIntro.classList.add('is-done');
+    nameIntro.setAttribute('aria-hidden', 'true');
+  }, withEffect ? 520 : 0);
+
+  /* ننضّف العنصر من الصفحة بعد الاختفاء */
+  window.setTimeout(function () {
+    if (nameIntro && nameIntro.parentNode) {
+      nameIntro.parentNode.removeChild(nameIntro);
+    }
+  }, (withEffect ? 520 : 0) + fadeDuration + 100);
+}
+
+/* ----------------------------------------------------------------------------
+   تفاعل الماوس: اللمعة تستجيب لما المؤشر يمر على الاسم
+   ---------------------------------------------------------------------------- */
+if (nameIntro && nameIntroText) {
+  nameIntroText.addEventListener('mouseenter', function () {
+    if (nameIntroReady) {
+      nameIntro.classList.add('is-name-hover');
+    }
+  });
+
+  nameIntroText.addEventListener('mouseleave', function () {
+    nameIntro.classList.remove('is-name-hover');
+  });
+}
+
+/* ----------------------------------------------------------------------------
+   الكليك على الاسم → أفيكت ودخول الموقع
+   ---------------------------------------------------------------------------- */
+if (nameIntroText) {
+  nameIntroText.addEventListener('click', function () {
+    if (!nameIntroReady) {
+      return;
+    }
+
+    /* نبضة لحظية قبل الخروج */
+    nameIntro.classList.add('is-pressing');
+    window.setTimeout(function () {
+      if (nameIntro) {
+        nameIntro.classList.remove('is-pressing');
+      }
+    }, 160);
+
+    hideNameIntro(true);
+  });
+}
+
+/* ----------------------------------------------------------------------------
+   ضغط Enter (أو Space) → نفس أفيكت الكليك
+   ---------------------------------------------------------------------------- */
+document.addEventListener('keydown', function (event) {
+  if (!nameIntroReady) {
+    return;
+  }
+
+  if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
+    event.preventDefault();
+    hideNameIntro(true);
+  }
+});
+
+/* ----------------------------------------------------------------------------
+   تشغيل شاشة الاسم (بتشتغل مرة واحدة بس)
+   ---------------------------------------------------------------------------- */
+function startNameIntro() {
+  if (!nameIntro || nameIntroReady || nameIntroLeaving) {
+    return;
+  }
+
+  /* لو الجهاز مفعّل تقليل الحركة: نخفيها على طول من غير انتظار */
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    hideNameIntro(false);
+    return;
+  }
+
+  nameIntroReady = true;
+  nameIntro.setAttribute('aria-hidden', 'false');
+
+  /* اختفاء تلقائي لو الزائر ما داسش (بعد اللمعة تكون عدّت مرتين) */
+  nameIntroAutoTimer = window.setTimeout(function () {
+    hideNameIntro(true);
+  }, NAME_INTRO_AUTO_HIDE);
+}
+
+/* ----------------------------------------------------------------------------
+   إخفاء شاشة التحميل، وبعدها نبتدي شاشة الاسم
+   مهم: بنستنى شاشة التحميل تختفي بالكامل (مدة الاختفاء + هامش) قبل
+   ما نعرض شاشة الاسم، عشان مفيش تراكب بينهم.
+   ---------------------------------------------------------------------------- */
 function hidePreloader() {
   const preloader = document.getElementById('preloader');
 
-  if (preloader) {
+  if (preloader && !preloader.classList.contains('fade-out')) {
     preloader.classList.add('fade-out');
+
+    /* نستنى اختفاء شاشة التحميل بالكامل، وبعدين نعرض شاشة الاسم */
+    window.setTimeout(startNameIntro, PRELOADER_FADE_TIME + 250);
+  } else if (!preloader) {
+    /* مفيش شاشة تحميل أصلًا → نعرض شاشة الاسم على طول */
+    startNameIntro();
   }
 }
 
@@ -990,6 +1144,57 @@ window.addEventListener('error', hidePreloader);
    ============================================================================ */
 applyLanguage(savedLanguage);
 applyTheme(savedTheme === 'light');
+
+/* ============================================================================
+   15.0) ظهور المحتوى عند النزول (Scroll Reveal)
+   ----------------------------------------------------------------------------
+   الفكرة: بنخفي العناصر الأول (opacity: 0) عن طريق كلاس .reveal-init،
+   وبعدين IntersectionObserver لما العنصر يدخل الشاشة بنضيف .is-visible
+   فيظهر بحركة ناعمة. أول ما يظهر بنلغيه من المراقبة عشان ميخفيش تاني.
+   ============================================================================ */
+(function initScrollReveal() {
+  const revealTargets = document.querySelectorAll('[data-reveal]');
+
+  if (!revealTargets.length) {
+    return;
+  }
+
+  /* لو المستخدم مفعّل "تقليل الحركة"، مفيش داعي نخفي أي حاجة */
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+
+  /* المتصفحات القديمة اللي مفيهاش IntersectionObserver: نظهر كل حاجة على طول */
+  if (!('IntersectionObserver' in window)) {
+    return;
+  }
+
+  /* ملاحظة: العناصر اللي فوق الشاشة أصلًا بنخليها تظهر بدون تأخير
+     والفيديو بيشتغل عليها وقت دخولها */
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.15,                    /* يظهر لما 15% من العنصر يدخل الشاشة */
+    rootMargin: '0px 0px -60px 0px'     /* نبدأ شوية قبل ما يختفي خالص */
+  });
+
+  revealTargets.forEach(function (target) {
+    /* بنضيف كلاس البداية (مخفي)، وبناخد نوع الحركة من data-reveal-visual */
+    target.classList.add('reveal-init');
+
+    const visual = target.getAttribute('data-reveal');
+    if (visual && visual !== 'up') {
+      target.classList.add('reveal-' + visual);
+    }
+
+    observer.observe(target);
+  });
+})();
 
 /* ============================================================================
    15.1) تفاعل حركة الماوس مع الخلفية (Cursor Glow)

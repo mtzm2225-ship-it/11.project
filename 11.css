@@ -1,4 +1,4 @@
-﻿/* ============================================================================
+﻿﻿/* ============================================================================
    PORTFOLIO — M & M  |  Moataz Mohamed
    ملف التنسيقات الرئيسي (11.css)
 
@@ -4090,5 +4090,304 @@ body.light-mode .cursor-spotlight {
     .cursor-glow,
     .cursor-spotlight {
         display: none;
+    }
+}/* ============================================================================
+   ==================== 12. انيميشن الاسم اللامع (Name Intro) ====================
+   بتظهر بعد اختفاء شاشة التحميل تمامًا، والاسم بيعدّي عليه شعاع لمعة بيلمع
+   من الشمال لليمين. وبيتفاعل مع الماوس: توهج بيتبع المؤشر، وكلوس/Enter
+   بيعمل أفيكت والنهاية الاسم بيتشال من الصفحة.
+   ============================================================================ */
+
+.name-intro {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #07060a;
+    background-image:
+        radial-gradient(circle at 50% 45%, rgba(212, 175, 55, 0.16), transparent 60%),
+        linear-gradient(160deg, #050408, #07060a 55%, #0d0b06);
+    z-index: 99998; /* أقل من شاشة التحميل، وأعلى من كل حاجة تانية */
+    opacity: 1;
+    transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+
+/* الكلاس اللي بنضيفه من الجافاسكربت لإخفاء شاشة الاسم */
+.name-intro.is-done {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.name-intro-inner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    animation: nameIntroIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes nameIntroIn {
+    from { opacity: 0; transform: translateY(26px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* السطر الصغير فوق الاسم */
+.name-intro-kicker {
+    margin: 0 0 14px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #8b857b;
+    opacity: 0;
+    animation: fadeUpSoft 0.8s ease 0.25s forwards;
+}
+
+@keyframes fadeUpSoft {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 0.9; transform: translateY(0); }
+}
+
+/* عنوان الاسم نفسه */
+.name-intro-title {
+    margin: 0;
+    font-size: clamp(2rem, 8vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: 1px;
+    direction: ltr; /* الاسم إنجليزي فبنخليه من الشمال لليمين حتى في الوضع العربي */
+}
+
+/* الاسم نفسه — بيعدّي عليه شعاع اللمعة وبيتفاعل مع الماوس */
+.name-intro-text {
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(
+        100deg,
+        #6b6250 0%,
+        #a89a78 38%,
+        #6b6250 60%,
+        #6b6250 100%
+    );
+    background-size: 250% 100%;
+    background-position: 100% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: nameShine 2.6s ease-in-out 0.5s infinite;
+    filter: drop-shadow(0 0 0 rgba(212, 175, 55, 0));
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), filter 0.35s ease;
+}
+
+/* شعاع اللمعة الذهبي اللي بيعدّي من الشمال لليمين */
+@keyframes nameShine {
+    0% {
+        background-position: 220% 0;
+        filter: drop-shadow(0 0 0 rgba(212, 175, 55, 0));
+    }
+    22% {
+        background-position: 0% 0;
+        filter: drop-shadow(0 0 22px rgba(212, 175, 55, 0.55));
+    }
+    42% {
+        background-position: -220% 0;
+        filter: drop-shadow(0 0 0 rgba(212, 175, 55, 0));
+    }
+    100% {
+        background-position: -220% 0;
+        filter: drop-shadow(0 0 0 rgba(212, 175, 55, 0));
+    }
+}
+
+/* ---- التفاعل بالماوس: لما المؤشر يمرّ على الاسم ---- */
+/* بنوقف الأنيميشن ونحط الحالة المضيئة مباشرة (توهج ذهبي واضح) */
+.name-intro.is-name-hover .name-intro-text {
+    animation: none;
+    background-position: 22% 0;
+    filter: drop-shadow(0 0 26px rgba(247, 215, 116, 0.85));
+    transform: translateY(-3px) scale(1.045);
+}
+
+/* الأندرلاين بيولّع مع الـ hover */
+.name-intro.is-name-hover .name-intro-underline {
+    box-shadow: 0 0 28px rgba(247, 215, 116, 0.95);
+}
+
+/* ---- أفيكت الكليك / Enter: النبضة الضوئية ---- */
+/* لحظة الدوس: الاسم ينضغط شوية */
+.name-intro.is-pressing .name-intro-text {
+    transform: translateY(-1px) scale(0.97);
+    filter: drop-shadow(0 0 34px rgba(247, 215, 116, 1));
+}
+
+/* حلقة ضوئية بتتوسّع من الاسم لحظة الدوس */
+.name-intro-burst {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 160px;
+    height: 160px;
+    margin: -80px 0 0 -80px;
+    border-radius: 50%;
+    border: 2px solid rgba(247, 215, 116, 0.9);
+    box-shadow: 0 0 60px rgba(212, 175, 55, 0.85), inset 0 0 30px rgba(212, 175, 55, 0.4);
+    pointer-events: none;
+    opacity: 0;
+    z-index: -1;
+}
+
+.name-intro.is-bursting .name-intro-burst {
+    animation: nameBurst 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes nameBurst {
+    0% {
+        opacity: 0.95;
+        transform: scale(0.35);
+    }
+    70% {
+        opacity: 0.5;
+        transform: scale(3.4);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(5);
+    }
+}
+
+/* لحظة الخروج: الاسم يتكبّر ويطير لأبرة مع وميض ذهبي */
+.name-intro.is-leaving .name-intro-inner {
+    animation: nameLeave 0.6s cubic-bezier(0.7, 0, 0.84, 0) forwards;
+}
+
+@keyframes nameLeave {
+    from { opacity: 1; transform: scale(1); }
+    40%  { opacity: 1; transform: scale(1.08); filter: brightness(1.6); }
+    to   { opacity: 0; transform: scale(1.5); filter: brightness(2); }
+}
+
+/* فلاش بيعم كل الشاشة لحظة الخروج */
+.name-intro-flash {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(247, 215, 116, 0.85), rgba(212, 175, 55, 0.35) 40%, transparent 72%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.name-intro.is-bursting .name-intro-flash {
+    animation: nameFlash 0.75s ease-out forwards;
+}
+
+@keyframes nameFlash {
+    0%   { opacity: 0; }
+    35%  { opacity: 0.85; }
+    100% { opacity: 0; }
+}
+
+/* خط ذهبي رفيع بيتوسّع تحت الاسم */
+.name-intro-underline {
+    width: 0;
+    height: 2px;
+    margin: 22px auto 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, transparent, #f7d774, #d4af37, transparent);
+    box-shadow: 0 0 18px rgba(212, 175, 55, 0.6);
+    animation: underlineGrow 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
+}
+
+@keyframes underlineGrow {
+    from { width: 0; opacity: 0; }
+    to   { width: min(320px, 70vw); opacity: 1; }
+}
+
+/* الوضع الأبيض: خلفية فاتحة والاسم يتلوّن بالذهبي الداكن */
+body.light-mode .name-intro {
+    background: #fdfaf2;
+    background-image:
+        radial-gradient(circle at 50% 45%, rgba(212, 175, 55, 0.22), transparent 60%),
+        linear-gradient(160deg, #fdfaf3, #f7f1e3 55%, #fdfaf3);
+}
+
+body.light-mode .name-intro-kicker {
+    color: #7a5c10;
+}
+
+/* ============================================================================
+   ==================== 13. ظهور المحتوى عند النزول (Scroll Reveal) ============
+   بنضيف كلاس .reveal-init من جافاسكربت، وبعدين .is-visible لما العنصر
+   يدخل الشاشة، وهو اللي بيعمل الحركة الناعمة
+   ============================================================================ */
+
+.reveal-init {
+    opacity: 0;
+    transform: translateY(46px);
+    filter: blur(6px);
+    transition:
+        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-init.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+/* كارت الهيرو الجانبي: بيظهر من ناحية اليمين شوية */
+.reveal-init.reveal-right {
+    transform: translateX(56px) translateY(20px);
+}
+
+.reveal-init.reveal-right.is-visible {
+    transform: translateX(0) translateY(0);
+}
+
+/* الكروت: بتظهر بتكبير بسيط */
+.reveal-init.reveal-zoom {
+    transform: translateY(34px) scale(0.94);
+}
+
+.reveal-init.reveal-zoom.is-visible {
+    transform: translateY(0) scale(1);
+}
+
+/* تأخير متتالي للكروت اللي جوه نفس الشبكة (ستاجر) */
+.reveal-init.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-init.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-init.reveal-delay-3 { transition-delay: 0.24s; }
+
+/* احترام إعداد "تقليل الحركة" */
+@media (prefers-reduced-motion: reduce) {
+    .reveal-init,
+    .name-intro-inner,
+    .name-intro-kicker,
+    .name-intro-title,
+    .name-intro-text,
+    .name-intro-underline,
+    .name-intro-burst,
+    .name-intro-flash {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+    }
+
+    .name-intro-burst,
+    .name-intro-flash {
+        display: none !important;
+    }
+
+    .name-intro-text {
+        -webkit-text-fill-color: #e8c15a;
+        color: #e8c15a;
+        background: none;
     }
 }

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 
@@ -101,6 +101,30 @@
     </div>
 
     <!-- ====================================================================
+         شاشة الترحيب بالاسم (Name Intro)
+         بتظهر بعد اختفاء شاشة التحميل تمامًا، واسم "Moataz Mohamed" بيعدّي
+         عليه شعاع لمعة (Shine) من الشمال لليمين.
+
+         التفاعل: حرّك الماوس على الاسم → اللمعة تستجيب للماوس،
+         وكليك / Enter → أفيكت ضوئي والاسم يتشال من الصفحة.
+         (كل ده متوصّل من script.js)
+         ==================================================================== -->
+    <div id="name-intro" class="name-intro" aria-hidden="true">
+        <div class="name-intro-inner">
+            <p class="name-intro-kicker">Welcome to my world</p>
+            <h1 class="name-intro-title">
+                <span class="name-intro-text">Moataz Mohamed</span>
+            </h1>
+            <div class="name-intro-underline"></div>
+        </div>
+
+        <!-- حلقة ضوئية بتتوسّع من الاسم لحظة الكليك/Enter (أفيكت الخروج) -->
+        <div class="name-intro-burst" aria-hidden="true"></div>
+        <!-- فلاش ذهبي بيعمّ الشاشة لحظة الخروج -->
+        <div class="name-intro-flash" aria-hidden="true"></div>
+    </div>
+
+    <!-- ====================================================================
          رأس الموقع (Header) — اللوجو، روابط التنقل، البحث، والإعدادات
          ==================================================================== -->
     <header class="header">
@@ -193,7 +217,7 @@
          ==================================================================== -->
     <main class="hero-section" id="home">
         <div class="hero-top-row">
-            <div class="hero-text-content">
+            <div class="hero-text-content" data-reveal="up">
                 <div class="welcome-pill">
                     <span class="green-dot"></span>
                     <span data-i18n="welcome">Welcome! I'm Moataz Mohamed</span>
@@ -224,13 +248,13 @@
                 </div>
             </div>
 
-            <div class="hero-image-wrapper">
+            <div class="hero-image-wrapper" data-reveal="right">
                 <div class="cyber-glow"></div>
                 <img src="img/WhatsApp Image 2026-09-22 at 12.24.34 PM.jpeg" alt="Moataz Mohamed" class="hero-standalone-img">
             </div>
         </div>
 
-        <div class="hero-visual-card">
+        <div class="hero-visual-card" data-reveal="zoom">
             <div class="card-glow"></div>
 
             <div class="card-inner">
@@ -298,14 +322,14 @@
          قسم من أنا (About Me) — بطاقات التعليم والتطوير والأهداف والشهادات
          ==================================================================== -->
     <section class="about-section" id="about">
-        <h2 class="section-title" data-i18n="aboutTitle">About Me & Tech Stack & Languages</h2>
+        <h2 class="section-title" data-i18n="aboutTitle" data-reveal="up">About Me & Tech Stack & Languages</h2>
 
 
 
 
-<section class="tech-slider-section">
-  
-  
+<section class="tech-slider-section" data-reveal="up">
+
+
   <div class="slider-wrapper">
     <!-- زر التنقل يساراً -->
     <button class="slider-btn prev-btn" id="techPrevBtn" aria-label="Previous Technologies">
@@ -314,7 +338,7 @@
 
     <!-- حاوية البطاقات -->
     <div class="tech-slider-container" id="techSlider">
-      
+
       <div class="tech-card-slim">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5 Logo" class="tech-logo">
         <span class="tech-name">HTML5</span>
@@ -367,25 +391,25 @@
 
 
         <div class="about-grid">
-            <div class="about-card">
+            <div class="about-card" data-reveal="zoom">
                 <i class="fa-solid fa-user-graduate icon"></i>
                 <h3 data-i18n="education">Education</h3>
                 <p data-i18n="educationText">IT Student building a strong foundation in Computer Science, Systems, and Software Architecture.</p>
             </div>
 
-            <div class="about-card">
+            <div class="about-card reveal-delay-1" data-reveal="zoom">
                 <i class="fa-solid fa-code-merge icon"></i>
                 <h3 data-i18n="development">Development</h3>
                 <p data-i18n="developmentText">Creating clean, responsive, and robust applications using modern programming web tech.</p>
             </div>
 
-            <div class="about-card">
+            <div class="about-card reveal-delay-2" data-reveal="zoom">
                 <i class="fa-solid fa-bullseye icon"></i>
                 <h3 data-i18n="goals">Goals</h3>
                 <p data-i18n="goalsText">Continuously learning to solve complex problems and deliver high-quality digital solutions.</p>
             </div>
 
-            <div class="about-card certificates-card">
+            <div class="about-card certificates-card reveal-delay-3" data-reveal="zoom">
                 <i class="fa-solid fa-award icon"></i>
                 <h3 data-i18n="certificates">Certificates</h3>
                 <p data-i18n="certificatesText">My professional certificates and course completions.</p>
@@ -497,12 +521,12 @@
 
     <!-- قسم المشاريع (Portfolio Section) -->
     <section class="portfolio-section" id="portfolio">
-        <div class="portfolio-header">
+        <div class="portfolio-header" data-reveal="up">
             <p class="section-kicker" data-i18n="portfolioKicker">Featured Project</p>
             <h2 class="section-title" data-i18n="portfolioTitle">Projects</h2>
         </div>
 
-        <div class="project-card">
+        <div class="project-card" data-reveal="zoom">
             <button type="button" class="project-nav-btn prev" aria-label="Previous project">
                 <i class="fa-solid fa-arrow-left project-arrow"></i>
             </button>
@@ -526,7 +550,7 @@
 
             <div class="project-preview" aria-label="Project preview">
                 <div class="preview-window has-image">
-                    <img class="project-preview-image" src="img" alt="First project preview">
+                    <img class="project-preview-image" src="img/Screenshot 2026-09-22 133437.png" alt="First project preview">
 
                     <div class="preview-body">
                         <div class="preview-sidebar"></div>
@@ -550,7 +574,7 @@
              شريط التواصل السريع (Contact Strip)
              ==================================================================== -->
         <section class="contact-strip-section" id="contact">
-        <div class="contact-strip">
+        <div class="contact-strip" data-reveal="zoom">
             <div class="contact-strip-text">
                 <p class="contact-strip-kicker" data-i18n="contactKicker">Let's Connect</p>
                 <h3 data-i18n="contactTitle">Need a project, collaboration, or just a quick chat?</h3>
@@ -564,7 +588,7 @@
          بيتم إرساله عبر خدمة Formspree
          ==================================================================== -->
     <section class="contact-section" id="contact-form-section">
-        <div class="contact-container">
+        <div class="contact-container" data-reveal="up">
             <div class="contact-header">
                 <h2>Let's Build Something Together</h2>
                 <p>Have a project in mind or want to chat? Fill out the form below and I'll get back to you.</p>
@@ -607,7 +631,7 @@
          فيه أربع حاجات: بياناتي، طرق التواصل، مواقع التواصل الاجتماعي،
          وسطر الحقوق تحت خالص
          ==================================================================== -->
-    <footer class="footer-section">
+    <footer class="footer-section" data-reveal="up">
 
         <!-- الصف الأول: اسمي + جملة كرييتف على الشمال، وطرق التواصل على اليمين -->
         <div class="footer-container">
