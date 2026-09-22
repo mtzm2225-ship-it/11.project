@@ -9,7 +9,7 @@
     {
       "src": "img/img/my-photo.jpg",
       "sizes": "512x512",
-      "type": "image/jpeg"
+      "type": "img/img/my-photo.jpg"
     }
   ]
 }
