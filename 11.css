@@ -32,14 +32,14 @@
 body {
     margin: 0;
     font-family: 'Inter', Arial, sans-serif;
-    background-color: #0b0f19;
+    background-color: #07060a;
     background-image:
-        radial-gradient(circle at top left, rgba(56, 189, 248, 0.30), transparent 30%),
-        radial-gradient(circle at 80% 10%, rgba(168, 85, 247, 0.18), transparent 23%),
-        radial-gradient(circle at 50% 100%, rgba(34, 197, 94, 0.10), transparent 30%),
-        linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(8, 13, 22, 1) 42%, rgba(15, 23, 42, 0.96)),
-        linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+        radial-gradient(circle at top left, rgba(255, 199, 87, 0.22), transparent 32%),
+        radial-gradient(circle at 80% 10%, rgba(191, 143, 40, 0.18), transparent 25%),
+        radial-gradient(circle at 50% 100%, rgba(255, 214, 122, 0.08), transparent 32%),
+        linear-gradient(135deg, rgba(13, 12, 16, 0.98), rgba(5, 5, 8, 1) 42%, rgba(13, 12, 16, 0.96)),
+        linear-gradient(rgba(212, 175, 55, 0.09) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 55, 0.06) 1px, transparent 1px);
     background-size: auto, auto, auto, 100% 100%, 34px 34px, 34px 34px;
     background-position: center, center, center, center, top left, top left;
     background-attachment: fixed;
@@ -52,11 +52,11 @@ body::before {
     position: fixed;
     inset: 0;
     background:
-        linear-gradient(180deg, rgba(56, 189, 248, 0.06), transparent 36%, rgba(34, 197, 94, 0.03)),
+        linear-gradient(180deg, rgba(255, 199, 87, 0.06), transparent 36%, rgba(191, 143, 40, 0.04)),
         repeating-linear-gradient(
             180deg,
-            rgba(125, 211, 252, 0.08),
-            rgba(125, 211, 252, 0.08) 1px,
+            rgba(255, 214, 122, 0.07),
+            rgba(255, 214, 122, 0.07) 1px,
             transparent 1px,
             transparent 28px
         );
@@ -72,7 +72,7 @@ body::after {
     right: -6%;
     width: 420px;
     height: 420px;
-    background: radial-gradient(circle, rgba(56, 189, 248, 0.25), transparent 62%);
+    background: radial-gradient(circle, rgba(255, 199, 87, 0.22), transparent 62%);
     filter: blur(24px);
     pointer-events: none;
     z-index: 0;
@@ -101,9 +101,9 @@ body > * {
     gap: 8px;
     padding: 6px 12px;
     border-radius: 999px;
-    background: rgba(56, 189, 248, 0.08);
-    border: 1px solid rgba(56, 189, 248, 0.2);
-    color: #38bdf8;
+    background: rgba(212, 175, 55, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.28);
+    color: #e8c15a;
     font-size: 0.78rem;
     font-weight: 600;
     cursor: pointer;
@@ -113,11 +113,11 @@ body > * {
     position: absolute;
     top: calc(100% + 8px);
     right: 0;
-    background: rgba(15, 23, 42, 0.98);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(13, 12, 16, 0.98);
+    border: 1px solid rgba(212, 175, 55, 0.22);
     border-radius: 12px;
     padding: 8px;
-    box-shadow: 0 12px 25px rgba(2, 6, 23, 0.35);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.55);
     min-width: 120px;
     z-index: 1001;
     display: block;
@@ -129,28 +129,28 @@ body > * {
 
 
 .header {
-    background: rgba(13, 17, 29, 0.9);
+    background: rgba(10, 9, 12, 0.9);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 12px 30px;
-    border: 1px solid rgba(148, 163, 184, 0.18);
+    border: 1px solid rgba(212, 175, 55, 0.28);
     position: sticky;
     top: 10px !important;
     z-index: 1000;
     overflow: visible;
     border-radius: 30px;
       margin-bottom: 10px !important;/* التعديل هنا: غيرنا الـ 0 لـ 50px */
-    box-shadow: 0 10px 28px rgba(2, 6, 23, 0.18);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
     transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .header.scrolled {
-    background: rgba(13, 17, 29, 0.68);
-    border-color: rgba(148, 163, 184, 0.12);
-    box-shadow: 0 8px 24px rgba(2, 6, 23, 0.12);
+    background: rgba(10, 9, 12, 0.7);
+    border-color: rgba(212, 175, 55, 0.18);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
 /* لوغو الموقع واسم الشركة: بيظهر في الشمال أو الوسط حسب التصميم */
@@ -165,8 +165,8 @@ body > * {
     width: 42px;
     object-fit: cover;
     border-radius: 50%;
-    border: 2px solid #0594d7;
-    box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+    border: 2px solid #d4af37;
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.45);
     display: block;
     flex-shrink: 0;
 }
@@ -186,7 +186,7 @@ body > * {
 }
 
 .nav-links a {
-    color: #94a3b8;
+    color: #a9a49b;
     text-decoration: none;
     position: relative;
     padding: 6px 10px;
@@ -199,13 +199,13 @@ body > * {
 
 .nav-links a:hover,
 .nav-links a.active {
-    color: #38bdf8;
+    color: #e8c15a;
 }
 
 .nav-links a.active {
-    background: rgba(56, 189, 248, 0.10);
-    border-color: rgba(56, 189, 248, 0.30);
-    box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.08), 0 0 18px rgba(56, 189, 248, 0.12);
+    background: rgba(212, 175, 55, 0.12);
+    border-color: rgba(212, 175, 55, 0.38);
+    box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.1), 0 0 18px rgba(212, 175, 55, 0.16);
 }
 
 .nav-links a::after {
@@ -215,7 +215,7 @@ body > * {
     bottom: -2px;
     width: 0;
     height: 2px;
-    background-color: #38bdf8;
+    background-color: #d4af37;
     transition: width 0.3s ease;
 }
 
@@ -229,9 +229,9 @@ body > * {
 /* زر Sign In: بيظهر في نهاية الهيدر وبيمنح شكل زر واضح ومميز */
 .signin-btn {
     padding: 8px 20px;
-    border: 1px solid #38bdf8;
+    border: 1px solid #d4af37;
     background: transparent;
-    color: #38bdf8;
+    color: #e8c15a;
     border-radius: 8px;
     cursor: pointer;
     font-size: 0.9rem;
@@ -240,9 +240,9 @@ body > * {
 }
 
 .signin-btn:hover {
-    color: #0b0f19;
-    background-color: #38bdf8;
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+    color: #07060a;
+    background-color: #d4af37;
+    box-shadow: 0 0 18px rgba(212, 175, 55, 0.6);
     transform: translateY(-2px);
 }
 
@@ -254,7 +254,7 @@ body > * {
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background: rgba(3, 7, 18, 0.6);
+    background: rgba(3, 3, 5, 0.72);
     backdrop-filter: blur(6px);
     z-index: 2000;
 }
@@ -269,11 +269,11 @@ body > * {
 .contact-modal-content {
     position: relative;
     width: min(100%, 420px);
-    background: rgba(15, 23, 42, 0.95);
-    border: 1px solid rgba(148, 163, 184, 0.25);
+    background: rgba(13, 12, 16, 0.97);
+    border: 1px solid rgba(212, 175, 55, 0.28);
     border-radius: 18px;
     padding: 28px 24px 20px;
-    box-shadow: 0 28px 70px rgba(2, 6, 23, 0.6);
+    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.7), 0 0 40px rgba(212, 175, 55, 0.08);
 }
 
 .signin-close,
@@ -319,16 +319,16 @@ body > * {
     box-sizing: border-box;
     padding: 12px 14px;
     border-radius: 10px;
-    border: 1px solid rgba(148, 163, 184, 0.24);
-    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(212, 175, 55, 0.22);
+    background: rgba(255, 255, 255, 0.03);
     color: #f8fafc;
     font-size: 0.96rem;
     outline: none;
 }
 
 .signin-field input:focus {
-    border-color: #38bdf8;
-    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+    border-color: #d4af37;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
 }
 
 .signin-submit {
@@ -336,8 +336,8 @@ body > * {
     padding: 12px 16px;
     border: none;
     border-radius: 10px;
-    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-    color: #03141d;
+    background: linear-gradient(135deg, #f7d774, #d4af37);
+    color: #1a1305;
     font-weight: 700;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -345,7 +345,7 @@ body > * {
 
 .signin-submit:hover {
     transform: translateY(-1px);
-    box-shadow: 0 12px 24px rgba(14, 165, 233, 0.25);
+    box-shadow: 0 12px 24px rgba(212, 175, 55, 0.35);
 }
 
 .signin-message {
@@ -370,7 +370,7 @@ body > * {
     color: #e2e8f0;
     border-radius: 12px;
     padding: 12px 14px;
-    border: 1px solid rgba(148, 163, 184, 0.2);
+    border: 1px solid rgba(212, 175, 55, 0.18);
     background: rgba(255, 255, 255, 0.02);
     transition: all 0.2s ease;
 }
@@ -378,7 +378,7 @@ body > * {
 .contact-modal-item i {
     width: 18px;
     text-align: center;
-    color: #38bdf8;
+    color: #e8c15a;
 }
 
 .contact-modal-item.whatsapp i {
@@ -386,16 +386,16 @@ body > * {
 }
 
 .contact-modal-item:hover {
-    background: rgba(56, 189, 248, 0.08);
-    border-color: rgba(56, 189, 248, 0.26);
+    background: rgba(212, 175, 55, 0.1);
+    border-color: rgba(212, 175, 55, 0.35);
     transform: translateY(-1px);
 }
 
 body.light-mode .signin-modal-content,
 body.light-mode .contact-modal-content {
-    background: rgba(255, 255, 255, 0.96);
-    border-color: rgba(148, 163, 184, 0.22);
-    box-shadow: 0 24px 48px rgba(59, 130, 246, 0.14);
+    background: rgba(255, 252, 245, 0.97);
+    border-color: rgba(191, 143, 40, 0.28);
+    box-shadow: 0 24px 48px rgba(191, 143, 40, 0.18);
 }
 
 body.light-mode .signin-field input {
@@ -420,7 +420,7 @@ body.light-mode .contact-modal-close {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(2, 6, 23, 0.72);
+    background: rgba(3, 3, 5, 0.8);
     backdrop-filter: blur(4px);
     z-index: 2001;
     padding: 20px;
@@ -428,10 +428,10 @@ body.light-mode .contact-modal-close {
 
 .developer-panel-content {
     width: min(100%, 500px);
-    background: rgba(15, 23, 42, 0.98);
-    border: 1px solid rgba(148, 163, 184, 0.22);
+    background: rgba(13, 12, 16, 0.98);
+    border: 1px solid rgba(212, 175, 55, 0.28);
     border-radius: 18px;
-    box-shadow: 0 24px 60px rgba(2, 6, 23, 0.55);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
     padding: 22px;
 }
 
@@ -470,8 +470,8 @@ body.light-mode .contact-modal-close {
 }
     max-height: 280px;
     overflow-y: auto;
-    border: 1px solid rgba(148, 163, 184, 0.18);
-    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 12px;
     padding: 10px;
 }
@@ -483,8 +483,8 @@ body.light-mode .contact-modal-close {
     gap: 12px;
     padding: 10px 12px;
     border-radius: 10px;
-    background: rgba(59, 130, 246, 0.08);
-    border: 1px solid rgba(59, 130, 246, 0.18);
+    background: rgba(212, 175, 55, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.22);
     color: #e2e8f0;
     margin-bottom: 8px;
     font-size: 0.92rem;
@@ -534,9 +534,9 @@ body.light-mode .contact-modal-close {
 }
 
 body.light-mode .developer-panel-content {
-    background: rgba(255, 255, 255, 0.98);
-    border-color: rgba(148, 163, 184, 0.2);
-    box-shadow: 0 20px 45px rgba(59, 130, 246, 0.12);
+    background: rgba(255, 252, 245, 0.98);
+    border-color: rgba(191, 143, 40, 0.25);
+    box-shadow: 0 20px 45px rgba(120, 90, 20, 0.15);
 }
 
 body.light-mode .developer-panel-header h3,
@@ -551,8 +551,8 @@ body.light-mode .developer-list {
 }
 
 body.light-mode .developer-item {
-    background: rgba(59, 130, 246, 0.08);
-    border-color: rgba(59, 130, 246, 0.18);
+    background: rgba(212, 175, 55, 0.1);
+    border-color: rgba(212, 175, 55, 0.28);
 }
 
 body.light-mode .developer-action {
@@ -571,7 +571,7 @@ body.light-mode .developer-close {
     display: flex;
     align-items: center;
     background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(212, 175, 55, 0.22);
     border-radius: 999px;
     padding: 4px;
     gap: 4px;
@@ -580,7 +580,7 @@ body.light-mode .developer-close {
 .lang-btn {
     border: none;
     background: transparent;
-    color: #94a3b8;
+    color: #a9a49b;
     padding: 6px 10px;
     border-radius: 999px;
     font-size: 0.78rem;
@@ -590,9 +590,9 @@ body.light-mode .developer-close {
 }
 
 .lang-btn.active {
-    background: #38bdf8;
-    color: #0b0f19;
-    box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+    background: linear-gradient(135deg, #f7d774, #d4af37);
+    color: #1a1305;
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
 }
 
 .lang-btn:hover {
@@ -625,35 +625,35 @@ body.light-mode .developer-close {
 
 body.light-mode {
     background:
-        radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 28%),
-        radial-gradient(circle at 80% 8%, rgba(96, 165, 250, 0.14), transparent 24%),
-        linear-gradient(135deg, #f4fbff 0%, #edf5ff 44%, #f8fbff 100%),
-        linear-gradient(rgba(96, 165, 250, 0.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(96, 165, 250, 0.05) 1px, transparent 1px);
+        radial-gradient(circle at top left, rgba(212, 175, 55, 0.18), transparent 28%),
+        radial-gradient(circle at 80% 8%, rgba(247, 215, 116, 0.16), transparent 24%),
+        linear-gradient(135deg, #fdfaf2 0%, #f7f1e3 44%, #fdfaf3 100%),
+        linear-gradient(rgba(212, 175, 55, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
     background-size: auto, auto, 100% 100%, 34px 34px, 34px 34px;
     background-position: center, center, center, top left, top left;
     background-attachment: fixed;
-    color: #0f172a;
+    color: #14120c;
 }
 
 body.light-mode .header {
-    background: rgba(255, 255, 255, 0.94);
+    background: rgba(255, 252, 245, 0.94);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(56, 189, 248, 0.28);
-    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(191, 143, 40, 0.35);
+    box-shadow: 0 10px 28px rgba(120, 90, 20, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
 body.light-mode .header.scrolled {
-    background: rgba(255, 255, 255, 0.76);
-    border-color: rgba(56, 189, 248, 0.2);
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+    background: rgba(255, 252, 245, 0.78);
+    border-color: rgba(191, 143, 40, 0.22);
+    box-shadow: 0 8px 20px rgba(120, 90, 20, 0.08);
 }
 
 body.light-mode .settings-dropdown {
-    background: rgba(255, 255, 255, 0.99);
-    border-color: rgba(100, 116, 139, 0.45);
-    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.6);
+    background: rgba(255, 252, 245, 0.99);
+    border-color: rgba(191, 143, 40, 0.35);
+    box-shadow: 0 14px 30px rgba(120, 90, 20, 0.14), 0 0 0 1px rgba(255, 255, 255, 0.6);
 }
 
 body.light-mode .settings-pill,
@@ -688,26 +688,26 @@ body.light-mode .search-input::placeholder {
 }
 
 body.light-mode .settings-pill {
-    background: rgba(59, 130, 246, 0.10);
-    border-color: rgba(59, 130, 246, 0.35);
+    background: rgba(212, 175, 55, 0.12);
+    border-color: rgba(191, 143, 40, 0.45);
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);
-    color: #0f4c81;
+    color: #7a5c10;
 }
 
 body.light-mode .lang-switcher {
-    background: rgba(255, 255, 255, 0.92);
-    border-color: rgba(100, 116, 139, 0.45);
+    background: rgba(255, 252, 245, 0.92);
+    border-color: rgba(191, 143, 40, 0.4);
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);
 }
 
 body.light-mode .lang-btn {
-    color: #334155;
+    color: #3a3527;
 }
 
 body.light-mode .lang-btn.active {
-    background: #38bdf8;
-    color: #f8fafc;
-    box-shadow: 0 0 10px rgba(56, 189, 248, 0.24);
+    background: linear-gradient(135deg, #f7d774, #d4af37);
+    color: #1a1305;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.35);
 }
 
 body.light-mode .lang-btn:hover,
@@ -716,19 +716,19 @@ body.light-mode .search-btn:hover,
 body.light-mode .signin-btn:hover,
 body.light-mode .nav-links a:hover,
 body.light-mode .nav-links a.active {
-    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.24), 0 0 18px rgba(56, 189, 248, 0.14);
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.25), 0 0 18px rgba(212, 175, 55, 0.16);
     transform: translateY(-1px);
 }
 
 body.light-mode .nav-links a:hover,
 body.light-mode .nav-links a.active {
-    color: #0284c7;
+    color: #b8860b;
 }
 
 body.light-mode .nav-links a.active {
-    background: rgba(56, 189, 248, 0.12);
-    border-color: rgba(56, 189, 248, 0.40);
-    box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.10), 0 0 18px rgba(56, 189, 248, 0.14);
+    background: rgba(212, 175, 55, 0.14);
+    border-color: rgba(191, 143, 40, 0.5);
+    box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.12), 0 0 18px rgba(212, 175, 55, 0.16);
 }
 
 body.light-mode .settings-action-btn {
@@ -738,51 +738,51 @@ body.light-mode .settings-action-btn {
 }
 
 body.light-mode .settings-action-btn.is-active {
-    background: rgba(56, 189, 248, 0.12);
-    border-color: rgba(56, 189, 248, 0.35);
-    color: #0369a1;
+    background: rgba(212, 175, 55, 0.14);
+    border-color: rgba(191, 143, 40, 0.45);
+    color: #7a5c10;
 }
 
 body.light-mode .nav-links {
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(148, 163, 184, 0.22);
+    background: rgba(255, 252, 245, 0.75);
+    border: 1px solid rgba(191, 143, 40, 0.25);
     border-radius: 18px;
     padding: 6px 10px;
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);
 }
 
 body.light-mode .search-box {
-    background: rgba(255, 255, 255, 0.88);
-    border-color: rgba(148, 163, 184, 0.26);
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.38), 0 0 0 1px rgba(148, 163, 184, 0.06);
+    background: rgba(255, 252, 245, 0.9);
+    border-color: rgba(191, 143, 40, 0.3);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.38), 0 0 0 1px rgba(191, 143, 40, 0.08);
 }
 
 body.light-mode .search-box:focus-within {
-    background: rgba(255, 255, 255, 1);
-    border-color: rgba(2, 132, 199, 0.7);
-    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.18);
+    background: rgba(255, 252, 245, 1);
+    border-color: rgba(191, 143, 40, 0.75);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
 }
 
 body.light-mode .search-input {
-    color: #0f172a;
+    color: #14120c;
 }
 
 body.light-mode .search-btn {
-    color: #0284c7;
-    background: rgba(255, 255, 255, 0.7);
+    color: #b8860b;
+    background: rgba(255, 252, 245, 0.7);
     border-radius: 12px;
 }
 
 body.light-mode .welcome-pill {
-    background: rgba(56, 189, 248, 0.09);
-    border-color: rgba(56, 189, 248, 0.28);
+    background: rgba(212, 175, 55, 0.1);
+    border-color: rgba(191, 143, 40, 0.35);
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.26);
 }
 
 body.light-mode .btn-primary {
-    background: linear-gradient(135deg, #38bdf8, #0284c7);
-    color: #f8fafc;
-    box-shadow: 0 12px 22px rgba(2, 132, 199, 0.22);
+    background: linear-gradient(135deg, #f7d774, #d4af37);
+    color: #1a1305;
+    box-shadow: 0 12px 22px rgba(191, 143, 40, 0.28);
 }
 
 body.light-mode .btn-secondary {
@@ -815,7 +815,7 @@ body.light-mode .skill-box i,
 body.light-mode .laptop-icon,
 body.light-mode .about-card .icon,
 body.light-mode .certificate-icon {
-    color: #0284c7;
+    color: #b8860b;
 }
 
 body.light-mode .about-card {
@@ -828,12 +828,12 @@ body.light-mode .about-card {
 
 body.light-mode .about-card::before,
 body.light-mode .about-card.certificates-card::before {
-    background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.16), transparent 35%);
+    background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.18), transparent 36%);
 }
 
 body.light-mode .about-card:hover {
-    border-color: rgba(2, 132, 199, 0.38);
-    box-shadow: 0 16px 26px rgba(2, 132, 199, 0.10);
+    border-color: rgba(191, 143, 40, 0.5);
+    box-shadow: 0 16px 26px rgba(191, 143, 40, 0.14);
 }
 
 body.light-mode .footer-section {
@@ -844,8 +844,8 @@ body.light-mode .footer-section {
 
 /* الوضع الأبيض: صندوق مواقع التواصل يبقى فاتح */
 body.light-mode .footer-social-section {
-    background: linear-gradient(135deg, rgba(56, 189, 248, 0.10), rgba(191, 219, 254, 0.28));
-    border-color: rgba(2, 132, 199, 0.22);
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(247, 215, 116, 0.28));
+    border-color: rgba(191, 143, 40, 0.3);
 }
 
 body.light-mode .footer-social-title {
@@ -867,14 +867,14 @@ body.light-mode .footer-socials .social-link.github i {
 }
 
 body.light-mode .footer-socials .social-link:hover {
-    background: rgba(56, 189, 248, 0.18);
-    border-color: rgba(2, 132, 199, 0.45);
-    color: #0f172a;
-    box-shadow: 0 10px 22px rgba(56, 189, 248, 0.18);
+    background: rgba(212, 175, 55, 0.2);
+    border-color: rgba(191, 143, 40, 0.5);
+    color: #14120c;
+    box-shadow: 0 10px 22px rgba(212, 175, 55, 0.25);
 }
 
 body.light-mode .footer-credo {
-    color: #0284c7;
+    color: #b8860b;
 }
 
 body.light-mode .footer-rights,
@@ -883,15 +883,15 @@ body.light-mode .footer-signature {
 }
 
 body.light-mode .about-card.certificates-card {
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(239, 246, 255, 0.96));
+    background: linear-gradient(145deg, rgba(255, 252, 245, 0.98), rgba(247, 241, 227, 0.96));
 }
 
 body.light-mode .project-card {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.38), rgba(239, 246, 255, 0.24));
-    border-color: rgba(96, 165, 250, 0.24);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.38), rgba(247, 241, 227, 0.28));
+    border-color: rgba(191, 143, 40, 0.28);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 18px 35px rgba(59, 130, 246, 0.06), inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+    box-shadow: 0 18px 35px rgba(191, 143, 40, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.4);
 }
 
 body.light-mode .project-info h3 {
@@ -903,27 +903,27 @@ body.light-mode .project-info p {
 }
 
 body.light-mode .project-tag {
-    background: rgba(59, 130, 246, 0.10);
-    border-color: rgba(59, 130, 246, 0.35);
-    color: #0f4c81;
+    background: rgba(212, 175, 55, 0.12);
+    border-color: rgba(191, 143, 40, 0.45);
+    color: #7a5c10;
 }
 
 body.light-mode .project-nav-btn {
-    background: rgba(255, 255, 255, 0.96);
-    border-color: rgba(59, 130, 246, 0.42);
-    color: #0f172a;
-    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.10);
+    background: rgba(255, 252, 245, 0.96);
+    border-color: rgba(191, 143, 40, 0.5);
+    color: #7a5c10;
+    box-shadow: 0 10px 20px rgba(191, 143, 40, 0.15);
 }
 
 body.light-mode .project-nav-btn:hover {
-    background: rgba(96, 165, 250, 0.16);
-    box-shadow: 0 14px 22px rgba(59, 130, 246, 0.16);
+    background: rgba(247, 215, 116, 0.22);
+    box-shadow: 0 14px 22px rgba(191, 143, 40, 0.22);
 }
 
 body.light-mode .project-btn.primary {
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-    color: #ffffff;
-    box-shadow: 0 10px 18px rgba(59, 130, 246, 0.22);
+    background: linear-gradient(135deg, #f7d774, #d4af37);
+    color: #1a1305;
+    box-shadow: 0 10px 18px rgba(191, 143, 40, 0.28);
 }
 
 body.light-mode .project-btn.secondary {
@@ -933,109 +933,109 @@ body.light-mode .project-btn.secondary {
 }
 
 body.light-mode .project-btn.change {
-    background: rgba(59, 130, 246, 0.10);
-    border-color: rgba(59, 130, 246, 0.35);
-    color: #0f4c81;
+    background: rgba(212, 175, 55, 0.12);
+    border-color: rgba(191, 143, 40, 0.45);
+    color: #7a5c10;
 }
 
 body.light-mode .preview-window {
-    background: rgba(255, 255, 255, 0.92);
-    border-color: rgba(148, 163, 184, 0.22);
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5), 0 10px 18px rgba(59, 130, 246, 0.08);
+    background: rgba(255, 252, 245, 0.92);
+    border-color: rgba(191, 143, 40, 0.25);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5), 0 10px 18px rgba(191, 143, 40, 0.12);
 }
 
 body.light-mode .preview-sidebar {
-    background: linear-gradient(180deg, rgba(96, 165, 250, 0.14), rgba(59, 130, 246, 0.18));
-    border-color: rgba(96, 165, 250, 0.24);
+    background: linear-gradient(180deg, rgba(247, 215, 116, 0.18), rgba(212, 175, 55, 0.2));
+    border-color: rgba(212, 175, 55, 0.3);
 }
 
 body.light-mode .preview-cards span {
-    background: linear-gradient(135deg, rgba(96, 165, 250, 0.12), rgba(59, 130, 246, 0.18));
-    border-color: rgba(148, 163, 184, 0.22);
+    background: linear-gradient(135deg, rgba(247, 215, 116, 0.16), rgba(212, 175, 55, 0.2));
+    border-color: rgba(191, 143, 40, 0.25);
 }
 
 body.light-mode .scroll-btn {
-    background: rgba(255, 255, 255, 0.95);
-    border-color: rgba(59, 130, 246, 0.38);
-    color: #0f172a;
-    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.08);
+    background: rgba(255, 252, 245, 0.95);
+    border-color: rgba(191, 143, 40, 0.45);
+    color: #7a5c10;
+    box-shadow: 0 10px 20px rgba(191, 143, 40, 0.12);
 }
 
 body.light-mode .scroll-btn:hover {
-    background: rgba(96, 165, 250, 0.16);
-    box-shadow: 0 14px 22px rgba(59, 130, 246, 0.16);
+    background: rgba(247, 215, 116, 0.22);
+    box-shadow: 0 14px 22px rgba(191, 143, 40, 0.22);
 }
 
 body.light-mode .certificate-item {
-    background: linear-gradient(135deg, rgba(219, 234, 254, 0.82), rgba(220, 252, 231, 0.8));
-    border-color: rgba(148, 163, 184, 0.18);
+    background: linear-gradient(135deg, rgba(247, 215, 116, 0.4), rgba(212, 175, 55, 0.22));
+    border-color: rgba(191, 143, 40, 0.25);
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
 }
 
 body.light-mode .certificate-item:nth-child(1) {
-    background: linear-gradient(135deg, rgba(191, 219, 254, 0.9), rgba(187, 247, 208, 0.9));
+    background: linear-gradient(135deg, rgba(247, 215, 116, 0.5), rgba(212, 175, 55, 0.28));
 }
 
 body.light-mode .certificate-item:nth-child(2) {
-    background: linear-gradient(135deg, rgba(221, 214, 254, 0.9), rgba(191, 219, 254, 0.9));
+    background: linear-gradient(135deg, rgba(255, 233, 163, 0.5), rgba(212, 175, 55, 0.24));
 }
 
 body.light-mode .certificate-item:nth-child(3) {
-    background: linear-gradient(135deg, rgba(254, 240, 138, 0.8), rgba(254, 205, 211, 0.8));
+    background: linear-gradient(135deg, rgba(255, 199, 87, 0.4), rgba(191, 143, 40, 0.24));
 }
 
 body.light-mode .certificate-item:hover {
-    border-color: rgba(2, 132, 199, 0.35);
-    box-shadow: 0 14px 22px rgba(56, 189, 248, 0.12);
+    border-color: rgba(191, 143, 40, 0.6);
+    box-shadow: 0 14px 24px rgba(212, 175, 55, 0.2);
 }
 
 body.light-mode .certificate-btn.view {
-    background: rgba(56, 189, 248, 0.12);
-    border-color: rgba(2, 132, 199, 0.32);
-    color: #0f4c81;
+    background: rgba(212, 175, 55, 0.14);
+    border-color: rgba(191, 143, 40, 0.45);
+    color: #7a5c10;
 }
 
 body.light-mode .certificate-btn.download {
-    background: rgba(34, 197, 94, 0.12);
-    border-color: rgba(22, 163, 74, 0.32);
-    color: #166534;
+    background: rgba(212, 175, 55, 0.1);
+    border-color: rgba(191, 143, 40, 0.35);
+    color: #7a5c10;
 }
 
 body.light-mode .certificate-btn.view:hover {
-    background: rgba(56, 189, 248, 0.18);
+    background: rgba(212, 175, 55, 0.22);
 }
 
 body.light-mode .certificate-btn.download:hover {
-    background: rgba(34, 197, 94, 0.18);
+    background: rgba(212, 175, 55, 0.18);
 }
 
 body.light-mode .certificate-number {
-    background: rgba(255, 255, 255, 0.9);
-    border-color: rgba(148, 163, 184, 0.18);
-    color: #0f172a;
+    background: rgba(255, 252, 245, 0.9);
+    border-color: rgba(191, 143, 40, 0.28);
+    color: #7a5c10;
 }
 
 body.light-mode .certificate-thumb {
-    border-color: rgba(148, 163, 184, 0.22);
-    background: rgba(255, 255, 255, 0.72);
+    border-color: rgba(191, 143, 40, 0.25);
+    background: rgba(255, 252, 245, 0.75);
 }
 
 body.light-mode .certificate-item.certificate-placeholder .certificate-thumb {
-    border-color: rgba(148, 163, 184, 0.4);
-    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(191, 143, 40, 0.45);
+    background: rgba(255, 252, 245, 0.35);
 }
 
 body.light-mode .certificate-text span {
-    background: rgba(255, 255, 255, 0.8);
-    border-color: rgba(148, 163, 184, 0.18);
-    color: #475569;
+    background: rgba(255, 252, 245, 0.85);
+    border-color: rgba(191, 143, 40, 0.22);
+    color: #5a5445;
 }
 
 body.light-mode .contact-item:hover {
-    color: #0369a1;
-    background: linear-gradient(135deg, rgba(56, 189, 248, 0.14), rgba(191, 219, 254, 0.32));
-    border-color: rgba(2, 132, 199, 0.35);
-    box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.08), 0 10px 22px rgba(2, 132, 199, 0.16);
+    color: #7a5c10;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.16), rgba(247, 215, 116, 0.32));
+    border-color: rgba(191, 143, 40, 0.45);
+    box-shadow: 0 0 0 2px rgba(191, 143, 40, 0.1), 0 10px 22px rgba(191, 143, 40, 0.18);
 }
 
 body.light-mode .settings-dropdown,
@@ -1057,29 +1057,29 @@ body.light-mode .footer-socials .social-link {
 .search-box {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(212, 175, 55, 0.28);
     border-radius: 20px;
     padding: 4px 10px;
     transition: all 0.3s ease;
 }
 
 .search-box:focus-within {
-    border-color: #38bdf8;
-    box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
-    background: rgba(255, 255, 255, 0.1);
+    border-color: #d4af37;
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+    background: rgba(212, 175, 55, 0.06);
 }
 
 .search-match {
-    background: rgba(250, 204, 21, 0.28);
+    background: rgba(212, 175, 55, 0.3);
     border-radius: 6px;
-    box-shadow: inset 0 0 0 1px rgba(250, 204, 21, 0.7);
+    box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.75);
     transition: all 0.2s ease;
 }
 
 body.light-mode .search-match {
-    background: rgba(59, 130, 246, 0.16);
-    box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.45);
+    background: rgba(212, 175, 55, 0.22);
+    box-shadow: inset 0 0 0 1px rgba(191, 143, 40, 0.55);
 }
 
 .search-input {
@@ -1097,13 +1097,13 @@ body.light-mode .search-match {
 }
 
 .search-input::placeholder {
-    color: #94a3b8;
+    color: #8b857b;
 }
 
 .search-btn {
     background: transparent;
     border: none;
-    color: #38bdf8;
+    color: #e8c15a;
     cursor: pointer;
     padding: 4px;
     display: flex;
@@ -1134,11 +1134,11 @@ body.light-mode .search-match {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(56, 189, 248, 0.1);
-    border: 1px solid rgba(56, 189, 248, 0.2);
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.3);
     padding: 6px 14px;
     border-radius: 20px;
-    color: #38bdf8;
+    color: #e8c15a;
     font-size: 0.85rem;
     margin-bottom: 20px;
 }
@@ -1146,8 +1146,9 @@ body.light-mode .search-match {
 .green-dot {
     width: 8px;
     height: 8px;
-    background-color: #07f41b;
+    background-color: #d4af37;
     border-radius: 50%;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.8);
 }
 
 .main-title {
@@ -1158,7 +1159,7 @@ body.light-mode .search-match {
 }
 
 .description {
-    color: #94a3b8;
+    color: #a9a49b;
     line-height: 1.6;
     margin-bottom: 30px;
     font-size: 1rem;
@@ -1179,24 +1180,24 @@ body.light-mode .search-match {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-    color: #0b0f19;
-    box-shadow: 0 8px 20px rgba(14, 165, 233, 0.22);
+    background: linear-gradient(135deg, #f7d774, #d4af37);
+    color: #1a1305;
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.28);
 }
 
 .btn-primary:hover {
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.55);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.65);
     transform: translateY(-2px);
 }
 
 .btn-secondary {
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    color: #e8c15a;
+    background: rgba(212, 175, 55, 0.04);
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(212, 175, 55, 0.12);
 }
 
 /* بلوك البطاقة البصرية: هنا الشكل اللي على اليمين في الهيرو */
@@ -1204,11 +1205,11 @@ body.light-mode .search-match {
 .hero-visual-card {
     flex: 1;
     position: relative;
-    background: linear-gradient(145deg, #111827, #1e293b);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(145deg, #14110f, #1c1815);
+    border: 1px solid rgba(212, 175, 55, 0.22);
     border-radius: 20px;
     padding: 24px;
-    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.22);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
 }
 
 .card-header {
@@ -1220,15 +1221,15 @@ body.light-mode .search-match {
 
 .laptop-icon {
     font-size: 1.5rem;
-    color: #38bdf8;
+    color: #e8c15a;
 }
 
 .badge-status {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(212, 175, 55, 0.1);
     padding: 4px 12px;
     border-radius: 12px;
     font-size: 0.8rem;
-    color: #94a3b8;
+    color: #a9a49b;
 }
 
 .skills-grid {
@@ -1248,7 +1249,7 @@ body.light-mode .search-match {
 }
 
 .skill-box i {
-    color: #38bdf8;
+    color: #e8c15a;
 }
 
 .skill-box h4 {
@@ -1258,11 +1259,11 @@ body.light-mode .search-match {
 
 .skill-box span {
     font-size: 0.75rem;
-    color: #64748b;
+    color: #8b857b;
 }
 
 .card-footer-motto {
-    color: #64748b;
+    color: #8b857b;
     font-size: 0.85rem;
     display: flex;
     align-items: center;
@@ -1289,16 +1290,16 @@ body.light-mode .search-match {
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-    background: linear-gradient(135deg, rgba(17, 24, 39, 0.96), rgba(15, 23, 42, 0.85));
-    border: 1px solid rgba(148, 163, 184, 0.18);
+    background: linear-gradient(135deg, rgba(20, 17, 15, 0.96), rgba(10, 9, 12, 0.85));
+    border: 1px solid rgba(212, 175, 55, 0.22);
     border-radius: 18px;
     padding: 24px 28px;
-    box-shadow: 0 16px 30px rgba(15, 23, 42, 0.22);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.5);
 }
 
 .contact-strip-kicker {
     margin: 0 0 6px;
-    color: #38bdf8;
+    color: #e8c15a;
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -1317,8 +1318,8 @@ body.light-mode .search-match {
     justify-content: center;
     padding: 12px 22px;
     border-radius: 10px;
-    background: #38bdf8;
-    color: #0b0f19;
+    background: linear-gradient(135deg, #f7d774, #d4af37);
+    color: #1a1305;
     text-decoration: none;
     font-weight: 700;
     transition: all 0.3s ease;
@@ -1326,7 +1327,7 @@ body.light-mode .search-match {
 
 .contact-strip-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 18px rgba(56, 189, 248, 0.18);
+    box-shadow: 0 12px 22px rgba(212, 175, 55, 0.35);
 }
 
 .portfolio-header {
@@ -1335,7 +1336,7 @@ body.light-mode .search-match {
 
 .section-kicker {
     margin: 0 0 10px;
-    color: #38bdf8;
+    color: #e8c15a;
     font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -1343,23 +1344,23 @@ body.light-mode .search-match {
 }
 
 .project-card {
-    --project-primary: #38bdf8;
-    --project-secondary: #7dd3fc;
-    --project-tertiary: #3b82f6;
-    --project-primary-soft: rgba(56, 189, 248, 0.14);
-    --project-primary-soft-2: rgba(59, 130, 246, 0.18);
+    --project-primary: #d4af37;
+    --project-secondary: #f7d774;
+    --project-tertiary: #bf8f28;
+    --project-primary-soft: rgba(212, 175, 55, 0.14);
+    --project-primary-soft-2: rgba(191, 143, 40, 0.18);
     position: relative;
     display: flex;
     align-items: center;
     gap: 28px;
-    background: linear-gradient(135deg, rgba(17, 24, 39, 0.38), rgba(15, 23, 42, 0.26));
-    border: 1px solid rgba(148, 163, 184, 0.18);
+    background: linear-gradient(135deg, rgba(20, 17, 15, 0.45), rgba(10, 9, 12, 0.3));
+    border: 1px solid rgba(212, 175, 55, 0.22);
     border-radius: 24px;
     /* مساحة على الجوانب عشان أسهم التنقل ما تغطيش المحتوى */
     padding: 28px 74px;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 18px 35px rgba(15, 23, 42, 0.28);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.55);
 }
 
 /* أزرار التنقل: بتتحط فوق صورة المعاينة على الأطراف (مش فوق النص) */
@@ -1370,17 +1371,17 @@ body.light-mode .search-match {
     width: 42px;
     height: 42px;
     border-radius: 50%;
-    border: 1px solid rgba(56, 189, 248, 0.55);
-    background: rgba(15, 23, 42, 0.72);
+    border: 1px solid rgba(212, 175, 55, 0.6);
+    background: rgba(10, 9, 12, 0.78);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    color: #e0f2fe;
+    color: #f7d774;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.35);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
     z-index: 5;
 }
 
@@ -1416,9 +1417,9 @@ body.light-mode .search-match {
 
 .project-nav-btn:hover {
     transform: translateY(-50%) scale(1.08);
-    background: rgba(56, 191, 248, 0.18);
-    color: #fcfdff;
-    box-shadow: 0 14px 24px rgba(56, 189, 248, 0.35);
+    background: rgba(212, 175, 55, 0.22);
+    color: #fff8e1;
+    box-shadow: 0 14px 24px rgba(212, 175, 55, 0.4);
 }
 
 .project-arrow {
@@ -1439,7 +1440,7 @@ body.light-mode .search-match {
     padding: 6px 12px;
     border-radius: 999px;
     background: var(--project-primary-soft);
-    border: 1px solid rgba(56, 189, 248, 0.35);
+    border: 1px solid rgba(212, 175, 55, 0.45);
     color: var(--project-secondary);
     font-size: 0.72rem;
     font-weight: 700;
@@ -1455,7 +1456,7 @@ body.light-mode .search-match {
 
 .project-info p {
     margin: 0;
-    color: #94a3b8;
+    color: #a9a49b;
     line-height: 1.7;
     font-size: 1rem;
 }
@@ -1481,26 +1482,26 @@ body.light-mode .search-match {
 }
 
 .project-btn.primary {
-    background: var(--project-primary);
-    color: #0b0f19;
+    background: linear-gradient(135deg, #f7d774, #d4af37);
+    color: #1a1305;
 }
 
 .project-btn.secondary {
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    color: #e8c15a;
+    background: rgba(212, 175, 55, 0.04);
 }
 
 .project-btn.change {
-    border: 1px solid rgba(56, 189, 248, 0.45);
-    background: rgba(56, 189, 248, 0.12);
-    color: #e0f2fe;
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    background: rgba(212, 175, 55, 0.12);
+    color: #f7d774;
     cursor: pointer;
 }
 
 .project-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 18px rgba(56, 189, 248, 0.18);
+    box-shadow: 0 12px 18px rgba(212, 175, 55, 0.3);
 }
 
 .project-preview {
@@ -1514,11 +1515,11 @@ body.light-mode .search-match {
 .preview-window {
     position: relative;
     width: min(100%, 520px);
-    background: rgba(15, 23, 42, 0.95);
-    border: 1px solid rgba(148, 163, 184, 0.22);
+    background: rgba(10, 9, 12, 0.96);
+    border: 1px solid rgba(212, 175, 55, 0.25);
     border-radius: 18px;
     padding: 14px;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02), 0 18px 40px rgba(2, 6, 23, 0.45);
+    box-shadow: inset 0 0 0 1px rgba(212,175,55,0.04), 0 18px 40px rgba(0, 0, 0, 0.6);
     overflow: hidden;
 }
 
@@ -1532,9 +1533,9 @@ body.light-mode .search-match {
     object-fit: cover;
     object-position: top center;
     border-radius: 12px;
-    border: 1px solid rgba(148, 163, 184, 0.22);
-    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.35);
-    background: #0b0f19;
+    border: 1px solid rgba(212, 175, 55, 0.22);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.55);
+    background: #07060a;
     z-index: 2;
 }
 
@@ -1554,7 +1555,7 @@ body.light-mode .search-match {
     width: 24%;
     border-radius: 12px;
     background: linear-gradient(180deg, var(--project-primary-soft), var(--project-primary-soft-2));
-    border: 1px solid rgba(56, 189, 248, 0.2);
+    border: 1px solid rgba(212, 175, 55, 0.28);
 }
 
 .preview-content {
@@ -1567,7 +1568,7 @@ body.light-mode .search-match {
 .preview-line {
     height: 14px;
     border-radius: 999px;
-    background: linear-gradient(90deg, var(--project-primary), rgba(148, 163, 184, 0.15));
+    background: linear-gradient(90deg, var(--project-primary), rgba(148, 163, 184, 0.12));
 }
 
 .preview-line.short { width: 45%; }
@@ -1586,7 +1587,7 @@ body.light-mode .search-match {
     height: 78px;
     border-radius: 12px;
     background: linear-gradient(135deg, var(--project-primary-soft), var(--project-primary-soft-2));
-    border: 1px solid rgba(148, 163, 184, 0.18);
+    border: 1px solid rgba(212, 175, 55, 0.22);
 }
 
 .about-section {
@@ -1611,7 +1612,7 @@ body.light-mode .search-match {
     left: 0;
     width: 50%;
     height: 3px;
-    background: #38bdf8;
+    background: linear-gradient(90deg, #f7d774, #d4af37);
     border-radius: 2px;
 }
 
@@ -1627,8 +1628,8 @@ body.light-mode .search-match {
 /* ==================== 6.2. كروت About Me ==================== */
 /* كل كارت داخل About Me: بيحمل عنوانًا ووصفًا ومناسبة خاصة له */
 .about-card {
-    background: linear-gradient(135deg, rgba(17, 24, 39, 0.38), rgba(15, 23, 42, 0.26));
-    border: 1px solid rgba(148, 163, 184, 0.18);
+    background: linear-gradient(135deg, rgba(20, 17, 15, 0.45), rgba(10, 9, 12, 0.3));
+    border: 1px solid rgba(212, 175, 55, 0.2);
     padding: 28px;
     border-radius: 16px;
     transition: all 0.3s ease;
@@ -1636,26 +1637,26 @@ body.light-mode .search-match {
     overflow: hidden;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.10);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
 .about-card::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.16), transparent 35%);
+    background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.16), transparent 36%);
     pointer-events: none;
 }
 
 .about-card:hover {
-    border-color: rgba(56, 189, 248, 0.7);
+    border-color: rgba(212, 175, 55, 0.75);
     transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 24px rgba(212, 175, 55, 0.12);
 }
 
 .about-card .icon {
     font-size: 2rem;
-    color: #38bdf8;
+    color: #e8c15a;
     margin-bottom: 16px;
 }
 
@@ -1666,7 +1667,7 @@ body.light-mode .search-match {
 }
 
 .about-card p {
-    color: #94a3b8;
+    color: #a9a49b;
     font-size: 0.95rem;
     line-height: 1.6;
     margin: 0;
@@ -1676,8 +1677,8 @@ body.light-mode .search-match {
 /* ==================== 10. Footer / التواصل النهائي ==================== */
 /* جزء الفوتر في النهاية: فيه بيانات التواصل وروابط السوشيال ميديا */
 .footer-section {
-    background-color: #0d111d;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: #0a090c;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
     padding: 40px 8% 20px;
     margin-top: 60px;
 }
@@ -1700,7 +1701,7 @@ body.light-mode .search-match {
 }
 
 .footer-quote {
-    color: #94a3b8;
+    color: #a9a49b;
     font-size: 0.88rem;
     margin: 0;
 }
@@ -1712,7 +1713,7 @@ body.light-mode .search-match {
 }
 
 .contact-item {
-    color: #94a3b8;
+    color: #a9a49b;
     text-decoration: none;
     font-size: 0.9rem;
     display: flex;
@@ -1725,14 +1726,14 @@ body.light-mode .search-match {
 }
 
 .contact-item i {
-    color: #09b2e5;
+    color: #e8c15a;
 }
 
 .contact-item:hover {
-    color: #0f172a;
-    background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(147, 197, 253, 0.12));
-    border-color: rgba(56, 189, 248, 0.35);
-    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.12), 0 8px 18px rgba(56, 189, 248, 0.18);
+    color: #f7d774;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.18), rgba(191, 143, 40, 0.12));
+    border-color: rgba(212, 175, 55, 0.45);
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.12), 0 8px 18px rgba(212, 175, 55, 0.22);
     transform: translateY(-2px);
 }
 
@@ -1741,10 +1742,10 @@ body.light-mode .contact-item {
 }
 
 body.light-mode .contact-item:hover {
-    color: #0369a1;
-    background: linear-gradient(135deg, rgba(56, 189, 248, 0.14), rgba(191, 219, 254, 0.3));
-    border-color: rgba(2, 132, 199, 0.35);
-    box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.08), 0 10px 22px rgba(2, 132, 199, 0.16);
+    color: #7a5c10;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.16), rgba(247, 215, 116, 0.3));
+    border-color: rgba(191, 143, 40, 0.45);
+    box-shadow: 0 0 0 2px rgba(191, 143, 40, 0.1), 0 10px 22px rgba(191, 143, 40, 0.18);
 }
 
 .contact-item.whatsapp i {
@@ -1762,8 +1763,8 @@ body.light-mode .contact-item:hover {
     padding: 24px 20px;
     text-align: center;
     border-radius: 20px;
-    background: linear-gradient(135deg, rgba(56, 189, 248, 0.07), rgba(59, 130, 246, 0.05));
-    border: 1px solid rgba(56, 189, 248, 0.16);
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.09), rgba(191, 143, 40, 0.05));
+    border: 1px solid rgba(212, 175, 55, 0.24);
 }
 
 .footer-social-title {
@@ -1777,7 +1778,7 @@ body.light-mode .contact-item:hover {
 .footer-social-subtitle {
     margin: 0 auto 20px;
     max-width: 520px;
-    color: #94a3b8;
+    color: #a9a49b;
     font-size: 0.88rem;
     line-height: 1.6;
 }
@@ -1797,8 +1798,8 @@ body.light-mode .contact-item:hover {
     gap: 9px;
     padding: 10px 18px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(212, 175, 55, 0.2);
     color: #e2e8f0;
     text-decoration: none;
     font-size: 0.88rem;
@@ -1812,7 +1813,7 @@ body.light-mode .contact-item:hover {
 
 /* كل موقع بلونه الأصلي عشان يميّز نفسه */
 .footer-socials .social-link.linkedin i {
-    color: #0a9bdc;
+    color: #e8c15a;
 }
 
 .footer-socials .social-link.facebook i {
@@ -1830,10 +1831,10 @@ body.light-mode .contact-item:hover {
 /* عند المرور: اللينك يترفع شوية ولوحته تنوّر */
 .footer-socials .social-link:hover {
     transform: translateY(-3px);
-    background: rgba(56, 189, 248, 0.14);
-    border-color: rgba(56, 189, 248, 0.45);
+    background: rgba(212, 175, 55, 0.16);
+    border-color: rgba(212, 175, 55, 0.55);
     color: #ffffff;
-    box-shadow: 0 10px 22px rgba(56, 189, 248, 0.2);
+    box-shadow: 0 10px 22px rgba(212, 175, 55, 0.3);
 }
 
 /* ==================== 10.2. آخر سطر في الفوتر ==================== */
@@ -1841,16 +1842,16 @@ body.light-mode .contact-item:hover {
     max-width: 1400px;
     margin: 0 auto;
     text-align: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(212, 175, 55, 0.12);
     padding-top: 22px;
-    color: #64748b;
+    color: #8b857b;
     font-size: 0.8rem;
 }
 
 /* الجملة الكرييتف: بلون مميز عشان تبان */
 .footer-credo {
     margin: 0 0 10px;
-    color: #7dd3fc;
+    color: #e8c15a;
     font-size: 0.95rem;
     font-weight: 600;
     font-style: italic;
@@ -1860,13 +1861,13 @@ body.light-mode .contact-item:hover {
 /* سطر الحقوق */
 .footer-rights {
     margin: 0 0 6px;
-    color: #94a3b8;
+    color: #a9a49b;
 }
 
 /* سطر التوقيع في الآخر */
 .footer-signature {
     margin: 0;
-    color: #64748b;
+    color: #8b857b;
     font-size: 0.76rem;
 }
 
@@ -1877,14 +1878,14 @@ body.light-mode .contact-item:hover {
     grid-column: 1 / -1;
     position: relative;
     overflow: hidden;
-    background: linear-gradient(145deg, rgba(17, 24, 39, 0.96), rgba(15, 23, 42, 0.85));
+    background: linear-gradient(145deg, rgba(20, 17, 15, 0.97), rgba(10, 9, 12, 0.88));
 }
 
 .about-card.certificates-card::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.18), transparent 35%);
+    background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.18), transparent 36%);
     pointer-events: none;
 }
 
@@ -1908,16 +1909,16 @@ body.light-mode .contact-item:hover {
     width: 42px;
     height: 42px;
     border-radius: 50%;
-    border: 1px solid rgba(56, 189, 248, 0.55);
-    background: rgba(15, 23, 42, 0.42);
+    border: 1px solid rgba(212, 175, 55, 0.6);
+    background: rgba(10, 9, 12, 0.5);
     backdrop-filter: blur(8px);
-    color: #e0f2fe;
+    color: #f7d774;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.25);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
     pointer-events: auto;
 }
 
@@ -1927,8 +1928,8 @@ body.light-mode .contact-item:hover {
 
 .scroll-btn:hover {
     transform: translateY(-2px) scale(1.04);
-    background: rgba(56, 189, 248, 0.24);
-    box-shadow: 0 14px 20px rgba(56, 189, 248, 0.18);
+    background: rgba(212, 175, 55, 0.28);
+    box-shadow: 0 14px 22px rgba(212, 175, 55, 0.3);
 }
 
 .scroll-btn:hover i {
@@ -1968,7 +1969,7 @@ body.light-mode .contact-item:hover {
 }
 
 .certificates-list::-webkit-scrollbar-thumb {
-    background: rgba(56, 189, 248, 0.5);
+    background: rgba(212, 175, 55, 0.55);
     border-radius: 999px;
 }
 
@@ -1981,8 +1982,8 @@ body.light-mode .contact-item:hover {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    background: linear-gradient(135deg, rgba(34, 197, 94, 0.18), rgba(59, 130, 246, 0.12));
-    border: 1px solid rgba(148, 163, 184, 0.18);
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.18), rgba(191, 143, 40, 0.12));
+    border: 1px solid rgba(212, 175, 55, 0.24);
     border-radius: 14px;
     padding: 10px;
     transition: all 0.3s ease;
@@ -1992,22 +1993,22 @@ body.light-mode .contact-item:hover {
 }
 
 .certificate-item:nth-child(1) {
-    background: linear-gradient(135deg, rgba(34, 197, 94, 0.22), rgba(59, 130, 246, 0.18));
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.24), rgba(191, 143, 40, 0.16));
 }
 
 .certificate-item:nth-child(2) {
-    background: linear-gradient(135deg, rgba(96, 165, 250, 0.22), rgba(168, 85, 247, 0.18));
+    background: linear-gradient(135deg, rgba(247, 215, 116, 0.2), rgba(191, 143, 40, 0.18));
 }
 
 .certificate-item:nth-child(3) {
-    background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(244, 63, 94, 0.18));
+    background: linear-gradient(135deg, rgba(255, 199, 87, 0.2), rgba(120, 90, 20, 0.22));
 }
 
 .certificate-item::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(56, 189, 248, 0.08), transparent 40%);
+    background: linear-gradient(180deg, rgba(212, 175, 55, 0.1), transparent 40%);
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -2042,15 +2043,15 @@ body.light-mode .contact-item:hover {
 }
 
 .move-btn:hover {
-    background: rgba(56, 189, 248, 0.18);
-    border-color: rgba(56, 189, 248, 0.5);
+    background: rgba(212, 175, 55, 0.22);
+    border-color: rgba(212, 175, 55, 0.55);
     transform: translateY(-1px);
 }
 
 .certificate-item:hover {
-    border-color: rgba(56, 189, 248, 0.7);
+    border-color: rgba(212, 175, 55, 0.75);
     transform: translateY(-4px);
-    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.28);
+    box-shadow: 0 18px 32px rgba(0, 0, 0, 0.45), 0 0 22px rgba(212, 175, 55, 0.14);
 }
 
 .certificate-item:hover::after {
@@ -2061,9 +2062,9 @@ body.light-mode .contact-item:hover {
     width: 36px;
     height: 36px;
     border-radius: 10px;
-    background: rgba(56, 189, 248, 0.12);
-    border: 1px solid rgba(56, 189, 248, 0.25);
-    color: #38bdf8;
+    background: rgba(212, 175, 55, 0.14);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: #e8c15a;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2079,16 +2080,16 @@ body.light-mode .contact-item:hover {
     min-width: 30px;
     height: 30px;
     border-radius: 10px;
-    background: rgba(15, 23, 42, 0.68);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    color: #f8fafc;
+    background: rgba(10, 9, 12, 0.72);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    color: #f7d774;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.7rem;
     font-weight: 800;
     letter-spacing: 0.08em;
-    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.25);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
     z-index: 2;
 }
 
@@ -2117,8 +2118,8 @@ body.light-mode .contact-item:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(250, 204, 21, 0.18), rgba(248, 113, 113, 0.14));
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(191, 143, 40, 0.16));
+    border: 1px solid rgba(212, 175, 55, 0.28);
 }
 
 .certificate-placeholder-text {
@@ -2194,28 +2195,28 @@ body.light-mode .contact-item:hover {
 }
 
 .certificate-btn.view {
-    background: rgba(56, 189, 248, 0.14);
-    border-color: rgba(56, 189, 248, 0.45);
-    color: #e0f2fe;
+    background: rgba(212, 175, 55, 0.16);
+    border-color: rgba(212, 175, 55, 0.5);
+    color: #f7d774;
 }
 
 .certificate-btn.download {
-    background: rgba(34, 197, 94, 0.14);
-    border-color: rgba(34, 197, 94, 0.45);
-    color: #dcfce7;
+    background: rgba(212, 175, 55, 0.1);
+    border-color: rgba(212, 175, 55, 0.38);
+    color: #e8c15a;
 }
 
 .certificate-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 18px rgba(15, 23, 42, 0.18);
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.35);
 }
 
 .certificate-btn.view:hover {
-    background: rgba(56, 189, 248, 0.22);
+    background: rgba(212, 175, 55, 0.26);
 }
 
 .certificate-btn.download:hover {
-    background: rgba(34, 197, 94, 0.22);
+    background: rgba(212, 175, 55, 0.2);
 }
 
 .certificate-text h4 {
@@ -2225,10 +2226,10 @@ body.light-mode .contact-item:hover {
 }
 
 .certificate-text span {
-    color: #94a3b8;
+    color: #a9a49b;
     font-size: 0.68rem;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(212, 175, 55, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.18);
     border-radius: 999px;
     padding: 3px 6px;
 }
@@ -2327,10 +2328,10 @@ body.light-mode .contact-item:hover {
 /* === تأثير الهوفر الخيالي (Glow Effect & Neon Flare) === */
 .tech-card-slim:hover {
   transform: translateY(-4px) scale(1.05);
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(0, 210, 255, 0.5);
-  box-shadow: 0 0 20px rgba(0, 210, 255, 0.35),
-              0 0 40px rgba(0, 210, 255, 0.1);
+  background: rgba(212, 175, 55, 0.12);
+  border-color: rgba(212, 175, 55, 0.55);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4),
+              0 0 40px rgba(212, 175, 55, 0.12);
 }
 
 .tech-card-slim:hover .tech-logo {
@@ -2383,7 +2384,7 @@ body.light-mode .contact-item:hover {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  cursor: pointer;                               
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2394,10 +2395,10 @@ body.light-mode .contact-item:hover {
 }
 
 .slider-btn:hover {
-  background: rgba(0, 210, 255, 0.25); /* خلفية أزرق نيون شفافة */
-  color: #00d2ff; /* لون السهم أزرق نيون */
-  border-color: #00d2ff;
-  box-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
+  background: rgba(212, 175, 55, 0.25); /* خلفية ذهبي شفافة */
+  color: #e8c15a; /* لون السهم ذهبي */
+  border-color: #d4af37;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.65);
     transform: scale(1.1);
 }
 
@@ -2575,7 +2576,7 @@ body.light-mode .contact-item:hover {
      left: -6px;
      right: -6px;
      bottom: -6px;
-     background: linear-gradient(135deg, #00f2fe 0%, #6d28d9 100%);
+     background: linear-gradient(135deg, #f7d774 0%, #bf8f28 100%);
      border-radius: 24px;
      filter: blur(18px);
      opacity: 0.5;
@@ -2595,7 +2596,7 @@ body.light-mode .contact-item:hover {
      object-fit: cover;
      object-position: center;
      border-radius: 18px;
-     border: 1px solid rgba(0, 242, 254, 0.35);
+     border: 1px solid rgba(212, 175, 55, 0.45);
      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
  }
 
@@ -2604,11 +2605,11 @@ body.light-mode .contact-item:hover {
      position: relative;
      width: 100%;
      flex: none;
-     background: linear-gradient(145deg, rgba(17, 24, 39, 0.85), rgba(15, 23, 42, 0.72));
-     border: 1px solid rgba(255, 255, 255, 0.1);
+     background: linear-gradient(145deg, rgba(20, 17, 15, 0.9), rgba(10, 9, 12, 0.78));
+     border: 1px solid rgba(212, 175, 55, 0.22);
      border-radius: 20px;
      padding: 28px 32px;
-     box-shadow: 0 18px 40px rgba(15, 23, 42, 0.35);
+     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
      backdrop-filter: blur(10px);
      -webkit-backdrop-filter: blur(10px);
      overflow: hidden;
@@ -2621,7 +2622,7 @@ body.light-mode .contact-item:hover {
      right: -10%;
      width: 320px;
      height: 320px;
-     background: radial-gradient(circle, rgba(56, 189, 248, 0.18), transparent 65%);
+     background: radial-gradient(circle, rgba(212, 175, 55, 0.2), transparent 65%);
      filter: blur(10px);
      pointer-events: none;
      z-index: 0;
@@ -2640,7 +2641,7 @@ body.light-mode .contact-item:hover {
 
  .card-text {
      margin: 0;
-     color: #94a3b8;
+     color: #a9a49b;
      font-size: 0.95rem;
      line-height: 1.6;
  }
@@ -2671,45 +2672,45 @@ body.light-mode .contact-item:hover {
 
  /* 1. الزر الرئيسي (View Work) */
  .btn-primary {
-     background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-     color: #0b0f19;
-     border: 1px solid #38bdf8;
-     box-shadow: 0 8px 20px rgba(14, 165, 233, 0.22);
+     background: linear-gradient(135deg, #f7d774, #d4af37);
+     color: #1a1305;
+     border: 1px solid #d4af37;
+     box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
  }
 
  .btn-primary:hover {
-     background: linear-gradient(135deg, #7dd3fc, #38bdf8);
-     border-color: #7dd3fc;
-     color: #0b0f19;
-     box-shadow: 0 0 15px rgba(56, 189, 248, 0.55);
+     background: linear-gradient(135deg, #ffe9a3, #f7d774);
+     border-color: #f7d774;
+     color: #1a1305;
+     box-shadow: 0 0 20px rgba(212, 175, 55, 0.65);
      transform: translateY(-2px);
  }
 
  /* 2. الزر الثانوي (Let's Talk) */
  .btn-secondary {
-     background-color: rgba(255, 255, 255, 0.05);
-     color: #ffffff;
-     border: 1px solid rgba(255, 255, 255, 0.2);
+     background-color: rgba(212, 175, 55, 0.05);
+     color: #e8c15a;
+     border: 1px solid rgba(212, 175, 55, 0.35);
  }
 
  .btn-secondary:hover {
-     background-color: rgba(255, 255, 255, 0.15);
-     border-color: rgba(56, 189, 248, 0.4);
+     background-color: rgba(212, 175, 55, 0.15);
+     border-color: rgba(212, 175, 55, 0.6);
      transform: translateY(-2px);
  }
 
  /* 3. زر تنزيل الـ CV (Download CV) */
  .btn-tertiary {
      background-color: transparent;
-     color: #00f2fe;
-     border: 1px solid rgba(0, 242, 254, 0.4);
+     color: #d4af37;
+     border: 1px solid rgba(212, 175, 55, 0.45);
  }
 
  .btn-tertiary:hover {
-     background-color: rgba(0, 242, 254, 0.1);
-     border-color: #00f2fe;
-     color: #ffffff;
-     box-shadow: 0 0 12px rgba(0, 242, 254, 0.3);
+     background-color: rgba(212, 175, 55, 0.12);
+     border-color: #d4af37;
+     color: #f7d774;
+     box-shadow: 0 0 14px rgba(212, 175, 55, 0.4);
      transform: translateY(-2px);
  }
 
@@ -2766,11 +2767,11 @@ body.light-mode .contact-item:hover {
 .contact-container {
     max-width: 800px; /* عرض مناسب ونظامي للنموذج */
     margin: 0 auto;
-    background: rgba(13, 19, 26, 0.75);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(13, 12, 16, 0.82);
+    border: 1px solid rgba(212, 175, 55, 0.22);
     border-radius: 24px;
     padding: 40px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.55);
     backdrop-filter: blur(12px);
 }
 
@@ -2786,7 +2787,7 @@ body.light-mode .contact-item:hover {
 }
 
 .contact-header p {
-    color: #94a3b8;
+    color: #a9a49b;
     font-size: 0.95rem;
 }
 
@@ -2827,9 +2828,9 @@ body.light-mode .contact-item:hover {
 
 .form-group input:focus,
 .form-group textarea:focus {
-    border-color: #00f2fe;
-    background: rgba(255, 255, 255, 0.06);
-    box-shadow: 0 0 12px rgba(0, 242, 254, 0.25);
+    border-color: #d4af37;
+    background: rgba(212, 175, 55, 0.05);
+    box-shadow: 0 0 14px rgba(212, 175, 55, 0.3);
 }
 
 .form-group textarea {
@@ -2844,8 +2845,8 @@ body.light-mode .contact-item:hover {
     gap: 10px;
     width: 100%;
     padding: 14px;
-    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
-    color: #0d131a;
+    background: linear-gradient(135deg, #f7d774 0%, #d4af37 100%);
+    color: #1a1305;
     font-size: 1rem;
     font-weight: 600;
     border: none;
@@ -2856,8 +2857,8 @@ body.light-mode .contact-item:hover {
 }
 
 .btn-submit:hover {
-    opacity: 0.9;
-    box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+    opacity: 0.92;
+    box-shadow: 0 0 22px rgba(212, 175, 55, 0.5);
     transform: translateY(-2px);
 }
 
@@ -2887,7 +2888,7 @@ body.light-mode .contact-item:hover {
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: #0b0f19; /* نفس لون خلفية الموقع */
+    background-color: #07060a; /* نفس لون خلفية الموقع */
     z-index: 99999; /* لضمان ظهورها فوق الهيدر وكل العناصر */
     display: flex;
     justify-content: center;
@@ -2944,8 +2945,8 @@ body.light-mode .contact-item:hover {
 /* ==================== شاشة التحميل (Preloader · Space Theme) ==================== */
 .space-theme {
     background:
-        radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.10), transparent 45%),
-        linear-gradient(160deg, #070b14, #0b0f19 55%, #0a1120);
+        radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.12), transparent 45%),
+        linear-gradient(160deg, #050408, #07060a 55%, #0d0b06);
 }
 
 .loader-content {
@@ -2963,9 +2964,9 @@ body.light-mode .contact-item:hover {
     inset: -200px;
     background-image:
         radial-gradient(1.5px 1.5px at 20% 30%, rgba(255, 255, 255, 0.85), transparent),
-        radial-gradient(1.5px 1.5px at 70% 60%, rgba(125, 211, 252, 0.9), transparent),
+        radial-gradient(1.5px 1.5px at 70% 60%, rgba(255, 214, 122, 0.9), transparent),
         radial-gradient(1px 1px at 40% 80%, rgba(255, 255, 255, 0.7), transparent),
-        radial-gradient(1px 1px at 85% 25%, rgba(125, 211, 252, 0.8), transparent),
+        radial-gradient(1px 1px at 85% 25%, rgba(255, 214, 122, 0.8), transparent),
         radial-gradient(1.5px 1.5px at 55% 15%, rgba(255, 255, 255, 0.6), transparent);
     background-size: 300px 300px;
     opacity: 0.7;
@@ -2992,32 +2993,32 @@ body.light-mode .contact-item:hover {
     height: 64px !important;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #38bdf8;
-    box-shadow: 0 0 18px rgba(56, 189, 248, 0.6);
+    border: 2px solid #d4af37;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.7);
     z-index: 2;
 }
 
 .orbit-ring {
     position: absolute;
     border-radius: 50%;
-    border: 1px solid rgba(56, 189, 248, 0.35);
+    border: 1px solid rgba(212, 175, 55, 0.38);
     inset: 0;
 }
 
 .ring-1 {
-    border-top-color: #38bdf8;
+    border-top-color: #d4af37;
     animation: orbitSpin 3s linear infinite;
 }
 
 .ring-2 {
     inset: 8px;
-    border-right-color: #a855f7;
+    border-right-color: #f7d774;
     animation: orbitSpin 4.5s linear infinite reverse;
 }
 
 .ring-3 {
     inset: 16px;
-    border-bottom-color: #22c55e;
+    border-bottom-color: #bf8f28;
     animation: orbitSpin 6s linear infinite;
 }
 
@@ -3029,7 +3030,7 @@ body.light-mode .contact-item:hover {
     position: absolute;
     inset: -20px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(56, 189, 248, 0.30), transparent 65%);
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.35), transparent 65%);
     filter: blur(12px);
     z-index: 1;
     pointer-events: none;
@@ -3049,7 +3050,7 @@ body.light-mode .contact-item:hover {
     width: 40%;
     height: 100%;
     border-radius: 999px;
-    background: linear-gradient(90deg, #38bdf8, #a855f7);
+    background: linear-gradient(90deg, #d4af37, #f7d774);
     animation: statusMove 1.2s ease-in-out infinite;
 }
 
@@ -3115,10 +3116,10 @@ body.light-mode .contact-item:hover {
 /* الواتساب فوق، والمساعد تحت (الأساس) */
 .ai-fab {
     bottom: 24px;
-    border: 1px solid rgba(0, 242, 254, 0.5);
-    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
-    color: #0d131a;
-    box-shadow: 0 12px 28px rgba(0, 242, 254, 0.35), 0 4px 12px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(212, 175, 55, 0.55);
+    background: linear-gradient(135deg, #f7d774 0%, #d4af37 100%);
+    color: #1a1305;
+    box-shadow: 0 12px 28px rgba(212, 175, 55, 0.4), 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 .whatsapp-fab {
@@ -3131,7 +3132,7 @@ body.light-mode .contact-item:hover {
 
 .ai-fab:hover {
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 18px 34px rgba(0, 242, 254, 0.45), 0 6px 16px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 18px 34px rgba(212, 175, 55, 0.5), 0 6px 16px rgba(0, 0, 0, 0.5);
 }
 
 .whatsapp-fab:hover {
@@ -3177,8 +3178,8 @@ body.light-mode .contact-item:hover {
     width: 11px;
     height: 11px;
     border-radius: 50%;
-    background: #22c55e;
-    border: 2px solid #0d131a;
+    background: #f7d774;
+    border: 2px solid #1a1305;
     animation: ai-pulse 2s ease-in-out infinite;
 }
 
@@ -3187,8 +3188,8 @@ body.light-mode .contact-item:hover {
 }
 
 @keyframes ai-pulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.55); }
-    50%      { box-shadow: 0 0 0 7px rgba(34, 197, 94, 0); }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6); }
+    50%      { box-shadow: 0 0 0 7px rgba(212, 175, 55, 0); }
 }
 
 /* --- لوحة الشات: بتفتح فوق الزر --- */
@@ -3200,10 +3201,10 @@ body.light-mode .contact-item:hover {
     max-height: min(560px, calc(100vh - 130px));
     overflow-y: auto;
     padding: 22px;
-    background: rgba(13, 19, 26, 0.97);
-    border: 1px solid rgba(0, 242, 254, 0.28);
+    background: rgba(13, 12, 16, 0.97);
+    border: 1px solid rgba(212, 175, 55, 0.32);
     border-radius: 22px;
-    box-shadow: 0 24px 60px rgba(2, 6, 23, 0.6);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(212, 175, 55, 0.08);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     box-sizing: border-box;
@@ -3253,10 +3254,10 @@ body.light-mode .contact-item:hover {
     align-items: center;
     justify-content: center;
     border-radius: 14px;
-    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
-    color: #0d131a;
+    background: linear-gradient(135deg, #f7d774 0%, #d4af37 100%);
+    color: #1a1305;
     font-size: 1.25rem;
-    box-shadow: 0 0 18px rgba(0, 242, 254, 0.35);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.45);
 }
 
 .ai-header-text h3 {
@@ -3268,7 +3269,7 @@ body.light-mode .contact-item:hover {
 
 .ai-header-text p {
     margin: 0;
-    color: #94a3b8;
+    color: #a9a49b;
     font-size: 0.82rem;
     line-height: 1.5;
 }
@@ -3300,9 +3301,9 @@ body.light-mode .contact-item:hover {
 }
 
 .ai-input:focus {
-    border-color: #00f2fe;
-    background: rgba(255, 255, 255, 0.06);
-    box-shadow: 0 0 12px rgba(0, 242, 254, 0.25);
+    border-color: #d4af37;
+    background: rgba(212, 175, 55, 0.06);
+    box-shadow: 0 0 14px rgba(212, 175, 55, 0.3);
 }
 
 /* الزر: بيستخدم نفس تدرّج زر إرسال نموذج التواصل */
@@ -3314,8 +3315,8 @@ body.light-mode .contact-item:hover {
     flex: 0 0 auto;
     width: 50px;
     padding: 14px;
-    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
-    color: #0d131a;
+    background: linear-gradient(135deg, #f7d774 0%, #d4af37 100%);
+    color: #1a1305;
     font-size: 0.95rem;
     font-weight: 600;
     font-family: inherit;
@@ -3326,8 +3327,8 @@ body.light-mode .contact-item:hover {
 }
 
 .ai-send-btn:hover:not(:disabled) {
-    opacity: 0.9;
-    box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+    opacity: 0.92;
+    box-shadow: 0 0 22px rgba(212, 175, 55, 0.5);
     transform: translateY(-2px);
 }
 
@@ -3351,8 +3352,8 @@ body.light-mode .contact-item:hover {
     padding: 16px;
     min-height: 60px;
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-left: 3px solid #00f2fe;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-left: 3px solid #d4af37;
     border-radius: 12px;
     color: #cbd5e1;
     font-size: 0.95rem;
@@ -3371,14 +3372,14 @@ body.light-mode .contact-item:hover {
 
 /* الوضع الأبيض */
 body.light-mode .ai-panel {
-    background: rgba(255, 255, 255, 0.97);
-    border-color: rgba(56, 189, 248, 0.35);
-    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
+    background: rgba(255, 252, 245, 0.97);
+    border-color: rgba(191, 143, 40, 0.4);
+    box-shadow: 0 24px 60px rgba(120, 90, 20, 0.2);
 }
 
 body.light-mode .ai-fab {
-    border-color: rgba(2, 132, 199, 0.4);
-    box-shadow: 0 12px 28px rgba(2, 132, 199, 0.28), 0 4px 12px rgba(15, 23, 42, 0.14);
+    border-color: rgba(191, 143, 40, 0.45);
+    box-shadow: 0 12px 28px rgba(191, 143, 40, 0.32), 0 4px 12px rgba(120, 90, 20, 0.16);
 }
 
 body.light-mode .whatsapp-fab {
@@ -3415,10 +3416,10 @@ body.light-mode .ai-input::placeholder {
 }
 
 body.light-mode .response-box {
-    background: rgba(255, 255, 255, 0.85);
-    border-color: rgba(15, 23, 42, 0.1);
-    border-left-color: #0ea5e9;
-    color: #334155;
+    background: rgba(255, 252, 245, 0.85);
+    border-color: rgba(191, 143, 40, 0.18);
+    border-left-color: #d4af37;
+    color: #3a3527;
 }
 
 body.light-mode .response-box.is-error {
@@ -3982,4 +3983,112 @@ body {
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
+}
+/* ============================================================================
+   تفاعل حركة الماوس مع الخلفية (Cursor Glow · Gold Edition)
+   ----------------------------------------------------------------------------
+   فكرتين متكاملتين:
+     1) .cursor-glow      — توهج ذهبي صغير بيكبر شوية وبيلف مع الماوس
+     2) .cursor-spotlight — بقعة إضاءة كبيرة ناعمة بتنوّر المنطقة اللي حواليها
+   الاتنين بيتحركوا من script.js عن طريق متغيرين على الـ body:
+     --cursor-x / --cursor-y   (إحداثيات الماوس بالبكسل)
+     --cursor-active           (0 أو 1 حسب الماوس داخلي/برة الصفحة)
+   ============================================================================ */
+
+/* المتغيرات بتتحط على الـ body عشان العناصر المثبتة (fixed) تقراها */
+body {
+    --cursor-x: 50vw;
+    --cursor-y: 50vh;
+    --cursor-active: 0;
+}
+
+/* --- 1) التوهج الذهبي الصغير اللي بيتبع الماوس --- */
+.cursor-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* بنحرّك العنصر بنص أبعاده سالب عشان نقطة الماوس تبقى في الوسط بالظبط */
+    width: 340px;
+    height: 340px;
+    margin: -170px 0 0 -170px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 214, 122, 0.30) 0%,
+        rgba(212, 175, 55, 0.18) 32%,
+        rgba(212, 175, 55, 0.06) 55%,
+        transparent 72%
+    );
+    /* transform هي الطريقة الأسرع: بتشتغل على كارت الشاشة مش على الـ CPU */
+    transform: translate3d(var(--cursor-x), var(--cursor-y), 0) scale(calc(0.72 + var(--cursor-active) * 0.28));
+    opacity: calc(0.35 + var(--cursor-active) * 0.65);
+    filter: blur(20px);
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.35s ease, transform 0.18s ease-out;
+    will-change: transform, opacity;
+}
+
+/* --- 2) بقعة الإضاءة الكبيرة الناعمة (زي الكشاف) --- */
+.cursor-spotlight {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 760px;
+    height: 760px;
+    margin: -380px 0 0 -380px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(212, 175, 55, 0.10) 0%,
+        rgba(212, 175, 55, 0.05) 38%,
+        transparent 68%
+    );
+    transform: translate3d(var(--cursor-x), var(--cursor-y), 0);
+    opacity: calc(var(--cursor-active) * 0.9);
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.55s ease;
+    will-change: transform, opacity;
+}
+
+/* الطبقتين دول خلف كل المحتوى، والهيدر والنصوص فوقهم عادي */
+body > .cursor-spotlight,
+body > .cursor-glow {
+    z-index: 0;
+}
+
+/* الوضع الفاتح (light-mode): توهج ذهبي أهدى شوية عشان ميبقاش قوي على الأبيض */
+body.light-mode .cursor-glow {
+    background: radial-gradient(
+        circle,
+        rgba(191, 143, 40, 0.24) 0%,
+        rgba(212, 175, 55, 0.14) 34%,
+        transparent 70%
+    );
+}
+
+body.light-mode .cursor-spotlight {
+    background: radial-gradient(
+        circle,
+        rgba(191, 143, 40, 0.12) 0%,
+        rgba(212, 175, 55, 0.06) 40%,
+        transparent 70%
+    );
+}
+
+/* لو المستخدم مفعّل "تقليل الحركة" في نظامه، بنخفي التوهج ونريّحه */
+@media (prefers-reduced-motion: reduce) {
+    .cursor-glow,
+    .cursor-spotlight {
+        display: none;
+    }
+}
+
+/* على الموبايل والتابلت مفيش ماوس أساسًا — نخفيهم عشان يوفّروا أداء */
+@media (hover: none), (max-width: 600px) {
+    .cursor-glow,
+    .cursor-spotlight {
+        display: none;
+    }
 }

@@ -1,4 +1,4 @@
-﻿/* ============================================================================
+﻿﻿/* ============================================================================
    PORTFOLIO — M & M  |  Moataz Mohamed
    الملف الرئيسي للجافاسكربت (script.js) — مسؤول عن:
      1) الترجمة بين العربية والإنجليزية (Language / i18n)
@@ -269,7 +269,7 @@ const projectData = [
     primaryLink: 'index.html',
     secondaryText: { ar: 'جيت هاب', en: 'GitHub' },
     secondaryLink: 'https://github.com/',
-    previewImage: 'img/d1.png'
+    previewImage: 'img/Screenshot 2026-09-22 133437.png'
   },
 
   /* --- المشروع الثاني: تافرا (متجر أزياء) --- */
@@ -990,6 +990,101 @@ window.addEventListener('error', hidePreloader);
    ============================================================================ */
 applyLanguage(savedLanguage);
 applyTheme(savedTheme === 'light');
+
+/* ============================================================================
+   15.1) تفاعل حركة الماوس مع الخلفية (Cursor Glow)
+   ----------------------------------------------------------------------------
+   بنقرا مكان الماوس وبنسجّله في متغيرات CSS على الـ body:
+     --cursor-x / --cursor-y  →  الإحداثيات بالبكسل
+     --cursor-active          →  1 لو الماوس جوه الشاشة، 0 لو خرج
+   والـ CSS هو اللي بيحرّك التوهج عن طريق transform (أسرع من تغيير top/left).
+   ============================================================================ */
+(function initCursorBackground() {
+  const cursorGlow = document.querySelector('.cursor-glow');
+  const cursorSpotlight = document.querySelector('.cursor-spotlight');
+
+  /* لو العناصر مش موجودة في الصفحة أو الجهاز مش داعم ماوس: نوقف بدري */
+  if (!cursorGlow || !cursorSpotlight) {
+    return;
+  }
+
+  /* جهاز بلمس بس (موبايل/تابلت)؟ نبطل عشان الأداء */
+  if (window.matchMedia('(hover: none)').matches) {
+    return;
+  }
+
+  /* لو المستخدم طالب تقليل الحركة، نحترم رغبته */
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+
+  const root = document.body;
+  let targetX = window.innerWidth / 2;
+  let targetY = window.innerHeight / 2;
+  let currentX = targetX;
+  let currentY = targetY;
+  let hasPointer = false;
+  let frameId = null;
+
+  /* بننقل الحركة من قراءة الماوس للـ DOM جوه requestAnimationFrame،
+     عشان نحدّث الشاشة مرة واحدة في كل فريم بدل كل حركة ماوس */
+  function render() {
+    /* تنعيم الحركة (easing): التوهج بيجري ورا الماوس بنعومة مش بيلزق فيه */
+    currentX += (targetX - currentX) * 0.16;
+    currentY += (targetY - currentY) * 0.16;
+
+    root.style.setProperty('--cursor-x', currentX + 'px');
+    root.style.setProperty('--cursor-y', currentY + 'px');
+
+    /* لو لسه فيه فرق ملحوظ، نكمل الفريم الجاي */
+    if (Math.abs(targetX - currentX) > 0.5 || Math.abs(targetY - currentY) > 0.5) {
+      frameId = requestAnimationFrame(render);
+    } else {
+      frameId = null;
+    }
+  }
+
+  /** تشغيل اللوب لو مش شغال أصلًا (عشان مايبقاش فيه أكتر من لوب واحد) */
+  function scheduleRender() {
+    if (frameId === null) {
+      frameId = requestAnimationFrame(render);
+    }
+  }
+
+  window.addEventListener('mousemove', function (event) {
+    targetX = event.clientX;
+    targetY = event.clientY;
+
+    /* أول حركة: نلزق التوهج في مكان الماوس فورًا بدل ما يجري من نص الشاشة */
+    if (!hasPointer) {
+      hasPointer = true;
+      currentX = targetX;
+      currentY = targetY;
+      root.style.setProperty('--cursor-active', '1');
+    }
+
+    scheduleRender();
+  }, { passive: true });
+
+  /* الماوس خرج من الصفحة: نطفي التوهج */
+  document.addEventListener('mouseleave', function () {
+    root.style.setProperty('--cursor-active', '0');
+  });
+
+  /* رجع تاني: نولّعه */
+  document.addEventListener('mouseenter', function () {
+    root.style.setProperty('--cursor-active', '1');
+  });
+
+  /* لو النافذة اتغير حجمها والماوس برة، نرجّع التوهج للنص */
+  window.addEventListener('resize', function () {
+    if (!hasPointer) {
+      targetX = window.innerWidth / 2;
+      targetY = window.innerHeight / 2;
+      scheduleRender();
+    }
+  }, { passive: true });
+})();
 
 
 
