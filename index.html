@@ -1,47 +1,4 @@
-﻿﻿<!DOCTYPE html>
-<!-- ============================================================================
-     PORTFOLIO — M & M · Moataz Mohamed
-     الملف: index.html  (الصفحة الوحيدة في الموقع)
-     ============================================================================
-
-     الموقع صفحة واحدة (One Page) — كل الأقسام في الملف ده، والتنقل بينها
-     باللينكات الداخلية (#home / #about / #portfolio / #contact).
-
-     ----------------------------------------------------------------------------
-     الملفات اللي الربط بيها
-     ----------------------------------------------------------------------------
-       • 11.css     → ملف التنسيقات الوحيد (في الـ <head>)
-       • script.js  → ملف الجافاسكربت الوحيد (في آخر الـ <body> وعليه defer)
-       • manifest.json / img/... → الميتاداتا والصور
-
-     ----------------------------------------------------------------------------
-     خريطة الملف (بالترتيب)
-     ----------------------------------------------------------------------------
-       <head>  الميتاداتا والخطوط وملفات التنسيق
-       ├─ طبقات الخلفية التفاعلية (شبكة، هالة، مؤشر الماوس المخصص)
-       ├─ شاشة التحميل (Preloader)
-       ├─ شاشة الاسم اللامع (Name Intro)
-       ├─ <header> الشريط العلوي (لوجو + تنقل + بحث + إعدادات)
-       ├─ نافذة تسجيل الدخول + لوحة المطور (منبثقات)
-       ├─ <main id="home">      → قسم الهيرو
-       ├─ <section id="about">   → عني + سلايدر التقنيات + الشهادات
-       ├─ <section id="portfolio"> → كارت المشروع
-       ├─ <section id="contact">   → شريط التواصل + النموذج
-       └─ <footer>            → بياناتي + التواصل الاجتماعي
-
-     ----------------------------------------------------------------------------
-     قاعدة مهمة للتيم (الترجمة)
-     ----------------------------------------------------------------------------
-     أي نص بيظهر للمستخدم بنحط عليه data-i18n="مفتاح"
-     وحقول الإدخال بنحط عليها data-i18n-placeholder="مفتاح"
-
-     والمفتاح ده لازم يكون موجود في script.js (القسم 1) في النسختين:
-       ar: { مفتاح: 'النص العربي' }
-       en: { مفتاح: 'English text' }
-
-     لو نسيت أي واحدة من التلاتة، النص هيفضل زي ما هو أو يطلع فاضي.
-     النصوص الثابتة (زي الإيميل والأسماء) مش محتاجة data-i18n.
-     ============================================================================ -->
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 
@@ -54,7 +11,7 @@
     <meta name="author" content="Moataz Mohamed">
     <meta property="article:author" content="Moataz Mohamed" />
     <meta property="article:published_time" content="2026-09-21T00:00:00+00:00" />
-    <meta property="og:image" content="img/Screenshot 2026-09-22 133437.png">
+
     <!-- وصف محركات البحث (Google) -->
     <meta name="description" content="Explore my secure, interactive web portfolio featuring clean architecture, SonarQube A-Grade quality, dynamic tech stack, and interactive AI modules. Built with HTML5, CSS3, and ES6+ JavaScript.">
     <meta name="keywords" content="Moataz Mohamed, معتز محمد, Frontend Developer, Web Developer, Portfolio, JavaScript, Web Security">
@@ -66,11 +23,11 @@
     <meta property="og:description" content="Explore my secure, interactive web portfolio featuring clean architecture, SonarQube A-Grade quality, dynamic tech stack, and interactive AI modules. Built with HTML5, CSS3, and ES6+ JavaScript." />
     <meta property="og:image" content="https://mtzm2225-ship-it.github.io/portfolio/img/Screenshot%202026-09-21%20163647.png" />
     <meta property="og:image:secure_url" content="https://mtzm2225-ship-it.github.io/portfolio/img/Screenshot%202026-09-21%20163647.png" />
-    <meta property="og:image:type" content="img/Screenshot 2026-09-22 133437.png" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="627" />
     <meta property="og:image:alt" content="Moataz Mohamed Portfolio Preview" />
- 
+
     <!-- Twitter / X Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://mtzm2225-ship-it.github.io/portfolio/" />
@@ -98,10 +55,7 @@
       crossorigin="anonymous" 
       referrerpolicy="no-referrer" />
 
-    <!-- ====================================================================
-         ملف التنسيقات الرئيسي (الوحيد)
-         كل التنسيقات في 11.css — وفيها فهرس كامل في أول الملف
-         ==================================================================== -->
+    <!-- ملف التنسيقات الرئيسي -->
     <link rel="stylesheet" href="11.css">
 
     <!-- Google Analytics (gtag.js) -->
@@ -119,71 +73,9 @@
 <body>
 
     <!-- ====================================================================
-         طبقات الخلفية التفاعلية «الخيالية البرمجية»
-         --------------------------------------------------------------------
-         • .bg-scanlines — خطوط ماسحة بتعدّي ببطء على الخلفية
-         • .bg-grid-glow — شبكة كود بتضيء حوالي الماوس
-         • .cursor-aura  — هالة ذهبية بتجري ورا الماوس
-         • .cursor-ring  — حلقة بتنطق عند الحركة السريعة/الكليك
-
-         كلها pointer-events: none عشان ما تلمسش أي تفاعل،
-         وكلها تحت المحتوى. بتتحرّك من script.js وبتتوقف على الأجهزة اللمسية.
+         (تمت إزالة طبقات توهج الماوس) — الصفحة نضيفة من غير أي عنصر عائم
+         على الجانبين
          ==================================================================== -->
-    <div class="bg-scanlines" aria-hidden="true"></div>
-    <div class="bg-grid-glow" aria-hidden="true"></div>
-    <div class="cursor-aura" aria-hidden="true"></div>
-    <div class="cursor-ring" aria-hidden="true"></div>
-    <!-- ====================================================================
-         مؤشر الماوس المخصص (Custom Cursor)
-         --------------------------------------------------------------------
-         مؤشر النظام بيتخفي (cursor: none) وبنسيب مكانه حاجتين متراكبتين:
-
-           .cursor-dot-arrow → سهم ذهبي (الشكل العادي)
-           .cursor-dot-hand  → إيد (بتحل مكان السهم على الزرار واللينكات)
-
-         والاتنين جواهم SVG مش صور — عشان يبقوا حادين على أي مقاس شاشة
-         ومن غير أي طلب ملف خارجي.
-
-         ⚠️ التبديل بين الشكلين (سهم/إيد) واخفاؤهم في حقول الكتابة
-         بيتم من script.js (القسم 15.2) — إحنا هنا بس بنحط الأشكال.
-
-         ملاحظة: على الموبايل/التابلت مفيش ماوس أساسًا، فالكود بتاع
-         المؤشر مبيشتغلش والقسم ده بيتجاهل تمامًا.
-         ==================================================================== -->
-    <div class="cursor-dot" aria-hidden="true">
-        <svg class="cursor-dot-arrow" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs>
-                <linearGradient id="cursorArrowFill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#fff4cf" />
-                    <stop offset="45%" stop-color="#f6c344" />
-                    <stop offset="100%" stop-color="#c99a1e" />
-                </linearGradient>
-            </defs>
-            <!-- جسم السهم: زوايا حادة زي مؤشر محرر الأكواد -->
-            <path d="M1 1 L1 17.2 L5.35 13.05 L8.1 19.6 L11.1 18.25 L8.4 11.85 L14.6 11.65 Z"
-                  fill="url(#cursorArrowFill)"
-                  stroke="#0a090c"
-                  stroke-width="1.1"
-                  stroke-linejoin="round" />
-        </svg>
-
-        <!-- أيقونة الإيد الصغيرة: بتظهر لما نعدّي على زرار أو لينك -->
-        <svg class="cursor-dot-hand" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <!-- كف الإيد -->
-            <path d="M9.2 11.4V5.6a1.4 1.4 0 0 1 2.8 0v5.2m0-1.2V4.4a1.4 1.4 0 0 1 2.8 0v6.3m0-2.1a1.35 1.35 0 0 1 2.7 0v6.6m-8.3-3.8V7.6a1.35 1.35 0 0 0-2.7 0v7.6c0 3 2.4 5.4 5.4 5.4h2.3c2.6 0 4.7-2.1 4.7-4.7v-4.6"
-                  fill="#f6c344"
-                  stroke="#0a090c"
-                  stroke-width="1.2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round" />
-            <!-- لمعة بيضا صغيرة عشان الإيد تبان عليها الإضاءة -->
-            <path d="M10.6 6.4v3.2"
-                  stroke="#fff4cf"
-                  stroke-width="1"
-                  stroke-linecap="round"
-                  opacity="0.85" />
-        </svg>
-    </div>
 
     <!-- ====================================================================
          شاشة التحميل (Preloader)
@@ -192,19 +84,19 @@
     <div id="preloader" class="space-theme">
         <div class="loader-content">
             <div class="stars-overlay"></div>
-
+            
             <div class="circular-wrapper">
                 <div class="logo-container">
                     <img src="img/WhatsApp Image 2026-09-2ن2 at 12.20.03 PM.jpeg" alt="M&M Logo" class="space-logo">
                 </div>
-
+                
                 <div class="orbit-ring ring-1"></div>
                 <div class="orbit-ring ring-2"></div>
                 <div class="orbit-ring ring-3"></div>
-
+                
                 <div class="space-glow"></div>
             </div>
-
+            
             <div class="loader-status">
                 <span>Loading System...</span>
                 <div class="status-bar"></div>
@@ -325,24 +217,7 @@
     </div>
 
     <!-- ====================================================================
-         قسم الهيرو (Hero) — أول حاجة يشوفها الزائر
-         --------------------------------------------------------------------
-         مبني من جزئين:
-
-         1) .hero-top-row → صف فيه:
-              • .hero-text-content  → نص الترحيب + العنوان + الوصف + 3 أزرار
-              • .hero-image-wrapper → صورة الشخص
-         2) .hero-visual-card → كارت زجاجي تحيهم فيه:
-              • تاج "طالب IT"
-              • عنوان "تحويل الأفكار..." + وصف
-              • شبكة المهارات الأربعة
-              • حكمة في الآخر
-         الرابط #home هو اللي بيتفتح أول حاجة (من script.js - قسم 14)،
-         ولينك "الرئيسية" في الشريط بيودي له.
-
-         data-reveal → كلاس أنيميشن الظهور عند النزول
-                       (شوف script.js قسم 15.0 و 11.css قسم 12)
-                       القيم: up / right / zoom
+         قسم الهيرو (Hero) — أول حاجة يشوفها الزائر: الترحيب والعنوان
          ==================================================================== -->
     <main class="hero-section" id="home">
         <div class="hero-top-row">
@@ -379,7 +254,7 @@
 
             <div class="hero-image-wrapper" data-reveal="right">
                 <div class="cyber-glow"></div>
-                <img src="img/img/WhatsApp Image 2026-09-23 at 11.33.07 AM.jpeg" alt="Moataz Mohamed" class="hero-standalone-img" decoding="async" fetchpriority="high">
+                <img src="img/WhatsApp Image 2026-09-22 at 12.24.34 PM.jpeg" alt="Moataz Mohamed" class="hero-standalone-img" decoding="async" fetchpriority="high">
             </div>
         </div>
 
@@ -456,26 +331,7 @@
 
 
 
-    <!-- ====================================================================
-         شريط التقنيات (Tech Slider)
-         --------------------------------------------------------------------
-         سلايدر أفقي فيه 8 كروت، 4 بس بيظهروا في الشاشة.
-         للتنقل: زر السهم الأيسر (prev) أو الأيمن (next).
-
-         ⚠️ ملاحظة مهمة للتيم: ظهور 4 كروت بس ده **مقصود** مش عيب —
-         عرض السلايدر (max 900px) أصغر من مجموع الكروت (‏~1267px)،
-         والكروت الباقية بتظهر لما تدوس على الأسهم.
-         وفي 11.css في "قناع تلاشي" على الأطراف بيفهمك إن في كروت زيادة.
-
-         ─ كيف تضيف تقنية جديدة؟ ─
-         انسخ أي .tech-card-slim وغيّر:
-           • src  → مسار اللوجو (من devicon أو أي مكان)
-           • alt  → وصف الصورة (مهم للـ SEO وإمكانية الوصول)
-           • الاسم جوه .tech-name
-         مش محتاج تعدل JS — السلايدر بيقرا الكروت من الصفحة مباشرة.
-
-         النصوص هنا مفيهاش data-i18n لأن أسماء التقنيات أعلام (نفس الشكل في اللغتين).
-         ==================================================================== -->
+<section class="tech-slider-section" data-reveal="up">
 
 
   <div class="slider-wrapper">
@@ -571,32 +427,6 @@
                     </button>
                 </div>
 
-    <!-- ====================================================================
-         كروت الشهادات (Certificates)
-         --------------------------------------------------------------------
-         كل شهادة عبارة عن .certificate-item وبتتكون من:
-           .certificate-number      → رقم الشهادة (01 / 02 / ...).
-           .certificate-icon        → أيقونة النوع (HTML / CSS / JS ...)
-           .certificate-thumb       → صورة الشهادة
-           .certificate-text        → الاسم و".completed" السنة
-           .certificate-actions     → زر "عرض" وزر "تحميل"
-           .certificate-note        → وصف صغير (اختياري)
-           .certificate-meta        → الجهة والمكان (اختياري)
-
-         ─ كيف تضيف شهادة جديدة؟ ─
-         انسخ أي .certificate-item كاملة وعدّل:
-           • img src / href  → مسار الصورة (نفسه في العرض والتحميل)
-           • أيقونة fa-brands / fa-solid
-           • الرقم في .certificate-number
-           • النصوص (وافتكر تضيف مفاتيحها في script.js قسم 1 في ar و en)
-
-         ⚠️ الصور هنا عليها loading="lazy" — يعني مش بتتحمّل غير لما
-         الزائر ينزل عندها. ده بيخلي أول تحميل للصفحة أسرع بكتير.
-         (صورة الهيرو العكس — عليها fetchpriority="high" عشان تبان فورًا)
-
-         أسهم التمرير (.scroll-btn) بتزحزح القايمة — الكود في القسم 13
-         من script.js.
-         ==================================================================== -->
                 <div class="certificates-list">
                     <div class="certificate-item">
                         <div class="certificate-number">01</div>
@@ -693,25 +523,7 @@
 
 
 
-    <!-- ====================================================================
-         قسم المشاريع (Portfolio)
-         --------------------------------------------------------------------
-         كارت واحد كبير بيعرض مشروع في المرة. البيانات كلها بتيجي من
-         مصفوفة projectData في script.js (قسم 2) مش مكتوبة هنا.
-
-         معنى كده: لو عايز تغير اسم مشروع أو وصفه، عدّل في script.js
-         مش هنا. النصوص اللي هنا هي بس النسخة الافتراضية اللي بتبان
-         في أول لحظة قبل ما الجافاسكربت يشتغل.
-
-         التنقل بين المشاريع:
-           • زر السهم يسار/يمين فوق الكارت (.project-nav-btn)
-           • زر "تغيير المشروع" (.project-btn.change)
-
-         ملاحظة على المعاينة (.preview-window):
-           • مشروع عنده صورة → الكلاس has-image وبتظهر الصورة
-           • مشروع مفيش صورة → كلاس has-image بيتشال، وبيظهر شكل بديل
-             مرسوم بالـ CSS (الشريط والخطوط اللي جوه preview-body)
-         ==================================================================== -->
+    <!-- قسم المشاريع (Portfolio Section) -->
     <section class="portfolio-section" id="portfolio">
         <div class="portfolio-header" data-reveal="up">
             <p class="section-kicker" data-i18n="portfolioKicker">Featured Project</p>
@@ -776,24 +588,8 @@
     </section>
 
     <!-- ====================================================================
-         نموذج التواصل (Contact Form)
-         --------------------------------------------------------------------
-         الإرسال عبر خدمة Formspree (action = رابط الفورم بتاعك).
-         مفيش أي كود سيرفر من ناحيتنا — الخدمة بتستقبل البيانات
-         وتبعتها على الإيميل المسجّل عندهم.
-
-         ⚠️ لو عايز تغير الإيميل اللي بتيجي عليه الرسايل:
-         ده بيتعمل من لوحة تحكم Formspree مش من الكود.
-
-         حقول النموذج:
-           name    → الاسم (مطلوب)
-           phone   → التليفون (اختياري)
-           _replyto → الإيميل (مطلوب)
-                      الـ _replyto ده اسم خاص بـ Formspree:
-                      بيعرفها إن ده عنوان الرد على الرسالة
-           message → نص الرسالة (مطلوب)
-
-         النصوص هنا مش مترجمة (data-i18n مش موجودة) — قسم إنجليزي بس.
+         نموذج التواصل المفصل (Contact Form)
+         بيتم إرساله عبر خدمة Formspree
          ==================================================================== -->
     <section class="contact-section" id="contact-form-section">
         <div class="contact-container" data-reveal="up">
@@ -873,12 +669,6 @@
                 Follow me on social media — I'm always happy to connect with new people.
             </p>
 
-        <!-- ================================================================
-             أزرار مواقع التواصل — كل واحد بياخد كلاس بلونه الرسمي
-             (linkedin / facebook / instagram / github)
-             عشان الـ CSS يدي كل واحد درجة لونه. الأسماء واللينكات ثابتة
-             (مش مترجمة) لأنها أعلام/أسماء ماركات.
-             ================================================================ -->
             <div class="footer-socials">
                 <a href="https://www.linkedin.com/in/moataz-mohamed-342b32399?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_ios"
                    target="_blank" rel="noopener noreferrer" class="social-link linkedin" title="LinkedIn">
@@ -922,12 +712,7 @@
         </div>
     </footer>
 
-    <!-- ====================================================================
-         السبسكريبت الرئيسي (الوحيد)
-         defer = بيتنفّذ بعد ما الصفحة كلها تتحمّل — ده مهم عشان
-         الجافاسكربت بيلاقي كل العناصر موجودة وهو بيشتغل.
-         جواه فهرس كامل لللي بيعمله في أول الملف.
-         ==================================================================== -->
+    <!-- ملف الجافاسكربت الرئيسي -->
     <script src="script.js" defer></script>
 
 </body>
