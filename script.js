@@ -427,12 +427,48 @@ function isValidPhoneNumber(value) {
    بيضيف كلاس .scrolled على الهيدر عند النزول بالصفحة
    ============================================================================ */
 if (header) {
+  /* عتبة التحويل: الشريط يتغيّر بعد ما الزائر ينزل شوية (مش أول 5px) */
+  const HEADER_SCROLL_THRESHOLD = 60;
+
+  /* بنستخدم flag عشان ما نغيّرش الكلاس غير لو الحالة اتغيرت فعلًا
+     (ده بيقلل الشغل على كل حدث scroll) */
+  let headerIsScrolled = null;
+
+  /* بنسجّل ارتفاع الشريط في متغير CSS، عشان الـ body تاخد مساحة
+     بنفس الارتفاع لما الشريط يبقى fixed (كده مفيش محتوى بيتغطى) */
+  const syncHeaderHeight = function () {
+    const h = Math.round(header.getBoundingClientRect().height);
+    if (h > 0) {
+      document.body.style.setProperty('--header-h', h + 'px');
+    }
+  };
+
   const updateHeaderScrollState = function () {
-    header.classList.toggle('scrolled', window.scrollY > 10);
+    const shouldBeScrolled = window.scrollY > HEADER_SCROLL_THRESHOLD;
+
+    if (shouldBeScrolled === headerIsScrolled) {
+      return;
+    }
+
+    headerIsScrolled = shouldBeScrolled;
+
+    /* نقيس الارتفاع بعد ما الكلاس يتغيّر (الشريط بيبقى أنحف) */
+    header.classList.toggle('scrolled', shouldBeScrolled);
+    document.body.classList.toggle('header-is-fixed', shouldBeScrolled);
+
+    window.requestAnimationFrame(syncHeaderHeight);
   };
 
   updateHeaderScrollState();
   window.addEventListener('scroll', updateHeaderScrollState, { passive: true });
+
+  /* لو النافذة اتغير حجمها، الارتفاع بيتغيّر → نعيد القياس */
+  window.addEventListener('resize', syncHeaderHeight, { passive: true });
+
+  /* أول ما الخطوط تحمّل، الارتفاع ممكن يتغيّر شوية */
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(syncHeaderHeight);
+  }
 }
 
 /* ============================================================================
@@ -976,9 +1012,9 @@ document.addEventListener('DOMContentLoaded', () => {
    ============================================================================ */
 
 /* مدد العرض (بالميلي ثانية) — عدّل الأرقام دي لو حابب تطول/تقصّر */
-const PRELOADER_FADE_TIME = 550;      /* مدة اختفاء شاشة التحميل (لازم تطابق الـ CSS) */
-const NAME_INTRO_AUTO_HIDE = 6000;    /* اختفاء تلقائي لو الزائر ما داسش */
-const NAME_INTRO_FADE_TIME = 700;     /* مدة اختفاء شاشة الاسم (لازم تطابق الـ CSS) */
+const PRELOADER_FADE_TIME = 300;      /* مدة اختفاء شاشة التحميل (لازم تطابق الـ CSS) */
+const NAME_INTRO_AUTO_HIDE = 2200;    /* اختفاء تلقائي لو الزائر ما داسش */
+const NAME_INTRO_FADE_TIME = 420;     /* مدة اختفاء شاشة الاسم (لازم تطابق الـ CSS) */
 
 /* عنصر شاشة الاسم */
 const nameIntro = document.getElementById('name-intro');
@@ -1025,14 +1061,37 @@ function hideNameIntro(withEffect) {
   window.setTimeout(function () {
     nameIntro.classList.add('is-done');
     nameIntro.setAttribute('aria-hidden', 'true');
-  }, withEffect ? 520 : 0);
+  }, withEffect ? 300 : 0);
 
   /* ننضّف العنصر من الصفحة بعد الاختفاء */
   window.setTimeout(function () {
     if (nameIntro && nameIntro.parentNode) {
       nameIntro.parentNode.removeChild(nameIntro);
     }
-  }, (withEffect ? 520 : 0) + fadeDuration + 100);
+    /* أول ما المقدمة تخلص، الصفحة ترجع تفتح على أول جزء (الهيرو) */
+    resetToHero();
+  }, (withEffect ? 300 : 0) + fadeDuration + 60);
+}
+
+/* ----------------------------------------------------------------------------
+   إرجاع الصفحة لأول جزء (الهيرو) فورًا وبشكل ناعم
+   بتمنع المتصفح إنه يفتح في نص الصفحة بسبب الـ hash أو استرجاع آخر مكان
+   ---------------------------------------------------------------------------- */
+function resetToHero() {
+  if (window.location.hash) {
+    /* نشيل الـ hash من الرابط من غير ما نعمل قفزة */
+    if (window.history && window.history.replaceState) {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    } else {
+      window.location.hash = '';
+    }
+  }
+
+  /* القفلة الفورية: بنقفل الـ scroll الناعم لحظة الرجوع بس */
+  const previous = document.documentElement.style.scrollBehavior;
+  document.documentElement.style.scrollBehavior = 'auto';
+  window.scrollTo(0, 0);
+  document.documentElement.style.scrollBehavior = previous;
 }
 
 /* ----------------------------------------------------------------------------
@@ -1113,6 +1172,13 @@ function startNameIntro() {
    مهم: بنستنى شاشة التحميل تختفي بالكامل (مدة الاختفاء + هامش) قبل
    ما نعرض شاشة الاسم، عشان مفيش تراكب بينهم.
    ---------------------------------------------------------------------------- */
+
+/* من أول لحظة: نطفّي استرجاع مكان التمرير القديم ونرفع الصفحة لفوق */
+if ('scrollRestoration' in window.history) {
+  window.history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
 function hidePreloader() {
   const preloader = document.getElementById('preloader');
 
@@ -1120,7 +1186,7 @@ function hidePreloader() {
     preloader.classList.add('fade-out');
 
     /* نستنى اختفاء شاشة التحميل بالكامل، وبعدين نعرض شاشة الاسم */
-    window.setTimeout(startNameIntro, PRELOADER_FADE_TIME + 250);
+    window.setTimeout(startNameIntro, PRELOADER_FADE_TIME + 120);
   } else if (!preloader) {
     /* مفيش شاشة تحميل أصلًا → نعرض شاشة الاسم على طول */
     startNameIntro();
@@ -1132,7 +1198,7 @@ window.addEventListener('load', hidePreloader);
 
 /* حماية: تختفي حتى لو الـ load اتأخر (صور كتير/نت بطيء) */
 window.addEventListener('DOMContentLoaded', function () {
-  setTimeout(hidePreloader, 2500);
+  setTimeout(hidePreloader, 900);
 });
 
 /* حماية أخيرة: لو حصل أي خطأ في التحميل، تختفي على طول */
@@ -1194,36 +1260,75 @@ applyTheme(savedTheme === 'light');
 
     observer.observe(target);
   });
+
+  /* --------------------------------------------------------------------------
+     حماية مهمة: لو أي عنصر فضل مخفي (مثلًا الـ observer ماشتغلش عليه
+     لأي سبب)، بنعرضه غصب بعد فترة قصيرة.
+     كده مستحيل يحصل إن المحتوى يفضل مخفي وسايب فراغ أسود.
+     -------------------------------------------------------------------------- */
+  function revealAnythingStillHidden() {
+    let revealedAny = false;
+
+    revealTargets.forEach(function (target) {
+      if (!target.classList.contains('is-visible')) {
+        target.classList.add('is-visible');
+        observer.unobserve(target);
+        revealedAny = true;
+      }
+    });
+
+    return revealedAny;
+  }
+
+  /* بنجرّب كذا مرة: بعد ما الاسم يخلص، وبعد النزول الأول */
+  window.setTimeout(revealAnythingStillHidden, 2500);
+  window.setTimeout(revealAnythingStillHidden, 6000);
+  window.addEventListener('load', function () {
+    window.setTimeout(revealAnythingStillHidden, 1200);
+  });
+
+  /* لو المستخدم عمل طباعة أو صوّر الصفحة، نعرض كل حاجة فورًا */
+  window.addEventListener('beforeprint', revealAnythingStillHidden);
 })();
 
 /* ============================================================================
-   15.1) تفاعل حركة الماوس مع الخلفية (Cursor Glow)
-   ----------------------------------------------------------------------------
-   بنقرا مكان الماوس وبنسجّله في متغيرات CSS على الـ body:
-     --cursor-x / --cursor-y  →  الإحداثيات بالبكسل
-     --cursor-active          →  1 لو الماوس جوه الشاشة، 0 لو خرج
-   والـ CSS هو اللي بيحرّك التوهج عن طريق transform (أسرع من تغيير top/left).
+   15.1) (تمت إزالة تفاعل توهج الماوس مع الخلفية)
+   الصفحة مافيهاش أي عنصر عائم أو توهج بيتبع الماوس — أسرع وأنضف.
    ============================================================================ */
-(function initCursorBackground() {
-  const cursorGlow = document.querySelector('.cursor-glow');
-  const cursorSpotlight = document.querySelector('.cursor-spotlight');
+/* ============================================================================
+   15.2) الخلفية التفاعلية «الخيالية البرمجية» (Living Background)
+   ----------------------------------------------------------------------------
+   تلات حاجات بتشتغل سوا:
 
-  /* لو العناصر مش موجودة في الصفحة أو الجهاز مش داعم ماوس: نوقف بدري */
-  if (!cursorGlow || !cursorSpotlight) {
+   1) الهالة الذهبية (.cursor-aura): بتجري ورا الماوس بنعومة (easing).
+   2) شبكة الكود (.bg-grid-glow): بنحط مكان الماوس في متغيري CSS
+      --mx / --my والـ CSS بيستخدمهم في mask، فالخطوط بتضيء حوالي الماوس.
+   3) الحلقة الناطقة (.cursor-ring): بتطلع لما تتحرك بسرعة
+      (سرعة عالية = «خطفة») أو لما تدوس كليك.
+
+   كل ده متحرّك بـ transform + requestAnimationFrame عشان يبقى سلس
+   ومش بيعمل أي scrol جيرك. وبيتوقف تلقائيًا على الأجهزة اللمسية.
+   ============================================================================ */
+(function initLivingBackground() {
+  const aura = document.querySelector('.cursor-aura');
+  const gridGlow = document.querySelector('.bg-grid-glow');
+  const ring = document.querySelector('.cursor-ring');
+  const cursorDot = document.querySelector('.cursor-dot');
+
+  /* لو العناصر مش في الصفحة، أو الجهاز لمسي، أو المستخدم طالب تقليل حركة → نوقف */
+  if (!aura || !gridGlow) {
     return;
   }
-
-  /* جهاز بلمس بس (موبايل/تابلت)؟ نبطل عشان الأداء */
   if (window.matchMedia('(hover: none)').matches) {
     return;
   }
-
-  /* لو المستخدم طالب تقليل الحركة، نحترم رغبته */
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     return;
   }
 
-  const root = document.body;
+  /* المؤشر المخصص بيشتغل بس لو عنصره موجود (بنحترم إعداد "تقليل الحركة" فوق) */
+  const useCustomCursor = !!cursorDot;
+
   let targetX = window.innerWidth / 2;
   let targetY = window.innerHeight / 2;
   let currentX = targetX;
@@ -1231,310 +1336,235 @@ applyTheme(savedTheme === 'light');
   let hasPointer = false;
   let frameId = null;
 
-  /* بننقل الحركة من قراءة الماوس للـ DOM جوه requestAnimationFrame،
-     عشان نحدّث الشاشة مرة واحدة في كل فريم بدل كل حركة ماوس */
+  /* بنسجّل آخر مكان لكل حدث عشان نحسب سرعة الماوس */
+  let lastMoveX = targetX;
+  let lastMoveY = targetY;
+  let lastMoveTime = performance.now();
+  let lastRingTime = 0;
+
+  const root = document.body;
+
+  /* --------------------------------------------------------------------------
+     اللوب: بننعّم حركة الهالة (easing) ونحدّث المكان اللي الشبكة بتضيء عنده
+     -------------------------------------------------------------------------- */
   function render() {
-    /* تنعيم الحركة (easing): التوهج بيجري ورا الماوس بنعومة مش بيلزق فيه */
-    currentX += (targetX - currentX) * 0.16;
-    currentY += (targetY - currentY) * 0.16;
+    currentX += (targetX - currentX) * 0.14;
+    currentY += (targetY - currentY) * 0.14;
 
-    root.style.setProperty('--cursor-x', currentX + 'px');
-    root.style.setProperty('--cursor-y', currentY + 'px');
+    /* الهالة بتتحرك بـ transform (أسرع من top/left) */
+    aura.style.transform = 'translate3d(' + currentX + 'px,' + currentY + 'px,0)';
 
-    /* لو لسه فيه فرق ملحوظ، نكمل الفريم الجاي */
-    if (Math.abs(targetX - currentX) > 0.5 || Math.abs(targetY - currentY) > 0.5) {
-      frameId = requestAnimationFrame(render);
-    } else {
+    /* الحلقة بتتبع الماوس بنعومة، والمؤشر بيتحرك مع الماوس بالظبط */
+    if (ring) {
+      ring.style.transform = 'translate3d(' + currentX + 'px,' + currentY + 'px,0)';
+    }
+    if (useCustomCursor) {
+      cursorDot.style.transform = 'translate3d(' + targetX + 'px,' + targetY + 'px,0)';
+    }
+
+    /* شبكة الكود بتضيء عند مكان الماوس الحقيقي — بنسب مئوية */
+    gridGlow.style.setProperty('--mx', targetX + 'px');
+    gridGlow.style.setProperty('--my', targetY + 'px');
+
+    const settled =
+      Math.abs(targetX - currentX) < 0.4 && Math.abs(targetY - currentY) < 0.4;
+
+    if (settled) {
       frameId = null;
+    } else {
+      frameId = requestAnimationFrame(render);
     }
   }
 
-  /** تشغيل اللوب لو مش شغال أصلًا (عشان مايبقاش فيه أكتر من لوب واحد) */
   function scheduleRender() {
     if (frameId === null) {
       frameId = requestAnimationFrame(render);
     }
   }
 
-  window.addEventListener('mousemove', function (event) {
-    targetX = event.clientX;
-    targetY = event.clientY;
-
-    /* أول حركة: نلزق التوهج في مكان الماوس فورًا بدل ما يجري من نص الشاشة */
-    if (!hasPointer) {
-      hasPointer = true;
-      currentX = targetX;
-      currentY = targetY;
-      root.style.setProperty('--cursor-active', '1');
+  /* --------------------------------------------------------------------------
+     خبط الحلقة: بتطلع لما تتحرك بسرعة أو تدوس كليك — إحساس «خطفة»
+     -------------------------------------------------------------------------- */
+  function burstRing(x, y) {
+    if (!ring) {
+      return;
     }
 
-    scheduleRender();
-  }, { passive: true });
+    /* بنمنع التكرار السريع جدًا عشان ما يبقاش فيه كتير حلقات */
+    const now = performance.now();
+    if (now - lastRingTime < 140) {
+      return;
+    }
+    lastRingTime = now;
 
-  /* الماوس خرج من الصفحة: نطفي التوهج */
-  document.addEventListener('mouseleave', function () {
-    root.style.setProperty('--cursor-active', '0');
-  });
+    ring.style.setProperty('--rx', x + 'px');
+    ring.style.setProperty('--ry', y + 'px');
 
-  /* رجع تاني: نولّعه */
-  document.addEventListener('mouseenter', function () {
-    root.style.setProperty('--cursor-active', '1');
-  });
+    /* بنشيل الكلاس ونعيده في الفريم الجاي عشان الأنيميشن تبتدي من الأول */
+    ring.classList.remove('is-pulsing');
+    void ring.offsetWidth;
+    ring.classList.add('is-pulsing');
+  }
 
-  /* لو النافذة اتغير حجمها والماوس برة، نرجّع التوهج للنص */
-  window.addEventListener('resize', function () {
-    if (!hasPointer) {
-      targetX = window.innerWidth / 2;
-      targetY = window.innerHeight / 2;
+  /* --------------------------------------------------------------------------
+     حركة الماوس
+     -------------------------------------------------------------------------- */
+  window.addEventListener(
+    'mousemove',
+    function (event) {
+      targetX = event.clientX;
+      targetY = event.clientY;
+
+      if (!hasPointer) {
+        /* أول حركة: نلزق كل حاجة في مكان الماوس فورًا */
+        hasPointer = true;
+        currentX = targetX;
+        currentY = targetY;
+        root.classList.add('is-pointer-live');
+
+        /* نشغّل المؤشر المخصص عند أول حركة حقيقية للماوس */
+        if (useCustomCursor) {
+          root.classList.add('has-custom-cursor');
+        }
+      } else {
+        /* بنحسب السرعة (بكسل / مللي ثانية) */
+        const now = performance.now();
+        const dt = Math.max(now - lastMoveTime, 1);
+        const dx = targetX - lastMoveX;
+        const dy = targetY - lastMoveY;
+        const speed = Math.sqrt(dx * dx + dy * dy) / dt;
+
+        /* حركة سريعة = «خطفة» → حلقة */
+        if (speed > 1.6) {
+          burstRing(targetX, targetY);
+        }
+
+        lastMoveX = targetX;
+        lastMoveY = targetY;
+        lastMoveTime = now;
+      }
+
       scheduleRender();
+    },
+    { passive: true }
+  );
+
+  /* --------------------------------------------------------------------------
+     الكليك: حلقة أقوى من مكان الدوس + إحساس بالضغط
+     -------------------------------------------------------------------------- */
+  window.addEventListener(
+    'pointerdown',
+    function (event) {
+      burstRing(event.clientX, event.clientY);
+      root.classList.add('is-pressing');
+    },
+    { passive: true }
+  );
+
+  window.addEventListener(
+    'pointerup',
+    function () {
+      root.classList.remove('is-pressing');
+    },
+    { passive: true }
+  );
+
+    /* --------------------------------------------------------------------------
+       التفاعل مع العناصر القابلة للدوس
+       بنستخدم mouseover على المستند كله (event delegation) بدل ما نربط
+       على كل عنصر لوحده — أسرع بكتير وبيشتغل مع أي عنصر جديد
+       -------------------------------------------------------------------------- */
+    const TARGET_SELECTOR =
+      'a, button, input, textarea, select, [role="button"], .btn, .nav-links a, .lang-btn';
+
+    /* الحقول اللي المستخدم بيكتب فيها: بنخفي سهمنا ونسيب مؤشر الكتابة
+       عشان مايبقاش فيه مؤشرين مع بعض */
+    const TYPING_SELECTOR =
+      'input:not([type="checkbox"]):not([type="radio"]), textarea, select, [contenteditable="true"]';
+
+    /* بنحدّث حالتين مع بعض في دالة واحدة عشان الشغل يبقى مرتب */
+    function updateHoverState(el) {
+      if (!el || !el.closest) {
+        return;
+      }
+
+      /* هل احنا فوق حقل كتابة؟ */
+      const isTyping = !!el.closest(TYPING_SELECTOR);
+      root.classList.toggle('is-typing', isTyping);
+
+      /* هل احنا فوق حاجة قابلة للدوس؟ (الحقول مستثناة من الإيد) */
+      const isTarget = !isTyping && !!el.closest(TARGET_SELECTOR);
+      root.classList.toggle('is-hovering-target', isTarget);
     }
-  }, { passive: true });
-})();
 
+    document.addEventListener(
+      'mouseover',
+      function (event) {
+        updateHoverState(event.target);
+      },
+      { passive: true }
+    );
 
+    /* حركة الماوس بترصد الحالة بدقة أكتر (في حالة العناصر اللي بتظهر فجأة) */
+    document.addEventListener(
+      'mousemove',
+      function (event) {
+        if (event.target && event.target.closest) {
+          updateHoverState(event.target);
+        }
+      },
+      { passive: true }
+    );
 
-/* ============================================================================
-   16) مساعد الذكاء الاصطناعي (AI Assistant / Chat)
-   ----------------------------------------------------------------------------
-   الموقع بيكلم الـ Cloudflare Worker (الملف worker.js في نفس المجلد)،
-   والـ Worker هو اللي بيمسك مفتاح الـ AI وبيكلم Gemini.
-   السبب: لو المفتاح اتحط هنا في script.js هيبقى مكشوف لأي زائر.
+    /* لو العنصر اتشال من الصفحة واحنا واقفين عليه، نرجّع الحالة العادية */
+    document.addEventListener(
+      'mouseout',
+      function (event) {
+        if (!event.relatedTarget) {
+          root.classList.remove('is-hovering-target');
+          root.classList.remove('is-typing');
+        }
+      },
+      { passive: true }
+    );
 
-   الـ Worker لازم يرجّع JSON بالشكل:  { "reply": "..." }  أو  { "error": "..." }
-   ============================================================================ */
-
-/* رابط الـ Worker (نفس الـ Worker المفروض يكون منشور من ملف worker.js) */
-const AI_WORKER_URL = 'https://restless-frog-eb20.mtzm2225.workers.dev';
-
-/* أقصى مدة نستنى فيها رد السيرفر (40 ثانية) */
-const AI_REQUEST_TIMEOUT = 40000;
-
-/* أقصى عدد رسائل نحتفظ بيها كسياق عشان المساعد يفتكر المحادثة */
-const AI_MAX_HISTORY = 6;
-
-/* تاريخ المحادثة — بيتبعت مع كل سؤال */
-const aiConversationHistory = [];
-
-/* --- مراجع عناصر واجهة المساعد --- */
-const aiInput = document.getElementById('userInput');
-const aiResponse = document.getElementById('aiResponse');
-const aiSendButton = document.getElementById('aiSendButton');
-const aiToggle = document.getElementById('aiToggle');
-const aiPanel = document.getElementById('aiPanel');
-const aiCloseButton = document.querySelector('.ai-close');
-
-/** فتح لوحة المساعد والتركيز على خانة السؤال */
-function openAiPanel() {
-  if (!aiPanel) {
-    return;
-  }
-
-  aiPanel.classList.remove('hidden');
-
-  if (aiToggle) {
-    aiToggle.classList.add('is-open');
-    aiToggle.setAttribute('aria-expanded', 'true');
-    aiToggle.setAttribute('aria-label', 'Close AI assistant');
-  }
-
-  /* نركّز على الإدخال بعد ظهور اللوحة عشان الزائر يكتب على طول */
-  if (aiInput) {
-    setTimeout(function () {
-      aiInput.focus();
-    }, 60);
-  }
-}
-
-/** إغلاق لوحة المساعد */
-function closeAiPanel() {
-  if (!aiPanel) {
-    return;
-  }
-
-  aiPanel.classList.add('hidden');
-
-  if (aiToggle) {
-    aiToggle.classList.remove('is-open');
-    aiToggle.setAttribute('aria-expanded', 'false');
-    aiToggle.setAttribute('aria-label', 'Open AI assistant');
-  }
-}
-
-/** فتح/إغلاق اللوحة بالزر العائم */
-function toggleAiPanel() {
-  if (aiPanel && aiPanel.classList.contains('hidden')) {
-    openAiPanel();
-  } else {
-    closeAiPanel();
-  }
-}
-
-if (aiToggle) {
-  aiToggle.addEventListener('click', toggleAiPanel);
-}
-
-if (aiCloseButton) {
-  aiCloseButton.addEventListener('click', closeAiPanel);
-}
-
-/* الإغلاق بمفتاح Escape */
-document.addEventListener('keydown', function (event) {
-  if (event.key === 'Escape' && aiPanel && !aiPanel.classList.contains('hidden')) {
-    closeAiPanel();
-  }
-});
-
-/** التحقق إن الرد جاي من الـ Worker بالشكل المتفق عليه */
-function isAiPayload(data) {
-  return data && typeof data === 'object' && typeof data.reply === 'string' && data.reply.trim();
-}
-
-/**
- * إرسال سؤال للـ Worker وإرجاع الإجابة
- * @param {string} userMessage - سؤال المستخدم
- * @returns {Promise<string>} إجابة الذكاء الاصطناعي
- */
-async function askAI(userMessage) {
-  const dictionary = getDictionary(getCurrentLanguage());
-
-  /* لو الجهاز مش متصل بالنت من الأساس مش محتاجين نستنى */
-  if (navigator.onLine === false) {
-    return dictionary.aiError;
-  }
-
-  /* مؤقت لإلغاء الطلب لو أخد وقت طويل */
-  const controller = new AbortController();
-  const timeoutId = setTimeout(function () {
-    controller.abort();
-  }, AI_REQUEST_TIMEOUT);
-
-  try {
-    const response = await fetch(AI_WORKER_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        message: userMessage,
-        history: aiConversationHistory.slice(-AI_MAX_HISTORY)
-      }),
-      signal: controller.signal
+    /* --------------------------------------------------------------------------
+       الماوس خرج من الصفحة: نطفي طبقات الماوس والمؤشر المخصص
+       -------------------------------------------------------------------------- */
+    document.addEventListener('mouseleave', function () {
+      root.classList.remove('is-pointer-live');
+      root.classList.remove('has-custom-cursor');
+      root.classList.remove('is-hovering-target');
+      root.classList.remove('is-typing');
+      root.classList.remove('is-pressing');
     });
 
-    /* بنقرا JSON حتى مع ردود الأخطاء عشان الـ Worker بيرجّع { error: "..." } */
-    let data = null;
-    try {
-      data = await response.json();
-    } catch (parseError) {
-      data = null;
-    }
+    document.addEventListener('mouseenter', function () {
+      if (hasPointer) {
+        root.classList.add('is-pointer-live');
+        if (useCustomCursor) {
+          root.classList.add('has-custom-cursor');
+        }
+      }
+    });
 
-    if (response.ok && isAiPayload(data)) {
-      return data.reply.trim();
-    }
+    /* --------------------------------------------------------------------------
+       تغيير حجم النافذة: لو الماوس لسه مادخلش، نرجّع كل حاجة للنص
+       -------------------------------------------------------------------------- */
+    window.addEventListener(
+      'resize',
+      function () {
+        if (!hasPointer) {
+          targetX = window.innerWidth / 2;
+          targetY = window.innerHeight / 2;
+          scheduleRender();
+        }
+      },
+      { passive: true }
+    );
+  })();
 
-    /* رسالة الخطأ الآتية من السيرفر */
-    if (data && typeof data.error === 'string' && data.error.trim()) {
-      return data.error.trim();
-    }
-
-    return dictionary.aiOffline;
-  } catch (error) {
-    console.error('[AI] فشل الاتصال بالـ Worker:', error);
-    return dictionary.aiError;
-  } finally {
-    clearTimeout(timeoutId);
-  }
-}
-
-/** تثبيت حالة واجهة المساعد (جاري التفكير / خطأ) */
-function setAiBusy(isBusy) {
-  if (aiSendButton) {
-    aiSendButton.disabled = isBusy;
-    aiSendButton.classList.toggle('is-loading', isBusy);
-  }
-
-  if (aiInput) {
-    aiInput.disabled = isBusy;
-  }
-}
-
-/**
- * عرض الإجابة داخل الصندوق
- * @param {string} text - النص المعروض
- * @param {boolean} isError - هل النص رسالة خطأ
- */
-function showAiReply(text, isError) {
-  if (!aiResponse) {
-    return;
-  }
-
-  aiResponse.textContent = text;
-  aiResponse.classList.toggle('is-error', Boolean(isError));
-  aiResponse.classList.add('has-content');
-}
-
-/** التعامل مع زر الإرسال: قراءة السؤال ثم عرض الإجابة */
-async function handleAskAI() {
-  if (!aiInput || !aiResponse) {
-    return;
-  }
-
-  const dictionary = getDictionary(getCurrentLanguage());
-  const userText = aiInput.value.trim();
-
-  /* مفيش سؤال؟ ننبّه المستخدم */
-  if (!userText) {
-    showAiReply(dictionary.aiEmpty, true);
-    aiInput.focus();
-    return;
-  }
-
-  /* نعرض حالة الانتظار */
-  setAiBusy(true);
-  aiResponse.classList.remove('is-error');
-  aiResponse.textContent = dictionary.aiThinking;
-
-  /* نحفظ سؤال المستخدم في تاريخ المحادثة قبل ما نبعته */
-  aiConversationHistory.push({ role: 'user', content: userText });
-
-  const aiReply = await askAI(userText);
-
-  /* لو رجع أي رسالة خطأ معروفة نعتبرها خطأ */
-  const isError = aiReply === dictionary.aiError || aiReply === dictionary.aiOffline;
-
-  /* نحفظ رد المساعد لو كان رد حقي */
-  if (!isError) {
-    aiConversationHistory.push({ role: 'assistant', content: aiReply });
-
-    /* نقلّم التاريخ لو كبر عن الحد */
-    if (aiConversationHistory.length > AI_MAX_HISTORY) {
-      aiConversationHistory.splice(0, aiConversationHistory.length - AI_MAX_HISTORY);
-    }
-  }
-
-  showAiReply(aiReply, isError);
-  setAiBusy(false);
-
-  aiInput.value = '';
-  aiInput.focus();
-}
-
-/* --- ربط الأحداث بواجهة المساعد --- */
-if (aiSendButton) {
-  aiSendButton.addEventListener('click', handleAskAI);
-}
-
-if (aiInput) {
-  /* Enter يرسل، وShift + Enter سطر جديد */
-  aiInput.addEventListener('keydown', function (event) {
-    if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault();
-      handleAskAI();
-    }
-  });
-}
-
-
-const http = require('http');
+  const http = require('http');
 const fs = require('fs');
 const path = require('path');
 

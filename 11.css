@@ -1,4 +1,4 @@
-﻿﻿/* ============================================================================
+﻿/* ============================================================================
    PORTFOLIO — M & M  |  Moataz Mohamed
    ملف التنسيقات الرئيسي (11.css)
 
@@ -33,9 +33,13 @@ body {
     margin: 0;
     font-family: 'Inter', Arial, sans-serif;
     background-color: #07060a;
+    /* ==========================================================================
+       خلفية متحركة «حيّة»: شبكة فضائية + هالة ذهبية تتنفّس
+       الطبقات دي بتفضل تحت كل المحتوى (z-index: 0) ومش بتلمس أي تفاعل
+       ========================================================================== */
     background-image:
-        radial-gradient(circle at top left, rgba(255, 199, 87, 0.22), transparent 32%),
-        radial-gradient(circle at 80% 10%, rgba(191, 143, 40, 0.18), transparent 25%),
+        radial-gradient(circle at top left, rgba(255, 199, 87, 0.08), transparent 26%),
+        radial-gradient(circle at 80% 10%, rgba(191, 143, 40, 0.07), transparent 22%),
         radial-gradient(circle at 50% 100%, rgba(255, 214, 122, 0.08), transparent 32%),
         linear-gradient(135deg, rgba(13, 12, 16, 0.98), rgba(5, 5, 8, 1) 42%, rgba(13, 12, 16, 0.96)),
         linear-gradient(rgba(212, 175, 55, 0.09) 1px, transparent 1px),
@@ -47,35 +51,396 @@ body {
     overflow-x: hidden;
 }
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background:
-        linear-gradient(180deg, rgba(255, 199, 87, 0.06), transparent 36%, rgba(191, 143, 40, 0.04)),
-        repeating-linear-gradient(
-            180deg,
-            rgba(255, 214, 122, 0.07),
-            rgba(255, 214, 122, 0.07) 1px,
-            transparent 1px,
-            transparent 28px
-        );
-    opacity: 0.85;
-    pointer-events: none;
-    z-index: 0;
-}
-
+/* ----------------------------------------------------------------------------
+   〰 هالة الخلفية «بتتنفّس»: تدرّج ذهبي بيكبر ويصغر ببطء
+   (بتفضل خلف كل حاجة، وبتشتغل بـ transform عشان تبقى سلسة)
+   ---------------------------------------------------------------------------- */
 body::after {
     content: "";
     position: fixed;
-    top: -10%;
-    right: -6%;
-    width: 420px;
-    height: 420px;
-    background: radial-gradient(circle, rgba(255, 199, 87, 0.22), transparent 62%);
-    filter: blur(24px);
+    inset: -20%;
+    background:
+        radial-gradient(60% 60% at 22% 18%, rgba(246, 195, 68, 0.14), transparent 62%),
+        radial-gradient(50% 50% at 82% 26%, rgba(191, 143, 40, 0.12), transparent 60%),
+        radial-gradient(48% 48% at 62% 88%, rgba(255, 214, 122, 0.09), transparent 62%);
+    animation: auraDrift 26s ease-in-out infinite alternate;
     pointer-events: none;
     z-index: 0;
+    will-change: transform;
+}
+
+@keyframes auraDrift {
+    from { transform: translate3d(-2%, -1%, 0) scale(1); }
+    to   { transform: translate3d(3%, 2%, 0) scale(1.10); }
+}
+
+/* خفض شدة الهالة لو المستخدم طالب تقليل الحركة */
+@media (prefers-reduced-motion: reduce) {
+    body::after {
+        animation: none;
+    }
+}
+
+/* (اتشالت طبقة التوهج اللي كانت بتعمل حافة ذهبية في أول الصفحة) */
+
+/* ============================================================================
+   ✨ طبقات الخلفية التفاعلية «الخيالية البرمجية»
+   ----------------------------------------------------------------------------
+   1) .bg-grid-glow  — شبكة كود بتضيء في المنطقة اللي حول الماوس
+                        (زي لو بتلمس شبكة كهرباء)
+   2) .cursor-aura    — هالة ذهبية ناعمة بتجري ورا الماوس بنعومة
+   3) .cursor-ring    — حلقة رقيقة بتنطق من الماوس وبتتلاشى
+                        (إحساس «خطفة» برمجية)
+   4) .bg-scanlines   — خطوط ماسحة أفقية بتعدّي ببطء
+   كلها pointer-events: none عشان ما تلمسش أي تفاعل، وكلها تحت المحتوى
+   ============================================================================ */
+
+/* --- 1) شبكة الكود اللي بتضيء حول الماوس --- */
+.bg-grid-glow {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0; /* بتظهر بس لما الماوس يتحرك جوه الصفحة */
+    transition: opacity 0.6s ease;
+    background-image:
+        linear-gradient(rgba(246, 195, 68, 0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(246, 195, 68, 0.5) 1px, transparent 1px);
+    background-size: 34px 34px;
+    /* القناع ده هو السر: الخطوط بتبان بس حوالي مكان الماوس */
+    -webkit-mask-image: radial-gradient(
+        260px 260px at var(--mx, 50%) var(--my, 50%),
+        #000 0%,
+        rgba(0, 0, 0, 0.45) 42%,
+        transparent 78%
+    );
+    mask-image: radial-gradient(
+        260px 260px at var(--mx, 50%) var(--my, 50%),
+        #000 0%,
+        rgba(0, 0, 0, 0.45) 42%,
+        transparent 78%
+    );
+}
+
+body.is-pointer-live .bg-grid-glow {
+    opacity: 0.55;
+}
+
+/* --- 2) الهالة الذهبية اللي بتجري ورا الماوس --- */
+.cursor-aura {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 420px;
+    height: 420px;
+    margin: -210px 0 0 -210px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    background: radial-gradient(
+        circle,
+        rgba(255, 216, 122, 0.20) 0%,
+        rgba(212, 175, 55, 0.12) 34%,
+        rgba(212, 175, 55, 0.04) 58%,
+        transparent 74%
+    );
+    filter: blur(26px);
+    /* الجافاسكربت هو اللي بيحرّكها بـ transform */
+    will-change: transform;
+}
+
+body.is-pointer-live .cursor-aura {
+    opacity: 1;
+}
+
+/* ============================================================================
+   🖱 مؤشر ماوس مخصص «برمجي مهندم» — شكل سهم (Arrow)
+   ----------------------------------------------------------------------------
+   بنخفي مؤشر النظام ونرسم سهم نضيف بزوايا حادة:
+     • سهم ذهبي بحافة رقيقة — زي مؤشر محرر أكواد محترف
+     • بيتقلب لونه للأبيض لما يعدّي على حاجة قابلة للدوس
+     • حلقة دائرية ناعمة بتتبع الماوس في الخلفية
+
+   مهم: بيشتغل بس على الأجهزة اللي فيها ماوس حقيقي،
+   وبنرجّع المؤشر العادي في حقول الكتابة عشان النص يبقى واضح.
+   ============================================================================ */
+
+/* --- إخفاء مؤشر النظام (بس لما المؤشر المخصص يكون شغال) --- */
+/* بنستخدم !important لأن قواعد المتصفح الافتراضية (زي الإيد على اللينكات
+   والأزرار) بتغلب أي قاعدة عادية، فكانت الإيد بتظهر فوق سهمنا. */
+body.has-custom-cursor,
+body.has-custom-cursor *,
+body.has-custom-cursor *::before,
+body.has-custom-cursor *::after {
+    cursor: none !important;
+}
+
+/* كل العناصر التفاعلية بنغطيها صراحةً كمان — لزيادة الأمان */
+body.has-custom-cursor a,
+body.has-custom-cursor a *,
+body.has-custom-cursor button,
+body.has-custom-cursor button *,
+body.has-custom-cursor [role="button"],
+body.has-custom-cursor [role="button"] *,
+body.has-custom-cursor summary,
+body.has-custom-cursor label[for],
+body.has-custom-cursor .btn,
+body.has-custom-cursor .btn *,
+body.has-custom-cursor .lang-btn,
+body.has-custom-cursor .slider-btn,
+body.has-custom-cursor .scroll-btn,
+body.has-custom-cursor .signin-btn,
+body.has-custom-cursor .settings-pill,
+body.has-custom-cursor .project-btn,
+body.has-custom-cursor .certificate-btn,
+body.has-custom-cursor .contact-strip-btn,
+body.has-custom-cursor .btn-submit,
+body.has-custom-cursor .social-link {
+    cursor: none !important;
+}
+
+/* بنرجّع المؤشر العادي في الحقول اللي المستخدم بيكتب فيها — ده أهم حاجة
+   عشان الكتابة والنص المحدد يبقوا واضحين */
+body.has-custom-cursor input:not([type="checkbox"]):not([type="radio"]),
+body.has-custom-cursor textarea,
+body.has-custom-cursor select,
+body.has-custom-cursor [contenteditable="true"] {
+    cursor: text !important;
+}
+
+/* ----------------------------------------------------------------------------
+   مهم جدًا: في حقول الكتابة بنخفي سهمنا بالكامل
+   ----------------------------------------------------------------------------
+   عشان مايبقاش فيه مؤشرين مع بعض (سهمنا + مؤشر الكتابة بتاع الجهاز).
+   الجافاسكربت بيضيف كلاس .is-typing على الـ body لما الماوس يبقى فوق حقل.
+   (وفيه كمان قاعدة :has تحت كطبقة حماية إضافية في المتصفحات اللي بتدعمها)
+   ---------------------------------------------------------------------------- */
+body.has-custom-cursor.is-typing .cursor-dot {
+    opacity: 0 !important;
+}
+
+/* طبقة حماية إضافية للمتصفحات اللي بتدعم :has */
+body.has-custom-cursor:has(input:hover) .cursor-dot,
+body.has-custom-cursor:has(textarea:hover) .cursor-dot,
+body.has-custom-cursor:has(select:hover) .cursor-dot,
+body.has-custom-cursor:has([contenteditable="true"]:hover) .cursor-dot {
+    opacity: 0 !important;
+}
+
+/* --- حاوية السهم --- */
+.cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    will-change: transform;
+}
+
+body.has-custom-cursor .cursor-dot {
+    opacity: 1;
+}
+
+/* --- رأس السهم: مرسوم بتدرّج ذهبي + حدود ناعمة --- */
+.cursor-dot-arrow {
+    position: absolute;
+    /* طرف السهم بالظبط على نقطة الماوس */
+    top: 0;
+    left: 0;
+    width: 22px;
+    height: 22px;
+    transform-origin: 0 0;
+    /* ظل خفيف يخلي السهم يبان على أي خلفية */
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.55))
+        drop-shadow(0 0 6px rgba(246, 195, 68, 0.45));
+    transition: filter 0.2s ease;
+}
+
+/* ----------------------------------------------------------------------------
+   👆 أيقونة الإيد اللي بتحل مكان السهم على الحاجات القابلة للدوس
+   ----------------------------------------------------------------------------
+   فكرة أنضف من إن السهم والإيد يظهروا مع بعض: لما نعدّي على زرار أو لينك،
+   الإيد بتحل محل السهم بنعومة (زي مؤشر النظام بالظبط)، وبيرجع سهم على
+   المساحات العادية. كده مفيش تشويش ومفيش تقاطع بين الشكلين.
+   ---------------------------------------------------------------------------- */
+.cursor-dot-hand {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    opacity: 0;
+    transform-origin: 0 0;
+    /* بتبدأ أصغر شوية وتطلع لحجمها */
+    transform: scale(0.6);
+    transition: opacity 0.2s ease, transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1);
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.55))
+        drop-shadow(0 0 6px rgba(246, 195, 68, 0.6));
+    pointer-events: none;
+}
+
+/* على حاجة قابلة للدوس: الإيد تظهر والسهم يختفي */
+body.is-hovering-target .cursor-dot-hand {
+    opacity: 1;
+    transform: scale(1);
+}
+
+body.is-hovering-target .cursor-dot-arrow {
+    opacity: 0;
+    transform: scale(0.7);
+}
+
+/* لما ندوس: الإيد تصغر شوية (إحساس بالضغط) */
+body.is-pressing .cursor-dot-hand {
+    transform: scale(0.86);
+    transition: transform 0.1s ease;
+}
+
+/* السهم محتاج transition للـ opacity والـ transform عشان التحويل يبقى ناعم */
+.cursor-dot-arrow {
+    transition: filter 0.2s ease, opacity 0.18s ease, transform 0.22s ease;
+}
+
+/* ----------------------------------------------------------------------------
+   احترام إعداد «تقليل الحركة»
+   ---------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    .cursor-dot-hand {
+        transition: opacity 0.15s ease;
+        transform: none;
+    }
+}
+
+/* ----------------------------------------------------------------------------
+   الحلقة اللي بتتبع الماوس: بتتجمع شوية وبتكبر لما المؤشر يعدّي على
+   أي حاجة قابلة للدوس (زرار، لينك، حقل) — كده المستخدم حاسس بالتفاعل
+   ---------------------------------------------------------------------------- */
+.cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 46px;
+    height: 46px;
+    margin: -23px 0 0 -23px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(246, 195, 68, 0.75);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    will-change: transform;
+    transition: width 0.25s ease, height 0.25s ease, margin 0.25s ease,
+        border-color 0.25s ease, background-color 0.25s ease, opacity 0.25s ease;
+}
+
+body.is-pointer-live .cursor-ring {
+    opacity: 1;
+}
+
+/* في حقول الكتابة: نخفي الحلقة كمان عشان يبقى مؤشر الكتابة لوحده */
+body.is-typing .cursor-ring {
+    opacity: 0;
+}
+
+/* لما المؤشر يعدّي على حاجة قابلة للدوس: الحلقة تكبر وبقى لها لون */
+body.is-hovering-target .cursor-ring {
+    width: 62px;
+    height: 62px;
+    margin: -31px 0 0 -31px;
+    border-color: rgba(246, 195, 68, 0.95);
+    background-color: rgba(246, 195, 68, 0.1);
+}
+
+/* ولما يدوس: الحلقة تصغر شوية (إحساس بالضغط) */
+body.is-pressing .cursor-ring {
+    width: 34px;
+    height: 34px;
+    margin: -17px 0 0 -17px;
+    background-color: rgba(246, 195, 68, 0.22);
+}
+
+/* الكلاس بيتشال ويتضاف من الجافاسكربت، فالأنيميشن بتعيد نفسها كل مرة */
+.cursor-ring.is-pulsing {
+    animation: ringBurst 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes ringBurst {
+    0% {
+        opacity: 0.85;
+        transform: translate3d(var(--rx, 0px), var(--ry, 0px), 0) scale(0.35);
+    }
+    100% {
+        opacity: 0;
+        transform: translate3d(var(--rx, 0px), var(--ry, 0px), 0) scale(2.6);
+    }
+}
+
+/* --- 4) خطوط ماسحة بتعدّي على الخلفية ببطء --- */
+.bg-scanlines {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+    background: repeating-linear-gradient(
+        180deg,
+        rgba(255, 214, 122, 0.045),
+        rgba(255, 214, 122, 0.045) 1px,
+        transparent 1px,
+        transparent 28px
+    );
+}
+
+/* خط واحد لامع بيعّدي من فوق لتحت كل شوية — إحساس «ماسح ضوئي» */
+.bg-scanlines::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 140px;
+    background: linear-gradient(
+        180deg,
+        transparent,
+        rgba(246, 195, 68, 0.055),
+        transparent
+    );
+    animation: scanSweep 9s linear infinite;
+}
+
+@keyframes scanSweep {
+    0%   { top: -18%; }
+    100% { top: 108%; }
+}
+
+/* ----------------------------------------------------------------------------
+   احترام إعداد «تقليل الحركة»: نوقف كل الأنيميشن ونسيب لمسات ثابتة هادية
+   ---------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    .bg-scanlines::after,
+    .cursor-ring {
+        animation: none;
+        display: none;
+    }
+
+    .bg-grid-glow {
+        opacity: 0.25;
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+}
+
+/* على الأجهزة اللمسية (موبايل/تابلت) مفيش ماوس → نخفي طبقات الماوس */
+@media (hover: none) {
+    .cursor-aura,
+    .cursor-ring,
+    .bg-grid-glow {
+        display: none;
+    }
 }
 
 /* كل عنصر مباشر داخل body يظهر فوق طبقة الخلفية المزخرفة */
@@ -135,22 +500,78 @@ body > * {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 30px;
+    padding: 10px 30px;
+    /* الشكل البيضاوي (كبسولة) */
     border: 1px solid rgba(212, 175, 55, 0.28);
+    border-radius: 999px;
     position: sticky;
-    top: 10px !important;
+    /* مسافة صغيرة من الحافة العلوية (كانت 16px) */
+    top: 8px !important;
     z-index: 1000;
     overflow: visible;
-    border-radius: 30px;
-      margin-bottom: 10px !important;/* التعديل هنا: غيرنا الـ 0 لـ 50px */
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
-    transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    /* عرض محدود وهوامش من الجوانب عشان يبان كبسولة واقفة لوحدها */
+    width: min(1400px, calc(100% - 32px));
+    max-width: 1400px;
+    margin: 8px auto 8px !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+    /* بنعمل أنيميشن لكل حاجة بتتغير عند النزول */
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        border-radius 0.3s ease,
+        box-shadow 0.3s ease,
+        width 0.3s ease,
+        margin 0.3s ease,
+        padding 0.3s ease,
+        top 0.3s ease;
 }
 
+/* ============================================================================
+   حالة النزول (scrolled): الشريط يطلع لفوق ويلزق في الحافة،
+   ويبقى أنحف وأصغر، ويرجع مستطيل بزوايا ناعمة بدل الكبسولة.
+
+   مهم: بنستخدم position: fixed عشان الشريط يقف ثابت في الحافة،
+   وبنسيب مساحة تحته (--header-h) على جسم الصفحة عشان المحتوى
+   ميتغطاش بالشريط أبداً.
+   ============================================================================ */
 .header.scrolled {
-    background: rgba(10, 9, 12, 0.7);
-    border-color: rgba(212, 175, 55, 0.18);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    position: fixed;
+    left: 0;
+    right: 0;
+    background: rgba(10, 9, 12, 0.93);
+    backdrop-filter: blur(18px) saturate(1.15);
+    -webkit-backdrop-filter: blur(18px) saturate(1.15);
+    border-color: rgba(212, 175, 55, 0.34);
+    /* يطلع فوق خالص ويلزق في حافة الشاشة */
+    top: 0 !important;
+    /* يمتد بعرض الصفحة بالكامل */
+    width: 100%;
+    max-width: none;
+    margin: 0 !important;
+    /* أنحف: حشو أقل */
+    padding: 8px 30px;
+    /* زوايا ناعمة تحت بس، عشان يبان ملزوق في الحافة من فوق */
+    border-radius: 0 0 22px 22px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+}
+
+/* المساحة اللي بتتعوّض عن الشريط لما يبقى fixed
+   (الجافاسكربت بيحدّث --header-h بارتفاع الشريط الحقيقي) */
+body.header-is-fixed {
+    padding-top: var(--header-h, 52px);
+    transition: padding-top 0.3s ease;
+}
+
+/* الشريط يبقى أنحف كمان: صغّر اللوجو واللينكات في حالة النزول */
+.header.scrolled .logo-container img {
+    height: 34px;
+    width: 34px;
+    transition: height 0.3s ease, width 0.3s ease;
+}
+
+.header.scrolled .logo-container .logo-text {
+    font-size: 1.05rem;
+    transition: font-size 0.3s ease;
 }
 
 /* لوغو الموقع واسم الشركة: بيظهر في الشمال أو الوسط حسب التصميم */
@@ -625,8 +1046,8 @@ body.light-mode .developer-close {
 
 body.light-mode {
     background:
-        radial-gradient(circle at top left, rgba(212, 175, 55, 0.18), transparent 28%),
-        radial-gradient(circle at 80% 8%, rgba(247, 215, 116, 0.16), transparent 24%),
+        radial-gradient(circle at top left, rgba(212, 175, 55, 0.07), transparent 24%),
+        radial-gradient(circle at 80% 8%, rgba(247, 215, 116, 0.07), transparent 22%),
         linear-gradient(135deg, #fdfaf2 0%, #f7f1e3 44%, #fdfaf3 100%),
         linear-gradient(rgba(212, 175, 55, 0.08) 1px, transparent 1px),
         linear-gradient(90deg, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
@@ -641,13 +1062,13 @@ body.light-mode .header {
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border: 1px solid rgba(191, 143, 40, 0.35);
-    box-shadow: 0 10px 28px rgba(120, 90, 20, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 12px 32px rgba(120, 90, 20, 0.14);
 }
 
 body.light-mode .header.scrolled {
-    background: rgba(255, 252, 245, 0.78);
-    border-color: rgba(191, 143, 40, 0.22);
-    box-shadow: 0 8px 20px rgba(120, 90, 20, 0.08);
+    background: rgba(255, 252, 245, 0.9);
+    border-color: rgba(191, 143, 40, 0.28);
+    box-shadow: 0 10px 28px rgba(120, 90, 20, 0.12);
 }
 
 body.light-mode .settings-dropdown {
@@ -1274,7 +1695,7 @@ body.light-mode .search-match {
 /* ==================== 7. قسم المشاريع (Portfolio Section) ==================== */
 /* قسم المشاريع: بيعرض كارت المشروع المميز مع إمكانية التنقل بين المشاريع */
 .portfolio-section {
-    padding: 60px 8% 10px;
+    padding: 32px 8% 10px;
     max-width: 1400px;
     margin: 0 auto;
 }
@@ -1591,7 +2012,7 @@ body.light-mode .search-match {
 }
 
 .about-section {
-    padding: 60px 8%;
+    padding: 32px 8%;
     max-width: 1400px;
     margin: 0 auto;
 }
@@ -1680,7 +2101,7 @@ body.light-mode .search-match {
     background-color: #0a090c;
     border-top: 1px solid rgba(212, 175, 55, 0.2);
     padding: 40px 8% 20px;
-    margin-top: 60px;
+    margin-top: 32px;
 }
 
 /* حاوية الفوتر: بتوزع المعلومات داخل الفوتر بشكل متوازن */
@@ -2278,6 +2699,8 @@ body.light-mode .contact-item:hover {
   align-items: center;
   max-width: 900px;
   margin: 0 auto;
+  /* مسافة للأسهم عشان ما تدوسش على الكروت */
+  padding: 0 52px;
 }
 
 /* حاوية السلايدر الأفقي */
@@ -2402,8 +2825,9 @@ body.light-mode .contact-item:hover {
     transform: scale(1.1);
 }
 
-.prev-btn { margin-right: 0.8rem; }
-.next-btn { margin-left: 0.8rem; }
+/* الأسهم بتاخد مكانها من حشو الـ .slider-wrapper فمش محتاجة margin زيادة */
+.prev-btn { margin-right: 0; }
+.next-btn { margin-left: 0; }
 
 
 
@@ -2414,9 +2838,22 @@ body.light-mode .contact-item:hover {
   overflow-x: auto;
   scroll-behavior: smooth;
   padding: 1rem 0;
-  /* إضافة قناع تلاشي على الأطراف يميناً ويساراً */
-  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  /* قناع تلاشي ناعم على الأطراف: يبدأ متأخر (5%) عشان ما يقطعش الكارت
+     اللي جنب الحافة، وبيبان إن فيه كروت زيادة برّه */
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 5%,
+    black 95%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 5%,
+    black 95%,
+    transparent
+  );
 }
 
 /* منع انكماش النص داخل البطاقات */
@@ -2455,6 +2892,18 @@ body.light-mode .contact-item:hover {
         padding: 10px 14px;
         flex-wrap: wrap;
         justify-content: center;
+        /* الشريط بيلف على أكتر من سطر → استدارة ناعمة بدل الكبسولة */
+        border-radius: 24px;
+        top: 10px !important;
+    }
+
+    /* عند النزول على الموبايل: يطلع فوق ويلزق في الحافة ويرجع مستطيل */
+    .header.scrolled {
+        top: 0 !important;
+        width: 100%;
+        margin: 0 0 8px !important;
+        border-radius: 0 0 18px 18px;
+        padding: 8px 14px;
     }
 
     .logo-container {
@@ -2514,11 +2963,12 @@ body.light-mode .contact-item:hover {
  .hero-section {
      display: flex;
      flex-direction: column;
-     gap: 32px;
+     gap: 18px;
      width: 100%;
      max-width: 1200px;
      margin: 0 auto;
-     padding: 60px 24px;
+     /* حشو علوي صغير عشان الهيرو يبقى قريب من الشريط */
+     padding: 12px 24px 12px;
  }
 
  /* الصف العلوي: النص والصورة جنب بعض على الشاشات الكبيرة */
@@ -2530,14 +2980,14 @@ body.light-mode .contact-item:hover {
      gap: 48px;
      width: 100%;
      max-width: 1180px;
-     margin: 0 auto 30px;
+     margin: 0 auto 8px;
  }
 
  /* النص: مبيتمدّدش أكتر من اللازم عشان الصورة تلاقي مكان جنبه */
  .hero-text-content {
      flex: 1 1 auto;
      min-width: 0;
-     max-width: 620px;
+     max-width: 720px;
      text-align: left;
  }
 
@@ -2760,8 +3210,8 @@ body.light-mode .contact-item:hover {
  /* ==================== 8. قسم التواصل والنموذج (Contact) ==================== */
 .contact-section {
     width: 100%;
-    padding: 60px 0;
-    margin-top: 40px;
+    padding: 32px 0;
+    margin-top: 24px;
 }
 
 .contact-container {
@@ -2893,7 +3343,7 @@ body.light-mode .contact-item:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 /* كلاس بيتضاف من الجافاسكربت لإخفاء الشاشة بنعومة بعد تحميل الصفحة */
@@ -3091,400 +3541,10 @@ body.light-mode .contact-item:hover {
     }
 }
 /* ============================================================================
-   مساعد الذكاء الاصطناعي (AI Assistant) — زر عائم + لوحة شات
-   الزر ثابت أسفل الشاشة على الجنب، والضغط عليه بيفتح لوحة الشات
+   تم إزالة الأزرار العائمة على جنب الشاشة (واتساب + مساعد الذكاء الاصطناعي)
+   ولوحة الشات، حسب طلب إزالة أي حاجة عالقة على الجانب.
    ============================================================================ */
 
-/* --- الأزرار العائمة: واتساب + المساعد، فوق بعض على جنب الشاشة --- */
-.ai-fab,
-.whatsapp-fab {
-    position: fixed;
-    right: 24px;
-    width: 58px;
-    height: 58px;
-    border-radius: 50%;
-    font-size: 1.35rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 1500;
-    text-decoration: none;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-/* الواتساب فوق، والمساعد تحت (الأساس) */
-.ai-fab {
-    bottom: 24px;
-    border: 1px solid rgba(212, 175, 55, 0.55);
-    background: linear-gradient(135deg, #f7d774 0%, #d4af37 100%);
-    color: #1a1305;
-    box-shadow: 0 12px 28px rgba(212, 175, 55, 0.4), 0 4px 12px rgba(0, 0, 0, 0.5);
-}
-
-.whatsapp-fab {
-    bottom: 94px;
-    border: 1px solid rgba(37, 211, 102, 0.55);
-    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
-    color: #ffffff;
-    box-shadow: 0 12px 28px rgba(37, 211, 102, 0.38), 0 4px 12px rgba(0, 0, 0, 0.35);
-}
-
-.ai-fab:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 18px 34px rgba(212, 175, 55, 0.5), 0 6px 16px rgba(0, 0, 0, 0.5);
-}
-
-.whatsapp-fab:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 18px 34px rgba(37, 211, 102, 0.5), 0 6px 16px rgba(0, 0, 0, 0.4);
-}
-
-/* حلقة نبض خفيفة حوالي أيقونة الواتساب عشان تشد الانتباه */
-.whatsapp-fab::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    border: 2px solid rgba(37, 211, 102, 0.6);
-    animation: whatsapp-ring 2.6s ease-out infinite;
-    pointer-events: none;
-}
-
-@keyframes whatsapp-ring {
-    0%   { transform: scale(1); opacity: 0.7; }
-    70%  { transform: scale(1.45); opacity: 0; }
-    100% { transform: scale(1.45); opacity: 0; }
-}
-
-/* عند فتح اللوحة: الأيقونة تتحول من روبوت إلى علامة إغلاق */
-.ai-fab .ai-fab-close {
-    display: none;
-}
-
-.ai-fab.is-open .ai-fab-open {
-    display: none;
-}
-
-.ai-fab.is-open .ai-fab-close {
-    display: block;
-}
-
-/* نقطة خضراء صغيرة تعمل نيون عشان تشد انتباه الزائر */
-.ai-fab-dot {
-    position: absolute;
-    top: 6px;
-    right: 6px;
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    background: #f7d774;
-    border: 2px solid #1a1305;
-    animation: ai-pulse 2s ease-in-out infinite;
-}
-
-.ai-fab.is-open .ai-fab-dot {
-    display: none;
-}
-
-@keyframes ai-pulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6); }
-    50%      { box-shadow: 0 0 0 7px rgba(212, 175, 55, 0); }
-}
-
-/* --- لوحة الشات: بتفتح فوق الزر --- */
-.ai-panel {
-    position: fixed;
-    bottom: 96px;
-    right: 24px;
-    width: min(400px, calc(100vw - 32px));
-    max-height: min(560px, calc(100vh - 130px));
-    overflow-y: auto;
-    padding: 22px;
-    background: rgba(13, 12, 16, 0.97);
-    border: 1px solid rgba(212, 175, 55, 0.32);
-    border-radius: 22px;
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(212, 175, 55, 0.08);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    box-sizing: border-box;
-    z-index: 1500;
-    animation: ai-panel-in 0.25s ease;
-}
-
-@keyframes ai-panel-in {
-    from { opacity: 0; transform: translateY(14px) scale(0.97); }
-    to   { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-/* --- رأس المساعد: الأيقونة والعنوان --- */
-.ai-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    margin-bottom: 16px;
-}
-
-/* زر إغلاق اللوحة */
-.ai-close {
-    flex: 0 0 auto;
-    width: 30px;
-    height: 30px;
-    margin-inline-start: auto;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    background: rgba(255, 255, 255, 0.04);
-    color: #e2e8f0;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.25s ease;
-}
-
-.ai-close:hover {
-    background: rgba(248, 113, 113, 0.18);
-    border-color: rgba(248, 113, 113, 0.5);
-    color: #fca5a5;
-}
-
-.ai-avatar {
-    flex: 0 0 auto;
-    width: 42px;
-    height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 14px;
-    background: linear-gradient(135deg, #f7d774 0%, #d4af37 100%);
-    color: #1a1305;
-    font-size: 1.25rem;
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.45);
-}
-
-.ai-header-text h3 {
-    margin: 0 0 3px;
-    color: #ffffff;
-    font-size: 1.05rem;
-    font-weight: 700;
-}
-
-.ai-header-text p {
-    margin: 0;
-    color: #a9a49b;
-    font-size: 0.82rem;
-    line-height: 1.5;
-}
-
-/* --- صف الإدخال والزر --- */
-.ai-box {
-    display: flex;
-    align-items: stretch;
-    gap: 12px;
-}
-
-.ai-input {
-    flex: 1;
-    min-width: 0;
-    padding: 14px 16px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    color: #ffffff;
-    font-size: 0.95rem;
-    font-family: inherit;
-    outline: none;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
-}
-
-.ai-input::placeholder {
-    color: #64748b;
-}
-
-.ai-input:focus {
-    border-color: #d4af37;
-    background: rgba(212, 175, 55, 0.06);
-    box-shadow: 0 0 14px rgba(212, 175, 55, 0.3);
-}
-
-/* الزر: بيستخدم نفس تدرّج زر إرسال نموذج التواصل */
-.ai-send-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    flex: 0 0 auto;
-    width: 50px;
-    padding: 14px;
-    background: linear-gradient(135deg, #f7d774 0%, #d4af37 100%);
-    color: #1a1305;
-    font-size: 0.95rem;
-    font-weight: 600;
-    font-family: inherit;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.ai-send-btn:hover:not(:disabled) {
-    opacity: 0.92;
-    box-shadow: 0 0 22px rgba(212, 175, 55, 0.5);
-    transform: translateY(-2px);
-}
-
-.ai-send-btn:disabled {
-    cursor: wait;
-    opacity: 0.7;
-}
-
-/* الأيقونة بتلف بدل النص أثناء ما الإجابة بتيجي */
-.ai-send-btn.is-loading i {
-    animation: ai-spin 1s linear infinite;
-}
-
-@keyframes ai-spin {
-    to { transform: rotate(360deg); }
-}
-
-/* --- صندوق الإجابة --- */
-.response-box {
-    margin-top: 16px;
-    padding: 16px;
-    min-height: 60px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(212, 175, 55, 0.15);
-    border-left: 3px solid #d4af37;
-    border-radius: 12px;
-    color: #cbd5e1;
-    font-size: 0.95rem;
-    line-height: 1.8;
-    /* الحفاظ على أسطر الإجابة كما هي */
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    overflow-wrap: anywhere;
-}
-
-/* حالة الخطأ */
-.response-box.is-error {
-    border-left-color: #f87171;
-    color: #fca5a5;
-}
-
-/* الوضع الأبيض */
-body.light-mode .ai-panel {
-    background: rgba(255, 252, 245, 0.97);
-    border-color: rgba(191, 143, 40, 0.4);
-    box-shadow: 0 24px 60px rgba(120, 90, 20, 0.2);
-}
-
-body.light-mode .ai-fab {
-    border-color: rgba(191, 143, 40, 0.45);
-    box-shadow: 0 12px 28px rgba(191, 143, 40, 0.32), 0 4px 12px rgba(120, 90, 20, 0.16);
-}
-
-body.light-mode .whatsapp-fab {
-    border-color: rgba(18, 140, 126, 0.4);
-    box-shadow: 0 12px 28px rgba(18, 140, 126, 0.26), 0 4px 12px rgba(15, 23, 42, 0.14);
-}
-
-body.light-mode .ai-fab-dot {
-    border-color: #ffffff;
-}
-
-body.light-mode .ai-close {
-    border-color: rgba(15, 23, 42, 0.14);
-    background: rgba(15, 23, 42, 0.04);
-    color: #0f172a;
-}
-
-body.light-mode .ai-header-text h3 {
-    color: #0f172a;
-}
-
-body.light-mode .ai-header-text p {
-    color: #475569;
-}
-
-body.light-mode .ai-input {
-    background: rgba(255, 255, 255, 0.8);
-    border-color: rgba(15, 23, 42, 0.14);
-    color: #0f172a;
-}
-
-body.light-mode .ai-input::placeholder {
-    color: #94a3b8;
-}
-
-body.light-mode .response-box {
-    background: rgba(255, 252, 245, 0.85);
-    border-color: rgba(191, 143, 40, 0.18);
-    border-left-color: #d4af37;
-    color: #3a3527;
-}
-
-body.light-mode .response-box.is-error {
-    border-left-color: #dc2626;
-    color: #b91c1c;
-}
-
-/* الموبايل: اللوحة تاخد عرض الشاشة تقريبًا والزر يفضل مريح للإصبع */
-@media (max-width: 768px) {
-    .ai-fab,
-    .whatsapp-fab {
-        right: 18px;
-        width: 54px;
-        height: 54px;
-    }
-
-    .ai-fab {
-        bottom: 18px;
-    }
-
-    .whatsapp-fab {
-        bottom: 82px;
-    }
-
-    .ai-panel {
-        bottom: 150px;
-        right: 12px;
-        left: 12px;
-        width: auto;
-        max-height: calc(100vh - 180px);
-        padding: 18px;
-    }
-}
-
-/* الاتجاه من اليمين للشمال (العربي): الأزرار واللوحة ينقلبوا للجنب التاني */
-html[dir="rtl"] .ai-fab,
-html[dir="rtl"] .whatsapp-fab {
-    right: auto;
-    left: 24px;
-}
-
-html[dir="rtl"] .ai-panel {
-    right: auto;
-    left: 24px;
-}
-
-html[dir="rtl"] .ai-close {
-    margin-inline-start: auto;
-    margin-inline-end: 0;
-}
-
-@media (max-width: 768px) {
-    html[dir="rtl"] .ai-fab,
-    html[dir="rtl"] .whatsapp-fab {
-        left: 18px;
-        right: auto;
-    }
-
-    html[dir="rtl"] .ai-panel {
-        left: 12px;
-        right: 12px;
-    }
-}
-
-/* ============================================================================
    تجاوب الموبايلات الصغيرة (Small phones — 480px وأقل، وحتى 360px)
    الهدف: منع أي تمرير أفقي (horizontal scroll) وتكبير العناصر للمس
    ============================================================================ */
@@ -3496,6 +3556,13 @@ body {
     overflow-x: hidden;
 }
 
+/* التمرير الناعم + مساحة تحت الشريط الثابت
+   (عشان لما حد يدوس على لينك في التنقل، العنوان ما يتغطاش بالشريط) */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 72px;
+}
+
 /* العناصر اللي كانت بتخرج برة الشاشة على الموبايل */
 @media (max-width: 600px) {
     /* التوهج الزخرفي جوه كارت الهيرو: بيتحدد بعرض ثابت وكان بيوسّع الصفحة */
@@ -3503,13 +3570,6 @@ body {
         width: 200px;
         height: 200px;
         right: -20%;
-    }
-
-    /* توهج الخلفية الثابت: يتصغّر عشان مايعملش تمرير أفقي */
-    body::after {
-        width: 260px;
-        height: 260px;
-        right: -14%;
     }
 
     /* طبقة النجوم في شاشة التحميل */
@@ -3524,9 +3584,21 @@ body {
     /* --- الهيدر والتنقل --- */
     .header {
         padding: 10px 12px;
-        border-radius: 20px;
-        top: 6px !important;
+        top: 10px !important;
         gap: 8px;
+        /* على الموبايل الشريط بيلف على سطرين، فبنخفّف استدارة الزوايا */
+        border-radius: 26px;
+        width: calc(100% - 24px);
+        margin: 10px auto !important;
+    }
+
+    /* عند النزول: يطلع فوق ويلزق في الحافة */
+    .header.scrolled {
+        top: 0 !important;
+        width: 100%;
+        margin: 0 0 8px !important;
+        border-radius: 0 0 18px 18px;
+        padding: 8px 12px;
     }
 
     .logo-container img {
@@ -3676,23 +3748,6 @@ body {
         padding: 10px 12px;
     }
 
-    /* الأزرار العائمة تصغر شوية عشان ما تغطيش نص الكارت */
-    .ai-fab,
-    .whatsapp-fab {
-        width: 46px;
-        height: 46px;
-        font-size: 1.05rem;
-        right: 12px;
-    }
-
-    .ai-fab {
-        bottom: 14px;
-    }
-
-    .whatsapp-fab {
-        bottom: 68px;
-    }
-
     /* --- قسم المشاريع --- */
     .project-card {
         padding: 18px 16px 64px;
@@ -3804,14 +3859,6 @@ body {
         font-size: 0.85rem;
     }
 
-    /* --- الأزرار العائمة --- */
-    .ai-fab,
-    .whatsapp-fab {
-        width: 52px;
-        height: 52px;
-        font-size: 1.2rem;
-    }
-
     /* --- النوافذ المنبثقة --- */
     .signin-modal-content,
     .contact-modal-content,
@@ -3905,72 +3952,16 @@ body {
         margin: 0 8px;
         padding: 16px 12px;
     }
-
-    .ai-fab,
-    .whatsapp-fab {
-        width: 48px;
-        height: 48px;
-        right: 14px;
-    }
-
-    .ai-fab {
-        bottom: 16px;
-    }
-
-    .whatsapp-fab {
-        bottom: 72px;
-    }
-
-    html[dir="rtl"] .ai-fab,
-    html[dir="rtl"] .whatsapp-fab {
-        left: 14px;
-        right: auto;
-    }
 }
 
 /* ============================================================================
-   الأزرار العائمة على الموبايل — منع تغطية النص
-   الأزرار position: fixed يعني بتفضل واقفة مكانها وانت بتعمل scroll،
-   فالمحتوى بيعدي تحتها. الحل: هامش سفلي للأقسام عشان مفيش نص يعدي تحتها.
+   مساحة فاضية في آخر الصفحة على الموبايل
    ============================================================================ */
 @media (max-width: 600px) {
-    /* مساحة فاضية في آخر الصفحة بارتفاع الأزرار العائمة */
     body {
         padding-bottom: 0;
     }
-
-    .footer-section {
-        padding-bottom: 130px;
-    }
-
-    /* على الشاشات الضيقة نلزّق الأزرار في الجنب الأيمن ونقلل حجمها */
-    .ai-fab,
-    .whatsapp-fab {
-        width: 46px;
-        height: 46px;
-        font-size: 1.05rem;
-        right: 12px;
-    }
-
-    .ai-fab {
-        bottom: 14px;
-    }
-
-    .whatsapp-fab {
-        bottom: 68px;
-    }
 }
-
-/* على الموبايلات الصغيرة، لوحة الشات ما تطلعش برة الشاشة */
-@media (max-width: 480px) {
-    .ai-panel {
-        left: 12px;
-        right: 12px;
-        width: auto;
-        max-width: none;
-    }
-}
-
 
 
 .sr-only {
@@ -3985,113 +3976,12 @@ body {
     border: 0;
 }
 /* ============================================================================
-   تفاعل حركة الماوس مع الخلفية (Cursor Glow · Gold Edition)
-   ----------------------------------------------------------------------------
-   فكرتين متكاملتين:
-     1) .cursor-glow      — توهج ذهبي صغير بيكبر شوية وبيلف مع الماوس
-     2) .cursor-spotlight — بقعة إضاءة كبيرة ناعمة بتنوّر المنطقة اللي حواليها
-   الاتنين بيتحركوا من script.js عن طريق متغيرين على الـ body:
-     --cursor-x / --cursor-y   (إحداثيات الماوس بالبكسل)
-     --cursor-active           (0 أو 1 حسب الماوس داخلي/برة الصفحة)
+   (تمت إزالة طبقات توهج الماوس — Cursor Glow / Spotlight)
+   الصفحة مافيهاش أي عنصر عائم أو توهج بيتبع الماوس.
    ============================================================================ */
 
-/* المتغيرات بتتحط على الـ body عشان العناصر المثبتة (fixed) تقراها */
-body {
-    --cursor-x: 50vw;
-    --cursor-y: 50vh;
-    --cursor-active: 0;
-}
 
-/* --- 1) التوهج الذهبي الصغير اللي بيتبع الماوس --- */
-.cursor-glow {
-    position: fixed;
-    top: 0;
-    left: 0;
-    /* بنحرّك العنصر بنص أبعاده سالب عشان نقطة الماوس تبقى في الوسط بالظبط */
-    width: 340px;
-    height: 340px;
-    margin: -170px 0 0 -170px;
-    border-radius: 50%;
-    background: radial-gradient(
-        circle,
-        rgba(255, 214, 122, 0.30) 0%,
-        rgba(212, 175, 55, 0.18) 32%,
-        rgba(212, 175, 55, 0.06) 55%,
-        transparent 72%
-    );
-    /* transform هي الطريقة الأسرع: بتشتغل على كارت الشاشة مش على الـ CPU */
-    transform: translate3d(var(--cursor-x), var(--cursor-y), 0) scale(calc(0.72 + var(--cursor-active) * 0.28));
-    opacity: calc(0.35 + var(--cursor-active) * 0.65);
-    filter: blur(20px);
-    pointer-events: none;
-    z-index: 0;
-    transition: opacity 0.35s ease, transform 0.18s ease-out;
-    will-change: transform, opacity;
-}
-
-/* --- 2) بقعة الإضاءة الكبيرة الناعمة (زي الكشاف) --- */
-.cursor-spotlight {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 760px;
-    height: 760px;
-    margin: -380px 0 0 -380px;
-    border-radius: 50%;
-    background: radial-gradient(
-        circle,
-        rgba(212, 175, 55, 0.10) 0%,
-        rgba(212, 175, 55, 0.05) 38%,
-        transparent 68%
-    );
-    transform: translate3d(var(--cursor-x), var(--cursor-y), 0);
-    opacity: calc(var(--cursor-active) * 0.9);
-    pointer-events: none;
-    z-index: 0;
-    transition: opacity 0.55s ease;
-    will-change: transform, opacity;
-}
-
-/* الطبقتين دول خلف كل المحتوى، والهيدر والنصوص فوقهم عادي */
-body > .cursor-spotlight,
-body > .cursor-glow {
-    z-index: 0;
-}
-
-/* الوضع الفاتح (light-mode): توهج ذهبي أهدى شوية عشان ميبقاش قوي على الأبيض */
-body.light-mode .cursor-glow {
-    background: radial-gradient(
-        circle,
-        rgba(191, 143, 40, 0.24) 0%,
-        rgba(212, 175, 55, 0.14) 34%,
-        transparent 70%
-    );
-}
-
-body.light-mode .cursor-spotlight {
-    background: radial-gradient(
-        circle,
-        rgba(191, 143, 40, 0.12) 0%,
-        rgba(212, 175, 55, 0.06) 40%,
-        transparent 70%
-    );
-}
-
-/* لو المستخدم مفعّل "تقليل الحركة" في نظامه، بنخفي التوهج ونريّحه */
-@media (prefers-reduced-motion: reduce) {
-    .cursor-glow,
-    .cursor-spotlight {
-        display: none;
-    }
-}
-
-/* على الموبايل والتابلت مفيش ماوس أساسًا — نخفيهم عشان يوفّروا أداء */
-@media (hover: none), (max-width: 600px) {
-    .cursor-glow,
-    .cursor-spotlight {
-        display: none;
-    }
-}/* ============================================================================
+/* ============================================================================
    ==================== 12. انيميشن الاسم اللامع (Name Intro) ====================
    بتظهر بعد اختفاء شاشة التحميل تمامًا، والاسم بيعدّي عليه شعاع لمعة بيلمع
    من الشمال لليمين. وبيتفاعل مع الماوس: توهج بيتبع المؤشر، وكلوس/Enter
@@ -4110,7 +4000,7 @@ body.light-mode .cursor-spotlight {
         linear-gradient(160deg, #050408, #07060a 55%, #0d0b06);
     z-index: 99998; /* أقل من شاشة التحميل، وأعلى من كل حاجة تانية */
     opacity: 1;
-    transition: opacity 0.7s ease, visibility 0.7s ease;
+    transition: opacity 0.42s ease, visibility 0.42s ease;
 }
 
 /* الكلاس اللي بنضيفه من الجافاسكربت لإخفاء شاشة الاسم */

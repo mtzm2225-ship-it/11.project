@@ -40,6 +40,13 @@
 <link rel="icon" href="img/img/my-photo.jpg"> 
 <link rel="manifest" href="manifest.json">
 
+    <!-- تسريع التحميل: نفتح الاتصال بالسيرفرات الخارجية بدري ونحمّل الصور كسول -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
     <!-- الخطوط والأيقونات (Google Fonts + Font Awesome) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
    <link rel="stylesheet" 
@@ -66,12 +73,55 @@
 <body>
 
     <!-- ====================================================================
-         طبقة تفاعل الماوس (Cursor Glow)
-         بتوهج ذهبي بيتبع حركة الماوس في الخلفية، وبيتحدّث من script.js
-         عن طريق متغيرات CSS: --cursor-x و --cursor-y
+         طبقات الخلفية التفاعلية «الخيالية البرمجية»
+         --------------------------------------------------------------------
+         • .bg-scanlines — خطوط ماسحة بتعدّي ببطء على الخلفية
+         • .bg-grid-glow — شبكة كود بتضيء حوالي الماوس
+         • .cursor-aura  — هالة ذهبية بتجري ورا الماوس
+         • .cursor-ring  — حلقة بتنطق عند الحركة السريعة/الكليك
+
+         كلها pointer-events: none عشان ما تلمسش أي تفاعل،
+         وكلها تحت المحتوى. بتتحرّك من script.js وبتتوقف على الأجهزة اللمسية.
          ==================================================================== -->
-    <div class="cursor-glow" aria-hidden="true"></div>
-    <div class="cursor-spotlight" aria-hidden="true"></div>
+    <div class="bg-scanlines" aria-hidden="true"></div>
+    <div class="bg-grid-glow" aria-hidden="true"></div>
+    <div class="cursor-aura" aria-hidden="true"></div>
+    <div class="cursor-ring" aria-hidden="true"></div>
+    <!-- مؤشر الماوس المخصص: سهم برمجي -->
+    <div class="cursor-dot" aria-hidden="true">
+        <svg class="cursor-dot-arrow" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+                <linearGradient id="cursorArrowFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#fff4cf" />
+                    <stop offset="45%" stop-color="#f6c344" />
+                    <stop offset="100%" stop-color="#c99a1e" />
+                </linearGradient>
+            </defs>
+            <!-- جسم السهم: زوايا حادة زي مؤشر محرر الأكواد -->
+            <path d="M1 1 L1 17.2 L5.35 13.05 L8.1 19.6 L11.1 18.25 L8.4 11.85 L14.6 11.65 Z"
+                  fill="url(#cursorArrowFill)"
+                  stroke="#0a090c"
+                  stroke-width="1.1"
+                  stroke-linejoin="round" />
+        </svg>
+
+        <!-- أيقونة الإيد الصغيرة: بتظهر لما نعدّي على زرار أو لينك -->
+        <svg class="cursor-dot-hand" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- كف الإيد -->
+            <path d="M9.2 11.4V5.6a1.4 1.4 0 0 1 2.8 0v5.2m0-1.2V4.4a1.4 1.4 0 0 1 2.8 0v6.3m0-2.1a1.35 1.35 0 0 1 2.7 0v6.6m-8.3-3.8V7.6a1.35 1.35 0 0 0-2.7 0v7.6c0 3 2.4 5.4 5.4 5.4h2.3c2.6 0 4.7-2.1 4.7-4.7v-4.6"
+                  fill="#f6c344"
+                  stroke="#0a090c"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round" />
+            <!-- لمعة بيضا صغيرة عشان الإيد تبان عليها الإضاءة -->
+            <path d="M10.6 6.4v3.2"
+                  stroke="#fff4cf"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  opacity="0.85" />
+        </svg>
+    </div>
 
     <!-- ====================================================================
          شاشة التحميل (Preloader)
@@ -250,7 +300,7 @@
 
             <div class="hero-image-wrapper" data-reveal="right">
                 <div class="cyber-glow"></div>
-                <img src="img/WhatsApp Image 2026-09-22 at 12.24.34 PM.jpeg" alt="Moataz Mohamed" class="hero-standalone-img">
+                <img src="img/img/WhatsApp Image 2026-09-23 at 11.33.07 AM.jpeg" alt="Moataz Mohamed" class="hero-standalone-img" decoding="async" fetchpriority="high">
             </div>
         </div>
 
@@ -432,7 +482,7 @@
                             </div>
                         </div>
                         <div class="certificate-thumb">
-                            <img src="img/مقدمة في HTML (1)_page-0001.jpg" alt="Certificate 1">
+                            <img src="img/مقدمة في HTML (1)_page-0001.jpg" alt="Certificate 1" loading="lazy" decoding="async">
                         </div>
                         <div class="certificate-text">
                             <h4 data-i18n="html">HTML</h4>
@@ -453,7 +503,7 @@
                             </div>
                         </div>
                         <div class="certificate-thumb">
-                            <img src="img/مقدمة في CSS (1)_page-0001 (1).jpg" alt="Certificate 2">
+                            <img src="img/مقدمة في CSS (1)_page-0001 (1).jpg" alt="Certificate 2" loading="lazy" decoding="async">
                         </div>
                         <div class="certificate-text">
                             <h4 data-i18n="css">CSS</h4>
@@ -474,7 +524,7 @@
                             </div>
                         </div>
                         <div class="certificate-thumb">
-                            <img src="img/Arabian-Academy-event-certificate (2)_page-0001.jpg" alt="Before Brand Event Certificate">
+                            <img src="img/Arabian-Academy-event-certificate (2)_page-0001.jpg" alt="Before Brand Event Certificate" loading="lazy" decoding="async">
                         </div>
                         <div class="certificate-text">
                             <h4 data-i18n="beforeBrandTitle">Before Brand Event</h4>
@@ -498,7 +548,7 @@
                             </div>
                         </div>
                         <div class="certificate-thumb">
-                            <img src="img/certificate (4).png" alt="Certificate 4">
+                            <img src="img/certificate (4).png" alt="Certificate 4" loading="lazy" decoding="async">
                         </div>
                         <div class="certificate-text">
                             <h4 data-i18n="java">JavaScript</h4>
@@ -550,7 +600,7 @@
 
             <div class="project-preview" aria-label="Project preview">
                 <div class="preview-window has-image">
-                    <img class="project-preview-image" src="img/Screenshot 2026-09-22 133437.png" alt="First project preview">
+                    <img class="project-preview-image" src="img/Screenshot 2026-09-22 133437.png" alt="First project preview" loading="lazy" decoding="async">
 
                     <div class="preview-body">
                         <div class="preview-sidebar"></div>
@@ -707,50 +757,6 @@
             </p>
         </div>
     </footer>
-
-    <!-- ====================================================================
-         مساعدكاء الاصطناعي — زر عائم على جنب الشاشة من تحت
-         الإدخال بيتبعت للـ Cloudflare Worker (worker.js) وهو اللي بيكلم الـ AI
-         ==================================================================== -->
-
-    <!-- الزر العائم للواتساب: بيفتح محادثة واتساب مباشرة -->
-    <a href="https://wa.me/201280090726" id="whatsappToggle" class="whatsapp-fab"
-       target="_blank" rel="noopener noreferrer"
-       aria-label="Chat on WhatsApp" title="WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-
-    <!-- الزر العائم للمساعد: بيفتح ويقفل لوحة الشات -->
-    <button type="button" id="aiToggle" class="ai-fab"
-            aria-label="Open AI assistant" aria-expanded="false" aria-controls="aiPanel">
-        <i class="fa-solid fa-robot ai-fab-open"></i>
-        <i class="fa-solid fa-xmark ai-fab-close"></i>
-        <span class="ai-fab-dot" aria-hidden="true"></span>
-    </button>
-
-    <!-- لوحة الشات -->
-   <div id="aiPanel" class="ai-panel hidden" role="dialog" aria-modal="false" aria-labelledby="ai-panel-title">
-    <div class="ai-header">
-        <div class="ai-avatar">
-            <i class="fa-solid fa-robot"></i>
-        </div>
-        <div class="ai-header-text">
-            <h3 id="ai-panel-title" data-i18n="aiTitle">AI Assistant</h3>
-        </div>
-        <button type="button" class="ai-close" aria-label="Close AI assistant">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-    </div>
-
-    <div class="ai-box">
-        <label for="userInput" class="sr-only" data-i18n="aiLabel">Ask AI</label>
-        <input type="text" id="userInput" class="ai-input" autocomplete="off" placeholder="Ask the AI assistant..." data-i18n-placeholder="aiPlaceholder" />
-        <button type="button" id="aiSendButton" class="ai-send-btn" aria-label="Send question">
-            <i class="fa-solid fa-paper-plane"></i>
-        </button>
-    </div>
-</div>
-
 
     <!-- ملف الجافاسكربت الرئيسي -->
     <script src="script.js" defer></script>
