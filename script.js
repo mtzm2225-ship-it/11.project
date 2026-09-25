@@ -75,6 +75,7 @@ const translations = {
     search: 'بحث...',
     experienceNav: 'الخبرات',
     skillsNav: 'المهارات',
+    summaryNav: 'النبذة',
 
     /* نافذة تسجيل الدخول */
     signinTitle: 'تسجيل الدخول',
@@ -238,6 +239,7 @@ const translations = {
     search: 'Search...',
     experienceNav: 'Experience',
     skillsNav: 'Skills',
+    summaryNav: 'Summary',
 
     /* Sign In modal */
     signinTitle: 'Sign In',

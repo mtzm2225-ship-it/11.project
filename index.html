@@ -25,7 +25,11 @@
        ├─ نافذة تسجيل الدخول + لوحة المطور (منبثقات)
        ├─ <main id="home">      → قسم الهيرو
        ├─ <section id="about">   → عني + سلايدر التقنيات + الشهادات
+       ├─ <section id="summary"> → النبذة المهنية (الهدف الوظيفي)
        ├─ <section id="portfolio"> → كارت المشروع
+       ├─ <section id="experience"> → الخبرات (خط زمني)
+       ├─ <section id="skills">    → المهارات (4 مجموعات)
+       ├─ <section id="courses">   → الدورات والدراسة
        ├─ <section id="contact">   → شريط التواصل + النموذج
        └─ <footer>            → بياناتي + التواصل الاجتماعي
 
@@ -248,9 +252,10 @@
         <nav class="nav-links">
             <a href="#home" class="active" data-i18n="home">Home</a>
             <a href="#about" data-i18n="about">About Me</a>
+            <a href="#summary" data-i18n="summaryNav">Summary</a>
+            <a href="#portfolio" data-i18n="portfolio">Portfolio</a>
             <a href="#experience" data-i18n="experienceNav">Experience</a>
             <a href="#skills" data-i18n="skillsNav">Skills</a>
-            <a href="#portfolio" data-i18n="portfolio">Portfolio</a>
             <a href="#contact" data-i18n="contact">Contact</a>
 
             <div class="search-box">
@@ -689,23 +694,18 @@
     </section>
 
     <!-- ====================================================================
-         قسم النبذة المهنية + الخبرات (Professional Summary & Experience)
+         قسم النبذة المهنية (Professional Summary)
          --------------------------------------------------------------------
-         ليه القسمين مع بعض؟
-           النبذة المهنية قصيرة (جملتين) وبتمهّد للخبرات اللي تحتها،
-           فدمجهم في section واحد بيمنع تكرار عنوان «من أنا» ويخلي
-           التسلسل المنطقي: أنا مين ← إيه اللي عملته.
+         ليه قسم منفصل ومش جوه «من أنا»؟
+           عشان ما يتكررش نفس الكلام: «من أنا» فوق بتشرح مين أنا والتعليم
+           والتطوير والأهداف. والقسم ده مختلف — بيقول أنا بكمل إيه بالظبط
+           (الهدف الوظيفي: تدريب / وظيفة مبتدئة) وبيجمّع التخصص والخلفية
+           في بلوك واحد مختصر.
 
-         الترتيب الزمني: الأحدث فوق (.is-latest) وباقي الخبرات بعده.
-         لو عايز تضيف خبرة جديدة:
-           1) انسخ أي .timeline-item كاملة
-           2) عدّل الأيقونة والأدوار والنصوص
-           3) ضيف مفاتيح الترجمة في script.js (قسم 1) في ar و en
-
-         data-reveal="up" → أنيميشن الظهور عند النزول (script.js قسم 15.0)
+         ومكانه هنا قبل المشاريع عشان الزائر يعرف «إيه اللي بيدور عليه»
+         قبل ما يتفرج على الشغل نفسه.
          ==================================================================== -->
-    <section class="experience-section" id="experience">
-        <!-- النبذة المهنية: الهدف والتخصص في بلوك مختصر -->
+    <section class="summary-section" id="summary">
         <div class="summary-card" data-reveal="up">
             <div class="summary-icon">
                 <i class="fa-solid fa-user-tie"></i>
@@ -722,7 +722,73 @@
                 </p>
             </div>
         </div>
+    </section>
 
+    <section class="portfolio-section" id="portfolio">
+        <div class="portfolio-header" data-reveal="up">
+            <p class="section-kicker" data-i18n="portfolioKicker">Featured Project</p>
+            <h2 class="section-title" data-i18n="portfolioTitle">Projects</h2>
+        </div>
+
+        <div class="project-card" data-reveal="zoom">
+            <button type="button" class="project-nav-btn prev" aria-label="Previous project">
+                <i class="fa-solid fa-arrow-left project-arrow"></i>
+            </button>
+            <button type="button" class="project-nav-btn next" aria-label="Next project">
+                <i class="fa-solid fa-arrow-right project-arrow"></i>
+            </button>
+
+            <div class="project-info">
+                <span class="project-tag" data-i18n="projectTag">First Project</span>
+                <h3 data-i18n="projectName">Portfolio Website</h3>
+                <p data-i18n="projectDescription">
+                    A modern personal portfolio with a responsive interface, language switcher, and certificate display section.
+                </p>
+
+                <div class="project-actions">
+                    <a href="index.html" target="_blank" rel="noopener noreferrer" class="project-btn primary" data-i18n="viewProject">View Project</a>
+                    <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="project-btn secondary" data-i18n="githubProject">GitHub</a>
+                    <button type="button" class="project-btn change" data-i18n="changeProject">Change Project</button>
+                </div>
+            </div>
+
+            <div class="project-preview" aria-label="Project preview">
+                <div class="preview-window has-image">
+                    <img class="project-preview-image" src="img/Screenshot 2026-09-22 133437.png" alt="First project preview" loading="lazy" decoding="async">
+
+                    <div class="preview-body">
+                        <div class="preview-sidebar"></div>
+                        <div class="preview-content">
+                            <div class="preview-line short"></div>
+                            <div class="preview-line medium"></div>
+                            <div class="preview-line long"></div>
+                            <div class="preview-cards">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+
+    <!-- ====================================================================
+         قسم الخبرات المهنية (Professional Experience)
+         --------------------------------------------------------------------
+         الترتيب الزمني: الأحدث فوق (.is-latest) وباقي الخبرات بعده.
+         لو عايز تضيف خبرة جديدة:
+           1) انسخ أي .timeline-item كاملة
+           2) عدّل الأيقونة والأدوار والنصوص
+           3) ضيف مفاتيح الترجمة في script.js (قسم 1) في ar و en
+
+         النبذة المهنية (Professional Summary) بقت قسم لوحدها فوق عند
+         #summary — عشان ما تتكررش هنا.
+
+         data-reveal="up" → أنيميشن الظهور عند النزول (script.js قسم 15.0)
+         ==================================================================== -->
+    <section class="experience-section" id="experience">
         <div class="section-head" data-reveal="up">
             <p class="section-kicker" data-i18n="experienceKicker">Career Path</p>
             <h2 class="section-title" data-i18n="experienceTitle">Professional Experience</h2>
@@ -945,75 +1011,6 @@
         </div>
     </section>
 
-
-    <!-- ====================================================================
-         قسم المشاريع (Portfolio)
-         --------------------------------------------------------------------
-         كارت واحد كبير بيعرض مشروع في المرة. البيانات كلها بتيجي من
-         مصفوفة projectData في script.js (قسم 2) مش مكتوبة هنا.
-
-         معنى كده: لو عايز تغير اسم مشروع أو وصفه، عدّل في script.js
-         مش هنا. النصوص اللي هنا هي بس النسخة الافتراضية اللي بتبان
-         في أول لحظة قبل ما الجافاسكربت يشتغل.
-
-         التنقل بين المشاريع:
-           • زر السهم يسار/يمين فوق الكارت (.project-nav-btn)
-           • زر "تغيير المشروع" (.project-btn.change)
-
-         ملاحظة على المعاينة (.preview-window):
-           • مشروع عنده صورة → الكلاس has-image وبتظهر الصورة
-           • مشروع مفيش صورة → كلاس has-image بيتشال، وبيظهر شكل بديل
-             مرسوم بالـ CSS (الشريط والخطوط اللي جوه preview-body)
-         ==================================================================== -->
-    <section class="portfolio-section" id="portfolio">
-        <div class="portfolio-header" data-reveal="up">
-            <p class="section-kicker" data-i18n="portfolioKicker">Featured Project</p>
-            <h2 class="section-title" data-i18n="portfolioTitle">Projects</h2>
-        </div>
-
-        <div class="project-card" data-reveal="zoom">
-            <button type="button" class="project-nav-btn prev" aria-label="Previous project">
-                <i class="fa-solid fa-arrow-left project-arrow"></i>
-            </button>
-            <button type="button" class="project-nav-btn next" aria-label="Next project">
-                <i class="fa-solid fa-arrow-right project-arrow"></i>
-            </button>
-
-            <div class="project-info">
-                <span class="project-tag" data-i18n="projectTag">First Project</span>
-                <h3 data-i18n="projectName">Portfolio Website</h3>
-                <p data-i18n="projectDescription">
-                    A modern personal portfolio with a responsive interface, language switcher, and certificate display section.
-                </p>
-
-                <div class="project-actions">
-                    <a href="index.html" target="_blank" rel="noopener noreferrer" class="project-btn primary" data-i18n="viewProject">View Project</a>
-                    <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="project-btn secondary" data-i18n="githubProject">GitHub</a>
-                    <button type="button" class="project-btn change" data-i18n="changeProject">Change Project</button>
-                </div>
-            </div>
-
-            <div class="project-preview" aria-label="Project preview">
-                <div class="preview-window has-image">
-                    <img class="project-preview-image" src="img/Screenshot 2026-09-22 133437.png" alt="First project preview" loading="lazy" decoding="async">
-
-                    <div class="preview-body">
-                        <div class="preview-sidebar"></div>
-                        <div class="preview-content">
-                            <div class="preview-line short"></div>
-                            <div class="preview-line medium"></div>
-                            <div class="preview-line long"></div>
-                            <div class="preview-cards">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </section>
 
         <!-- ====================================================================
              شريط التواصل السريع (Contact Strip)

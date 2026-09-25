@@ -5229,7 +5229,8 @@ body.light-mode .response-box {
 /* نضيف الأقسام الجديدة لنفس نظام الحاوية الموحّد */
 .experience-section,
 .skills-section,
-.courses-section {
+.courses-section,
+.summary-section {
     width: 100%;
     max-width: var(--site-max);
     margin-left: auto;
@@ -5240,7 +5241,8 @@ body.light-mode .response-box {
 @media (min-width: 1024px) {
     .experience-section,
     .skills-section,
-    .courses-section {
+    .courses-section,
+    .summary-section {
         padding-left: var(--site-pad-desktop);
         padding-right: var(--site-pad-desktop);
     }
@@ -5249,7 +5251,8 @@ body.light-mode .response-box {
 @media (max-width: 1023px) {
     .experience-section,
     .skills-section,
-    .courses-section {
+    .courses-section,
+    .summary-section {
         padding-left: var(--site-pad-fluid);
         padding-right: var(--site-pad-fluid);
     }
@@ -5258,7 +5261,8 @@ body.light-mode .response-box {
 @media (max-width: 600px) {
     .experience-section,
     .skills-section,
-    .courses-section {
+    .courses-section,
+    .summary-section {
         padding-left: var(--site-pad-min);
         padding-right: var(--site-pad-min);
     }
@@ -5292,9 +5296,9 @@ body.light-mode .response-box {
 /* ============================================================================
    قسم النبذة المهنية (Professional Summary)
    ============================================================================ */
-.experience-section {
-    padding-top: 32px;
-    padding-bottom: 32px;
+.summary-section {
+    padding-top: 24px;
+    padding-bottom: 8px;
 }
 
 .summary-card {
@@ -5302,7 +5306,7 @@ body.light-mode .response-box {
     align-items: flex-start;
     gap: 22px;
     padding: 28px 30px;
-    margin-bottom: 44px;
+    margin-bottom: 0;
     background: linear-gradient(135deg, rgba(20, 17, 15, 0.92), rgba(10, 9, 12, 0.78));
     border: 1px solid rgba(212, 175, 55, 0.24);
     border-radius: 18px;
@@ -5310,6 +5314,12 @@ body.light-mode .response-box {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     box-sizing: border-box;
+}
+
+/* قسم الخبرات: مسافة فوق وتحت عادية */
+.experience-section {
+    padding-top: 32px;
+    padding-bottom: 32px;
 }
 
 .summary-icon {
@@ -5812,7 +5822,10 @@ body.light-mode .course-status.is-progress {
 
     .summary-card {
         padding: 20px 16px;
-        margin-bottom: 32px;
+    }
+
+    .summary-section {
+        padding-bottom: 0;
     }
 
     .summary-goal {
