@@ -248,6 +248,8 @@
         <nav class="nav-links">
             <a href="#home" class="active" data-i18n="home">Home</a>
             <a href="#about" data-i18n="about">About Me</a>
+            <a href="#experience" data-i18n="experienceNav">Experience</a>
+            <a href="#skills" data-i18n="skillsNav">Skills</a>
             <a href="#portfolio" data-i18n="portfolio">Portfolio</a>
             <a href="#contact" data-i18n="contact">Contact</a>
 
@@ -686,8 +688,262 @@
         </div>
     </section>
 
+    <!-- ====================================================================
+         قسم النبذة المهنية + الخبرات (Professional Summary & Experience)
+         --------------------------------------------------------------------
+         ليه القسمين مع بعض؟
+           النبذة المهنية قصيرة (جملتين) وبتمهّد للخبرات اللي تحتها،
+           فدمجهم في section واحد بيمنع تكرار عنوان «من أنا» ويخلي
+           التسلسل المنطقي: أنا مين ← إيه اللي عملته.
 
+         الترتيب الزمني: الأحدث فوق (.is-latest) وباقي الخبرات بعده.
+         لو عايز تضيف خبرة جديدة:
+           1) انسخ أي .timeline-item كاملة
+           2) عدّل الأيقونة والأدوار والنصوص
+           3) ضيف مفاتيح الترجمة في script.js (قسم 1) في ar و en
 
+         data-reveal="up" → أنيميشن الظهور عند النزول (script.js قسم 15.0)
+         ==================================================================== -->
+    <section class="experience-section" id="experience">
+        <!-- النبذة المهنية: الهدف والتخصص في بلوك مختصر -->
+        <div class="summary-card" data-reveal="up">
+            <div class="summary-icon">
+                <i class="fa-solid fa-user-tie"></i>
+            </div>
+
+            <div class="summary-body">
+                <h2 class="summary-title" data-i18n="summaryTitle">Professional Summary</h2>
+                <p class="summary-text" data-i18n="summaryText">
+                    Frontend Developer and IT student at Borg El Arab Technological University, with a diverse professional background spanning both management and technical work.
+                </p>
+                <p class="summary-goal">
+                    <i class="fa-solid fa-bullseye"></i>
+                    <span data-i18n="summaryGoal">Seeking an internship or an entry-level position as a Frontend Developer.</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="section-head" data-reveal="up">
+            <p class="section-kicker" data-i18n="experienceKicker">Career Path</p>
+            <h2 class="section-title" data-i18n="experienceTitle">Professional Experience</h2>
+            <p class="section-lead" data-i18n="experienceText">
+                Hands-on experience across digital platform management, operational leadership, and precise technical work.
+            </p>
+        </div>
+
+        <!-- الخط الزمني للخبرات -->
+        <ol class="timeline">
+            <li class="timeline-item is-latest" data-reveal="up">
+                <div class="timeline-marker">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-top">
+                        <h3 data-i18n="expModeratorRole">Online Moderator &amp; Content Specialist</h3>
+                        <span class="timeline-badge" data-i18n="expCurrent">Most Recent</span>
+                    </div>
+
+                    <p class="timeline-company">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <span data-i18n="expModeratorCompany">Remote</span>
+                    </p>
+
+                    <p class="timeline-text" data-i18n="expModeratorText">
+                        Managing digital platforms and community engagement, and producing educational and technical content using AI tools.
+                    </p>
+                </div>
+            </li>
+
+            <li class="timeline-item" data-reveal="up">
+                <div class="timeline-marker">
+                    <i class="fa-solid fa-store"></i>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-top">
+                        <h3 data-i18n="expManagerRole">Branch Manager / Operational Lead</h3>
+                    </div>
+
+                    <p class="timeline-company">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <span data-i18n="expManagerCompany">Operations &amp; Management</span>
+                    </p>
+
+                    <p class="timeline-text" data-i18n="expManagerText">
+                        Running daily operations and branch workflow, and leading the team to meet sales and service standards.
+                    </p>
+                </div>
+            </li>
+
+            <li class="timeline-item" data-reveal="up">
+                <div class="timeline-marker">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-top">
+                        <h3 data-i18n="expWarehouseRole">Warehouse Operations Assistant</h3>
+                    </div>
+
+                    <p class="timeline-company">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <span data-i18n="expWarehouseCompany">Operations &amp; Logistics</span>
+                    </p>
+
+                    <p class="timeline-text" data-i18n="expWarehouseText">
+                        Overseeing inventory tracking, organising distribution, and keeping accurate operational records.
+                    </p>
+                </div>
+            </li>
+        </ol>
+    </section>
+
+    <!-- ====================================================================
+         قسم المهارات (Skills)
+         --------------------------------------------------------------------
+         أربع مجموعات: تطوير الويب / البرمجة والأساسيات /
+         أدوات المطور والذكاء الاصطناعي / المهارات الشخصية.
+
+         كل مجموعة .skills-group وكل مهارة جواها .skill-pill.
+         أسماء التقنيات (HTML5, Git, ESP32...) مفيهاش data-i18n لأنها أعلام
+         بنفس الشكل في اللغتين — نفس القاعدة المتبعة في شريط التقنيات فوق.
+         أما عناوين المجموعات والمهارات الشخصية فمترجمة عادي.
+
+         عايز تضيف مهارة؟ انسخ أي .skill-pill وغيّر النص بس.
+         ==================================================================== -->
+    <section class="skills-section" id="skills">
+        <div class="section-head" data-reveal="up">
+            <p class="section-kicker" data-i18n="skillsKicker">Capabilities</p>
+            <h2 class="section-title" data-i18n="skillsTitle">Skills</h2>
+            <p class="section-lead" data-i18n="skillsText">
+                The tools and technologies I work with across frontend development, programming, and supporting tooling.
+            </p>
+        </div>
+
+        <div class="skills-grid-4">
+            <div class="skills-group" data-reveal="up">
+                <div class="skills-group-head">
+                    <i class="fa-solid fa-code"></i>
+                    <h3 data-i18n="skillsWebDev">Web Development</h3>
+                </div>
+
+                <ul class="skills-list">
+                    <li class="skill-pill">HTML5</li>
+                    <li class="skill-pill">CSS3</li>
+                    <li class="skill-pill">JavaScript (ES6+)</li>
+                    <li class="skill-pill" data-i18n="responsiveApps">Responsive Apps</li>
+                </ul>
+            </div>
+
+            <div class="skills-group reveal-delay-1" data-reveal="up">
+                <div class="skills-group-head">
+                    <i class="fa-solid fa-microchip"></i>
+                    <h3 data-i18n="skillsProgramming">Programming &amp; Core</h3>
+                </div>
+
+                <ul class="skills-list">
+                    <li class="skill-pill">C Programming</li>
+                    <li class="skill-pill">Data Logic</li>
+                    <li class="skill-pill">Arduino Nano</li>
+                    <li class="skill-pill">ESP32</li>
+                </ul>
+            </div>
+
+            <div class="skills-group reveal-delay-2" data-reveal="up">
+                <div class="skills-group-head">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <h3 data-i18n="skillsTools">Developer Tools &amp; AI</h3>
+                </div>
+
+                <ul class="skills-list">
+                    <li class="skill-pill">Git</li>
+                    <li class="skill-pill">GitHub</li>
+                    <li class="skill-pill">VS Code</li>
+                    <li class="skill-pill">Canva</li>
+                    <li class="skill-pill">Prompt Engineering</li>
+                    <li class="skill-pill">NotebookLM</li>
+                    <li class="skill-pill">ChatGPT</li>
+                    <li class="skill-pill">Blackbox AI</li>
+                </ul>
+            </div>
+
+            <div class="skills-group reveal-delay-3" data-reveal="up">
+                <div class="skills-group-head">
+                    <i class="fa-solid fa-people-group"></i>
+                    <h3 data-i18n="skillsSoft">Soft Skills</h3>
+                </div>
+
+                <ul class="skills-list">
+                    <li class="skill-pill" data-i18n="softSelfMotivated">Self-Motivated</li>
+                    <li class="skill-pill" data-i18n="softLeadership">Leadership</li>
+                    <li class="skill-pill" data-i18n="softTeamManagement">Team Management</li>
+                    <li class="skill-pill" data-i18n="softProblemSolving">Problem Solving</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====================================================================
+         قسم الدورات والدراسة (Courses & Education)
+         --------------------------------------------------------------------
+         ⚠️ مهم: القسم ده **مش** تكرار لقسم الشهادات (Certificates) اللي
+         جوه «من أنا»: الشهادات هناك ملفات صور (شهادة HTML/CSS/JS والأيفنت)
+         بأزرار عرض وتحميل. أما هنا فدي «مسارات الدراسة والدورات»
+         بدون صور — عشان ما يحصلش تكرار في المحتوى ولا في الشكل.
+
+         كل دورة .course-card: أيقونة + عنوان + سطر تفاصيل + وصف + حالة.
+         ==================================================================== -->
+    <section class="courses-section" id="courses">
+        <div class="section-head" data-reveal="up">
+            <p class="section-kicker" data-i18n="coursesKicker">Continuous Learning</p>
+            <h2 class="section-title" data-i18n="coursesTitle">Courses &amp; Education</h2>
+            <p class="section-lead" data-i18n="coursesText">
+                The learning tracks and courses that build my technical foundation.
+            </p>
+        </div>
+
+        <div class="courses-grid">
+            <article class="course-card" data-reveal="up">
+                <div class="course-icon">
+                    <i class="fa-solid fa-laptop-code"></i>
+                </div>
+
+                <h3 data-i18n="courseFrontendTitle">Frontend Web Development Coursework</h3>
+                <p class="course-meta">HTML5 · CSS3 · JavaScript</p>
+                <p class="course-text" data-i18n="courseFrontendText">
+                    Web development tracks covering semantic structure, styling, responsive layout, and JavaScript programming logic.
+                </p>
+                <span class="course-status" data-i18n="completed2026">Completed in 2026</span>
+            </article>
+
+            <article class="course-card reveal-delay-1" data-reveal="up">
+                <div class="course-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+
+                <h3 data-i18n="courseCiscoTitle">Cisco Networking &amp; Cybersecurity Basics</h3>
+                <p class="course-meta">Networking · Cybersecurity</p>
+                <p class="course-text" data-i18n="courseCiscoText">
+                    Foundational studies in networking, information security, and system protection concepts.
+                </p>
+                <span class="course-status" data-i18n="completed2025">Completed in 2025</span>
+            </article>
+
+            <article class="course-card reveal-delay-2" data-reveal="up">
+                <div class="course-icon">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+
+                <h3 data-i18n="courseUniversityTitle">Information Technology — Borg El Arab Technological University</h3>
+                <p class="course-meta" data-i18n="courseUniversityMeta">University Student</p>
+                <p class="course-text" data-i18n="courseUniversityText">
+                    Academic study in information technology covering computer science, systems, and databases.
+                </p>
+                <span class="course-status is-progress" data-i18n="coursesStatus">In Progress</span>
+            </article>
+        </div>
+    </section>
 
 
     <!-- ====================================================================

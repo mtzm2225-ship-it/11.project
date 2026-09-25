@@ -5213,4 +5213,662 @@ body.light-mode .ai-fab {
 
 body.light-mode .response-box {
     border-left-color: #bf8f28;
+}/* ============================================================================
+   الأقسام الجديدة: النبذة المهنية + الخبرات + المهارات + الدورات
+   ----------------------------------------------------------------------------
+   بصمة التصميم المستخدمة هنا هي نفس بصمة الموقع بالظبط:
+     • نفس الذهبي (#d4af37 / #f7d774 / #e8c15a)
+     • نفس خلفية الكروت الزجاجية (linear-gradient داكن + backdrop-filter)
+     • نفس حدود الكروت rgba(212, 175, 55, 0.2) والزوايا 16px
+     • نفس أنيميشن الظهور [data-reveal] (script.js قسم 15.0)
+
+   كل الأقسام دي اتضافت ضمن نظام الحاوية الموحّد اللي فوق
+   (--site-max / --site-pad-*) عشان الحواف تفضل على نفس الخط.
+   ============================================================================ */
+
+/* نضيف الأقسام الجديدة لنفس نظام الحاوية الموحّد */
+.experience-section,
+.skills-section,
+.courses-section {
+    width: 100%;
+    max-width: var(--site-max);
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+    .experience-section,
+    .skills-section,
+    .courses-section {
+        padding-left: var(--site-pad-desktop);
+        padding-right: var(--site-pad-desktop);
+    }
+}
+
+@media (max-width: 1023px) {
+    .experience-section,
+    .skills-section,
+    .courses-section {
+        padding-left: var(--site-pad-fluid);
+        padding-right: var(--site-pad-fluid);
+    }
+}
+
+@media (max-width: 600px) {
+    .experience-section,
+    .skills-section,
+    .courses-section {
+        padding-left: var(--site-pad-min);
+        padding-right: var(--site-pad-min);
+    }
+}
+
+/* ----------------------------------------------------------------------------
+   رأس القسم الموحّد (kicker + عنوان + سطر توضيحي)
+   نفس شكل رأس قسم المشاريع عشان الإحساس يبقى واحد
+   ---------------------------------------------------------------------------- */
+.section-head {
+    margin-bottom: 28px;
+}
+
+.section-kicker {
+    margin: 0 0 8px;
+    color: #e8c15a;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.section-lead {
+    margin: 12px 0 0;
+    max-width: 680px;
+    color: #a9a49b;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* ============================================================================
+   قسم النبذة المهنية (Professional Summary)
+   ============================================================================ */
+.experience-section {
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+.summary-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
+    padding: 28px 30px;
+    margin-bottom: 44px;
+    background: linear-gradient(135deg, rgba(20, 17, 15, 0.92), rgba(10, 9, 12, 0.78));
+    border: 1px solid rgba(212, 175, 55, 0.24);
+    border-radius: 18px;
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-sizing: border-box;
+}
+
+.summary-icon {
+    flex: 0 0 auto;
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #f7d774, #d4af37 55%, #bf8f28);
+    color: #0a090c;
+    font-size: 1.4rem;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.32);
+}
+
+.summary-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.summary-title {
+    margin: 0 0 10px;
+    color: #ffffff;
+    font-size: 1.35rem;
+    letter-spacing: -0.02em;
+}
+
+.summary-text {
+    margin: 0 0 14px;
+    color: #b9b4ab;
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+/* سطر الهدف: عليه خلفية ذهبية خفيفة عشان يلفت النظر */
+.summary-goal {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    padding: 10px 16px;
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.28);
+    border-radius: 12px;
+    color: #e8c15a;
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+.summary-goal i {
+    flex: 0 0 auto;
+}
+
+/* ============================================================================
+   الخط الزمني للخبرات (Experience Timeline)
+   ----------------------------------------------------------------------------
+   على الشاشات الكبيرة: خط رأسي على الجنب وكل خبرة كارت جواه.
+   في العربي (RTL) الخط بيتقلب تلقائيًا للجنب التاني بفضل
+   logical properties (border-inline-start / padding-inline-start).
+   ============================================================================ */
+.timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.timeline-item {
+    position: relative;
+    /* بندي مساحة للخط والأيقونة على جنب */
+    padding-inline-start: 52px;
+    padding-bottom: 26px;
+}
+
+.timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+/* الخط الرأسي: بيربط كل النقط ببعض */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 19px;
+    top: 12px;
+    bottom: -6px;
+    width: 2px;
+    background: linear-gradient(180deg, rgba(212, 175, 55, 0.55), rgba(212, 175, 55, 0.08));
+}
+
+.timeline-item:last-child::before {
+    display: none;
+}
+
+/* أيقونة كل خبرة (النقطة على الخط) */
+.timeline-marker {
+    position: absolute;
+    inset-inline-start: 0;
+    top: 6px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(10, 9, 12, 0.95);
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    color: #e8c15a;
+    font-size: 0.95rem;
+    z-index: 1;
+}
+
+/* الخبرة الأحدث: النقطة تبقى ذهبية كاملة */
+.timeline-item.is-latest .timeline-marker {
+    background: linear-gradient(135deg, #f7d774, #d4af37 55%, #bf8f28);
+    color: #0a090c;
+    border-color: rgba(212, 175, 55, 0.85);
+    box-shadow: 0 0 18px rgba(212, 175, 55, 0.4);
+}
+
+.timeline-card {
+    padding: 22px 24px;
+    background: linear-gradient(135deg, rgba(20, 17, 15, 0.45), rgba(10, 9, 12, 0.3));
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+
+.timeline-card:hover {
+    border-color: rgba(212, 175, 55, 0.75);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 24px rgba(212, 175, 55, 0.12);
+}
+
+.timeline-top {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.timeline-top h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.12rem;
+    letter-spacing: -0.01em;
+}
+
+/* شارة «الأحدث» */
+.timeline-badge {
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: rgba(212, 175, 55, 0.14);
+    border: 1px solid rgba(212, 175, 55, 0.42);
+    color: #e8c15a;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+.timeline-company {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 10px;
+    color: #8f8a82;
+    font-size: 0.86rem;
+}
+
+.timeline-company i {
+    color: #d4af37;
+    font-size: 0.78rem;
+}
+
+.timeline-text {
+    margin: 0;
+    color: #a9a49b;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* ============================================================================
+   قسم المهارات (Skills)
+   ============================================================================ */
+.skills-section {
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+/* شبكة 4 مجموعات — بتتظبط تلقائيًا حسب عرض الشاشة */
+.skills-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.skills-group {
+    padding: 24px 22px;
+    background: linear-gradient(135deg, rgba(20, 17, 15, 0.45), rgba(10, 9, 12, 0.3));
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+
+.skills-group:hover {
+    border-color: rgba(212, 175, 55, 0.75);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 24px rgba(212, 175, 55, 0.12);
+}
+
+.skills-group-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.skills-group-head i {
+    flex: 0 0 auto;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: #e8c15a;
+    font-size: 1rem;
+}
+
+.skills-group-head h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.05rem;
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* كل مهارة في «حبة» صغيرة */
+.skill-pill {
+    padding: 7px 14px;
+    background: rgba(212, 175, 55, 0.07);
+    border: 1px solid rgba(212, 175, 55, 0.24);
+    border-radius: 999px;
+    color: #d8d3ca;
+    font-size: 0.84rem;
+    line-height: 1.4;
+    transition: all 0.25s ease;
+}
+
+.skill-pill:hover {
+    background: rgba(212, 175, 55, 0.18);
+    border-color: rgba(212, 175, 55, 0.6);
+    color: #f7d774;
+    transform: translateY(-2px);
+}
+
+/* ============================================================================
+   قسم الدورات والدراسة (Courses & Education)
+   ============================================================================ */
+.courses-section {
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 20px;
+}
+
+.course-card {
+    display: flex;
+    flex-direction: column;
+    padding: 26px 24px;
+    background: linear-gradient(135deg, rgba(20, 17, 15, 0.5), rgba(10, 9, 12, 0.34));
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+
+.course-card:hover {
+    border-color: rgba(212, 175, 55, 0.75);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 24px rgba(212, 175, 55, 0.12);
+}
+
+.course-icon {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    border-radius: 14px;
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: #e8c15a;
+    font-size: 1.15rem;
+}
+
+.course-card h3 {
+    margin: 0 0 8px;
+    color: #ffffff;
+    font-size: 1.08rem;
+    line-height: 1.4;
+}
+
+.course-meta {
+    margin: 0 0 12px;
+    color: #e8c15a;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.course-text {
+    flex: 1;
+    margin: 0 0 16px;
+    color: #a9a49b;
+    font-size: 0.93rem;
+    line-height: 1.7;
+}
+
+/* حالة الدورة (مكتملة / قيد التقدم) */
+.course-status {
+    align-self: flex-start;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(134, 239, 172, 0.1);
+    border: 1px solid rgba(134, 239, 172, 0.3);
+    color: #86efac;
+    font-size: 0.76rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* حالة «قيد التقدم» بلون مختلف عشان تفرق عن المكتمل */
+.course-status.is-progress {
+    background: rgba(212, 175, 55, 0.12);
+    border-color: rgba(212, 175, 55, 0.4);
+    color: #e8c15a;
+}
+
+/* ============================================================================
+   الوضع الأبيض (Light Mode) للأقسام الجديدة
+   ============================================================================ */
+body.light-mode .summary-card,
+body.light-mode .timeline-card,
+body.light-mode .skills-group,
+body.light-mode .course-card {
+    background: rgba(255, 255, 255, 0.86);
+    border-color: rgba(15, 23, 42, 0.12);
+}
+
+body.light-mode .summary-title,
+body.light-mode .timeline-top h3,
+body.light-mode .skills-group-head h3,
+body.light-mode .course-card h3 {
+    color: #0f172a;
+}
+
+body.light-mode .summary-text,
+body.light-mode .timeline-text,
+body.light-mode .course-text,
+body.light-mode .section-lead {
+    color: #475569;
+}
+
+body.light-mode .timeline-company {
+    color: #64748b;
+}
+
+body.light-mode .timeline-item::before {
+    background: linear-gradient(180deg, rgba(191, 143, 40, 0.5), rgba(191, 143, 40, 0.06));
+}
+
+body.light-mode .timeline-marker {
+    background: #ffffff;
+    border-color: rgba(191, 143, 40, 0.5);
+    color: #a97f1f;
+}
+
+body.light-mode .timeline-item.is-latest .timeline-marker {
+    background: linear-gradient(135deg, #f7d774, #d4af37 55%, #bf8f28);
+    color: #0a090c;
+}
+
+body.light-mode .skill-pill {
+    background: rgba(191, 143, 40, 0.08);
+    border-color: rgba(191, 143, 40, 0.26);
+    color: #334155;
+}
+
+body.light-mode .skill-pill:hover {
+    background: rgba(191, 143, 40, 0.18);
+    border-color: rgba(191, 143, 40, 0.6);
+    color: #8a6510;
+}
+
+body.light-mode .summary-goal {
+    background: rgba(191, 143, 40, 0.1);
+    border-color: rgba(191, 143, 40, 0.3);
+    color: #8a6510;
+}
+
+body.light-mode .timeline-badge {
+    background: rgba(191, 143, 40, 0.12);
+    border-color: rgba(191, 143, 40, 0.4);
+    color: #8a6510;
+}
+
+body.light-mode .course-meta {
+    color: #8a6510;
+}
+
+body.light-mode .course-status {
+    background: rgba(22, 163, 74, 0.1);
+    border-color: rgba(22, 163, 74, 0.3);
+    color: #15803d;
+}
+
+body.light-mode .course-status.is-progress {
+    background: rgba(191, 143, 40, 0.12);
+    border-color: rgba(191, 143, 40, 0.4);
+    color: #8a6510;
+}
+
+/* ============================================================================
+   تجاوب الأقسام الجديدة (Responsive)
+   ============================================================================ */
+@media (max-width: 900px) {
+    .skills-grid-4 {
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .summary-card {
+        flex-direction: column;
+        gap: 16px;
+        padding: 22px 20px;
+    }
+
+    .summary-title {
+        font-size: 1.2rem;
+    }
+
+    .courses-grid,
+    .skills-grid-4 {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline-item {
+        padding-inline-start: 46px;
+    }
+
+    .timeline-item::before {
+        inset-inline-start: 17px;
+    }
+
+    .timeline-marker {
+        width: 36px;
+        height: 36px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .section-head {
+        margin-bottom: 22px;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+    }
+
+    .section-lead {
+        font-size: 0.9rem;
+    }
+
+    .summary-card {
+        padding: 20px 16px;
+        margin-bottom: 32px;
+    }
+
+    .summary-goal {
+        display: flex;
+        width: 100%;
+        font-size: 0.87rem;
+        box-sizing: border-box;
+    }
+
+    .timeline-card,
+    .skills-group,
+    .course-card {
+        padding: 18px 16px;
+    }
+
+    .timeline-top h3 {
+        font-size: 1.02rem;
+    }
+
+    .timeline-item {
+        padding-inline-start: 42px;
+    }
+
+    .timeline-item::before {
+        inset-inline-start: 15px;
+    }
+
+    .timeline-marker {
+        width: 32px;
+        height: 32px;
+        font-size: 0.78rem;
+    }
+
+    .skill-pill {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 360px) {
+    .timeline-item {
+        padding-inline-start: 38px;
+    }
+
+    .timeline-item::before {
+        inset-inline-start: 13px;
+    }
+
+    .timeline-marker {
+        width: 28px;
+        height: 28px;
+        font-size: 0.7rem;
+    }
+
+    .summary-goal {
+        font-size: 0.82rem;
+        padding: 9px 12px;
+    }
 }

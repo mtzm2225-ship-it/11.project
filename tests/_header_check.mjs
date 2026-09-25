@@ -1,7 +1,7 @@
 export default async function run(page) {
   const measure = () =>
     page.evaluate(() => {
-      const h = document.querySelector('.header');
+      const h = document.querySelector(".header");
       const r = h.getBoundingClientRect();
       const body = document.body;
       return {
@@ -12,9 +12,10 @@ export default async function run(page) {
         borderRadius: getComputedStyle(h).borderTopLeftRadius,
         position: getComputedStyle(h).position,
         bodyPaddingTop: getComputedStyle(body).paddingTop,
-        headerIsFixedClass: body.classList.contains('header-is-fixed'),
+        headerIsFixedClass: body.classList.contains("header-is-fixed"),
         pageOverflowsX:
-          document.documentElement.scrollWidth > document.documentElement.clientWidth,
+          document.documentElement.scrollWidth >
+          document.documentElement.clientWidth,
       };
     });
 

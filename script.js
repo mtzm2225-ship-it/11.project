@@ -73,6 +73,8 @@ const translations = {
     contact: 'تواصل',
     signin: 'تسجيل الدخول',
     search: 'بحث...',
+    experienceNav: 'الخبرات',
+    skillsNav: 'المهارات',
 
     /* نافذة تسجيل الدخول */
     signinTitle: 'تسجيل الدخول',
@@ -86,6 +88,54 @@ const translations = {
     /* لوحة المطور */
     developerTitle: 'تسجيلات المطور',
     developerClear: 'مسح',
+
+    /* قسم النبذة المهنية (Professional Summary) */
+    summaryTitle: 'نبذة مهنية',
+    summaryText: 'مطور واجهات أمامية (Frontend Developer) وطالب تكنولوجيا معلومات في جامعة برج العرب التكنولوجية، بخلفية مهنية متنوعة بتجمع بين الإدارة والعمل التقني.',
+    summaryGoal: 'أبحث عن تدريب (Internship) أو وظيفة مبتدئة كـ Frontend Developer.',
+
+    /* قسم الخبرات المهنية (Experience) */
+    experienceKicker: 'المسار المهني',
+    experienceTitle: 'الخبرات المهنية',
+    experienceText: 'خبرات عملية متنوعة بين إدارة المنصات الرقمية، وقيادة العمليات، والدقة في العمل التقني.',
+    expModeratorRole: 'مشرف منصات رقمية ومتخصص محتوى',
+    expModeratorCompany: 'عمل عن بُعد',
+    expModeratorText: 'إدارة المنصات الرقمية وتفاعل المجتمعات، وإنشاء محتوى تعليمي وتقني باستخدام أدوات الذكاء الاصطناعي.',
+    expManagerRole: 'مدير فرع / قائد عمليات',
+    expManagerCompany: 'إدارة وتشغيل',
+    expManagerText: 'إدارة العمليات اليومية وسير العمل بالفرع، وقيادة الفريق لتحقيق معايير البيع والخدمة.',
+    expWarehouseRole: 'مساعد عمليات مخازن',
+    expWarehouseCompany: 'عمليات ولوجستيات',
+    expWarehouseText: 'الإشراف على تتبع المخزون، وتنظيم التوزيع، والحفاظ على سجلات تشغيلية دقيقة.',
+    expCurrent: 'الأحدث',
+
+    /* قسم المهارات (Skills) */
+    skillsKicker: 'الكفاءات',
+    skillsTitle: 'المهارات',
+    skillsText: 'مجموعة الأدوات والتقنيات اللي بشتغل بيها في الواجهات الأمامية والبرمجة والأدوات المساعدة.',
+    skillsWebDev: 'تطوير الويب',
+    skillsProgramming: 'البرمجة والأساسيات',
+    skillsTools: 'أدوات المطور والذكاء الاصطناعي',
+    skillsSoft: 'المهارات الشخصية',
+    softSelfMotivated: 'مُبادِر ذاتيًا',
+    softLeadership: 'قيادة',
+    softTeamManagement: 'إدارة فريق',
+    softProblemSolving: 'حل المشكلات',
+
+    /* قسم الدورات (Courses) */
+    coursesKicker: 'التعلم المستمر',
+    coursesTitle: 'الدورات والدراسة',
+    coursesText: 'المسارات التعليمية والدورات اللي بتبني أساسي التقني.',
+    courseFrontendTitle: 'دورة تطوير الواجهات الأمامية',
+    courseFrontendMeta: 'HTML5 · CSS3 · JavaScript',
+    courseFrontendText: 'مسارات تعليمية في تطوير الويب تغطي البنية الدلالية، التنسيق، التخطيط المتجاوب، ومنطق البرمجة بالجافاسكريبت.',
+    courseCiscoTitle: 'أساسيات شبكات وأمن المعلومات (Cisco)',
+    courseCiscoMeta: 'Networking · Cybersecurity',
+    courseCiscoText: 'الدراسات الأساسية في الشبكات وأمن المعلومات ومفاهيم حماية الأنظمة.',
+    courseUniversityTitle: 'تكنولوجيا المعلومات — جامعة برج العرب التكنولوجية',
+    courseUniversityMeta: 'طالب جامعي',
+    courseUniversityText: 'دراسة أكاديمية في تكنولوجيا المعلومات تشمل علوم الحاسوب والأنظمة وقواعد البيانات.',
+    coursesStatus: 'قيد التقدم',
 
     /* قسم الهيرو */
     welcome: 'مرحبًا! أنا معتز محمد',
@@ -186,6 +236,8 @@ const translations = {
     contact: 'Contact',
     signin: 'Sign In',
     search: 'Search...',
+    experienceNav: 'Experience',
+    skillsNav: 'Skills',
 
     /* Sign In modal */
     signinTitle: 'Sign In',
@@ -199,6 +251,54 @@ const translations = {
     /* Developer panel */
     developerTitle: 'Developer Registrations',
     developerClear: 'Clear',
+
+    /* Professional Summary */
+    summaryTitle: 'Professional Summary',
+    summaryText: 'Frontend Developer and IT student at Borg El Arab Technological University, with a diverse professional background spanning both management and technical work.',
+    summaryGoal: 'Seeking an internship or an entry-level position as a Frontend Developer.',
+
+    /* Experience */
+    experienceKicker: 'Career Path',
+    experienceTitle: 'Professional Experience',
+    experienceText: 'Hands-on experience across digital platform management, operational leadership, and precise technical work.',
+    expModeratorRole: 'Online Moderator & Content Specialist',
+    expModeratorCompany: 'Remote',
+    expModeratorText: 'Managing digital platforms and community engagement, and producing educational and technical content using AI tools.',
+    expManagerRole: 'Branch Manager / Operational Lead',
+    expManagerCompany: 'Operations & Management',
+    expManagerText: 'Running daily operations and branch workflow, and leading the team to meet sales and service standards.',
+    expWarehouseRole: 'Warehouse Operations Assistant',
+    expWarehouseCompany: 'Operations & Logistics',
+    expWarehouseText: 'Overseeing inventory tracking, organising distribution, and keeping accurate operational records.',
+    expCurrent: 'Most Recent',
+
+    /* Skills */
+    skillsKicker: 'Capabilities',
+    skillsTitle: 'Skills',
+    skillsText: 'The tools and technologies I work with across frontend development, programming, and supporting tooling.',
+    skillsWebDev: 'Web Development',
+    skillsProgramming: 'Programming & Core',
+    skillsTools: 'Developer Tools & AI',
+    skillsSoft: 'Soft Skills',
+    softSelfMotivated: 'Self-Motivated',
+    softLeadership: 'Leadership',
+    softTeamManagement: 'Team Management',
+    softProblemSolving: 'Problem Solving',
+
+    /* Courses */
+    coursesKicker: 'Continuous Learning',
+    coursesTitle: 'Courses & Education',
+    coursesText: 'The learning tracks and courses that build my technical foundation.',
+    courseFrontendTitle: 'Frontend Web Development Coursework',
+    courseFrontendMeta: 'HTML5 · CSS3 · JavaScript',
+    courseFrontendText: 'Web development tracks covering semantic structure, styling, responsive layout, and JavaScript programming logic.',
+    courseCiscoTitle: 'Cisco Networking & Cybersecurity Basics',
+    courseCiscoMeta: 'Networking · Cybersecurity',
+    courseCiscoText: 'Foundational studies in networking, information security, and system protection concepts.',
+    courseUniversityTitle: 'Information Technology — Borg El Arab Technological University',
+    courseUniversityMeta: 'University Student',
+    courseUniversityText: 'Academic study in information technology covering computer science, systems, and databases.',
+    coursesStatus: 'In Progress',
 
     /* Hero section */
     welcome: "Welcome! I'm Moataz Mohamed",
