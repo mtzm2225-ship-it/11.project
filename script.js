@@ -76,6 +76,8 @@ const translations = {
     experienceNav: 'الخبرات',
     skillsNav: 'المهارات',
     summaryNav: 'النبذة',
+    socialsTitle: 'مواقع التواصل',
+    socialsSubtitle: 'تلاقيني على المنصات دي — دايمًا مبسوط أتعرف على ناس جديدة.',
 
     /* نافذة تسجيل الدخول */
     signinTitle: 'تسجيل الدخول',
@@ -240,6 +242,8 @@ const translations = {
     experienceNav: 'Experience',
     skillsNav: 'Skills',
     summaryNav: 'Summary',
+    socialsTitle: 'Social Links',
+    socialsSubtitle: 'Find me on these platforms — always happy to connect.',
 
     /* Sign In modal */
     signinTitle: 'Sign In',
@@ -2173,3 +2177,78 @@ if (aiInput) {
     }
   });
 }
+/* ============================================================================
+   17) زر مواقع التواصل + نافذتها (Social Links Popup)
+   ----------------------------------------------------------------------------
+   زر صغير مدوّر (.btn-socials) جنب «تحميل السيرة الذاتية» في الهيرو.
+   بالضغط عليه بتفتح نافذة صغيرة (#socials-modal) فيها كروت مواقع التواصل.
+
+   ملاحظة: الروابط جوه HTML مش هنا — نفس الروابط المستخدمة في الفوتر بالظبط،
+   عشان ما يبقاش فيه مصدرين للحقيقة يختلفوا مع الوقت.
+
+   طرق الغلق: زر × / الضغط على الخلفية / مفتاح Escape.
+   ============================================================================ */
+
+const socialsToggle = document.querySelector('.btn-socials');
+const socialsModal = document.querySelector('#socials-modal');
+const socialsClose = document.querySelector('.socials-close');
+
+/** فتح نافذة مواقع التواصل */
+function openSocialsModal() {
+  if (!socialsModal) {
+    return;
+  }
+
+  socialsModal.classList.remove('hidden');
+  socialsModal.setAttribute('aria-hidden', 'false');
+
+  /* نوقف تمرير الصفحة ورا النافذة عشان ما تتحركش وهي مفتوحة */
+  document.body.style.overflow = 'hidden';
+
+  /* ننقل التركيز لزر الغلق عشان الكيبورد يشتغل على طول */
+  if (socialsClose) {
+    socialsClose.focus();
+  }
+}
+
+/** إغلاق نافذة مواقع التواصل */
+function closeSocialsModal() {
+  if (!socialsModal) {
+    return;
+  }
+
+  socialsModal.classList.add('hidden');
+  socialsModal.setAttribute('aria-hidden', 'true');
+
+  /* نرجّع تمرير الصفحة زي ما كان */
+  document.body.style.overflow = '';
+
+  /* نرجّع التركيز للزر اللي فتح النافذة */
+  if (socialsToggle) {
+    socialsToggle.focus();
+  }
+}
+
+if (socialsToggle) {
+  socialsToggle.addEventListener('click', openSocialsModal);
+}
+
+if (socialsClose) {
+  socialsClose.addEventListener('click', closeSocialsModal);
+}
+
+/* الإغلاق بالضغط على الخلفية المعتمة (برة الكارت) */
+if (socialsModal) {
+  socialsModal.addEventListener('click', function (event) {
+    if (event.target === socialsModal) {
+      closeSocialsModal();
+    }
+  });
+}
+
+/* الإغلاق بمفتاح Escape */
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Escape' && socialsModal && !socialsModal.classList.contains('hidden')) {
+    closeSocialsModal();
+  }
+});
