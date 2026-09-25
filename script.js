@@ -1,4 +1,4 @@
-﻿﻿/* ============================================================================
+﻿﻿﻿/* ============================================================================
    PORTFOLIO — M & M · Moataz Mohamed
    الملف: script.js  (ملف الجافاسكربت الرئيسي والوحيد)
    ============================================================================
@@ -161,6 +161,17 @@ const translations = {
     allRightsReserved: '© 2026 معتز محمد. جميع الحقوق محفوظة.',
     footerSignature: 'مكتوب سطر بسطر بكل شغف — من الإسكندرية، مصر 🇪🇬',
 
+    /* مساعد الذكاء الاصطناعي */
+    aiTitle: 'مساعد M & M الذكي',
+    aiSubtitle: 'اسألني عن معتز، مشاريعه، مهاراته، أو أي حاجة عن الموقع.',
+    aiPlaceholder: 'اسأل الذكاء الاصطناعي...',
+    aiSend: 'إرسال',
+    aiThinking: '...جاري التفكير',
+    aiWaiting: 'الإجابة ستظهر هنا...',
+    aiEmpty: 'من فضلك اكتب سؤال أولًا.',
+    aiError: 'تعذر الاتصال بالمساعد، تحقق من اتصال الإنترنت وحاول تاني.',
+    aiOffline: 'المساعد غير متاح حاليًا.',
+
     /* الإعدادات */
     primaryMode: 'الوضع الأساسي',
     whiteMode: 'الوضع الأبيض'
@@ -262,6 +273,17 @@ const translations = {
     footerCredo: 'Turning coffee into code, and ideas into reality.',
     allRightsReserved: '© 2026 Moataz Mohamed. All rights reserved.',
     footerSignature: 'Handcrafted line by line with passion — from Alexandria, Egypt 🇪🇬',
+
+    /* AI Assistant */
+    aiTitle: 'M & M AI Assistant',
+    aiSubtitle: 'Ask me about Moataz, his projects, his skills, or anything on this site.',
+    aiPlaceholder: 'Ask the AI assistant...',
+    aiSend: 'Send',
+    aiThinking: 'Thinking...',
+    aiWaiting: 'The answer will appear here...',
+    aiEmpty: 'Please type a question first.',
+    aiError: 'Could not reach the assistant. Check your connection and try again.',
+    aiOffline: 'The assistant is unavailable right now.',
 
     /* Settings */
     primaryMode: 'Primary Mode',
@@ -1808,3 +1830,244 @@ applyTheme(savedTheme === 'light');
       { passive: true }
     );
   })();
+/* ============================================================================
+   16) مساعد الذكاء الاصطناعي (AI Assistant / Chat)
+   ----------------------------------------------------------------------------
+   فيه حاجتين هنا:
+     1) الزر العائم (.ai-fab) اللي بيفتح ويقفل لوحة الشات (#aiPanel)
+     2) إرسال السؤال للـ Cloudflare Worker (الملف worker.js في نفس المجلد)
+        والـ Worker هو اللي بيمسك مفتاح الـ AI وبيكلم Gemini.
+        السبب: لو المفتاح اتحط هنا في script.js هيبقى مكشوف لأي زائر.
+
+   الـ Worker لازم يرجّع JSON بالشكل:  { "reply": "..." }  أو  { "error": "..." }
+   ============================================================================ */
+
+/* رابط الـ Worker (نفس الـ Worker المفروض يكون منشور من ملف worker.js) */
+const AI_WORKER_URL = 'https://restless-frog-eb20.mtzm2225.workers.dev';
+
+/* أقصى مدة نستنى فيها رد السيرفر (40 ثانية) */
+const AI_REQUEST_TIMEOUT = 40000;
+
+/* أقصى عدد رسائل نحتفظ بيها كسياق عشان المساعد يفتكر المحادثة */
+const AI_MAX_HISTORY = 6;
+
+/* تاريخ المحادثة — بيتبعت مع كل سؤال */
+const aiConversationHistory = [];
+
+/* --- مراجع عناصر واجهة المساعد --- */
+const aiInput = document.getElementById('userInput');
+const aiResponse = document.getElementById('aiResponse');
+const aiSendButton = document.getElementById('aiSendButton');
+const aiToggle = document.getElementById('aiToggle');
+const aiPanel = document.getElementById('aiPanel');
+const aiCloseButton = document.querySelector('.ai-close');
+
+/** فتح لوحة المساعد والتركيز على خانة السؤال */
+function openAiPanel() {
+  if (!aiPanel) {
+    return;
+  }
+
+  aiPanel.classList.remove('hidden');
+
+  if (aiToggle) {
+    aiToggle.classList.add('is-open');
+    aiToggle.setAttribute('aria-expanded', 'true');
+    aiToggle.setAttribute('aria-label', 'Close AI assistant');
+  }
+
+  /* نركّز على الإدخال بعد ظهور اللوحة عشان الزائر يكتب على طول */
+  if (aiInput) {
+    setTimeout(function () {
+      aiInput.focus();
+    }, 60);
+  }
+}
+
+/** إغلاق لوحة المساعد */
+function closeAiPanel() {
+  if (!aiPanel) {
+    return;
+  }
+
+  aiPanel.classList.add('hidden');
+
+  if (aiToggle) {
+    aiToggle.classList.remove('is-open');
+    aiToggle.setAttribute('aria-expanded', 'false');
+    aiToggle.setAttribute('aria-label', 'Open AI assistant');
+  }
+}
+
+/** فتح/إغلاق اللوحة بالزر العائم */
+function toggleAiPanel() {
+  if (aiPanel && aiPanel.classList.contains('hidden')) {
+    openAiPanel();
+  } else {
+    closeAiPanel();
+  }
+}
+
+if (aiToggle) {
+  aiToggle.addEventListener('click', toggleAiPanel);
+}
+
+if (aiCloseButton) {
+  aiCloseButton.addEventListener('click', closeAiPanel);
+}
+
+/* الإغلاق بمفتاح Escape */
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Escape' && aiPanel && !aiPanel.classList.contains('hidden')) {
+    closeAiPanel();
+  }
+});
+
+/** التحقق إن الرد جاي من الـ Worker بالشكل المتفق عليه */
+function isAiPayload(data) {
+  return data && typeof data === 'object' && typeof data.reply === 'string' && data.reply.trim();
+}
+
+/**
+ * إرسال سؤال للـ Worker وإرجاع الإجابة
+ * @param {string} userMessage - سؤال المستخدم
+ * @returns {Promise<string>} إجابة الذكاء الاصطناعي
+ */
+async function askAI(userMessage) {
+  const dictionary = getDictionary(getCurrentLanguage());
+
+  /* لو الجهاز مش متصل بالنت من الأساس مش محتاجين نستنى */
+  if (navigator.onLine === false) {
+    return dictionary.aiError;
+  }
+
+  /* مؤقت لإلغاء الطلب لو أخد وقت طويل */
+  const controller = new AbortController();
+  const timeoutId = setTimeout(function () {
+    controller.abort();
+  }, AI_REQUEST_TIMEOUT);
+
+  try {
+    const response = await fetch(AI_WORKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: userMessage,
+        history: aiConversationHistory.slice(-AI_MAX_HISTORY)
+      }),
+      signal: controller.signal
+    });
+
+    /* بنقرا JSON حتى مع ردود الأخطاء عشان الـ Worker بيرجّع { error: "..." } */
+    let data = null;
+    try {
+      data = await response.json();
+    } catch (parseError) {
+      data = null;
+    }
+
+    if (response.ok && isAiPayload(data)) {
+      return data.reply.trim();
+    }
+
+    /* رسالة الخطأ الآتية من السيرفر */
+    if (data && typeof data.error === 'string' && data.error.trim()) {
+      return data.error.trim();
+    }
+
+    return dictionary.aiOffline;
+  } catch (error) {
+    console.error('[AI] فشل الاتصال بالـ Worker:', error);
+    return dictionary.aiError;
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
+
+/** تثبيت حالة واجهة المساعد (جاري التفكير / خطأ) */
+function setAiBusy(isBusy) {
+  if (aiSendButton) {
+    aiSendButton.disabled = isBusy;
+    aiSendButton.classList.toggle('is-loading', isBusy);
+  }
+
+  if (aiInput) {
+    aiInput.disabled = isBusy;
+  }
+}
+
+/**
+ * عرض الإجابة داخل الصندوق
+ * @param {string} text - النص المعروض
+ * @param {boolean} isError - هل النص رسالة خطأ
+ */
+function showAiReply(text, isError) {
+  if (!aiResponse) {
+    return;
+  }
+
+  aiResponse.textContent = text;
+  aiResponse.classList.toggle('is-error', Boolean(isError));
+  aiResponse.classList.add('has-content');
+}
+
+/** التعامل مع زر الإرسال: قراءة السؤال ثم عرض الإجابة */
+async function handleAskAI() {
+  if (!aiInput || !aiResponse) {
+    return;
+  }
+
+  const dictionary = getDictionary(getCurrentLanguage());
+  const userText = aiInput.value.trim();
+
+  /* مفيش سؤال؟ ننبّه المستخدم */
+  if (!userText) {
+    showAiReply(dictionary.aiEmpty, true);
+    aiInput.focus();
+    return;
+  }
+
+  /* نعرض حالة الانتظار */
+  setAiBusy(true);
+  aiResponse.classList.remove('is-error');
+  aiResponse.textContent = dictionary.aiThinking;
+
+  /* نحفظ سؤال المستخدم في تاريخ المحادثة قبل ما نبعته */
+  aiConversationHistory.push({ role: 'user', content: userText });
+
+  const aiReply = await askAI(userText);
+
+  /* لو رجع أي رسالة خطأ معروفة نعتبرها خطأ */
+  const isError = aiReply === dictionary.aiError || aiReply === dictionary.aiOffline;
+
+  /* نحفظ رد المساعد لو كان رد حقي */
+  if (!isError) {
+    aiConversationHistory.push({ role: 'assistant', content: aiReply });
+
+    /* نقلّم التاريخ لو كبر عن الحد */
+    if (aiConversationHistory.length > AI_MAX_HISTORY) {
+      aiConversationHistory.splice(0, aiConversationHistory.length - AI_MAX_HISTORY);
+    }
+  }
+
+  showAiReply(aiReply, isError);
+  setAiBusy(false);
+
+  aiInput.value = '';
+  aiInput.focus();
+}
+
+/* --- ربط الأحداث بواجهة المساعد --- */
+if (aiSendButton) {
+  aiSendButton.addEventListener('click', handleAskAI);
+}
+
+if (aiInput) {
+  /* Enter يرسل، وShift + Enter سطر جديد */
+  aiInput.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      handleAskAI();
+    }
+  });
+}

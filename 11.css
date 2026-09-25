@@ -1,4 +1,4 @@
-﻿﻿/* ============================================================================
+﻿﻿﻿/* ============================================================================
    PORTFOLIO — M & M · Moataz Mohamed
    الملف: 11.css  (ملف التنسيقات الرئيسي والوحيد)
    ============================================================================
@@ -3687,8 +3687,8 @@ body.light-mode .contact-item:hover {
     }
 }
 /* ============================================================================
-   تم إزالة الأزرار العائمة على جنب الشاشة (واتساب + مساعد الذكاء الاصطناعي)
-   ولوحة الشات، حسب طلب إزالة أي حاجة عالقة على الجانب.
+   ملاحظة: الأزرار العائمة على جنب الشاشة (واتساب + مساعد الذكاء الاصطناعي)
+   ولوحة الشات موجودة تاني في آخر الملف تحت قسم «الأزرار العائمة».
    ============================================================================ */
 
 /* ============================================================================
@@ -4439,3 +4439,778 @@ body.light-mode .name-intro-kicker {
 
 
 
+/* ============================================================================
+   الأزرار العائمة (Floating Buttons) — واتساب + مساعد الذكاء الاصطناعي
+   ----------------------------------------------------------------------------
+   زرين ثابتين في جنب الشاشة من تحت:
+     • .whatsapp-fab — دايرة خضرا بتفتح محادثة واتساب مباشرة
+     • .ai-fab       — زر المساعد: بيفتح ويقفل لوحة الشات (.ai-panel)
+
+   الترتيب من تحت لفوق: الواتساب تحت خالص، والمساعد فوقه شوية.
+   في العربي (RTL) الزرين بيتقلبوا للجنب التاني.
+   ============================================================================ */
+.whatsapp-fab,
+.ai-fab {
+    position: fixed;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    cursor: pointer;
+    z-index: 1500;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* --- زر الواتساب --- */
+.whatsapp-fab {
+    bottom: 24px;
+    right: 24px;
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    color: #ffffff;
+    border: 1px solid rgba(37, 211, 102, 0.55);
+    box-shadow: 0 12px 28px rgba(37, 211, 102, 0.35), 0 4px 12px rgba(0, 0, 0, 0.35);
+    text-decoration: none;
+}
+
+.whatsapp-fab:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 18px 34px rgba(37, 211, 102, 0.45), 0 6px 16px rgba(0, 0, 0, 0.4);
+    color: #ffffff;
+}
+
+/* هالة بتنبعث حوالين الزر عشان تلفت النظر */
+.whatsapp-fab::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(37, 211, 102, 0.6);
+    animation: whatsapp-ring 2.6s ease-out infinite;
+}
+
+@keyframes whatsapp-ring {
+    0%   { transform: scale(1);    opacity: 0.7; }
+    70%  { transform: scale(1.45); opacity: 0; }
+    100% { transform: scale(1.45); opacity: 0; }
+}
+
+/* --- زر المساعد --- */
+.ai-fab {
+    bottom: 96px;
+    right: 24px;
+    border: 1px solid rgba(0, 242, 254, 0.5);
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    color: #0d131a;
+    font-size: 1.35rem;
+    box-shadow: 0 12px 28px rgba(0, 242, 254, 0.35), 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.ai-fab:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 18px 34px rgba(0, 242, 254, 0.45), 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* عند فتح اللوحة: الأيقونة تتحول من روبوت إلى علامة إغلاق */
+.ai-fab .ai-fab-close {
+    display: none;
+}
+
+.ai-fab.is-open .ai-fab-open {
+    display: none;
+}
+
+.ai-fab.is-open .ai-fab-close {
+    display: block;
+}
+
+/* نقطة خضرا صغيرة بتعمل نبضة نيون عشان تشد انتباه الزائر */
+.ai-fab-dot {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #22c55e;
+    border: 2px solid #0d131a;
+    animation: ai-pulse 2s ease-in-out infinite;
+}
+
+.ai-fab.is-open .ai-fab-dot {
+    display: none;
+}
+
+@keyframes ai-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.55); }
+    50%      { box-shadow: 0 0 0 7px rgba(34, 197, 94, 0); }
+}
+
+/* --- لوحة الشات: بتفتح فوق الزرين --- */
+.ai-panel {
+    position: fixed;
+    bottom: 168px;
+    right: 24px;
+    width: min(400px, calc(100vw - 32px));
+    max-height: min(560px, calc(100vh - 200px));
+    overflow-y: auto;
+    padding: 22px;
+    background: rgba(13, 19, 26, 0.97);
+    border: 1px solid rgba(0, 242, 254, 0.28);
+    border-radius: 22px;
+    box-shadow: 0 24px 60px rgba(2, 6, 23, 0.6);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-sizing: border-box;
+    z-index: 1500;
+    animation: ai-panel-in 0.25s ease;
+}
+
+@keyframes ai-panel-in {
+    from { opacity: 0; transform: translateY(14px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* --- رأس المساعد: الأيقونة والعنوان --- */
+.ai-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+/* زر إغلاق اللوحة */
+.ai-close {
+    flex: 0 0 auto;
+    width: 30px;
+    height: 30px;
+    margin-inline-start: auto;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.04);
+    color: #e2e8f0;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.ai-close:hover {
+    background: rgba(248, 113, 113, 0.18);
+    border-color: rgba(248, 113, 113, 0.5);
+    color: #fca5a5;
+}
+
+.ai-avatar {
+    flex: 0 0 auto;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    color: #0d131a;
+    font-size: 1.25rem;
+    box-shadow: 0 0 18px rgba(0, 242, 254, 0.35);
+}
+
+.ai-header-text h3 {
+    margin: 0 0 3px;
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.ai-header-text p {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+/* --- صف الإدخال والزر --- */
+.ai-box {
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+}
+
+.ai-input {
+    flex: 1;
+    min-width: 0;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-family: inherit;
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.ai-input::placeholder {
+    color: #64748b;
+}
+
+.ai-input:focus {
+    border-color: #00f2fe;
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 12px rgba(0, 242, 254, 0.25);
+}
+
+/* الزر: بيستخدم نفس تدرّج لون المساعد */
+.ai-send-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex: 0 0 auto;
+    width: 50px;
+    padding: 14px;
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    color: #0d131a;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: inherit;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ai-send-btn:hover:not(:disabled) {
+    opacity: 0.9;
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+    transform: translateY(-2px);
+}
+
+.ai-send-btn:disabled {
+    cursor: wait;
+    opacity: 0.7;
+}
+
+/* الأيقونة بتلف بدل النص أثناء ما الإجابة بتيجي */
+.ai-send-btn.is-loading i {
+    animation: ai-spin 1s linear infinite;
+}
+
+@keyframes ai-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* --- صندوق الإجابة --- */
+.response-box {
+    margin-top: 16px;
+    padding: 16px;
+    min-height: 60px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 3px solid #00f2fe;
+    border-radius: 12px;
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    /* الحفاظ على أسطر الإجابة كما هي */
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+}
+
+/* حالة الخطأ */
+.response-box.is-error {
+    border-left-color: #f87171;
+    color: #fca5a5;
+}
+
+/* --- الوضع الأبيض --- */
+body.light-mode .ai-panel {
+    background: rgba(255, 255, 255, 0.97);
+    border-color: rgba(56, 189, 248, 0.35);
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
+}
+
+body.light-mode .whatsapp-fab {
+    border-color: rgba(18, 140, 126, 0.45);
+    box-shadow: 0 12px 28px rgba(18, 140, 126, 0.28), 0 4px 12px rgba(15, 23, 42, 0.14);
+}
+
+body.light-mode .ai-fab {
+    border-color: rgba(2, 132, 199, 0.4);
+    box-shadow: 0 12px 28px rgba(2, 132, 199, 0.28), 0 4px 12px rgba(15, 23, 42, 0.14);
+}
+
+body.light-mode .ai-fab-dot {
+    border-color: #ffffff;
+}
+
+body.light-mode .ai-close {
+    border-color: rgba(15, 23, 42, 0.14);
+    background: rgba(15, 23, 42, 0.04);
+    color: #0f172a;
+}
+
+body.light-mode .ai-header-text h3 {
+    color: #0f172a;
+}
+
+body.light-mode .ai-header-text p {
+    color: #475569;
+}
+
+body.light-mode .ai-input {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(15, 23, 42, 0.14);
+    color: #0f172a;
+}
+
+body.light-mode .ai-input::placeholder {
+    color: #94a3b8;
+}
+
+body.light-mode .response-box {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(15, 23, 42, 0.1);
+    border-left-color: #0ea5e9;
+    color: #334155;
+}
+
+body.light-mode .response-box.is-error {
+    border-left-color: #dc2626;
+    color: #b91c1c;
+}
+
+/* --- الموبايل: اللوحة تاخد عرض الشاشة تقريبًا والزرين يفضلوا مريحين للإصبع --- */
+@media (max-width: 768px) {
+    .whatsapp-fab,
+    .ai-fab {
+        width: 54px;
+        height: 54px;
+    }
+
+    .whatsapp-fab {
+        bottom: 18px;
+        right: 18px;
+    }
+
+    .ai-fab {
+        bottom: 84px;
+        right: 18px;
+    }
+
+    .ai-panel {
+        bottom: 150px;
+        right: 12px;
+        left: 12px;
+        width: auto;
+        max-height: calc(100vh - 180px);
+        padding: 18px;
+    }
+}
+
+/* --- الاتجاه من اليمين للشمال (العربي): الزرين واللوحة ينقلبوا للجنب التاني --- */
+html[dir="rtl"] .whatsapp-fab,
+html[dir="rtl"] .ai-fab {
+    right: auto;
+    left: 24px;
+}
+
+html[dir="rtl"] .ai-panel {
+    right: auto;
+    left: 24px;
+}
+
+html[dir="rtl"] .ai-close {
+    margin-inline-start: auto;
+    margin-inline-end: 0;
+}
+
+@media (max-width: 768px) {
+    html[dir="rtl"] .whatsapp-fab,
+    html[dir="rtl"] .ai-fab {
+        left: 18px;
+        right: auto;
+    }
+
+    html[dir="rtl"] .ai-panel {
+        left: 12px;
+        right: 12px;
+    }
+}/* ============================================================================
+   تظبيط المقاسات والمسافات (Layout Polish & Scrollbar)
+   ----------------------------------------------------------------------------
+   القسم ده في آخر الملف عن قصد، عشان ياخد الأولوية على أي قاعدة فوقه
+   (نفس الخصوصية = الأخير بيفوز).
+
+   اللي بيعمله:
+     1) إلغاء شريط التمرير الجانبي (العمودي) تمامًا من غير ما نلغي التمرير
+     2) توحيد عرض كل الأقسام على نفس الحاوية (--site-max) عشان الحواف
+        تبقى على خط واحد بالظبط من فوق لتحت
+     3) تظبيط مسافات الهيرو والشهادات من حواف الصفحة بدقة
+     4) ضبط ارتفاع الصفحة عشان إلغاء الشريط ما يعملش قفزة في الترتيب
+
+   ⚠️ ملاحظة مهمة: إلغاء شريط التمرير بيتم بـ scrollbar-width: none
+   (فايرفوكس) و ::-webkit-scrollbar { display: none } (كروم/إيدج/سفاري).
+   التمرير نفسه شغال عادي بالعجلة واللمس وأزرار الكيبورد —
+   اللي بيتشال هو الشكل المرئي بس.
+   ============================================================================ */
+
+:root {
+    /* عرض المحتوى الأقصى الموحّد لكل أقسام الموقع */
+    --site-max: 1200px;
+
+    /* الحشو الجانبي الثابت — من 1024px وطالع المسافات دي هي اللي بتظهر،
+       فالخط البصري للحواف بيفضل ثابت على أي شاشة كبيرة */
+    --site-pad-desktop: 40px;
+
+    /* الحشو على الشاشات الأصغر (بيتناسب مع العرض) */
+    --site-pad-fluid: 5%;
+
+    /* أقل مسافة من الحافة على أي شاشة */
+    --site-pad-min: 16px;
+}
+
+/* ----------------------------------------------------------------------------
+   1) إلغاء شريط التمرير الجانبي (لكن التمرير نفسه شغال)
+   ---------------------------------------------------------------------------- */
+html {
+    /* إلغاء شريط التمرير بالفايرفوكس (الحديث) */
+    scrollbar-width: none;
+    /* لون الشريط القديم في إيدج/IE */
+    -ms-overflow-style: none;
+}
+
+/* إلغاء شريط التمرير في كروم / سفاري / إيدج */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+/* كمان أي عنصر عليه تمرير جوه الصفحة ما يورِيش الشريط
+   (ما عدا .certificates-list — شوف تحت، ده ليه شريط رفيع مقصود) */
+.certificates-list::-webkit-scrollbar {
+    height: 8px;
+}
+
+/* ----------------------------------------------------------------------------
+   2) توحيد حاويات الأقسام — كلها على نفس العرض ونفس الحواف
+   ---------------------------------------------------------------------------- */
+.hero-section,
+.portfolio-section,
+.contact-strip-section,
+.about-section,
+.footer-container {
+    width: 100%;
+    max-width: var(--site-max);
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+/* الحاويات اللي جوه الأقسام (زي شبكة «من أنا» والفوتر) لازم تاخد
+   عرض الحاوية كلها بدون أي هامش إضافي، عشان حواف الكروت تبقى
+   على نفس خط حواف العنوان بالظبط.
+   ⚠️ السبب: عناصر بـ data-reveal بتاخد transform مؤقت (scale/translate)
+   وده بيغيّر شكلك المقاس بـ getBoundingClientRect — فلو حطينا أي
+   حشو إضافي هنا، الكروت هتبان «نايمة لجوّه» عن باقي الأقسام. */
+.about-section .about-grid {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* من 1024px وطالع: حشو ثابت من الجانبين (مش نسبة %) عشان الحواف
+   تفضل على خط واحد مهما كان عرض الشاشة */
+@media (min-width: 1024px) {
+    .hero-section,
+    .portfolio-section,
+    .contact-strip-section,
+    .about-section {
+        padding-left: var(--site-pad-desktop);
+        padding-right: var(--site-pad-desktop);
+    }
+}
+
+/* من 1024px ونازل: الحشو يبقى نسبة بسيطة مع حد أدنى */
+@media (max-width: 1023px) {
+    .hero-section,
+    .portfolio-section,
+    .contact-strip-section,
+    .about-section {
+        padding-left: var(--site-pad-fluid);
+        padding-right: var(--site-pad-fluid);
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-section,
+    .portfolio-section,
+    .contact-strip-section,
+    .about-section {
+        padding-left: var(--site-pad-min);
+        padding-right: var(--site-pad-min);
+    }
+}
+
+/* الفوتر: نفس عرض الأقسام ونفس الحواف بالظبط */
+.footer-section {
+    padding-left: var(--site-pad-desktop);
+    padding-right: var(--site-pad-desktop);
+}
+
+@media (max-width: 1023px) {
+    .footer-section {
+        padding-left: var(--site-pad-fluid);
+        padding-right: var(--site-pad-fluid);
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-section {
+        padding-left: var(--site-pad-min);
+        padding-right: var(--site-pad-min);
+    }
+}
+
+/* ----------------------------------------------------------------------------
+   3) مسافات الهيرو من الحواف
+   ---------------------------------------------------------------------------- */
+.hero-section {
+    /* الحشو الجانبي جاي من قواعد توحيد الحاويات فوق — نضبط الرأسي بس */
+    padding-top: 24px;
+    padding-bottom: 24px;
+    gap: 20px;
+}
+
+.hero-top-row {
+    /* العرض محدد من الحاوية الأم — من غير تكرار عشان مفيش انزياح */
+    max-width: 100%;
+    gap: 44px;
+    margin-bottom: 12px;
+}
+
+/* الصف اللي جوه الكارت الزجاجي: نتأكد إن محتواه ما يلمسش الحواف */
+.hero-visual-card {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* ----------------------------------------------------------------------------
+   4) الشهادات: مسافات الحواف والأسهم مضبوطة
+   ---------------------------------------------------------------------------- */
+/* كارت الشهادات: نفس حواف باقي الكروت بالظبط، ومحتواه ما يخرجش برة. */
+.about-card.certificates-card {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* على الشاشات الكبيرة: الكارت ياخد نفس حشو باقي الكروت */
+@media (min-width: 1024px) {
+    .about-card.certificates-card {
+        padding-left: 28px;
+        padding-right: 28px;
+    }
+}
+
+/* ----------------------------------------------------------------------------
+   6) الشريط العلوي (Header) — إصلاح الخروج عن الحافة و«أكل» الجنب
+   ----------------------------------------------------------------------------
+   المشكلة اللي كانت بتحصل بالظبط:
+
+   القاعدة القديمة كانت كده:
+       .header { width: min(1400px, calc(100% - 32px)); margin: 8px auto 8px !important; }
+
+   الـ min() بتخلي العرض المستخدم رقم ثابت (1400px) لحظة ما الشاشة تبقى
+   أوسع من ده. وبما إن الـ width بقى رقم ثابت مش نسبة، بقى في فرق بين
+   العرض (1400px) والحاوية، والفرق ده بيتوزّع على هوامش auto.
+
+   ولكن الهوامش الـ auto هنا **ما كانتش بتتحسب بالظبط** — النتيجة اللي
+   كانت بتطلع في المتصفح:  margin: 8px -22px 8px 0px
+   يعني هامش يمين **سالب 22 بكسل**!
+
+   والهامش السالب معناه إن الصندوق بيمتد برة الحاوية:
+       عرض الشريط الفعلي = 1400 + 22 + 22 = 1462px  ← أوسع من الشاشة (1440px)!
+   وعند النزول (الكلاس .scrolled) كان بيوصل 1502px — أي أوسع بـ 62px.
+
+   وده اللي كان بيعمل الحاجتين اللي شوفتهم:
+     • «أكل» في الجنب     → الشريط بيمتد برة الشاشة فبيبان مقطوع على الجنب
+     • زيادة فوق الحافة   → لما الهامش السالب ده يتطبق، الشريط بيلزق برة
+                            الحافة العلوية، وبيغطي أول جزء من الصفحة،
+                            فبيقطع إحساس اللى بيتصفح وبيمنع الوصول للعناصر اللي تحته
+
+   الحل: نخلي العرض نسبة مئوية مضمونة (بدل min مع رقم ثابت)،
+   ونشيل الهوامش السالبة خالص بـ max-width + auto الواسطة.
+   ---------------------------------------------------------------------------- */
+
+/* --- الشريط وانت فوق (كبسولة) --- */
+.header {
+    /* box-sizing عشان الـ padding والـ border ما يزودوش على العرض */
+    box-sizing: border-box;
+
+    /* العرض المضمون: أبدًا ما يزيد عن الحاوية ولا يقلّ عن الحافة */
+    width: calc(100% - 32px);
+    max-width: 1400px;
+
+    /* هوامش موجبة فقط — مفيش أي سالب يخرج الصندوق برة الشاشة */
+    margin-inline: auto;
+    margin-block: 8px;
+
+    /* الحافة العلوية: لازم نلغي أي top سالب أو سالب القيمة */
+    top: 8px !important;
+}
+
+/* --- الشريط وانت نازل (ملزوق في الحافة) --- */
+.header.scrolled {
+    box-sizing: border-box;
+
+    /* العرض الكامل بالظبط — من غير أي زيادة نص بكسل */
+    width: 100%;
+    max-width: 100%;
+    margin: 0 !important;
+    top: 0 !important;
+
+    /* نضمن إن مفيش أي حاجة بتخرج برة الشريط */
+    overflow: hidden;
+}
+
+/* الحاوية اللي جوه الشريط: تفضل جوه الحدود على أي عرض */
+.header > * {
+    min-width: 0;
+    flex-shrink: 1;
+}
+
+/* اللوجو ما يتكسّرش */
+.header .logo-container {
+    flex-shrink: 0;
+}
+
+/* تأمين إضافي: الـ body نفسه ما يعملش تمرير أفقي بسبب أي هامش سالب */
+body {
+    overflow-x: clip;
+}
+
+/* ملاحظة مهمة: "سلوك التمرير" (scroll snapping / التمرير بالماوس)
+   ما بيتأثرش بأي من ده — إحنا بس منعنا أي عنصر إنه يخرج عن الحاوية.
+   لو حاسة إن التمرير تقيل في مكان معيّن، جرّب تحط
+   overflow-x: hidden بدل clip (نفس التأثير بس أوفر للدعم في المتصفحات القديمة). */
+
+/* على الموبايل: نفس المنطق بس بعرض أصغر من الحافة */
+@media (max-width: 600px) {
+    .header {
+        width: calc(100% - 20px);
+        max-width: 100%;
+        margin-inline: auto;
+        margin-block: 10px;
+        top: 10px !important;
+    }
+
+    .header.scrolled {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 !important;
+        top: 0 !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        width: calc(100% - 20px);
+        max-width: 100%;
+        margin-inline: auto;
+        margin-block: 10px;
+        top: 10px !important;
+    }
+
+    .header.scrolled {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 !important;
+        top: 0 !important;
+    }
+}
+
+/* المسافة الأفقية اللي الأسهم بتقف فيها.
+   ملاحظة: القاعدة الأصلية بـ 66px/54px لسه شغالة للأسهم،
+   ودي بتخلي الحشو متناسب مع السهم على الشاشات الصغيرة
+   عشان أول كارت ما يتقصش. */
+@media (max-width: 499px) {
+    .certificates-list {
+        padding-left: 46px;
+        padding-right: 46px;
+        scroll-padding-left: 46px;
+        scroll-padding-right: 46px;
+    }
+}
+
+@media (max-width: 360px) {
+    .certificates-list {
+        padding-left: 42px;
+        padding-right: 42px;
+        scroll-padding-left: 42px;
+        scroll-padding-right: 42px;
+    }
+}
+
+/* ----------------------------------------------------------------------------
+   5) لون زر المساعد العائم — ذهبي زي هوية الموقع
+   (بدل السماوي اللي كان ناشز عن باقي الألوان)
+   ---------------------------------------------------------------------------- */
+.ai-fab {
+    border-color: rgba(212, 175, 55, 0.55);
+    background: linear-gradient(135deg, #f7d774 0%, #d4af37 55%, #bf8f28 100%);
+    color: #0a090c;
+    box-shadow: 0 12px 28px rgba(212, 175, 55, 0.32), 0 4px 12px rgba(0, 0, 0, 0.38);
+}
+
+.ai-fab:hover {
+    box-shadow: 0 18px 34px rgba(212, 175, 55, 0.45), 0 6px 16px rgba(0, 0, 0, 0.42);
+}
+
+/* نقطة التنبيه تفضل خضرا (دلالة على «متاح») بس بحدود داكنة متناسقة */
+.ai-fab-dot {
+    border-color: #0a090c;
+}
+
+/* الوضع الأبيض: نفس الذهبي بس بظل أخف يناسب الخلفية الفاتحة */
+body.light-mode .ai-fab {
+    border-color: rgba(191, 143, 40, 0.5);
+    box-shadow: 0 12px 28px rgba(191, 143, 40, 0.3), 0 4px 12px rgba(15, 23, 42, 0.14);
+}
+
+/* لون المساعد جوه اللوحة (الأفاتار + زر الإرسال) يبقى ذهبي هو كمان
+   عشان يبقى متناسق مع الزر العائم */
+.ai-avatar,
+.ai-send-btn {
+    background: linear-gradient(135deg, #f7d774 0%, #d4af37 55%, #bf8f28 100%);
+    color: #0a090c;
+}
+
+.ai-avatar {
+    box-shadow: 0 0 18px rgba(212, 175, 55, 0.35);
+}
+
+.ai-send-btn:hover:not(:disabled) {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.42);
+}
+
+.ai-input:focus {
+    border-color: #e8c15a;
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.25);
+}
+
+.ai-panel {
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+.response-box {
+    border-left-color: #d4af37;
+}
+
+body.light-mode .response-box {
+    border-left-color: #bf8f28;
+}
